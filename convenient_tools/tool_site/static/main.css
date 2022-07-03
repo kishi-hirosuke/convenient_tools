@@ -1,0 +1,47 @@
+header{
+    padding: 40px 80px 0px 80px;    
+}
+
+
+.box{
+    padding: 40px 80px 0px 80px;
+}
+
+.boxtitle{
+    padding: 13px 0px 30px 0px;
+    border-top:solid
+    black 5px;
+    border-bottom:solid
+    gray 2px;
+}
+
+.box_subtitle{
+    padding-top: 30px;
+}
+
+.tools_table{
+    width: 100%;
+    margin: 25px 0px;
+    border-collapse: separate;
+    border-spacing: 30px;
+}
+
+.tool{
+    border: solid gray 1px;
+}
+
+.tool a {
+    display: block;
+    color: #000000;
+    text-decoration: none;
+    padding: 15px;
+}
+
+.tool a:hover {
+    color: #000000;
+    background-color: rgba(240, 250, 255, 0.558);
+}
+
+.tool .title{
+    font-size: 21px;
+}
