@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Extraction of CSV｜csvから特定の行を抽出｜Innovation-Tools</title>
+{% endblock %}
+
+{% block main %}
+<div class="box">
+    
+    <div class="boxtitle">
+        <h3>Extraction CSV rows</h3>
+        <p>アップロードしたcsvデータから特定の行のみを抽出します。</p>
+    </div>
+    
+    <div class="sub_box">
+        <table class="explanation">
+            <tr>
+                <td width="50%">
+                    <p class="explanation_title">このツールでできること</p>
+                    <p>
+                    アップロードしたcsvデータから、基準となる列に「指定したキーワード」を含む行のみを抽出したcsvデータを出力します。（部分一致）<br>
+                    複数キーワードに対応。<br>
+                    </p>
+                </td>
+                <td width="50%">
+                    <p class="explanation_title">使い方</p>
+                    <ol>
+                        <li>抽出元のcsvデータをアップロード</li>
+                        <li>基準とする列名を入力</li>
+                        <li>抽出するキーワードを入力（パイプ「|」区切りで複数指定可）</li>
+                        <li>抽出ボタンをクリック</li>
+                    </ol>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+</div>
+{% endblock %}
