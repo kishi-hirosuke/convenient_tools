@@ -11,10 +11,14 @@ class AboutView(TemplateView):
 class Tool_extractView(TemplateView):
     template_name = "tool_extract.html"
 
-
-
 # class csv_exportView(View):
-#     def get(self, request):
+
+#     def post(self, request):
+#         if 'csv' in request.FILES:
+#             data = io.TextIOWrapper(request.FILES['csv'].file, encoding='utf-8')
+#             csv_content = csv.reader(data)
+#             return csv_content
+
 #         response = HttpResponse(content_type='text/csv')
 #         response['Content-Disposition'] = 'attachment;  filename="item.csv"'
 
@@ -24,10 +28,4 @@ class Tool_extractView(TemplateView):
 #         writer.writerow(['3', 'は'])
 #         return response
 
-# class csv_importView(View):
-#     def post(self, request):
-#         if 'csv' in request.FILES:
-#             data = io.TextIOWrapper(request.FILES['csv'].file, encoding='utf-8')
-#             csv_content = csv.reader(data)
-#             return csv_content
 
