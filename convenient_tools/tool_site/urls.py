@@ -1,8 +1,11 @@
 from django.urls import path
-from .views import IndexView, AboutView, Tool_extractView
+from tool_site import views
+
 
 urlpatterns = [
-    path('', IndexView.as_view()),
-    path('about/', AboutView.as_view()),
-    path('tool_extract/', Tool_extractView.as_view()),
+    path('', views.IndexView.as_view()),
+    path('about/', views.AboutView.as_view()),
+    path('tool_extract/', views.Tool_extractView.as_view()),
+    # path('csv_export/', views.csv_exportView.as_view()),
+    # path('csv_import/', views.csv_importView.as_view()),
 ]

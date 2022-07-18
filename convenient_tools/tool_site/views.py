@@ -1,4 +1,6 @@
-from django.views.generic import TemplateView
+from django.http import HttpResponse
+from django.views.generic import TemplateView, View
+import csv, io
 
 class IndexView(TemplateView):
     template_name = "index.html"
@@ -8,3 +10,24 @@ class AboutView(TemplateView):
 
 class Tool_extractView(TemplateView):
     template_name = "tool_extract.html"
+
+
+
+# class csv_exportView(View):
+#     def get(self, request):
+#         response = HttpResponse(content_type='text/csv')
+#         response['Content-Disposition'] = 'attachment;  filename="item.csv"'
+
+#         writer = csv.writer(response)
+#         writer.writerow(['1', 'い'])
+#         writer.writerow(['2', 'ろ'])
+#         writer.writerow(['3', 'は'])
+#         return response
+
+# class csv_importView(View):
+#     def post(self, request):
+#         if 'csv' in request.FILES:
+#             data = io.TextIOWrapper(request.FILES['csv'].file, encoding='utf-8')
+#             csv_content = csv.reader(data)
+#             return csv_content
+
