@@ -33,6 +33,20 @@
                 </td>
             </tr>
         </table>
+        <br><br>
+        <div class="form-group">
+            <form method="POST" class="form" enctype="multipart/form-data">  
+              {% csrf_token %}  
+              <div class="file-upload-wrapper">
+                <p>テストファイルを選択<br>
+                  {{ form.testfile }}
+                </p>
+              </div> 
+              <p>テストファイルをアップロードし、予測結果の'result.csv'ファイルをダウンロードする</p>
+              <button type="submit" class="save btn btn-outline-primary">Upload and Download</button>  
+            </form> 
+          </div>
+
     </div>
 
 </div>
