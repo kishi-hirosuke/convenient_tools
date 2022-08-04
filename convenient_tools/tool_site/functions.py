@@ -3,11 +3,12 @@ import numpy as np
 import csv,os
 from django.http import HttpResponse
 
-def process_file(data):
-    test = data
-    test['D'] = 0
+def process_file(file_data,word_data):
+    file = file_data
+    word = word_data
+    file[word] = 5
 
-    df_result = test
+    df_result = file
 
     return df_result
 

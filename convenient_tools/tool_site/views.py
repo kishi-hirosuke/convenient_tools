@@ -16,8 +16,12 @@ def Tool_extractView(request):
     if request.method == 'POST':
         upload = UploadForm(request.POST, request.FILES)
         if upload.is_valid():
-            data = pd.read_csv(io.StringIO(request.FILES['testfile'].read().decode('utf-8')), delimiter=',')
-            df = process_file(data)
+
+            form_data = upload.cleaned_data
+            word_data = form_data["word"]
+            
+            file_data = pd.read_csv(io.StringIO(request.FILES['testfile'].read().decode('utf-8')), delimiter=',')
+            df = process_file(file_data,word_data)
 
             response = to_csv(df)
 
