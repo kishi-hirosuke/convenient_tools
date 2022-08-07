@@ -24,7 +24,8 @@ def Tool_extractView(request):
             word = form_data["word"]
             file = form_data["testfile"]
 
-            #データ状況確認用ここから
+
+            '''エンコード識別関数確認
             print('ファイル名')
             print(file)
 
@@ -37,9 +38,20 @@ def Tool_extractView(request):
 
             print('タイプ')
             print(type(enc))
-            #データ状況確認ここまで
+            '''
 
+            '''
+            これでも識別できるが、
+            {'encoding': 'SHIFT_JIS', 'confidence': 0.99, 'language': 'Japanese'}
+            からエンコード抜き出しが必要なのと、精度が完全ではないらしい
             
+            c = file.read()
+            result = chardet.detect(c)
+            print('プリント')
+            print(result)
+            '''
+
+
             try:
                 file_data1 = pd.read_csv(io.StringIO(file.read().decode('cp932')), delimiter=',')
                 df = process_file(file_data1,word)
