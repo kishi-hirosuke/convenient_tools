@@ -3,9 +3,11 @@ from django.views.generic import TemplateView, View
 from django.shortcuts import render
 from django import forms
 from tool_site.forms import UploadForm
-from tool_site.functions import process_file, to_csv_cp932, to_csv_utf_8
+from tool_site.functions import process_file, to_csv_cp932, to_csv_utf_8, getEncode
 import csv, io
 import pandas as pd
+import chardet
+
 
 class IndexView(TemplateView):
     template_name = "index.html"
@@ -19,25 +21,33 @@ def Tool_extractView(request):
         if upload.is_valid():
 
             form_data = upload.cleaned_data
-            word_data = form_data["word"]
+            word = form_data["word"]
             file = form_data["testfile"]
-            print("プリント1")
+
+            #データ状況確認用ここから
+            print('ファイル名')
             print(file)
-            print("プリント1")
+
+            print('タイプ')
+            print(type(file))
+
+            enc = getEncode(file)
+            print('エンコード')
+            print(enc)
+
+            print('タイプ')
+            print(type(enc))
+            #データ状況確認ここまで
+
+            
             try:
                 file_data1 = pd.read_csv(io.StringIO(file.read().decode('cp932')), delimiter=',')
-                print("プリント2")
-                print(file_data1)
-                print("プリント2")
-                df = process_file(file_data1,word_data)
+                df = process_file(file_data1,word)
                 response = to_csv_cp932(df)
 
             except UnicodeDecodeError:
                 file_data2 = pd.read_csv(io.StringIO(file.read().decode('utf-8')), delimiter=',')
-                print("プリント3")
-                print(file_data2)
-                print("プリント3")
-                df = process_file(file_data2,word_data)
+                df = process_file(file_data2,word)
                 response = to_csv_utf_8(df)
                 #raise forms.ValidationError('拡張子がcsvのファイルをアップロードしてください')
 
