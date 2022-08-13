@@ -3,7 +3,7 @@ from django.views.generic import TemplateView, View
 from django.shortcuts import render
 from django import forms
 from tool_site.forms import UploadForm
-from tool_site.functions import process_file, to_csv_cp932, to_csv_utf_8, getEncode
+from tool_site.functions import process_file, to_csv
 import csv, io
 import pandas as pd
 import chardet
@@ -24,44 +24,15 @@ def Tool_extractView(request):
             word = form_data["word"]
             file = form_data["testfile"]
 
+            #文字コード識別
+            read_file = file.read()
+            result = chardet.detect(read_file)
+            enc = result['encoding']
 
-            '''エンコード識別関数確認
-            print('ファイル名')
-            print(file)
-
-            print('タイプ')
-            print(type(file))
-
-            enc = getEncode(file)
-            print('エンコード')
-            print(enc)
-
-            print('タイプ')
-            print(type(enc))
-            '''
-
-            '''
-            これでも識別できるが、
-            {'encoding': 'SHIFT_JIS', 'confidence': 0.99, 'language': 'Japanese'}
-            からエンコード抜き出しが必要なのと、精度が完全ではないらしい
-            
-            c = file.read()
-            result = chardet.detect(c)
-            print('プリント')
-            print(result)
-            '''
-
-
-            try:
-                file_data1 = pd.read_csv(io.StringIO(file.read().decode('cp932')), delimiter=',')
-                df = process_file(file_data1,word)
-                response = to_csv_cp932(df)
-
-            except UnicodeDecodeError:
-                file_data2 = pd.read_csv(io.StringIO(file.read().decode('utf-8')), delimiter=',')
-                df = process_file(file_data2,word)
-                response = to_csv_utf_8(df)
-                #raise forms.ValidationError('拡張子がcsvのファイルをアップロードしてください')
+            #読み込み、編集
+            file_data = pd.read_csv(io.StringIO(read_file.decode(enc)), delimiter=',')
+            df = process_file(file_data,word)
+            response = to_csv(df,enc)
 
 
             return response

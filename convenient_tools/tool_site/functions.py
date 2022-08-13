@@ -4,8 +4,7 @@ import numpy as np
 import csv, os, io
 from django.http import HttpResponse
 
-
-#文字コードの自動判定関数
+'''エンコード識別関数（不使用）
 def getEncode(file):
     encs = "cp932 shift_jis utf-8 utf-8-sig euc-jp iso-2022-jp".split()
     for enc in encs:
@@ -14,7 +13,7 @@ def getEncode(file):
         except UnicodeDecodeError:
             continue
         return enc
-'''
+
 参考コード
 def getEncode(filepath):
     encs = "iso-2022-jp euc-jp shift_jis utf-8".split()
@@ -38,21 +37,12 @@ def process_file(file_data,word_data):
     return df_result
 
 
-#csv書き出し関数（おそらく文字コードの自動判定関数のenc使用したら1つにまとめれる）
-def to_csv_cp932(df):
-    response = HttpResponse(content_type='text/csv; charset=cp932')
+#csv書き出し関数
+def to_csv(df,enc):
+    type_data = 'text/csv; charset=' + enc
+    response = HttpResponse(content_type=type_data)
     response['Content-Disposition'] = 'attachment; filename="result.csv"'
     
-    df.to_csv(path_or_buf = response, encoding = 'cp932', index=False)
-    
-    return response
-
-
-#csv書き出し関数（おそらく文字コードの自動判定関数のenc使用したら1つにまとめれる）
-def to_csv_utf_8(df):
-    response = HttpResponse(content_type='text/csv; charset=utf-8-sig')
-    response['Content-Disposition'] = 'attachment; filename="result.csv"'
-    
-    df.to_csv(path_or_buf = response, encoding = 'utf-8-sig', index=False)
+    df.to_csv(path_or_buf = response, encoding = enc, index=False)
     
     return response
