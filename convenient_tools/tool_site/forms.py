@@ -10,4 +10,5 @@ class UploadForm(forms.Form):
     testfile = forms.FileField(
          validators=[validate_file_extension]
     )
-    word = forms.CharField(max_length=2000)
+    columuns = forms.CharField(max_length=255)
+    code = forms.CharField(max_length=2000)

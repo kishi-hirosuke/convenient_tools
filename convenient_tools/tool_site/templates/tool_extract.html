@@ -17,45 +17,45 @@
             <tr>
                 <td width="50%">
                     <p class="explanation_title">このツールでできること</p>
-                    <p>
-                    アップロードしたcsvデータから、基準となる列に「指定したキーワード」を含む行のみを抽出したcsvデータを出力します。（部分一致）<br>
+                    <p class="explanation_text">
+                    アップロードしたcsvファイルから、基準となる列に「指定したキーワード」を含む行のみを抽出したcsvファイルを出力します。（部分一致）<br>
                     複数キーワードに対応。<br>
                     </p>
                 </td>
                 <td width="50%">
                     <p class="explanation_title">使い方</p>
-                    <ol>
-                        <li>抽出元のcsvデータをアップロード</li>
+                    <ol class="explanation_text">
+                        <li>処理するファイルを選択</li>
                         <li>基準とする列名を入力</li>
                         <li>抽出するキーワードを入力（パイプ「|」区切りで複数指定可）</li>
-                        <li>抽出ボタンをクリック</li>
+                        <li>実行ボタンをクリック</li>
                     </ol>
                 </td>
             </tr>
         </table>
-        <br><br>
-        
-        {% if form.errors %}
-        <ul class="alert alert-danger list-unstyled">
-        {% for error in form.testfile.errors %}
-        <li>{{ error }}</li>
-        {% endfor %}
-        </ul>
-        {% endif %}
-        
         <div class="form-group">
+            {% if form.errors %}
+            <ul class="alert alert-danger list-unstyled">
+            {% for error in form.testfile.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+            </ul>
+            {% endif %}
             <form method="POST" class="form" enctype="multipart/form-data">  
               {% csrf_token %}  
               <div class="file-upload-wrapper">
-                <p>テストファイルを選択<br>
+                <p>ファイルを選択<br>
                     {{ form.testfile }}
                 </p>
-                <p>
-                    {{ form.word }}
+                <p>基準とする列名を入力<br>
+                    {{ form.columuns }}
                 </p>
-              </div> 
-              <p>テストファイルをアップロードし、予測結果の'result.csv'ファイルをダウンロードする</p>
-              <button type="submit" class="save btn btn-outline-primary">Upload and Download</button>  
+                <p>キーワードを入力<br>
+                    {{ form.code }}
+                </p>
+              </div>
+              <p>ファイルをアップロードし、処理したファイルをダウンロードする</p>
+              <button type="submit" class="save btn btn-outline-primary">実行</button>  
             </form> 
           </div>
 

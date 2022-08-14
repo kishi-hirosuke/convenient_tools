@@ -26,17 +26,6 @@ def getEncode(filepath):
         return enc
 '''
 
-#csv編集テスト関数
-def process_file(file_data,word_data):
-    file = file_data
-    word = word_data
-    file[word] = 5
-
-    df_result = file
-
-    return df_result
-
-
 #csv書き出し関数
 def to_csv(df,enc):
     type_data = 'text/csv; charset=' + enc
@@ -46,3 +35,9 @@ def to_csv(df,enc):
     df.to_csv(path_or_buf = response, encoding = enc, index=False)
     
     return response
+
+
+#csv行抽出関数
+def tool_extract_process(file,columuns,code):
+    df_result = file.loc[file[columuns].str.contains(code)]
+    return df_result

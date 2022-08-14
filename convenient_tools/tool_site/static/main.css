@@ -4,9 +4,9 @@ header{
 
 header h1{
     font-size: 30px;
-    padding-bottom:15px ;
+    padding-bottom:10px;
     border-bottom:solid
-    rgba(0, 0, 0, 0.75) 3px;
+    rgba(0, 0, 0, 0.75) 2.5px;
 }
 
 footer{
@@ -17,17 +17,17 @@ footer p{
     padding: 20px 80px 20px 80px;
     text-align: center;
     border-top:solid
-    rgba(0, 0, 0, 0.75) 2px;
+    rgba(0, 0, 0, 0.75) 1.5px;
 }
 
 .box{
-    padding: 30px 80px 0px 80px;
+    padding: 15px 80px 0px 80px;
 }
 
 .boxtitle{
     padding-bottom:0px ;
     border-bottom:solid
-    rgba(80, 80, 80, 0.145) 2px;
+    rgba(80, 80, 80, 0.145) 1.5px;
 }
 
 .sub_box{
@@ -68,3 +68,20 @@ footer p{
 .explanation_title{
     font-weight: bold;
 }
+
+.explanation_text{
+    color: #696C74;
+    font-size: 14px;
+}
+
+.form-group{
+    margin-top: 10px;
+    padding: 30px;
+    background-color: #F8F8F0;
+    border:solid
+    #ccccc3 1px;
+}
+
+/* .file-upload-wrapper p{
+    margin: 10px;
+} */
