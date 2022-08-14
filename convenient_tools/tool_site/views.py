@@ -17,6 +17,7 @@ class AboutView(TemplateView):
 
 def Tool_extractView(request):
     if request.method == 'POST':
+
         upload = UploadForm(request.POST, request.FILES)
         if upload.is_valid():
 
@@ -36,6 +37,9 @@ def Tool_extractView(request):
 
 
             return response
+        else:
+            return render(request, "tool_extract.html", {'form':upload})
+
     else:
         upload = UploadForm()
         return render(request, "tool_extract.html", {'form':upload})

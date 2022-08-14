@@ -34,6 +34,15 @@
             </tr>
         </table>
         <br><br>
+        
+        {% if form.errors %}
+        <ul class="alert alert-danger list-unstyled">
+        {% for error in form.testfile.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+        
         <div class="form-group">
             <form method="POST" class="form" enctype="multipart/form-data">  
               {% csrf_token %}  
