@@ -31,7 +31,7 @@ def Tool_extractView(request):
             read_file = file.read()
             result = chardet.detect(read_file)
             enc = result['encoding']
-            
+
             if enc == None:
                 enc = 'cp932'
 

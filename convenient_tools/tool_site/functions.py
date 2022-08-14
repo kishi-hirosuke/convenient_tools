@@ -31,9 +31,9 @@ def to_csv(df,enc):
     type_data = 'text/csv; charset=' + enc
     response = HttpResponse(content_type=type_data)
     response['Content-Disposition'] = 'attachment; filename="result.csv"'
-    
+
     df.to_csv(path_or_buf = response, encoding = enc, index=False)
-    
+
     return response
 
 
