@@ -31,6 +31,9 @@ def Tool_extractView(request):
             read_file = file.read()
             result = chardet.detect(read_file)
             enc = result['encoding']
+            
+            if enc == None:
+                enc = 'cp932'
 
             #読み込み、編集
             file_data = pd.read_csv(io.StringIO(read_file.decode(enc)), delimiter=',')
