@@ -6,12 +6,12 @@
 
 {% block main %}
 <div class="box">
-    
+
     <div class="boxtitle">
         <h3>Extraction CSV rows</h3>
         <p>アップロードしたcsvデータから特定の行のみを抽出します。</p>
     </div>
-    
+
     <div class="sub_box">
         <table class="explanation">
             <tr>
@@ -43,23 +43,23 @@
             {% endif %}
 
 
-            <form method="POST" class="form" enctype="multipart/form-data">  
-              {% csrf_token %}  
-              <div class="file-upload-wrapper">
-                <p>ファイルを選択<br>
-                    {{ form.testfile }}
-                </p>
-                <p>基準とする列名を入力<br>
-                    {{ form.columuns }}
-                </p>
-                <p>キーワードを入力<br>
-                    {{ form.code }}
-                </p>
-              </div>
-              <p>ファイルをアップロードし、処理したファイルをダウンロードする</p>
-              <button type="submit" class="save btn btn-outline-primary">実行</button>  
-            </form> 
-          </div>
+            <form method="POST" class="form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="file-upload-wrapper">
+                    <p>ファイルを選択<br>
+                        {{ form.testfile }}
+                    </p>
+                    <p>基準とする列名を入力<br>
+                        {{ form.columuns }}
+                    </p>
+                    <p>キーワードを入力<br>
+                        {{ form.code }}
+                    </p>
+                </div>
+                <p>ファイルをアップロードし、処理したファイルをダウンロードする</p>
+                <button type="submit" class="save btn btn-outline-primary">実行</button>
+            </form>
+        </div>
 
     </div>
 
