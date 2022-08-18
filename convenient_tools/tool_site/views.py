@@ -8,11 +8,9 @@ from django.views.generic import TemplateView, View
 from django.shortcuts import render
 from django import forms
 from tool_site.forms import UploadForm
-#from tool_site.functions import tool_extract_process, to_csv
 from tool_site.functions import csv_flow, flow_1
 import csv, io
 import pandas as pd
-import chardet
 
 
 class IndexView(TemplateView):
@@ -29,16 +27,21 @@ def Tool_extractView(request):
         if upload.is_valid():
             form_data = upload.cleaned_data
             file, code, columuns = form_data["testfile"], form_data["code"], form_data["columuns"]
-            '''file = form_data["testfile"]
-            code = form_data["code"]
-            columuns = form_data["columuns"]'''
+
+            print("プリント")
+            print(file.size)
 
             try:
                 response = csv_flow(file, code, columuns, flow = flow_1)
                 return response
+            except KeyError:
+                context = {
+                    'error_message':'存在しない列名が入力されています。',
+                    'form':upload
+                }
             except:
                 context = {
-                    'error_message':'エラーが発生しました。',
+                    'error_message':'無効なデータです。',
                     'form':upload
                 }
                 return render(request, "tool_extract.html", context)

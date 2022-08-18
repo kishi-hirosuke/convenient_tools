@@ -34,11 +34,17 @@
             </tr>
         </table>
         <div class="form-group">
+
             {% if form.errors %}
             <ul class="alert alert-danger list-unstyled">
             {% for error in form.testfile.errors %}
             <li>{{ error }}</li>
             {% endfor %}
+            </ul>
+            {% endif %}
+            {% if error_message %}
+            <ul class="alert alert-danger list-unstyled">
+            <li>{{ error_message }}</li>
             </ul>
             {% endif %}
 
