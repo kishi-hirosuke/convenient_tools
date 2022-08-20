@@ -126,3 +126,5 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+import sys
+sys.dont_write_bytecode = True
