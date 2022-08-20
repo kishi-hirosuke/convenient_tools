@@ -28,9 +28,6 @@ def Tool_extractView(request):
             form_data = upload.cleaned_data
             file, code, columuns = form_data["testfile"], form_data["code"], form_data["columuns"]
 
-            print("プリント")
-            print(file.size)
-
             try:
                 response = csv_flow(file, code, columuns, flow = flow_1)
                 return response
@@ -39,6 +36,7 @@ def Tool_extractView(request):
                     'error_message':'存在しない列名が入力されています。',
                     'form':upload
                 }
+                return render(request, "tool_extract.html", context)
             except:
                 context = {
                     'error_message':'無効なデータです。',

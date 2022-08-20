@@ -35,19 +35,14 @@
         </table>
         <div class="form-group">
 
-            {% if form.errors %}
+            {% if form.errors or error_message %}
             <ul class="alert alert-danger list-unstyled">
             {% for error in form.testfile.errors %}
             <li>{{ error }}</li>
             {% endfor %}
-            </ul>
-            {% endif %}
-            {% if error_message %}
-            <ul class="alert alert-danger list-unstyled">
             <li>{{ error_message }}</li>
             </ul>
             {% endif %}
-
 
             <form method="POST" class="form" enctype="multipart/form-data">
                 {% csrf_token %}
