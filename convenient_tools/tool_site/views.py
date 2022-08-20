@@ -1,5 +1,6 @@
 import code
 from ctypes import cdll
+from dataclasses import dataclass
 from distutils.log import error
 from tabnanny import check
 from urllib import response
@@ -26,7 +27,7 @@ def Tool_extractView(request):
 
         if upload.is_valid():
             form_data = upload.cleaned_data
-            file, code, columuns = form_data["testfile"], form_data["code"], form_data["columuns"]
+            file, code, columuns = form_data["file"], form_data["code"], form_data["columuns"]
 
             try:
                 response = csv_flow(file, code, columuns, flow = flow_1)
