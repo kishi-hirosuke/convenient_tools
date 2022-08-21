@@ -1,3 +1,6 @@
+from email.mime import multipart
+from statistics import multimode
+from tkinter import MULTIPLE
 from django import forms
 from django.core.validators import FileExtensionValidator
 from django.core.exceptions import ValidationError
@@ -9,6 +12,7 @@ def file_size(value):
 
 class UploadForm(forms.Form):
     file = forms.FileField(
+        widget=forms.ClearableFileInput(attrs={'multiple': True}),
         validators=[
             FileExtensionValidator(['csv']),
             file_size

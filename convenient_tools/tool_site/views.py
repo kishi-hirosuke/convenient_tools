@@ -27,10 +27,21 @@ def Tool_extractView(request):
 
         if upload.is_valid():
             form_data = upload.cleaned_data
-            file, code, columuns = form_data["file"], form_data["code"], form_data["columuns"]
+            files = request.FILES.getlist('file')
+            code, columuns = form_data["code"], form_data["columuns"]
+            print('プリント')
+            print(files)
+            print('プリント')
 
             try:
-                response = csv_flow(file, code, columuns, flow = flow_1)
+                for file in files:
+                    print('プリント')
+                    print(file)
+                    print(columuns)
+                    print(code)
+                    print('プリント')
+                    response = csv_flow(file, code, columuns, flow = flow_1)
+                    print(response)
                 return response
             except KeyError:
                 context = {
