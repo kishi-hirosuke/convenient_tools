@@ -1,4 +1,5 @@
 import code
+import time
 from ctypes import cdll
 from dataclasses import dataclass
 from distutils.log import error
@@ -30,7 +31,10 @@ def Tool_extractView(request):
             file, code, columuns = form_data["file"], form_data["code"], form_data["columuns"]
 
             try:
+                start = time.time()
                 response = csv_flow(file, code, columuns, flow = flow_1)
+                elapsed_time = time.time() - start
+                print (f"処理時間:{elapsed_time}秒")
                 return response
             except KeyError:
                 context = {
