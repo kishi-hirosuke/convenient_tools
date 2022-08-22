@@ -21,7 +21,7 @@ def csv_flow(file, code, columuns, flow):
     type_data = 'text/csv; charset=' + enc
     response = HttpResponse(content_type=type_data)
     response['Content-Disposition'] = 'attachment; filename="result.csv"'
-    response = df.to_csv(path_or_buf = 'result.csv', encoding = enc, index=False)
+    df.to_csv(path_or_buf = response, encoding = enc, index=False)
     return response
 
 def flow_1(file_data, code, columuns):
