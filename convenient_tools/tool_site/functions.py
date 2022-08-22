@@ -19,8 +19,8 @@ def csv_flow(file, code, columuns, flow):
     df = flow(file_data, code, columuns)
     #CSVカプセル化処理
     type_data = 'text/csv; charset=' + enc
-    '''response = HttpResponse(content_type=type_data)
-    response['Content-Disposition'] = 'attachment; filename="result.csv"'''
+    response = HttpResponse(content_type=type_data)
+    response['Content-Disposition'] = 'attachment; filename="result.csv"'
     response = df.to_csv(path_or_buf = 'result.csv', encoding = enc, index=False)
     return response
 
