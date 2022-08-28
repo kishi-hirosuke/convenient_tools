@@ -1,12 +1,78 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.wrap {
+    width: 100%;
+    overflow: hidden;
+}
+
 header{
-    padding: 15px 80px 0px 80px;
+    position: relative;
+    height: 100px;
 }
 
 header h1{
+    position: absolute;
     font-size: 30px;
-    padding-bottom:10px;
     border-bottom:solid
     rgba(0, 0, 0, 0.75) 2.5px;
+}
+
+/* loading */
+
+@keyframes animation {
+    0% {
+        transform: rotate3d(1, 1, 0, 360deg);
+    }
+    50% {
+        transform: rotate3d(0.5, 0.5, 0.5, 180deg);
+    }
+    100% {
+        transform: rotate3d(0, 0, 1, 0deg);
+    }
+}
+
+.loader {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 4;
+}
+
+.loader_modal {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    width: 250px;
+    height: 250px;
+    transform: translate(-50%,-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loader_modal span {
+    animation: animation 5s infinite;
+    position: absolute;
+    border: 2px solid white;
+    width: 100%;
+    height: 100%;
+}
+.loader_modal span:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.loader_modal h2 {
+    color: black;
+    font-size: 30px;
 }
 
 footer{
