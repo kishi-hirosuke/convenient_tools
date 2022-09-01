@@ -9,8 +9,8 @@ from django.http import HttpResponse
 from django.views.generic import TemplateView, View
 from django.shortcuts import render
 from django import forms
-from tool_site.forms import UploadForm
-from tool_site.functions import csv_flow, flow_1
+from tool_site.forms import UploadExtract, UploadSplit
+from tool_site.functions import extract_flow, split_flow
 import csv, io
 import pandas as pd
 
@@ -24,7 +24,7 @@ class AboutView(TemplateView):
 def Tool_extractView(request):
     if request.method == 'POST':
 
-        upload = UploadForm(request.POST, request.FILES)
+        upload = UploadExtract(request.POST, request.FILES)
 
         if upload.is_valid():
             form_data = upload.cleaned_data
@@ -32,7 +32,7 @@ def Tool_extractView(request):
 
             try:
                 start = time.time()
-                response = csv_flow(file, code, columuns, flow = flow_1)
+                response = extract_flow(file, code, columuns)
                 elapsed_time = time.time() - start
                 print (f"処理時間:{elapsed_time}秒")
                 return response
@@ -76,5 +76,42 @@ def Tool_extractView(request):
             return render(request, "tool_extract.html", {'form':upload})
 
     else:
-        upload = UploadForm()
+        upload = UploadExtract()
         return render(request, "tool_extract.html", {'form':upload})
+
+
+
+def Tool_splitView(request):
+    if request.method == 'POST':
+
+        upload = UploadSplit(request.POST, request.FILES)
+
+        if upload.is_valid():
+            form_data = upload.cleaned_data
+            file, num = form_data["file"], form_data["num"]
+
+            start = time.time()
+            response = split_flow(file, num)
+            elapsed_time = time.time() - start
+            print (f"処理時間:{elapsed_time}秒")
+            return response
+
+            # try:
+            #     start = time.time()
+            #     response = split_flow(file, num)
+            #     elapsed_time = time.time() - start
+            #     print (f"処理時間:{elapsed_time}秒")
+            #     return response
+            # except:
+            #     context = {
+            #         'error_message':'無効なデータです。',
+            #         'form':upload
+            #     }
+            #     return render(request, "tool_split.html", context)
+
+        else:
+            return render(request, "tool_split.html", {'form':upload})
+
+    else:
+        upload = UploadSplit()
+        return render(request, "tool_split.html", {'form':upload})

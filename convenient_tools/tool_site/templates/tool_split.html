@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Split of CSV｜csvファイルの分割｜Innovation-Tools</title>
+{% endblock %}
+
+{% block main %}
+
+<div class="box">
+    <div class="boxtitle">
+        <h3>Split CSV rows</h3>
+        <p>アップロードしたcsvファイルを任意の件数で分割します。</p>
+    </div>
+    <div class="sub_box">
+        <table class="explanation">
+            <tr>
+                <td width="50%">
+                    <p class="explanation_title">このツールでできること</p>
+                    <p class="explanation_text">
+                        アップロードしたcsvファイルを任意の件数（行数）で分割します。<br>
+                        ヘッダー有無の指定も可能。<br>
+                    </p>
+                </td>
+                <td width="50%">
+                    <p class="explanation_title">使い方</p>
+                    <ol class="explanation_text">
+                        <li>処理するファイルを選択</li>
+                        <li>分割する件数（行数）を入力</li>
+                        <li>ヘッダーの指定方法選択</li>
+                        <li>実行ボタンをクリック</li>
+                    </ol>
+                </td>
+            </tr>
+        </table>
+
+        <div class="form-group">
+            {% if form.errors %}
+            <div class="alert alert-danger alert-dismissible fade show">
+            {% for error in form.file.errors %}
+            <div><svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="警告:">
+                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
+                {{ error }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="閉じる"></button>
+            </div>
+            {% endfor %}
+            </div>
+            {% elif error_message %}
+            <div class="alert alert-danger alert-dismissible fade show">
+            <div><svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="警告:">
+                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
+                {{ error_message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="閉じる"></button>
+            </div>
+            </div>
+            {% endif %}
+            <form method="POST" class="form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="file-upload-wrapper">
+                    <p>ファイルを選択<br>
+                        {{ form.file }}
+                    </p>
+                    <p>分割する件数（行数）を入力<br>
+                        {{ form.num }}
+                    </p>
+                </div>
+                <p>ファイルをアップロードし、処理したファイルをダウンロードする</p>
+                <button type="submit" class="save btn btn-outline-primary" id="btn">実行</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="notice">
+        <p class="explanation_title">csvファイルの分割について</p>
+        <ul class="explanation_text">
+            <!-- <li>キーワードは部分一致で、半角パイプ「|」区切りで複数キーワード指定可能です。</li><br>
+            <li>アップするcsvファイルの1行目がヘッダーとして読み込まれます。<br>つまり、基準とする列名が1行目にある必要があります。</li><br>
+            <li>基準とする列に空白が含まれているcsvファイルには対応していません。<br>また、基準列以外のヘッダーが空白の際でも処理は可能ですが、空白が「Unnamed:」に置き換わってしまうので非推奨です。</li><br>
+            <li>アップするcsvファイルによっては文字化けを起こしたり、データ型が変更されて出力される恐れがあります。処理が正常に終了したとしても、ダウンロードデータのご確認をお願いいたします。</li><br>
+            <li>こちらのツールを使用したことによる不具合は一切の責任を追えませんのでご理解の上ご利用ください。</li><br>
+            <li>現在、最大容量は500MBです。<br>今後、上限解放するかもしれませんのでお楽しみに。</li><br>
+            <li>ご不明な点やご要望がございましたら、こちらのお問い合わせフォームまでご連絡ください。</li> -->
+        </ul>
+    </div>
+
+</div>
+{% endblock %}

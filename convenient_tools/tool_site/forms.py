@@ -7,7 +7,7 @@ def file_size(value):
     if value.size > limit:
         raise ValidationError(f'ファイルサイズが大きすぎます。{limit/1000/1000}MBより小さいサイズにしてください。')
 
-class UploadForm(forms.Form):
+class UploadExtract(forms.Form):
     file = forms.FileField(
         validators=[
             FileExtensionValidator(['csv']),
@@ -16,3 +16,13 @@ class UploadForm(forms.Form):
     )
     columuns = forms.CharField(max_length=255)
     code = forms.CharField(max_length=2000)
+
+
+class UploadSplit(forms.Form):
+    file = forms.FileField(
+        validators=[
+            FileExtensionValidator(['csv']),
+            file_size
+            ]
+    )
+    num = forms.CharField(max_length=255)

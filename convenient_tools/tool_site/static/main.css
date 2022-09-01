@@ -2,11 +2,11 @@
     box-sizing: border-box;
 }
 
-body {
+/* body {
     width: 100%;
     margin: 0;
     padding: 0;
-}
+} */
 
 .wrap {
     width: 100%;
@@ -14,13 +14,15 @@ body {
 }
 
 header{
-    position: relative;
+    /* position: relative; */
     height: 100px;
+    padding: 20px 80px 0px 80px;
 }
 
 header h1{
-    position: absolute;
+    /* position: absolute; */
     font-size: 30px;
+    padding-bottom: 3px;
     border-bottom:solid
     rgba(0, 0, 0, 0.75) 2.5px;
 }
@@ -88,7 +90,7 @@ footer p{
 }
 
 .box{
-    padding: 15px 80px 0px 80px;
+    padding: 0px 80px 0px 80px;
 }
 
 .boxtitle{
@@ -119,9 +121,12 @@ footer p{
     padding: 15px;
 }
 
-.tool a:hover {
-    color: #000000;
+.tool:hover {
     background-color: rgba(240, 250, 255, 0.558);
+}
+
+.tool a:hover {
+color: #000000;
 }
 
 .tool .title{
