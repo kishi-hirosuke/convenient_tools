@@ -1,7 +1,8 @@
 import code
+import email
 import time
 from ctypes import cdll
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from distutils.log import error
 from tabnanny import check
 from urllib import response
@@ -9,8 +10,10 @@ from django.http import HttpResponse
 from django.views.generic import TemplateView, View
 from django.shortcuts import render
 from django import forms
-from tool_site.forms import UploadExtract, UploadSplit
+from tool_site.forms import UploadExtract, UploadSplit, InquiryForm
 from tool_site.functions import extract_flow, split_flow
+from django.core.mail import BadHeaderError, send_mail
+from django.conf import settings
 import csv, io
 import pandas as pd
 
@@ -21,6 +24,29 @@ class IndexView(TemplateView):
 class AboutView(TemplateView):
     template_name = "about.html"
 
+# お問い合わせ
+def inquiryView(request):
+    if request.method == 'POST':
+        inquiry = InquiryForm(request.POST)
+        if inquiry.is_valid():
+            form_data = inquiry.cleaned_data
+
+            name, name_detail, company ,tel , mail, kinds,  message = form_data['name'], form_data['name_detail'], form_data['company'], form_data['tel'], form_data['mail'], form_data['kinds'], form_data['message']
+            body = f'氏名：{name}\n\nふりがな：{name_detail}\n\n会社名：{company}\n\n電話番号：{tel}\n\n本文\n{message}'
+            print('プリント')
+            print(body)
+            print('プリント')
+            recipients = [settings.EMAIL_HOST_USER]
+            try:
+                send_mail(kinds, body, mail, recipients)
+            except BadHeaderError:
+                return HttpResponse('無効なヘッダーが見つかりました。')
+            return render(request, "inquiry.html", {'form':inquiry})
+    else:
+        inquiry = InquiryForm()
+        return render(request, "inquiry.html", {'form':inquiry})
+
+# 処理
 def Tool_extractView(request):
     if request.method == 'POST':
 

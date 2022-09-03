@@ -165,3 +165,7 @@ color: #000000;
     border:solid
     #ccccc3 1px;
 }
+
+.label {
+    padding-right: 10px;
+}
