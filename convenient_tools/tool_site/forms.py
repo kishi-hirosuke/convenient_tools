@@ -18,28 +18,31 @@ class InquiryForm(forms.Form):
         label='会社名',
         max_length=40,
     )
-    tel = forms.RegexField(
-        regex=r'^\+?1?\d{9,15}$',
-        #error_message = ("Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed."),
-    )
+    tel = forms. CharField(
+        label='電話番号',
+        min_length=9,
+        max_length=15,
+        widget=forms.TextInput(attrs={
+        'placeholder':'数字のみ入力可能です。',
+        'pattern':'^[0-9]+$'}))
     mail = forms.EmailField(
         label='メールアドレス',
         required=True,
         max_length=50,
-    )
+        widget=forms.TextInput(attrs={
+        'placeholder':'sample@example.com',
+        'pattern':'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'}))
     kinds = forms.ChoiceField(
-        label='種類',
+        label='お問い合わせ内容',
         required=True,
         disabled=False,
-        choices=[('','種類選択'),('改善提案','改善提案'),('ご質問','ご質問')],
-        widget=forms.Select,
-    )
+        choices=[('','選択してください'),('仕事のご相談','仕事のご相談'),('仕事のご依頼、お見積もり','仕事のご依頼、お見積もり'),('サービスに関するお問い合わせ','サービスに関するお問い合わせ'),('その他のお問い合わせ','その他のお問い合わせ')],
+        widget=forms.Select,)
     message = forms.CharField(
         label='内容',
         required=False,
-        max_length=200,
-        widget=forms.Textarea,
-    )
+        max_length=255,
+        widget=forms.Textarea,)
 
 # 処理
 def file_size(value):

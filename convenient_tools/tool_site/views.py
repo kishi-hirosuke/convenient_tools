@@ -33,9 +33,6 @@ def inquiryView(request):
 
             name, name_detail, company ,tel , mail, kinds,  message = form_data['name'], form_data['name_detail'], form_data['company'], form_data['tel'], form_data['mail'], form_data['kinds'], form_data['message']
             body = f'氏名：{name}\n\nふりがな：{name_detail}\n\n会社名：{company}\n\n電話番号：{tel}\n\n本文\n{message}'
-            print('プリント')
-            print(body)
-            print('プリント')
             recipients = [settings.EMAIL_HOST_USER]
             try:
                 send_mail(kinds, body, mail, recipients)
