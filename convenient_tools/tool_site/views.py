@@ -43,7 +43,7 @@ def inquiryView(request):
         inquiry = InquiryForm()
         return render(request, "inquiry.html", {'form':inquiry})
 
-# 処理
+#csv行抽出
 def Tool_extractView(request):
     if request.method == 'POST':
 
@@ -55,9 +55,10 @@ def Tool_extractView(request):
 
             try:
                 start = time.time()
+                print (f"\n計測開始:{start}秒")
                 response = extract_flow(file, code, columuns)
                 elapsed_time = time.time() - start
-                print (f"処理時間:{elapsed_time}秒")
+                print (f"処理時間:{elapsed_time}秒\n")
                 return response
             except KeyError:
                 context = {
@@ -72,29 +73,6 @@ def Tool_extractView(request):
                 }
                 return render(request, "tool_extract.html", context)
 
-            '''#文字コード識別
-            read_file = file.read()
-            result = chardet.detect(read_file)
-            enc = result['encoding']
-
-            if enc == None:
-                enc = 'cp932'
-
-            #読み込み、編集
-            file_data = pd.read_csv(io.StringIO(read_file.decode(enc)), delimiter=',')
-            try:
-                df = tool_extract_process(file_data,columuns,code)
-            except:
-                error_message = 'error'
-                context = {
-                    'form':upload,
-                    'eee': error_message
-                }
-                return render(request, "tool_extract.html", context)
-            response = to_csv(df,enc)
-
-            return response'''
-
         else:
             return render(request, "tool_extract.html", {'form':upload})
 
@@ -103,7 +81,7 @@ def Tool_extractView(request):
         return render(request, "tool_extract.html", {'form':upload})
 
 
-
+#csv分割
 def Tool_splitView(request):
     if request.method == 'POST':
 
@@ -113,24 +91,19 @@ def Tool_splitView(request):
             form_data = upload.cleaned_data
             file, num = form_data["file"], form_data["num"]
 
-            start = time.time()
-            response = split_flow(file, num)
-            elapsed_time = time.time() - start
-            print (f"処理時間:{elapsed_time}秒")
-            return response
-
-            # try:
-            #     start = time.time()
-            #     response = split_flow(file, num)
-            #     elapsed_time = time.time() - start
-            #     print (f"処理時間:{elapsed_time}秒")
-            #     return response
-            # except:
-            #     context = {
-            #         'error_message':'無効なデータです。',
-            #         'form':upload
-            #     }
-            #     return render(request, "tool_split.html", context)
+            try:
+                start = time.time()
+                print (f"\n計測開始:{start}秒")
+                response = split_flow(file, num)
+                elapsed_time = time.time() - start
+                print (f"処理時間:{elapsed_time}秒\n")
+                return response
+            except:
+                context = {
+                    'error_message':'無効なデータです。',
+                    'form':upload
+                }
+                return render(request, "tool_split.html", context)
 
         else:
             return render(request, "tool_split.html", {'form':upload})
