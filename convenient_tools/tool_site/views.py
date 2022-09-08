@@ -11,7 +11,7 @@ from django.views.generic import TemplateView, View
 from django.shortcuts import render
 from django import forms
 from tool_site.forms import UploadExtract, UploadSplit, InquiryForm
-from tool_site.functions import extract_flow, split_flow
+from tool_site.functions import extract_flow, split_flow, to_zip, extract_flow_one
 from django.core.mail import BadHeaderError, send_mail
 from django.conf import settings
 import csv, io
@@ -51,12 +51,22 @@ def Tool_extractView(request):
 
         if upload.is_valid():
             form_data = upload.cleaned_data
-            file, code, columuns = form_data["file"], form_data["code"], form_data["columuns"]
+            file, code, columuns = request.FILES.getlist('file'), form_data["code"], form_data["columuns"]
 
             try:
                 start = time.time()
                 print (f"\n計測開始:{start}秒")
-                response = extract_flow(file, code, columuns)
+                # 1件判定
+                if len(file) == 1:
+                    print('単一',file)
+                    response = extract_flow_one(file, code, columuns)
+                else:
+                    data = []
+                    for i in file:
+                        file_data = extract_flow(i, code, columuns)
+                        data.append(file_data[0])
+                    response = to_zip(data,file_data[1])
+
                 elapsed_time = time.time() - start
                 print (f"処理時間:{elapsed_time}秒\n")
                 return response
@@ -94,7 +104,8 @@ def Tool_splitView(request):
             try:
                 start = time.time()
                 print (f"\n計測開始:{start}秒")
-                response = split_flow(file, num)
+                data = split_flow(file, num)
+                response = to_zip(data[0],data[1])
                 elapsed_time = time.time() - start
                 print (f"処理時間:{elapsed_time}秒\n")
                 return response

@@ -57,7 +57,7 @@
                 {% csrf_token %}
                 <div class="file-upload-wrapper">
                     <p>ファイルを選択<br>
-                        {{ form.file }}
+                        <input type="file" multiple name="file" required>
                     </p>
                     <p>基準とする列名を入力<br>
                         {{ form.columuns }}
