@@ -1,3 +1,6 @@
+import sys
+sys.dont_write_bytecode = True
+
 """
 Django settings for convenient_tools project.
 
@@ -9,9 +12,6 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
-import sys
-sys.dont_write_bytecode = True
 
 from pathlib import Path
 from re import T

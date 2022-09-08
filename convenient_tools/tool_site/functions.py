@@ -10,10 +10,11 @@ from django.http import HttpResponse
 from charset_normalizer import detect
 import time
 
+
+#文字コード識別
 def encode_cfm(read_file):
     file_result = detect(read_file)
     enc = file_result['encoding']
-
     #例外エンコード処理
     if enc == 'shift-jis' or enc == 'SHIFT-JIS':
         pass
@@ -29,62 +30,47 @@ def encode_cfm(read_file):
         pass
     else:
         enc = 'cp932'
-
     return enc
 
-# 単一処理
+#csv行抽出_単数ファイル
 def extract_flow_one(file, code, columuns):
-    start = time.time()
-    read_file = file.read()
-    print(read_file)
+    #csvファイル読み込み
+    read_file = file[0].read()
+    #文字コード識別
     enc = encode_cfm(read_file)
+    #csvファイルをdf形式に変換
     file_data = pd.read_csv(io.StringIO(read_file.decode(enc)), delimiter=',', dtype = 'object')
+    #データ処理
     df = file_data.loc[file_data[columuns].str.contains(code)]
-    print(df)
     type_data = 'text/csv; charset=' + enc
     response = HttpResponse(content_type=type_data)
     response['Content-Disposition'] = 'attachment; filename="result.csv"'
     df.to_csv(path_or_buf = response, encoding = enc, index=False)
-    elapsed_time = time.time() - start
-    print (f"ラップ3:{elapsed_time}秒")
     return response
 
+#csv行抽出_複数ファイル
 def extract_flow(file, code, columuns):
-    #エンコード識別、読み取り処理
-    start = time.time()
     #csvファイル読み込み
     read_file = file.read()
-    #エンコード識別
+    #文字コード識別
     enc = encode_cfm(read_file)
-    elapsed_time = time.time() - start
-    print (f"ラップ1:{elapsed_time}秒")
     #csvファイルをdf形式に変換
     file_data = pd.read_csv(io.StringIO(read_file.decode(enc)), delimiter=',', dtype = 'object')
-    elapsed_time = time.time() - start
-    print (f"ラップ2:{elapsed_time}秒")
     #データ処理
     df = file_data.loc[file_data[columuns].str.contains(code)]
-    elapsed_time = time.time() - start
-    print (f"ラップ3:{elapsed_time}秒")
     return df, enc
 
+#csv行分割
 def split_flow(file, num):
-    start = time.time()
     #csvファイル読み込み
     read_file = file.read()
-    #エンコード識別
+    #文字コード識別
     enc = encode_cfm(read_file)
-    elapsed_time = time.time() - start
-    print (f"ラップ1:{elapsed_time}秒")
     #csvファイルをdf形式に分割して変換
     files_data = pd.read_csv(io.StringIO(read_file.decode(enc)), delimiter=',', dtype = 'object', chunksize=int(num))
-    elapsed_time = time.time() - start
-    print (f"ラップ2:{elapsed_time}秒")
-    elapsed_time = time.time() - start
-    print (f"ラップ3:{elapsed_time}秒")
     return files_data, enc
 
-#zip収納
+#zip化
 def to_zip(data,enc):
     #zipファイル準備
     response = HttpResponse(content_type='application/zip')

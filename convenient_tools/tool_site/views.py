@@ -54,11 +54,8 @@ def Tool_extractView(request):
             file, code, columuns = request.FILES.getlist('file'), form_data["code"], form_data["columuns"]
 
             try:
-                start = time.time()
-                print (f"\n計測開始:{start}秒")
-                # 1件判定
+                #ファイル数判定
                 if len(file) == 1:
-                    print('単一',file)
                     response = extract_flow_one(file, code, columuns)
                 else:
                     data = []
@@ -66,9 +63,6 @@ def Tool_extractView(request):
                         file_data = extract_flow(i, code, columuns)
                         data.append(file_data[0])
                     response = to_zip(data,file_data[1])
-
-                elapsed_time = time.time() - start
-                print (f"処理時間:{elapsed_time}秒\n")
                 return response
             except KeyError:
                 context = {
@@ -90,7 +84,6 @@ def Tool_extractView(request):
         upload = UploadExtract()
         return render(request, "tool_extract.html", {'form':upload})
 
-
 #csv分割
 def Tool_splitView(request):
     if request.method == 'POST':
@@ -102,12 +95,8 @@ def Tool_splitView(request):
             file, num = form_data["file"], form_data["num"]
 
             try:
-                start = time.time()
-                print (f"\n計測開始:{start}秒")
                 data = split_flow(file, num)
                 response = to_zip(data[0],data[1])
-                elapsed_time = time.time() - start
-                print (f"処理時間:{elapsed_time}秒\n")
                 return response
             except:
                 context = {
