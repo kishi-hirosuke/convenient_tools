@@ -1,6 +1,3 @@
-import sys
-sys.dont_write_bytecode = True
-
 """
 Django settings for convenient_tools project.
 
