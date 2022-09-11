@@ -17,14 +17,15 @@ from django.conf import settings
 import csv, io
 import pandas as pd
 
-
+#topページ
 class IndexView(TemplateView):
     template_name = "index.html"
 
+#aboutページ
 class AboutView(TemplateView):
     template_name = "about.html"
 
-# お問い合わせ
+#お問い合わせ
 def inquiryView(request):
     if request.method == 'POST':
         inquiry = InquiryForm(request.POST)
@@ -92,11 +93,16 @@ def Tool_splitView(request):
 
         if upload.is_valid():
             form_data = upload.cleaned_data
-            file, num = form_data["file"], form_data["num"]
+            header_select, file, num = form_data["header_select"], form_data["file"], form_data["num"]
+            print(header_select)
+            if header_select == '0':
+                header_select = ['infer',True]
+            else:
+                header_select = [None,False]
 
             try:
-                data = split_flow(file, num)
-                response = to_zip(data[0],data[1])
+                data = split_flow(file, num, header_select[0])
+                response = to_zip(data[0],data[1],header_select[1])
                 return response
             except:
                 context = {

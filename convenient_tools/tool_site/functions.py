@@ -61,24 +61,24 @@ def extract_flow(file, code, columuns):
     return df, enc
 
 #csv行分割
-def split_flow(file, num):
+def split_flow(file, num, header_select):
     #csvファイル読み込み
     read_file = file.read()
     #文字コード識別
     enc = encode_cfm(read_file)
     #csvファイルをdf形式に分割して変換
-    files_data = pd.read_csv(io.StringIO(read_file.decode(enc)), delimiter=',', dtype = 'object', chunksize=int(num))
+    files_data = pd.read_csv(io.StringIO(read_file.decode(enc)), delimiter=',', header=header_select, dtype = 'object', chunksize=int(num))
     return files_data, enc
 
 #zip化
-def to_zip(data,enc):
+def to_zip(data,enc,header_select):
     #zipファイル準備
     response = HttpResponse(content_type='application/zip')
     with zipfile.ZipFile(response, 'w') as zf:
         #zipファイルに書き込み
         n = 1
         for i in data:
-            zf.writestr(f'result-{n}.csv', i.to_csv(encoding = enc, index= False))
+            zf.writestr(f'result-{n}.csv', i.to_csv(encoding = enc, header=header_select, index= False))
             n += 1
     #Content-Dispositionでダウンロードの強制
     response['Content-Disposition'] = 'attachment; filename="results.zip"'

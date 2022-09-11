@@ -121,6 +121,7 @@ footer p{
 
 .tool{
     border: solid gray 1px;
+    vertical-align:baseline;
 }
 
 .tool a {
@@ -144,6 +145,7 @@ color: #000000;
 
 .explanation td{
     padding-right: 100px;
+    vertical-align:baseline;
 }
 
 .explanation_title{
@@ -153,6 +155,10 @@ color: #000000;
 .explanation_text{
     color: #696C74;
     font-size: 14px;
+}
+
+.explanation_text:nth-of-type(1){
+    padding-left: 1rem;
 }
 
 .explanation_text li{
@@ -177,4 +183,19 @@ color: #000000;
 
 .label {
     padding-right: 10px;
+}
+
+.p{
+    margin: 0;
+}
+
+#id_header_select{
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+#id_header_select li{
+    list-style: none;
+    margin: 0px 20px 0px 0px;
 }

@@ -56,6 +56,9 @@
             <form method="POST" class="form" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="file-upload-wrapper">
+                    <!-- <p class="p">ヘッダー指定<br> -->
+                        {{ form.header_select }}
+                    </p>
                     <p>ファイルを選択<br>
                         {{ form.file }}
                     </p>

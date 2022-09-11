@@ -1,3 +1,4 @@
+from email import header
 from tracemalloc import DomainFilter
 from django import forms
 from django.core.validators import FileExtensionValidator
@@ -36,7 +37,12 @@ class InquiryForm(forms.Form):
         label='お問い合わせ内容',
         required=True,
         disabled=False,
-        choices=[('','選択してください'),('仕事のご相談','仕事のご相談'),('仕事のご依頼、お見積もり','仕事のご依頼、お見積もり'),('サービスに関するお問い合わせ','サービスに関するお問い合わせ'),('その他のお問い合わせ','その他のお問い合わせ')],
+        choices=[
+            ('','選択してください'),
+            ('仕事のご相談','仕事のご相談'),
+            ('仕事のご依頼、お見積もり','仕事のご依頼、お見積もり'),
+            ('サービスに関するお問い合わせ','サービスに関するお問い合わせ'),
+            ('その他のお問い合わせ','その他のお問い合わせ')],
         widget=forms.Select,)
     message = forms.CharField(
         label='内容',
@@ -60,8 +66,15 @@ class UploadExtract(forms.Form):
     columuns = forms.CharField(max_length=255)
     code = forms.CharField(max_length=2000)
 
-
 class UploadSplit(forms.Form):
+    header_select = forms.ChoiceField(
+    label='ヘッダー指定',
+    required=True,
+    disabled=False,
+    choices=[
+        ('0','ヘッダーあり'),
+        ('1','ヘッダーなし')],
+    widget=forms.RadioSelect,)
     file = forms.FileField(
         validators=[
             FileExtensionValidator(['csv']),
