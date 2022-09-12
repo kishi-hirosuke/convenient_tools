@@ -86,3 +86,11 @@ class UploadSplit(forms.Form):
         widget=forms.TextInput(attrs={
         # 'placeholder':'半角数字入力',
         'pattern':'^[0-9]+$'}))
+
+#html_table変換
+class UploadTable(forms.Form):
+    file = forms.FileField(
+        validators=[
+            FileExtensionValidator(['xlsx']),
+            file_size
+            ])

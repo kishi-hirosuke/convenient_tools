@@ -83,3 +83,16 @@ def to_zip(data,enc,header_select):
     #Content-Dispositionでダウンロードの強制
     response['Content-Disposition'] = 'attachment; filename="results.zip"'
     return response
+
+##html_table変換
+def to_table_flow(file):
+    #xlsxファイル読み込み
+    df = pd.read_excel(file, dtype = 'object')
+    df = df.replace(np.nan,'')
+
+    #書き出し
+    type_data = 'text/html; charset=' + 'utf-8'
+    response = HttpResponse(content_type=type_data)
+    response['Content-Disposition'] = 'attachment; filename="result.html"'
+    df.to_html(response, index=False)
+    return response

@@ -10,8 +10,8 @@ from django.http import HttpResponse
 from django.views.generic import TemplateView, View
 from django.shortcuts import render
 from django import forms
-from tool_site.forms import UploadExtract, UploadSplit, InquiryForm
-from tool_site.functions import extract_flow, split_flow, to_zip, extract_flow_one
+from tool_site.forms import UploadExtract, UploadSplit, InquiryForm, UploadTable
+from tool_site.functions import extract_flow, split_flow, to_zip, extract_flow_one, to_table_flow
 from django.core.mail import BadHeaderError, send_mail
 from django.conf import settings
 import csv, io
@@ -117,3 +117,30 @@ def Tool_splitView(request):
     else:
         upload = UploadSplit()
         return render(request, "tool_split.html", {'form':upload})
+
+#html_table変換
+def Tool_tableView(request):
+    if request.method == 'POST':
+
+        upload = UploadTable(request.POST, request.FILES)
+
+        if upload.is_valid():
+            form_data = upload.cleaned_data
+            file = form_data["file"]
+
+            try:
+                response = to_table_flow(file)
+                return response
+            except:
+                context = {
+                    'error_message':'無効なデータです。',
+                    'form':upload
+                }
+                return render(request, "tool_table.html", context)
+
+        else:
+            return render(request, "tool_table.html", {'form':upload})
+
+    else:
+        upload = UploadTable()
+        return render(request, "tool_table.html", {'form':upload})
