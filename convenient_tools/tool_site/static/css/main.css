@@ -146,6 +146,12 @@ footer p{
     height: 190px;
     border: solid gray 1px;
     vertical-align:baseline;
+    transition: 0.1s ;
+}
+
+.tool:hover {
+    /* background-color: rgba(240, 250, 255, 0.558); */
+    background-color: rgba(0, 0, 0, 0.02);
 }
 
 .tools_table tr:nth-of-type(2) .tool:nth-of-type(n+2){
@@ -161,10 +167,6 @@ footer p{
     color: #000000;
     text-decoration: none;
     padding: 15px;
-}
-
-.tool:hover {
-    background-color: rgba(240, 250, 255, 0.558);
 }
 
 .tool a:hover {
