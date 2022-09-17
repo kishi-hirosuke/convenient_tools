@@ -11,4 +11,5 @@ urlpatterns = [
     path('tool_extract/', views.Tool_extractView, name='tool_extract'),
     path('tool_split/', views.Tool_splitView, name='tool_split'),
     path('tool_table/', views.Tool_tableView, name='tool_table'),
+    path('tool_remove/', views.Tool_removeView, name='tool_remove'),
 ]

@@ -94,3 +94,13 @@ class UploadTable(forms.Form):
             FileExtensionValidator(['xlsx']),
             file_size
             ])
+
+#csv削除
+class UploadRemove(forms.Form):
+    file = forms.FileField(
+        validators=[
+            FileExtensionValidator(['csv']),
+            file_size
+            ])
+    columuns = forms.CharField(max_length=255)
+    code = forms.CharField(max_length=2000)

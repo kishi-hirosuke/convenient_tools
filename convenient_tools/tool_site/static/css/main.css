@@ -19,6 +19,16 @@ header{
     padding: 20px 80px 0px 80px;
 }
 
+header div{
+    padding-bottom: 3px;
+    border-bottom:solid
+    rgba(0, 0, 0, 0.75) 2.5px;
+}
+
+header div div{
+    text-align: right;
+}
+
 header a{
     text-decoration: none;
     color: #000000;
@@ -30,11 +40,23 @@ header a:hover{
 
 header h1{
     /* position: absolute; */
+    display: inline;
     font-size: 30px;
+}
+
+header p{
+    /* position: absolute; */
+    display: inline;
+    font-size: 10px;
+}
+
+/* header p{
+    display: inline;
+    font-size: 10px;
     padding-bottom: 3px;
     border-bottom:solid
     rgba(0, 0, 0, 0.75) 2.5px;
-}
+} */
 
 /* loading */
 /*
@@ -120,8 +142,18 @@ footer p{
 }
 
 .tool{
+    width: 25%;
+    height: 190px;
     border: solid gray 1px;
     vertical-align:baseline;
+}
+
+.tools_table tr:nth-of-type(2) .tool:nth-of-type(n+2){
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.tools_table tr:nth-of-type(3) .tool{
+    background-color: rgba(0, 0, 0, 0.03);
 }
 
 .tool a {

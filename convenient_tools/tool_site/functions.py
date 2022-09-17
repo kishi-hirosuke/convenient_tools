@@ -86,6 +86,7 @@ def to_zip(data,enc,header_select):
 
 ##html_table変換
 def to_table_flow(file):
+
     #xlsxファイル読み込み
     df = pd.read_excel(file, dtype = 'object')
     df = df.replace(np.nan,'')
@@ -96,3 +97,31 @@ def to_table_flow(file):
     response['Content-Disposition'] = 'attachment; filename="result.html"'
     df.to_html(response, index=False)
     return response
+
+#csv行削除_単数ファイル
+def remove_flow_one(file, code, columuns):
+    #csvファイル読み込み
+    read_file = file[0].read()
+    #文字コード識別
+    enc = encode_cfm(read_file)
+    #csvファイルをdf形式に変換
+    file_data = pd.read_csv(io.StringIO(read_file.decode(enc)), delimiter=',', dtype = 'object')
+    #データ処理
+    df = file_data[~file_data[columuns].str.contains(code)]
+    type_data = 'text/csv; charset=' + enc
+    response = HttpResponse(content_type=type_data)
+    response['Content-Disposition'] = 'attachment; filename="result.csv"'
+    df.to_csv(path_or_buf = response, encoding = enc, index=False)
+    return response
+
+#csv行抽出_複数ファイル
+def remove_flow(file, code, columuns):
+    #csvファイル読み込み
+    read_file = file.read()
+    #文字コード識別
+    enc = encode_cfm(read_file)
+    #csvファイルをdf形式に変換
+    file_data = pd.read_csv(io.StringIO(read_file.decode(enc)), delimiter=',', dtype = 'object')
+    #データ処理
+    df = file_data[~file_data[columuns].str.contains(code)]
+    return df, enc

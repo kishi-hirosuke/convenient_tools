@@ -10,8 +10,8 @@ from django.http import HttpResponse
 from django.views.generic import TemplateView, View
 from django.shortcuts import render
 from django import forms
-from tool_site.forms import UploadExtract, UploadSplit, InquiryForm, UploadTable
-from tool_site.functions import extract_flow, split_flow, to_zip, extract_flow_one, to_table_flow
+from tool_site.forms import UploadExtract, UploadSplit, InquiryForm, UploadTable, UploadRemove
+from tool_site.functions import extract_flow, split_flow, to_zip, extract_flow_one, to_table_flow, remove_flow_one, remove_flow
 from django.core.mail import BadHeaderError, send_mail
 from django.conf import settings
 import csv, io
@@ -63,7 +63,7 @@ def Tool_extractView(request):
                     for i in file:
                         file_data = extract_flow(i, code, columuns)
                         data.append(file_data[0])
-                    response = to_zip(data,file_data[1])
+                    response = to_zip(data,file_data[1],True)
                 return response
             except KeyError:
                 context = {
@@ -71,11 +71,11 @@ def Tool_extractView(request):
                     'form':upload
                 }
                 return render(request, "tool_extract.html", context)
-            except:
-                context = {
-                    'error_message':'無効なデータです。',
-                    'form':upload
-                }
+            # except:
+            #     context = {
+            #         'error_message':'無効なデータです。',
+            #         'form':upload
+            #     }
                 return render(request, "tool_extract.html", context)
 
         else:
@@ -144,3 +144,51 @@ def Tool_tableView(request):
     else:
         upload = UploadTable()
         return render(request, "tool_table.html", {'form':upload})
+
+#csv行削除
+def Tool_removeView(request):
+    if request.method == 'POST':
+
+        upload = UploadRemove(request.POST, request.FILES)
+
+        if upload.is_valid():
+            form_data = upload.cleaned_data
+            file, code, columuns = request.FILES.getlist('file'), form_data["code"], form_data["columuns"]
+
+            try:
+                #ファイル数判定
+                if len(file) == 1:
+                    response = remove_flow_one(file, code, columuns)
+                else:
+                    data = []
+                    for i in file:
+                        file_data = remove_flow(i, code, columuns)
+                        data.append(file_data[0])
+                    response = to_zip(data,file_data[1],True)
+                return response
+            except KeyError:
+                context = {
+                    'error_message':'存在しない列名が入力されています。',
+                    'form':upload
+                }
+                return render(request, "tool_remove.html", context)
+            except:
+                context = {
+                    'error_message':'無効なデータです。',
+                    'form':upload
+                }
+                return render(request, "tool_remove.html", context)
+
+        else:
+            return render(request, "tool_remove.html", {'form':upload})
+
+    else:
+        upload = UploadRemove()
+        return render(request, "tool_remove.html", {'form':upload})
+
+
+
+
+
+
+
