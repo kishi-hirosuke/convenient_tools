@@ -4,6 +4,8 @@ from django import forms
 from django.core.validators import FileExtensionValidator
 from django.core.exceptions import ValidationError
 import re
+from django.conf import settings
+
 
 #お問い合わせ
 class InquiryForm(forms.Form):
@@ -52,9 +54,9 @@ class InquiryForm(forms.Form):
 
 #最大容量
 def file_size(value):
-    limit = 400*1000*1000
-    if value.size > limit:
-        raise ValidationError(f'ファイルサイズが大きすぎます。{limit/1000/1000}MBより小さいサイズにしてください。')
+    LIMIT_SIZE = getattr(settings, 'LIMIT_SIZE', None)
+    if value.size > LIMIT_SIZE:
+        raise ValidationError(f'ファイルサイズが大きすぎます。{LIMIT_SIZE/1000/1000}MBより小さいサイズにしてください。')
 
 #csv抽出
 class UploadExtract(forms.Form):
@@ -104,3 +106,4 @@ class UploadRemove(forms.Form):
             ])
     columuns = forms.CharField(max_length=255)
     code = forms.CharField(max_length=2000)
+

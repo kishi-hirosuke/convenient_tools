@@ -17,6 +17,9 @@ from django.conf import settings
 import csv, io
 import pandas as pd
 
+LIMIT_SIZE = getattr(settings, 'LIMIT_SIZE', None)/1000/1000
+LIMIT_SIZE = f'{LIMIT_SIZE}MB'
+
 #topページ
 class IndexView(TemplateView):
     template_name = "index.html"
@@ -68,22 +71,24 @@ def Tool_extractView(request):
             except KeyError:
                 context = {
                     'error_message':'存在しない列名が入力されています。',
-                    'form':upload
+                    'form':upload,
+                    'limit_size':LIMIT_SIZE,
                 }
                 return render(request, "tool_extract.html", context)
-            # except:
-            #     context = {
-            #         'error_message':'無効なデータです。',
-            #         'form':upload
-            #     }
+            except:
+                context = {
+                    'error_message':'無効なデータです。',
+                    'form':upload,
+                    'limit_size':LIMIT_SIZE,
+                }
                 return render(request, "tool_extract.html", context)
 
         else:
-            return render(request, "tool_extract.html", {'form':upload})
+            return render(request, "tool_extract.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
     else:
         upload = UploadExtract()
-        return render(request, "tool_extract.html", {'form':upload})
+        return render(request, "tool_extract.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
 #csv分割
 def Tool_splitView(request):
@@ -107,16 +112,17 @@ def Tool_splitView(request):
             except:
                 context = {
                     'error_message':'無効なデータです。',
-                    'form':upload
+                    'form':upload,
+                    'limit_size':LIMIT_SIZE,
                 }
                 return render(request, "tool_split.html", context)
 
         else:
-            return render(request, "tool_split.html", {'form':upload})
+            return render(request, "tool_split.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
     else:
         upload = UploadSplit()
-        return render(request, "tool_split.html", {'form':upload})
+        return render(request, "tool_split.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
 #html_table変換
 def Tool_tableView(request):
@@ -134,16 +140,17 @@ def Tool_tableView(request):
             except:
                 context = {
                     'error_message':'無効なデータです。',
-                    'form':upload
+                    'form':upload,
+                    'limit_size':LIMIT_SIZE,
                 }
                 return render(request, "tool_table.html", context)
 
         else:
-            return render(request, "tool_table.html", {'form':upload})
+            return render(request, "tool_table.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
     else:
         upload = UploadTable()
-        return render(request, "tool_table.html", {'form':upload})
+        return render(request, "tool_table.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
 #csv行削除
 def Tool_removeView(request):
@@ -169,22 +176,24 @@ def Tool_removeView(request):
             except KeyError:
                 context = {
                     'error_message':'存在しない列名が入力されています。',
-                    'form':upload
+                    'form':upload,
+                    'limit_size':LIMIT_SIZE,
                 }
                 return render(request, "tool_remove.html", context)
             except:
                 context = {
                     'error_message':'無効なデータです。',
-                    'form':upload
+                    'form':upload,
+                    'limit_size':LIMIT_SIZE,
                 }
                 return render(request, "tool_remove.html", context)
 
         else:
-            return render(request, "tool_remove.html", {'form':upload})
+            return render(request, "tool_remove.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
     else:
         upload = UploadRemove()
-        return render(request, "tool_remove.html", {'form':upload})
+        return render(request, "tool_remove.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
 
 
