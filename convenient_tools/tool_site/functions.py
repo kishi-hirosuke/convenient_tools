@@ -70,7 +70,7 @@ def split_flow(file, num, header_select):
     files_data = pd.read_csv(io.StringIO(read_file.decode(enc)), delimiter=',', header=header_select, dtype = 'object', chunksize=int(num))
     return files_data, enc
 
-#zip化
+#zip化（全てutf-8で出力）
 def to_zip(data,enc,header_select):
     #zipファイル準備
     response = HttpResponse(content_type='application/zip')
@@ -114,7 +114,7 @@ def remove_flow_one(file, code, columuns):
     df.to_csv(path_or_buf = response, encoding = enc, index=False)
     return response
 
-#csv行抽出_複数ファイル
+#csv行削除_複数ファイル
 def remove_flow(file, code, columuns):
     #csvファイル読み込み
     read_file = file.read()

@@ -143,7 +143,7 @@ footer p{
 
 .tool{
     width: 25%;
-    height: 190px;
+    height: 150px;
     border: solid gray 1px;
     vertical-align:baseline;
     transition: 0.1s ;
@@ -154,7 +154,7 @@ footer p{
     background-color: rgba(0, 0, 0, 0.02);
 }
 
-.tools_table tr:nth-of-type(2) .tool:nth-of-type(n+2){
+.tools_table tr:nth-of-type(2) .tool:nth-of-type(n+3){
     background-color: rgba(0, 0, 0, 0.03);
 }
 
