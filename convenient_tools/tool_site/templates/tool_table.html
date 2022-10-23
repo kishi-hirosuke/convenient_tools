@@ -7,7 +7,7 @@
 {% block main %}
 
 <div class="box">
-    <div class="boxtitle">
+    <div class="box_title">
         <h3>Excel to Html</h3>
         <p>Excelの表をHtmlのテーブルタグに変換します。</p>
     </div>
@@ -63,21 +63,19 @@
                 <button type="submit" class="save btn btn-outline-primary" id="btn">実行</button>
             </form>
         </div>
+        <div class="notice">
+            <p class="explanation_title">Excel to Htmlについて</p>
+            <ul class="explanation_text">
+                <li>セル内改行、セル結合には対応していません。</li><br>
+                <li>※&、<、> 記号は、&amp;amp;、&amp;lt;、&amp;gt; に変換されます（テスト必要）</li><br>
+                <li>現在、最大容量は{{ limit_size }}です。<br>今後、上限解放するかもしれませんのでお楽しみに。</li><br>
+                <li>ご不明な点やご要望がございましたら、こちらの<a href="/inquiry">お問い合わせフォーム</a>までご連絡ください。</li>
+                <!-- <li>アップするcsvファイルの1行目がヘッダーとして読み込まれます。<br>つまり、基準とする列名が1行目にある必要があります。</li><br>
+                <li>基準とする列に空白が含まれているcsvファイルには対応していません。<br>また、基準列以外のヘッダーが空白の際でも処理は可能ですが、空白が「Unnamed:」に置き換わってしまうので非推奨です。</li><br>
+                <li>アップするcsvファイルによっては文字化けを起こしたり、データ型が変更されて出力される恐れがあります。処理が正常に終了したとしても、ダウンロードデータのご確認をお願いいたします。</li><br>
+                <li>こちらのツールを使用したことによる不具合は一切の責任を追えませんのでご理解の上ご利用ください。</li><br> -->
+            </ul>
+        </div>
     </div>
-
-    <div class="notice">
-        <p class="explanation_title">Excel to Htmlについて</p>
-        <ul class="explanation_text">
-            <li>セル内改行、セル結合には対応していません。</li><br>
-            <li>※&、<、> 記号は、&amp;amp;、&amp;lt;、&amp;gt; に変換されます（テスト必要）</li><br>
-            <li>現在、最大容量は{{ limit_size }}です。<br>今後、上限解放するかもしれませんのでお楽しみに。</li><br>
-            <li>ご不明な点やご要望がございましたら、こちらの<a href="/inquiry">お問い合わせフォーム</a>までご連絡ください。</li>
-            <!-- <li>アップするcsvファイルの1行目がヘッダーとして読み込まれます。<br>つまり、基準とする列名が1行目にある必要があります。</li><br>
-            <li>基準とする列に空白が含まれているcsvファイルには対応していません。<br>また、基準列以外のヘッダーが空白の際でも処理は可能ですが、空白が「Unnamed:」に置き換わってしまうので非推奨です。</li><br>
-            <li>アップするcsvファイルによっては文字化けを起こしたり、データ型が変更されて出力される恐れがあります。処理が正常に終了したとしても、ダウンロードデータのご確認をお願いいたします。</li><br>
-            <li>こちらのツールを使用したことによる不具合は一切の責任を追えませんのでご理解の上ご利用ください。</li><br> -->
-        </ul>
-    </div>
-
 </div>
 {% endblock %}
