@@ -30,10 +30,11 @@ header .header_about_link {
   text-decoration: none;
   font-size: 35px;
   color: rgb(40, 40, 40);
-  font-family: "Lora", serif;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   width: 180px;
   margin-left: 30px;
   white-space: nowrap;
+  font-weight: bold;
 }
 header .header_about_link::after {
   content: "";
@@ -75,7 +76,7 @@ header .header_right_contents .header_right_content_1 {
 header .header_right_contents .header_right_content_1 .header_right_process {
   padding-top: 10px;
   font-size: 30px;
-  font-family: "Lora", serif;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
 header .header_right_contents .header_right_content_1 .header_right_process_pulldown {
   position: absolute;
@@ -103,7 +104,7 @@ header .header_right_contents .header_right_content_2 {
 header .header_right_contents .header_right_content_2 .header_right_contact {
   padding-top: 10px;
   font-size: 30px;
-  font-family: "Lora", serif;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
 header .header_right_contents .header_right_content_2 .header_right_contact_pulldown {
   position: absolute;
@@ -265,5 +266,5 @@ footer {
 footer p {
   padding: 13px 0 0 0;
   font-size: 15px;
-  font-family: "Lora", serif;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }/*# sourceMappingURL=main.css.map */

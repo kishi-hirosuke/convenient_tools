@@ -50,10 +50,11 @@ header {
     .header_about_link {
         display: flex;
         align-items: center;
-        @include link($title,$text_color,$en);
+        @include link($title,$text_color,$ja);
         width: 180px;
         margin-left: 30px;
         white-space: nowrap;
+        font-weight: bold;
         &::after {
             content: "";
             display: inline-block;
@@ -93,7 +94,7 @@ header {
             .header_right_process {
                 padding-top: 10px;
                 font-size: $subtitle;
-                font-family: $en;
+                font-family: $ja;
             }
             .header_right_process_pulldown {
                 position: absolute;
@@ -118,7 +119,7 @@ header {
             .header_right_contact {
                 padding-top: 10px;
                 font-size: $subtitle;
-                font-family: $en;
+                font-family: $ja;
             }
             .header_right_contact_pulldown {
                 position: absolute;
@@ -280,6 +281,6 @@ footer {
     p {
         padding: 13px 0 0 0;
         @include except_font_size(15px);
-        font-family: $en;
+        font-family: $ja;
     }
 }
