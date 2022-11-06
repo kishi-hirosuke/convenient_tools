@@ -70,6 +70,34 @@ def split_flow(file, num, header_select):
     files_data = pd.read_csv(io.StringIO(read_file.decode(enc)), delimiter=',', header=header_select, dtype = 'object', chunksize=int(num))
     return files_data, enc
 
+#csv行削除_単数ファイル
+def remove_flow_one(file, code, columuns):
+    #csvファイル読み込み
+    read_file = file[0].read()
+    #文字コード識別
+    enc = encode_cfm(read_file)
+    #csvファイルをdf形式に変換
+    file_data = pd.read_csv(io.StringIO(read_file.decode(enc)), delimiter=',', dtype = 'object')
+    #データ処理
+    df = file_data[~file_data[columuns].str.contains(code)]
+    type_data = 'text/csv; charset=' + enc
+    response = HttpResponse(content_type=type_data)
+    response['Content-Disposition'] = 'attachment; filename="result.csv"'
+    df.to_csv(path_or_buf = response, encoding = enc, index=False)
+    return response
+
+#csv行削除_複数ファイル
+def remove_flow(file, code, columuns):
+    #csvファイル読み込み
+    read_file = file.read()
+    #文字コード識別
+    enc = encode_cfm(read_file)
+    #csvファイルをdf形式に変換
+    file_data = pd.read_csv(io.StringIO(read_file.decode(enc)), delimiter=',', dtype = 'object')
+    #データ処理
+    df = file_data[~file_data[columuns].str.contains(code)]
+    return df, enc
+
 #zip化（全てutf-8で出力）
 def to_zip(data,enc,header_select):
     #zipファイル準備
@@ -98,30 +126,82 @@ def to_table_flow(file):
     df.to_html(response, index=False)
     return response
 
-#csv行削除_単数ファイル
-def remove_flow_one(file, code, columuns):
+#excel行抽出_単数ファイル
+def excel_extract_one(file, code, columuns):
     #csvファイル読み込み
     read_file = file[0].read()
     #文字コード識別
     enc = encode_cfm(read_file)
     #csvファイルをdf形式に変換
-    file_data = pd.read_csv(io.StringIO(read_file.decode(enc)), delimiter=',', dtype = 'object')
+    file_data = pd.read_excel(io.StringIO(read_file.decode(enc)), delimiter=',', dtype = 'object')
     #データ処理
-    df = file_data[~file_data[columuns].str.contains(code)]
-    type_data = 'text/csv; charset=' + enc
+    df = file_data.loc[file_data[columuns].str.contains(code)]
+    type_data = 'text/xlsx; charset=' + enc
     response = HttpResponse(content_type=type_data)
-    response['Content-Disposition'] = 'attachment; filename="result.csv"'
-    df.to_csv(path_or_buf = response, encoding = enc, index=False)
+    response['Content-Disposition'] = 'attachment; filename="result.xlsx"'
+    df.to_excel(path_or_buf = response, encoding = enc, index=False)
     return response
 
-#csv行削除_複数ファイル
-def remove_flow(file, code, columuns):
+#excel行抽出_複数ファイル
+def excel_extract(file, code, columuns):
     #csvファイル読み込み
     read_file = file.read()
     #文字コード識別
     enc = encode_cfm(read_file)
     #csvファイルをdf形式に変換
-    file_data = pd.read_csv(io.StringIO(read_file.decode(enc)), delimiter=',', dtype = 'object')
+    file_data = pd.read_excel(io.StringIO(read_file.decode(enc)), delimiter=',', dtype = 'object')
+    #データ処理
+    df = file_data.loc[file_data[columuns].str.contains(code)]
+    return df, enc
+
+#excel行分割
+def excel_split(file, num, header_select):
+    #excelファイル読み込み
+    read_file = file.read()
+    #文字コード識別
+    enc = encode_cfm(read_file)
+    #excelファイルをdf形式に分割して変換
+    files_data = pd.read_excel(io.StringIO(read_file.decode(enc)), delimiter=',', header=header_select, dtype = 'object', chunksize=int(num))
+    return files_data, enc
+
+#zip化（全てutf-8で出力）
+def excel_to_zip(data,enc,header_select):
+    #zipファイル準備
+    response = HttpResponse(content_type='application/zip')
+    with zipfile.ZipFile(response, 'w') as zf:
+        #zipファイルに書き込み
+        n = 1
+        for i in data:
+            zf.writestr(f'result-{n}.xlsx', i.to_excel(encoding = enc, header=header_select, index= False))
+            n += 1
+    #Content-Dispositionでダウンロードの強制
+    response['Content-Disposition'] = 'attachment; filename="results.zip"'
+    return response
+
+#excel行削除_単数ファイル
+def excel_remove_one(file, code, columuns):
+    #excelファイル読み込み
+    read_file = file[0].read()
+    #文字コード識別
+    enc = encode_cfm(read_file)
+    #excelファイルをdf形式に変換
+    file_data = pd.read_excel(io.StringIO(read_file.decode(enc)), delimiter=',', dtype = 'object')
+    #データ処理
+    df = file_data[~file_data[columuns].str.contains(code)]
+    type_data = 'text/xlsx; charset=' + enc
+    response = HttpResponse(content_type=type_data)
+    response['Content-Disposition'] = 'attachment; filename="result.excel"'
+    df.to_excel(path_or_buf = response, encoding = enc, index=False)
+    return response
+
+#excel行削除_複数ファイル
+def excel_remove(file, code, columuns):
+    #excelファイル読み込み
+    read_file = file.read()
+    #文字コード識別
+    enc = encode_cfm(read_file)
+    #excelファイルをdf形式に変換
+    file_data = pd.read_excel(io.StringIO(read_file.decode(enc)), delimiter=',', dtype = 'object')
     #データ処理
     df = file_data[~file_data[columuns].str.contains(code)]
     return df, enc

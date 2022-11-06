@@ -91,12 +91,12 @@ header {
             width: 195px;
             text-align: center;
             color: $text_color;
-            .header_right_process {
+            .header_right_tools {
                 padding-top: 10px;
                 font-size: $subtitle;
                 font-family: $ja;
             }
-            .header_right_process_pulldown {
+            .header_right_tools_pulldown {
                 position: absolute;
                 display: none;
                 flex-direction: column;
@@ -104,7 +104,7 @@ header {
                 top: 100%;
                 width: 100%;
                 padding: 10px 0 10px 0;
-                .header_right_process_link {
+                .header_right_tools_link {
                     @include link($text,$text_color,$ja);
                 }
             }

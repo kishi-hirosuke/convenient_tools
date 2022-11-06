@@ -89,14 +89,6 @@ class UploadSplit(forms.Form):
         # 'placeholder':'半角数字入力',
         'pattern':'^[0-9]+$'}))
 
-#html_table変換
-class UploadTable(forms.Form):
-    file = forms.FileField(
-        validators=[
-            FileExtensionValidator(['xlsx']),
-            file_size
-            ])
-
 #csv削除
 class UploadRemove(forms.Form):
     file = forms.FileField(
@@ -107,3 +99,51 @@ class UploadRemove(forms.Form):
     columuns = forms.CharField(max_length=255)
     code = forms.CharField(max_length=2000)
 
+#html_table変換
+class UploadTable(forms.Form):
+    file = forms.FileField(
+        validators=[
+            FileExtensionValidator(['xlsx']),
+            file_size
+            ])
+
+#excel抽出
+class (forms.Form):
+    file = forms.FileField(
+        validators=[
+            FileExtensionValidator(['xlsx']),
+            file_size
+            ])
+    columuns = forms.CharField(max_length=255)
+    code = forms.CharField(max_length=2000)
+
+#excel分割
+class UploadSplit(forms.Form):
+    header_select = forms.ChoiceField(
+    label='ヘッダー指定',
+    required=True,
+    disabled=False,
+    choices=[
+        ('0','ヘッダーあり'),
+        ('1','ヘッダーなし')],
+    widget=forms.RadioSelect,)
+    file = forms.FileField(
+        validators=[
+            FileExtensionValidator(['xlsx']),
+            file_size
+            ])
+    num = forms.CharField(
+        max_length=255,
+        widget=forms.TextInput(attrs={
+        # 'placeholder':'半角数字入力',
+        'pattern':'^[0-9]+$'}))
+
+#excel削除
+class UploadRemove(forms.Form):
+    file = forms.FileField(
+        validators=[
+            FileExtensionValidator(['xlsx']),
+            file_size
+            ])
+    columuns = forms.CharField(max_length=255)
+    code = forms.CharField(max_length=2000)

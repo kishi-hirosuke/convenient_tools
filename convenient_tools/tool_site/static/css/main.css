@@ -73,12 +73,12 @@ header .header_right_contents .header_right_content_1 {
   text-align: center;
   color: rgb(40, 40, 40);
 }
-header .header_right_contents .header_right_content_1 .header_right_process {
+header .header_right_contents .header_right_content_1 .header_right_tools {
   padding-top: 10px;
   font-size: 30px;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
-header .header_right_contents .header_right_content_1 .header_right_process_pulldown {
+header .header_right_contents .header_right_content_1 .header_right_tools_pulldown {
   position: absolute;
   display: none;
   flex-direction: column;
@@ -87,7 +87,7 @@ header .header_right_contents .header_right_content_1 .header_right_process_pull
   width: 100%;
   padding: 10px 0 10px 0;
 }
-header .header_right_contents .header_right_content_1 .header_right_process_pulldown .header_right_process_link {
+header .header_right_contents .header_right_content_1 .header_right_tools_pulldown .header_right_tools_link {
   text-decoration: none;
   font-size: 17px;
   color: rgb(40, 40, 40);

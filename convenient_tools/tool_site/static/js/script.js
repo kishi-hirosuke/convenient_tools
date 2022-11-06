@@ -26,29 +26,29 @@
 //header_pulldown
 $(function() {
 
-    const process_area = $('.header_right_content_1');
-    const process_pulldown = $('.header_right_process_pulldown');
+    const tools_area = $('.header_right_content_1');
+    const tools_pulldown = $('.header_right_tools_pulldown');
     const contact_area = $('.header_right_content_2');
     const contact_pulldown = $('.header_right_contact_pulldown');
 
-    //process_hover
-    process_area.hover(function(){
-        set_process_hover=setTimeout(function(){
-            process_pulldown.slideDown(300);
-        },200);
+    //tools_hover
+    tools_area.hover(function(){
+        set_tools_hover=setTimeout(function(){
+            tools_pulldown.slideDown(200);
+        },250);
     },
     function(){
-        process_pulldown.slideUp(300);
-        clearTimeout(set_process_hover);
+        tools_pulldown.slideUp(200);
+        clearTimeout(set_tools_hover);
     });
     //contact_hover
     contact_area.hover(function(){
         set_contact_hover = setTimeout(function(){
-            contact_pulldown.slideDown(300);
-        },200);
+            contact_pulldown.slideDown(200);
+        },250);
     },
     function(){
-        contact_pulldown.slideUp(300);
+        contact_pulldown.slideUp(200);
         clearTimeout(set_contact_hover);
     });
 });

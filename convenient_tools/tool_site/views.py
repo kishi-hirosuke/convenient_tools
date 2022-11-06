@@ -124,34 +124,6 @@ def Tool_splitView(request):
         upload = UploadSplit()
         return render(request, "tool_split.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
-#html_table変換
-def Tool_tableView(request):
-    if request.method == 'POST':
-
-        upload = UploadTable(request.POST, request.FILES)
-
-        if upload.is_valid():
-            form_data = upload.cleaned_data
-            file = form_data["file"]
-
-            try:
-                response = to_table_flow(file)
-                return response
-            except:
-                context = {
-                    'error_message':'無効なデータです。',
-                    'form':upload,
-                    'limit_size':LIMIT_SIZE,
-                }
-                return render(request, "tool_table.html", context)
-
-        else:
-            return render(request, "tool_table.html", {'form':upload,'limit_size':LIMIT_SIZE})
-
-    else:
-        upload = UploadTable()
-        return render(request, "tool_table.html", {'form':upload,'limit_size':LIMIT_SIZE})
-
 #csv行削除
 def Tool_removeView(request):
     if request.method == 'POST':
@@ -195,7 +167,153 @@ def Tool_removeView(request):
         upload = UploadRemove()
         return render(request, "tool_remove.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
+#html_table変換
+def Tool_tableView(request):
+    if request.method == 'POST':
 
+        upload = UploadTable(request.POST, request.FILES)
+
+        if upload.is_valid():
+            form_data = upload.cleaned_data
+            file = form_data["file"]
+
+            try:
+                response = to_table_flow(file)
+                return response
+            except:
+                context = {
+                    'error_message':'無効なデータです。',
+                    'form':upload,
+                    'limit_size':LIMIT_SIZE,
+                }
+                return render(request, "tool_table.html", context)
+
+        else:
+            return render(request, "tool_table.html", {'form':upload,'limit_size':LIMIT_SIZE})
+
+    else:
+        upload = UploadTable()
+        return render(request, "excel_flow/tool_table.html", {'form':upload,'limit_size':LIMIT_SIZE})
+
+#excel行抽出
+def Tool_extractView(request):
+    if request.method == 'POST':
+
+        upload = UploadExtract(request.POST, request.FILES)
+
+        if upload.is_valid():
+            form_data = upload.cleaned_data
+            file, code, columuns = request.FILES.getlist('file'), form_data["code"], form_data["columuns"]
+
+            try:
+                #ファイル数判定
+                if len(file) == 1:
+                    response = extract_flow_one(file, code, columuns)
+                else:
+                    data = []
+                    for i in file:
+                        file_data = extract_flow(i, code, columuns)
+                        data.append(file_data[0])
+                    response = to_zip(data,file_data[1],True)
+                return response
+            except KeyError:
+                context = {
+                    'error_message':'存在しない列名が入力されています。',
+                    'form':upload,
+                    'limit_size':LIMIT_SIZE,
+                }
+                return render(request, "tool_extract.html", context)
+            except:
+                context = {
+                    'error_message':'無効なデータです。',
+                    'form':upload,
+                    'limit_size':LIMIT_SIZE,
+                }
+                return render(request, "tool_extract.html", context)
+
+        else:
+            return render(request, "tool_extract.html", {'form':upload,'limit_size':LIMIT_SIZE})
+
+    else:
+        upload = UploadExtract()
+        return render(request, "tool_extract.html", {'form':upload,'limit_size':LIMIT_SIZE})
+
+#excel分割
+def Tool_splitView(request):
+    if request.method == 'POST':
+
+        upload = UploadSplit(request.POST, request.FILES)
+
+        if upload.is_valid():
+            form_data = upload.cleaned_data
+            header_select, file, num = form_data["header_select"], form_data["file"], form_data["num"]
+            print(header_select)
+            if header_select == '0':
+                header_select = ['infer',True]
+            else:
+                header_select = [None,False]
+
+            try:
+                data = split_flow(file, num, header_select[0])
+                response = to_zip(data[0],data[1],header_select[1])
+                return response
+            except:
+                context = {
+                    'error_message':'無効なデータです。',
+                    'form':upload,
+                    'limit_size':LIMIT_SIZE,
+                }
+                return render(request, "tool_split.html", context)
+
+        else:
+            return render(request, "tool_split.html", {'form':upload,'limit_size':LIMIT_SIZE})
+
+    else:
+        upload = UploadSplit()
+        return render(request, "tool_split.html", {'form':upload,'limit_size':LIMIT_SIZE})
+
+#excel行削除
+def Tool_removeView(request):
+    if request.method == 'POST':
+
+        upload = UploadRemove(request.POST, request.FILES)
+
+        if upload.is_valid():
+            form_data = upload.cleaned_data
+            file, code, columuns = request.FILES.getlist('file'), form_data["code"], form_data["columuns"]
+
+            try:
+                #ファイル数判定
+                if len(file) == 1:
+                    response = remove_flow_one(file, code, columuns)
+                else:
+                    data = []
+                    for i in file:
+                        file_data = remove_flow(i, code, columuns)
+                        data.append(file_data[0])
+                    response = to_zip(data,file_data[1],True)
+                return response
+            except KeyError:
+                context = {
+                    'error_message':'存在しない列名が入力されています。',
+                    'form':upload,
+                    'limit_size':LIMIT_SIZE,
+                }
+                return render(request, "tool_remove.html", context)
+            except:
+                context = {
+                    'error_message':'無効なデータです。',
+                    'form':upload,
+                    'limit_size':LIMIT_SIZE,
+                }
+                return render(request, "tool_remove.html", context)
+
+        else:
+            return render(request, "tool_remove.html", {'form':upload,'limit_size':LIMIT_SIZE})
+
+    else:
+        upload = UploadRemove()
+        return render(request, "tool_remove.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
 
 
