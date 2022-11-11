@@ -59,7 +59,7 @@ def file_size(value):
         raise ValidationError(f'ファイルサイズが大きすぎます。{LIMIT_SIZE/1000/1000}MBより小さいサイズにしてください。')
 
 #csv抽出
-class UploadExtract(forms.Form):
+class CSVExtract(forms.Form):
     file = forms.FileField(
         validators=[
             FileExtensionValidator(['csv']),
@@ -69,7 +69,7 @@ class UploadExtract(forms.Form):
     code = forms.CharField(max_length=2000)
 
 #csv分割
-class UploadSplit(forms.Form):
+class CSVSplit(forms.Form):
     header_select = forms.ChoiceField(
     label='ヘッダー指定',
     required=True,
@@ -90,7 +90,7 @@ class UploadSplit(forms.Form):
         'pattern':'^[0-9]+$'}))
 
 #csv削除
-class UploadRemove(forms.Form):
+class CSVRemove(forms.Form):
     file = forms.FileField(
         validators=[
             FileExtensionValidator(['csv']),
@@ -100,7 +100,7 @@ class UploadRemove(forms.Form):
     code = forms.CharField(max_length=2000)
 
 #html_table変換
-class UploadTable(forms.Form):
+class ExcelTable(forms.Form):
     file = forms.FileField(
         validators=[
             FileExtensionValidator(['xlsx']),
@@ -108,7 +108,7 @@ class UploadTable(forms.Form):
             ])
 
 #excel抽出
-class (forms.Form):
+class ExcelExtract(forms.Form):
     file = forms.FileField(
         validators=[
             FileExtensionValidator(['xlsx']),
@@ -118,7 +118,7 @@ class (forms.Form):
     code = forms.CharField(max_length=2000)
 
 #excel分割
-class UploadSplit(forms.Form):
+class ExcelSplit(forms.Form):
     header_select = forms.ChoiceField(
     label='ヘッダー指定',
     required=True,
@@ -139,7 +139,7 @@ class UploadSplit(forms.Form):
         'pattern':'^[0-9]+$'}))
 
 #excel削除
-class UploadRemove(forms.Form):
+class ExcelRemove(forms.Form):
     file = forms.FileField(
         validators=[
             FileExtensionValidator(['xlsx']),

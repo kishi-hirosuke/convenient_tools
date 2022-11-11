@@ -154,7 +154,7 @@ header .header_right_contents .header_right_content_2 .header_right_contact_pull
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   gap: 20px;
 }
 .box .tools_table tr .tool {

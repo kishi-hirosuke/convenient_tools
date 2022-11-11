@@ -10,8 +10,9 @@ from django.http import HttpResponse
 from django.views.generic import TemplateView, View
 from django.shortcuts import render
 from django import forms
-from tool_site.forms import UploadExtract, UploadSplit, InquiryForm, UploadTable, UploadRemove
-from tool_site.functions import extract_flow, split_flow, to_zip, extract_flow_one, to_table_flow, remove_flow_one, remove_flow
+from tool_site.forms import InquiryForm, CSVExtract, CSVSplit, CSVRemove, ExcelTable, ExcelExtract, ExcelSplit, ExcelRemove
+from tool_site.functions import  CSV_extract_flow_one, CSV_extract_flow, CSV_split_flow, CSV_to_zip, CSV_remove_flow_one, CSV_remove_flow
+from tool_site.functions import Excel_to_table_flow, Excel_extract_flow_one, Excel_extract_flow, Excel_split_flow, Excel_to_zip, Excel_remove_flow_one, Excel_remove_flow
 from django.core.mail import BadHeaderError, send_mail
 from django.conf import settings
 import csv, io
@@ -48,53 +49,53 @@ def inquiryView(request):
         return render(request, "inquiry.html", {'form':inquiry})
 
 #csv行抽出
-def Tool_extractView(request):
+def Tool_CSV_extractView(request):
     if request.method == 'POST':
 
-        upload = UploadExtract(request.POST, request.FILES)
+        upload = CSVExtract(request.POST, request.FILES)
 
         if upload.is_valid():
             form_data = upload.cleaned_data
             file, code, columuns = request.FILES.getlist('file'), form_data["code"], form_data["columuns"]
 
-            try:
+            #try:
                 #ファイル数判定
-                if len(file) == 1:
-                    response = extract_flow_one(file, code, columuns)
-                else:
-                    data = []
-                    for i in file:
-                        file_data = extract_flow(i, code, columuns)
-                        data.append(file_data[0])
-                    response = to_zip(data,file_data[1],True)
-                return response
-            except KeyError:
-                context = {
-                    'error_message':'存在しない列名が入力されています。',
-                    'form':upload,
-                    'limit_size':LIMIT_SIZE,
-                }
-                return render(request, "tool_extract.html", context)
-            except:
-                context = {
-                    'error_message':'無効なデータです。',
-                    'form':upload,
-                    'limit_size':LIMIT_SIZE,
-                }
-                return render(request, "tool_extract.html", context)
+            if len(file) == 1:
+                response = CSV_extract_flow_one(file, code, columuns)
+            else:
+                data = []
+                for i in file:
+                    file_data = CSV_extract_flow(i, code, columuns)
+                    data.append(file_data[0])
+                response = CSV_to_zip(data,file_data[1],True)
+            return response
+            # except KeyError:
+            #     context = {
+            #         'error_message':'存在しない列名が入力されています。',
+            #         'form':upload,
+            #         'limit_size':LIMIT_SIZE,
+            #     }
+            #     return render(request, "tool_CSV_extract.html", context)
+            # except:
+            #     context = {
+            #         'error_message':'無効なデータです。',
+            #         'form':upload,
+            #         'limit_size':LIMIT_SIZE,
+            #     }
+            #     return render(request, "tool_CSV_extract.html", context)
 
         else:
-            return render(request, "tool_extract.html", {'form':upload,'limit_size':LIMIT_SIZE})
+            return render(request, "tool_CSV_extract.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
     else:
-        upload = UploadExtract()
-        return render(request, "tool_extract.html", {'form':upload,'limit_size':LIMIT_SIZE})
+        upload = CSVExtract()
+        return render(request, "tool_CSV_extract.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
 #csv分割
-def Tool_splitView(request):
+def Tool_CSV_splitView(request):
     if request.method == 'POST':
 
-        upload = UploadSplit(request.POST, request.FILES)
+        upload = CSVSplit(request.POST, request.FILES)
 
         if upload.is_valid():
             form_data = upload.cleaned_data
@@ -106,8 +107,8 @@ def Tool_splitView(request):
                 header_select = [None,False]
 
             try:
-                data = split_flow(file, num, header_select[0])
-                response = to_zip(data[0],data[1],header_select[1])
+                data = CSV_split_flow(file, num, header_select[0])
+                response = CSV_to_zip(data[0],data[1],header_select[1])
                 return response
             except:
                 context = {
@@ -115,20 +116,20 @@ def Tool_splitView(request):
                     'form':upload,
                     'limit_size':LIMIT_SIZE,
                 }
-                return render(request, "tool_split.html", context)
+                return render(request, "tool_CSV_split.html", context)
 
         else:
-            return render(request, "tool_split.html", {'form':upload,'limit_size':LIMIT_SIZE})
+            return render(request, "tool_CSV_split.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
     else:
-        upload = UploadSplit()
-        return render(request, "tool_split.html", {'form':upload,'limit_size':LIMIT_SIZE})
+        upload = CSVSplit()
+        return render(request, "tool_CSV_split.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
 #csv行削除
-def Tool_removeView(request):
+def Tool_CSV_removeView(request):
     if request.method == 'POST':
 
-        upload = UploadRemove(request.POST, request.FILES)
+        upload = CSVRemove(request.POST, request.FILES)
 
         if upload.is_valid():
             form_data = upload.cleaned_data
@@ -137,13 +138,13 @@ def Tool_removeView(request):
             try:
                 #ファイル数判定
                 if len(file) == 1:
-                    response = remove_flow_one(file, code, columuns)
+                    response = CSV_remove_flow_one(file, code, columuns)
                 else:
                     data = []
                     for i in file:
-                        file_data = remove_flow(i, code, columuns)
+                        file_data = CSV_remove_flow(i, code, columuns)
                         data.append(file_data[0])
-                    response = to_zip(data,file_data[1],True)
+                    response = CSV_to_zip(data,file_data[1],True)
                 return response
             except KeyError:
                 context = {
@@ -151,34 +152,34 @@ def Tool_removeView(request):
                     'form':upload,
                     'limit_size':LIMIT_SIZE,
                 }
-                return render(request, "tool_remove.html", context)
+                return render(request, "tool_CSV_remove.html", context)
             except:
                 context = {
                     'error_message':'無効なデータです。',
                     'form':upload,
                     'limit_size':LIMIT_SIZE,
                 }
-                return render(request, "tool_remove.html", context)
+                return render(request, "tool_CSV_remove.html", context)
 
         else:
-            return render(request, "tool_remove.html", {'form':upload,'limit_size':LIMIT_SIZE})
+            return render(request, "tool_CSV_remove.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
     else:
-        upload = UploadRemove()
-        return render(request, "tool_remove.html", {'form':upload,'limit_size':LIMIT_SIZE})
+        upload = CSVRemove()
+        return render(request, "tool_CSV_remove.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
 #html_table変換
-def Tool_tableView(request):
+def Tool_Excel_tableView(request):
     if request.method == 'POST':
 
-        upload = UploadTable(request.POST, request.FILES)
+        upload = ExcelTable(request.POST, request.FILES)
 
         if upload.is_valid():
             form_data = upload.cleaned_data
             file = form_data["file"]
 
             try:
-                response = to_table_flow(file)
+                response = Excel_to_table_flow(file)
                 return response
             except:
                 context = {
@@ -186,63 +187,63 @@ def Tool_tableView(request):
                     'form':upload,
                     'limit_size':LIMIT_SIZE,
                 }
-                return render(request, "tool_table.html", context)
+                return render(request, "Excel_flow/tool_Excel_table.html", context)
 
         else:
-            return render(request, "tool_table.html", {'form':upload,'limit_size':LIMIT_SIZE})
+            return render(request, "Excel_flow/tool_Excel_table.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
     else:
-        upload = UploadTable()
-        return render(request, "excel_flow/tool_table.html", {'form':upload,'limit_size':LIMIT_SIZE})
+        upload = ExcelTable()
+        return render(request, "Excel_flow/tool_Excel_table.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
 #excel行抽出
-def Tool_extractView(request):
+def Tool_Excel_extractView(request):
     if request.method == 'POST':
 
-        upload = UploadExtract(request.POST, request.FILES)
+        upload = ExcelExtract(request.POST, request.FILES)
 
         if upload.is_valid():
             form_data = upload.cleaned_data
             file, code, columuns = request.FILES.getlist('file'), form_data["code"], form_data["columuns"]
 
-            try:
-                #ファイル数判定
-                if len(file) == 1:
-                    response = extract_flow_one(file, code, columuns)
-                else:
-                    data = []
-                    for i in file:
-                        file_data = extract_flow(i, code, columuns)
-                        data.append(file_data[0])
-                    response = to_zip(data,file_data[1],True)
-                return response
-            except KeyError:
-                context = {
-                    'error_message':'存在しない列名が入力されています。',
-                    'form':upload,
-                    'limit_size':LIMIT_SIZE,
-                }
-                return render(request, "tool_extract.html", context)
-            except:
-                context = {
-                    'error_message':'無効なデータです。',
-                    'form':upload,
-                    'limit_size':LIMIT_SIZE,
-                }
-                return render(request, "tool_extract.html", context)
+            #try:
+            #ファイル数判定
+            if len(file) == 1:
+                response = Excel_extract_flow_one(file, code, columuns)
+            else:
+                data = []
+                for i in file:
+                    file_data = Excel_extract_flow(i, code, columuns)
+                    data.append(file_data)
+                response = Excel_to_zip(data,True)
+            return response
+            # except KeyError:
+            #     context = {
+            #         'error_message':'存在しない列名が入力されています。',
+            #         'form':upload,
+            #         'limit_size':LIMIT_SIZE,
+            #     }
+            #     return render(request, "Excel_flow/tool_Excel_extract.html", context)
+            # except:
+            #     context = {
+            #         'error_message':'無効なデータです。',
+            #         'form':upload,
+            #         'limit_size':LIMIT_SIZE,
+            #     }
+            #     return render(request, "Excel_flow/tool_Excel_extract.html", context)
 
         else:
-            return render(request, "tool_extract.html", {'form':upload,'limit_size':LIMIT_SIZE})
+            return render(request, "Excel_flow/tool_Excel_extract.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
     else:
-        upload = UploadExtract()
-        return render(request, "tool_extract.html", {'form':upload,'limit_size':LIMIT_SIZE})
+        upload = ExcelExtract()
+        return render(request, "Excel_flow/tool_Excel_extract.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
 #excel分割
-def Tool_splitView(request):
+def Tool_Excel_splitView(request):
     if request.method == 'POST':
 
-        upload = UploadSplit(request.POST, request.FILES)
+        upload = ExcelSplit(request.POST, request.FILES)
 
         if upload.is_valid():
             form_data = upload.cleaned_data
@@ -254,8 +255,8 @@ def Tool_splitView(request):
                 header_select = [None,False]
 
             try:
-                data = split_flow(file, num, header_select[0])
-                response = to_zip(data[0],data[1],header_select[1])
+                data = Excel_split_flow(file, num, header_select[0])
+                response = Excel_to_zip(data[0],data[1],header_select[1])
                 return response
             except:
                 context = {
@@ -263,20 +264,20 @@ def Tool_splitView(request):
                     'form':upload,
                     'limit_size':LIMIT_SIZE,
                 }
-                return render(request, "tool_split.html", context)
+                return render(request, "Excel_flow/tool_Excel_split.html", context)
 
         else:
-            return render(request, "tool_split.html", {'form':upload,'limit_size':LIMIT_SIZE})
+            return render(request, "Excel_flow/tool_Excel_split.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
     else:
-        upload = UploadSplit()
-        return render(request, "tool_split.html", {'form':upload,'limit_size':LIMIT_SIZE})
+        upload = ExcelSplit()
+        return render(request, "Excel_flow/tool_Excel_split.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
 #excel行削除
-def Tool_removeView(request):
+def Tool_Excel_removeView(request):
     if request.method == 'POST':
 
-        upload = UploadRemove(request.POST, request.FILES)
+        upload = ExcelRemove(request.POST, request.FILES)
 
         if upload.is_valid():
             form_data = upload.cleaned_data
@@ -285,13 +286,13 @@ def Tool_removeView(request):
             try:
                 #ファイル数判定
                 if len(file) == 1:
-                    response = remove_flow_one(file, code, columuns)
+                    response = Excel_remove_flow_one(file, code, columuns)
                 else:
                     data = []
                     for i in file:
-                        file_data = remove_flow(i, code, columuns)
+                        file_data = Excel_remove_flow(i, code, columuns)
                         data.append(file_data[0])
-                    response = to_zip(data,file_data[1],True)
+                    response = Excel_to_zip(data,file_data[1],True)
                 return response
             except KeyError:
                 context = {
@@ -299,21 +300,21 @@ def Tool_removeView(request):
                     'form':upload,
                     'limit_size':LIMIT_SIZE,
                 }
-                return render(request, "tool_remove.html", context)
+                return render(request, "Excel_flow/tool_Excel_remove.html", context)
             except:
                 context = {
                     'error_message':'無効なデータです。',
                     'form':upload,
                     'limit_size':LIMIT_SIZE,
                 }
-                return render(request, "tool_remove.html", context)
+                return render(request, "Excel_flow/tool_Excel_remove.html", context)
 
         else:
-            return render(request, "tool_remove.html", {'form':upload,'limit_size':LIMIT_SIZE})
+            return render(request, "Excel_flow/tool_Excel_remove.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
     else:
-        upload = UploadRemove()
-        return render(request, "tool_remove.html", {'form':upload,'limit_size':LIMIT_SIZE})
+        upload = ExcelRemove()
+        return render(request, "Excel_flow/tool_Excel_remove.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
 
 

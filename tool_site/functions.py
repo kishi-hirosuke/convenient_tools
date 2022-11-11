@@ -33,7 +33,7 @@ def encode_cfm(read_file):
     return enc
 
 #csv行抽出_単数ファイル
-def extract_flow_one(file, code, columuns):
+def CSV_extract_flow_one(file, code, columuns):
     #csvファイル読み込み
     read_file = file[0].read()
     #文字コード識別
@@ -49,7 +49,7 @@ def extract_flow_one(file, code, columuns):
     return response
 
 #csv行抽出_複数ファイル
-def extract_flow(file, code, columuns):
+def CSV_extract_flow(file, code, columuns):
     #csvファイル読み込み
     read_file = file.read()
     #文字コード識別
@@ -61,7 +61,7 @@ def extract_flow(file, code, columuns):
     return df, enc
 
 #csv行分割
-def split_flow(file, num, header_select):
+def CSV_split_flow(file, num, header_select):
     #csvファイル読み込み
     read_file = file.read()
     #文字コード識別
@@ -71,7 +71,7 @@ def split_flow(file, num, header_select):
     return files_data, enc
 
 #csv行削除_単数ファイル
-def remove_flow_one(file, code, columuns):
+def CSV_remove_flow_one(file, code, columuns):
     #csvファイル読み込み
     read_file = file[0].read()
     #文字コード識別
@@ -87,7 +87,7 @@ def remove_flow_one(file, code, columuns):
     return response
 
 #csv行削除_複数ファイル
-def remove_flow(file, code, columuns):
+def CSV_remove_flow(file, code, columuns):
     #csvファイル読み込み
     read_file = file.read()
     #文字コード識別
@@ -99,13 +99,15 @@ def remove_flow(file, code, columuns):
     return df, enc
 
 #zip化（全てutf-8で出力）
-def to_zip(data,enc,header_select):
+def CSV_to_zip(data,enc,header_select):
     #zipファイル準備
     response = HttpResponse(content_type='application/zip')
     with zipfile.ZipFile(response, 'w') as zf:
         #zipファイルに書き込み
         n = 1
         for i in data:
+            #write版
+            #zf.write(f'result-{n}.csv', i.to_csv(f'result-{n}.csv',encoding = enc, header=header_select, index= False))
             zf.writestr(f'result-{n}.csv', i.to_csv(encoding = enc, header=header_select, index= False))
             n += 1
     #Content-Dispositionでダウンロードの強制
@@ -113,7 +115,7 @@ def to_zip(data,enc,header_select):
     return response
 
 ##html_table変換
-def to_table_flow(file):
+def Excel_to_table_flow(file):
 
     #xlsxファイル読み込み
     df = pd.read_excel(file, dtype = 'object')
@@ -127,35 +129,26 @@ def to_table_flow(file):
     return response
 
 #excel行抽出_単数ファイル
-def excel_extract_one(file, code, columuns):
-    #csvファイル読み込み
-    read_file = file[0].read()
-    #文字コード識別
-    enc = encode_cfm(read_file)
-    #csvファイルをdf形式に変換
-    file_data = pd.read_excel(io.StringIO(read_file.decode(enc)), delimiter=',', dtype = 'object')
+def Excel_extract_flow_one(file, code, columuns):
+    #excelファイルをdf形式に変換
+    file_data = pd.read_excel(file[0], dtype = 'object')
     #データ処理
     df = file_data.loc[file_data[columuns].str.contains(code)]
-    type_data = 'text/xlsx; charset=' + enc
-    response = HttpResponse(content_type=type_data)
+    response = HttpResponse(content_type='application/vnd.ms-excel; charset="utf-8"')
     response['Content-Disposition'] = 'attachment; filename="result.xlsx"'
-    df.to_excel(path_or_buf = response, encoding = enc, index=False)
+    df.to_excel(response,index=False)
     return response
 
 #excel行抽出_複数ファイル
-def excel_extract(file, code, columuns):
-    #csvファイル読み込み
-    read_file = file.read()
-    #文字コード識別
-    enc = encode_cfm(read_file)
-    #csvファイルをdf形式に変換
-    file_data = pd.read_excel(io.StringIO(read_file.decode(enc)), delimiter=',', dtype = 'object')
+def Excel_extract_flow(file, code, columuns):
+    #excelファイルをdf形式に変換
+    file_data = pd.read_excel(file, dtype = 'object')
     #データ処理
     df = file_data.loc[file_data[columuns].str.contains(code)]
-    return df, enc
+    return df
 
 #excel行分割
-def excel_split(file, num, header_select):
+def Excel_split_flow(file, num, header_select):
     #excelファイル読み込み
     read_file = file.read()
     #文字コード識別
@@ -165,21 +158,23 @@ def excel_split(file, num, header_select):
     return files_data, enc
 
 #zip化（全てutf-8で出力）
-def excel_to_zip(data,enc,header_select):
+def Excel_to_zip(data,header_select):
     #zipファイル準備
+    print(data)
     response = HttpResponse(content_type='application/zip')
     with zipfile.ZipFile(response, 'w') as zf:
         #zipファイルに書き込み
         n = 1
         for i in data:
-            zf.writestr(f'result-{n}.xlsx', i.to_excel(encoding = enc, header=header_select, index= False))
+            zf.write(f'result-{n}.xlsx', i.to_excel(f'result-{n}.xlsx', header=header_select, index= False))
+            print(i)
             n += 1
     #Content-Dispositionでダウンロードの強制
     response['Content-Disposition'] = 'attachment; filename="results.zip"'
     return response
 
 #excel行削除_単数ファイル
-def excel_remove_one(file, code, columuns):
+def Excel_remove_flow_one(file, code, columuns):
     #excelファイル読み込み
     read_file = file[0].read()
     #文字コード識別
@@ -195,7 +190,7 @@ def excel_remove_one(file, code, columuns):
     return response
 
 #excel行削除_複数ファイル
-def excel_remove(file, code, columuns):
+def Excel_remove_flow(file, code, columuns):
     #excelファイル読み込み
     read_file = file.read()
     #文字コード識別
