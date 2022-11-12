@@ -1,0 +1,286 @@
+@charset "utf-8";
+
+// 関数
+@mixin link($font_size,$font_color,$font_family) {
+    text-decoration: none;
+    font-size: $font_size;
+    color: $font_color;
+    font-family: $font_family;
+}
+@mixin except_font_size($font_size) {
+    font-size: $font_size;
+}
+
+// 共通
+$title: 35px;
+$subtitle: 30px;
+$text_title: 25px;
+$text: 17px;
+$text_color: rgb(40, 40, 40);
+$border_color: rgba(80, 80, 80, 0.8);
+$hover_color: rgb(100, 0, 0);
+$en: 'Lora', serif;
+$ja: "游ゴシック","ヒラギノ角ゴ ProN","sans-serif";
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.wrap {
+    overflow: hidden;
+}
+
+// ヘッダー周り
+header {
+    position: static;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height:65px;
+    margin-top: 15px;
+    border-bottom: 2px solid $border_color;
+    z-index: 5;
+    .header_about_link {
+        display: flex;
+        align-items: center;
+        @include link($title,$text_color,$ja);
+        width: 180px;
+        margin-left: 30px;
+        white-space: nowrap;
+        font-weight: bold;
+        &::after {
+            content: "";
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border-top: 1.5px solid $text_color;
+            border-right: 1.5px solid $text_color;
+            transform: rotate(45deg);
+            opacity: 0;
+        }
+        &:hover {
+            width: 200px;
+            color: $hover_color;
+            transition: .8s;
+        }
+        &:hover::after{
+            opacity: 1;
+            margin-left: 10px;
+            border-top: 1.5px solid $hover_color;
+            border-right: 1.5px solid $hover_color;
+            transition: .8s;
+        }
+    }
+    .header_right_contents {
+        display: flex;
+        gap: 10px;
+        width: 400px;
+        height: 100%;
+        margin-right: 60px;
+        .header_right_content_1 {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            width: 195px;
+            text-align: center;
+            color: $text_color;
+            .header_right_tools {
+                padding-top: 10px;
+                font-size: $subtitle;
+                font-family: $ja;
+            }
+            .header_right_tools_pulldown {
+                position: absolute;
+                display: none;
+                flex-direction: column;
+                list-style: none;
+                top: 100%;
+                width: 100%;
+                padding: 10px 0 10px 0;
+                .header_right_tools_link {
+                    @include link($text,$text_color,$ja);
+                }
+            }
+        }
+        .header_right_content_2 {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            width: 195px;
+            text-align: center;
+            color: $text_color;
+            .header_right_contact {
+                padding-top: 10px;
+                font-size: $subtitle;
+                font-family: $ja;
+            }
+            .header_right_contact_pulldown {
+                position: absolute;
+                display: none;
+                flex-direction: column;
+                list-style: none;
+                top: 100%;
+                width: 100%;
+                padding: 10px 0 10px 0;
+                .header_right_contact_link {
+                    @include link($text,$text_color,$ja);
+                }
+            }
+        }
+    }
+}
+
+.box {
+    width: 100%;
+    padding: 0 0 100px 0;
+    margin: 0;
+    .box_title {
+        width: 100%;
+        padding: 60px 0 50px 0;
+        text-align: center;
+        h3 {
+            font-size: $text_title;
+            font-family: $ja;
+            font-weight: bold;
+            color: $text_color;
+        }
+        p {
+            font-size: $text;
+            font-family: $ja;
+            color: $text_color;
+        }
+    }
+    .tools_table {
+        width: 85%;
+        min-width: 1000px;
+        max-width: 1500px;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        tr {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            gap: 20px;
+            .tool {
+                width: 300px;
+                height: 240px;
+                .tool_items {
+                    position: relative;
+                    width: 100%;
+                    height: 200px;
+                    padding: 10px 10px 0 10px;
+                    display: block;
+                    text-decoration: none;
+                    font-family: $ja;
+                    border: 1px solid $border_color;
+                    border-radius: 10px;
+                    &:hover .tool_item_title::after{
+                        right: 10px;
+                        transition: 1s;
+                        opacity: 1;
+                    }
+                    &:hover {
+                        transition: 1s;
+                        background-color: rgb(230, 230, 230);
+                    }
+                    .tool_item_title {
+                        padding-left: 10px;
+                        color: $text_color;
+                        font-size: $text;
+                        font-weight: bold;
+                        &::after {
+                            position: absolute;
+                            content: "";
+                            display: inline-block;
+                            width: 10px;
+                            height: 10px;
+                            top: 20px;
+                            right: 50px;
+                            border-top: 1.5px solid $text_color;
+                            border-right: 1.5px solid $text_color;
+                            transform: rotate(45deg);
+                            opacity: 0;
+                        }
+                    }
+                    .tool_item_sentence {
+                        @include except_font_size(15px);
+                        color: $text_color;
+                    }
+                }
+            }
+        }
+    }
+    .sub_box {
+        width: 80%;
+        min-width: 1000px;
+        max-width: 1500px;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        .explanation {
+            width: 100%;
+            border-top: 1px solid $border_color;
+            border-bottom: 1px solid $border_color;
+            .explanation_title {
+                padding-top: 15px;
+                font-size: $text;
+                font-family: $ja;
+                font-weight: bold;
+                color: $text_color;
+            }
+            .explanation_text {
+                @include except_font_size(15px);
+                font-family: $ja;
+                color: $text_color;
+            }
+        }
+        .form-group {
+            width: 600px;
+            margin: 60px 0 60px 50%;
+            padding: 30px 40px;
+            border: 1px solid $border_color;
+            border-radius: 10px;
+            transform: translateX(-50%);
+            font-size: $text;
+            font-family: $ja;
+        }
+        .notice {
+            width: 100%;
+            padding-top: 30px;
+            padding-bottom: 20px;
+            border-top: 1px solid $border_color;
+            border-bottom: 1px solid $border_color;
+            .explanation_title {
+                font-size: $text;
+                font-family: $ja;
+                font-weight: bold;
+                color: $text_color;
+            }
+            .explanation_text {
+                padding-top: 10px;
+                @include except_font_size(15px);
+                font-family: $ja;
+                color: $text_color;
+            }
+        }
+    }
+}
+
+// footer
+footer {
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid $border_color;
+    p {
+        padding: 13px 0 0 0;
+        @include except_font_size(15px);
+        font-family: $ja;
+    }
+}

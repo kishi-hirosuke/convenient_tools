@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 
 {% block title %}
-    <title>Remove of CSV｜csvから特定の行を削除｜Innovation-Tools</title>
+    <title>Excel to Html｜csvファイルの分割｜Innovation-Tools</title>
 {% endblock %}
 
 {% block main %}
 
 <div class="box">
-    <div class="boxtitle">
-        <h3>Remove CSV rows</h3>
-        <p>アップロードしたcsvファイルから特定の行のみを削除します。</p>
+    <div class="box_title">
+        <h3>Excel to Html</h3>
+        <p>Excelの表をHtmlのテーブルタグに変換します。</p>
     </div>
     <div class="sub_box">
         <table class="explanation">
@@ -17,16 +17,15 @@
                 <td width="50%">
                     <p class="explanation_title">このツールでできること</p>
                     <p class="explanation_text">
-                    アップロードしたcsvファイルから、基準となる列に「指定したキーワード」を含む行のみを削除したcsvファイルを出力します。（部分一致）<br>
-                    複数キーワードに対応。<br>
+                        Excelの表をHTMLのテーブルタグに変換します。<br>
+                        セル結合を含む表には対応していません。（テスト必要）
                     </p>
                 </td>
                 <td width="50%">
                     <p class="explanation_title">使い方</p>
                     <ol class="explanation_text">
                         <li>処理するファイルを選択</li>
-                        <li>基準とする列名を入力</li>
-                        <li>削除するキーワードを入力（半角パイプ「|」区切りで複数指定可）</li>
+                        <li>罫線の有無を選択</li>
                         <li>実行ボタンをクリック</li>
                     </ol>
                 </td>
@@ -57,34 +56,26 @@
                 {% csrf_token %}
                 <div class="file-upload-wrapper">
                     <p>ファイルを選択<br>
-                        <input type="file" multiple name="file" required>
-                    </p>
-                    <p>基準とする列名を入力<br>
-                        {{ form.columuns }}
-                    </p>
-                    <p>キーワードを入力（半角パイプ「|」区切りで複数指定可能）<br>
-                        {{ form.code }}
+                        {{ form.file }}
                     </p>
                 </div>
                 <p>ファイルをアップロードし、処理したファイルをダウンロードする</p>
                 <button type="submit" class="save btn btn-outline-primary" id="btn">実行</button>
             </form>
         </div>
+        <div class="notice">
+            <p class="explanation_title">Excel to Htmlについて</p>
+            <ul class="explanation_text">
+                <li>セル内改行、セル結合には対応していません。</li><br>
+                <li>※&、<、> 記号は、&amp;amp;、&amp;lt;、&amp;gt; に変換されます（テスト必要）</li><br>
+                <li>現在、最大容量は{{ limit_size }}です。<br>今後、上限解放するかもしれませんのでお楽しみに。</li><br>
+                <li>ご不明な点やご要望がございましたら、こちらの<a href="/inquiry">お問い合わせフォーム</a>までご連絡ください。</li>
+                <!-- <li>アップするcsvファイルの1行目がヘッダーとして読み込まれます。<br>つまり、基準とする列名が1行目にある必要があります。</li><br>
+                <li>基準とする列に空白が含まれているcsvファイルには対応していません。<br>また、基準列以外のヘッダーが空白の際でも処理は可能ですが、空白が「Unnamed:」に置き換わってしまうので非推奨です。</li><br>
+                <li>アップするcsvファイルによっては文字化けを起こしたり、データ型が変更されて出力される恐れがあります。処理が正常に終了したとしても、ダウンロードデータのご確認をお願いいたします。</li><br>
+                <li>こちらのツールを使用したことによる不具合は一切の責任を追えませんのでご理解の上ご利用ください。</li><br> -->
+            </ul>
+        </div>
     </div>
-
-    <div class="notice">
-        <p class="explanation_title">csv行削除について</p>
-        <ul class="explanation_text">
-            <li>キーワードは部分一致で、半角パイプ「|」区切りで複数キーワード指定可能です。</li><br>
-            <li>アップするcsvファイルの1行目がヘッダーとして読み込まれます。<br>つまり、基準とする列名が1行目にある必要があります。</li><br>
-            <li>基準とする列に空白が含まれているcsvファイルには対応していません。<br>また、基準列以外は空白がある際でも処理は可能ですが、ヘッダーの空白が「Unnamed:」に置き換わります。</li><br>
-            <li>複数ファイルをアップロードする際、zipファイル形式で出力され、中のファイルは全て「utf-8」でエンコードされます。</li><br>
-            <li>アップするcsvファイルによっては文字化けを起こしたり、データ型が変更されて出力される恐れがあります。処理が正常に終了したとしても、ダウンロードデータのご確認をお願いいたします。</li><br>
-            <li>こちらのツールを使用したことによる不具合は一切の責任を追えませんのでご理解の上ご利用ください。</li><br>
-            <li>現在、最大容量は{{ limit_size }}です。<br>今後、上限解放するかもしれませんのでお楽しみに。</li><br>
-            <li>ご不明な点やご要望がございましたら、こちらの<a href="/inquiry">お問い合わせフォーム</a>までご連絡ください。</li>
-        </ul>
-    </div>
-
 </div>
 {% endblock %}

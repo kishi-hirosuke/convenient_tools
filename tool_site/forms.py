@@ -59,7 +59,7 @@ def file_size(value):
         raise ValidationError(f'ファイルサイズが大きすぎます。{LIMIT_SIZE/1000/1000}MBより小さいサイズにしてください。')
 
 #csv抽出
-class UploadExtract(forms.Form):
+class CSVExtract(forms.Form):
     file = forms.FileField(
         validators=[
             FileExtensionValidator(['csv']),
@@ -69,7 +69,7 @@ class UploadExtract(forms.Form):
     code = forms.CharField(max_length=2000)
 
 #csv分割
-class UploadSplit(forms.Form):
+class CSVSplit(forms.Form):
     header_select = forms.ChoiceField(
     label='ヘッダー指定',
     required=True,
@@ -89,16 +89,8 @@ class UploadSplit(forms.Form):
         # 'placeholder':'半角数字入力',
         'pattern':'^[0-9]+$'}))
 
-#html_table変換
-class UploadTable(forms.Form):
-    file = forms.FileField(
-        validators=[
-            FileExtensionValidator(['xlsx']),
-            file_size
-            ])
-
 #csv削除
-class UploadRemove(forms.Form):
+class CSVRemove(forms.Form):
     file = forms.FileField(
         validators=[
             FileExtensionValidator(['csv']),
@@ -107,3 +99,51 @@ class UploadRemove(forms.Form):
     columuns = forms.CharField(max_length=255)
     code = forms.CharField(max_length=2000)
 
+#html_table変換
+class ExcelTable(forms.Form):
+    file = forms.FileField(
+        validators=[
+            FileExtensionValidator(['xlsx']),
+            file_size
+            ])
+
+#excel抽出
+class ExcelExtract(forms.Form):
+    file = forms.FileField(
+        validators=[
+            FileExtensionValidator(['xlsx']),
+            file_size
+            ])
+    columuns = forms.CharField(max_length=255)
+    code = forms.CharField(max_length=2000)
+
+#excel分割
+class ExcelSplit(forms.Form):
+    header_select = forms.ChoiceField(
+    label='ヘッダー指定',
+    required=True,
+    disabled=False,
+    choices=[
+        ('0','ヘッダーあり'),
+        ('1','ヘッダーなし')],
+    widget=forms.RadioSelect,)
+    file = forms.FileField(
+        validators=[
+            FileExtensionValidator(['xlsx']),
+            file_size
+            ])
+    num = forms.CharField(
+        max_length=255,
+        widget=forms.TextInput(attrs={
+        # 'placeholder':'半角数字入力',
+        'pattern':'^[0-9]+$'}))
+
+#excel削除
+class ExcelRemove(forms.Form):
+    file = forms.FileField(
+        validators=[
+            FileExtensionValidator(['xlsx']),
+            file_size
+            ])
+    columuns = forms.CharField(max_length=255)
+    code = forms.CharField(max_length=2000)

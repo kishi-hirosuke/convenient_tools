@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>お問い合わせ｜Innovation-Tools</title>
+{% endblock %}
+
+{% block main %}
+
+<div class="box">
+    <div class="box_title">
+        <h3>お問い合わせ（メールフォーム）</h3>
+    </div>
+    <div class="sub_box">
+        <div class="form-group">
+            <form method="POST" class="form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <span class="label">{{ form.name.label }}</span><p>{{ form.name }}</p>
+                <span class="label">{{ form.name_detail.label }}</span><p>{{ form.name_detail }}</p>
+                <span class="label">{{ form.company.label }}</span><p>{{ form.company }}</p>
+                <span class="label">{{ form.tel.label }}</span><p>{{ form.tel }}</p>
+                <span class="label">{{ form.mail.label }}</span><p>{{ form.mail }}</p>
+                <span class="label">{{ form.kinds.label }}</span><p>{{form.kinds}}</p>
+                <span class="label">{{ form.message.label }}</span><p>{{ form.message }}</p>
+                <button type="submit" class="save btn btn-outline-primary" id="btn">送信</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,1 +1,6 @@
+<<<<<<< HEAD
 convenient_tools/.env
+=======
+./convenient_tools/__pycache__/
+./tool_site/__pycache__/
+>>>>>>> development
