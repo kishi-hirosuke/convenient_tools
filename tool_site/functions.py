@@ -9,6 +9,9 @@ import zipfile
 from django.http import HttpResponse
 from charset_normalizer import detect
 import time
+from PIL import Image
+import cv2
+import matplotlib.pyplot as plt
 
 
 #文字コード識別
@@ -161,14 +164,15 @@ def Excel_split_flow(file, num, header_select):
 def Excel_to_zip(data,header_select):
     #zipファイル準備
     print(data)
-    response = HttpResponse(content_type='application/zip')
-    with zipfile.ZipFile(response, 'w') as zf:
+    response = HttpResponse(content_type='application/zip; charset="utf-8"')
+    with zipfile.ZipFile(response, mode='w') as zf:
         #zipファイルに書き込み
         n = 1
         for i in data:
             zf.write(f'result-{n}.xlsx', i.to_excel(f'result-{n}.xlsx', header=header_select, index= False))
             print(i)
             n += 1
+    zf.close()
     #Content-Dispositionでダウンロードの強制
     response['Content-Disposition'] = 'attachment; filename="results.zip"'
     return response
@@ -176,17 +180,12 @@ def Excel_to_zip(data,header_select):
 #excel行削除_単数ファイル
 def Excel_remove_flow_one(file, code, columuns):
     #excelファイル読み込み
-    read_file = file[0].read()
-    #文字コード識別
-    enc = encode_cfm(read_file)
-    #excelファイルをdf形式に変換
-    file_data = pd.read_excel(io.StringIO(read_file.decode(enc)), delimiter=',', dtype = 'object')
+    file_data = pd.read_excel(file[0], dtype = 'object')
     #データ処理
     df = file_data[~file_data[columuns].str.contains(code)]
-    type_data = 'text/xlsx; charset=' + enc
-    response = HttpResponse(content_type=type_data)
-    response['Content-Disposition'] = 'attachment; filename="result.excel"'
-    df.to_excel(path_or_buf = response, encoding = enc, index=False)
+    response = HttpResponse(content_type='application/vnd.ms-excel; charset="utf-8"')
+    response['Content-Disposition'] = 'attachment; filename="result.xlsx"'
+    df.to_excel(response,index=False)
     return response
 
 #excel行削除_複数ファイル
@@ -200,3 +199,24 @@ def Excel_remove_flow(file, code, columuns):
     #データ処理
     df = file_data[~file_data[columuns].str.contains(code)]
     return df, enc
+
+#image圧縮、縮小
+def Image_resize_flow_one(file, resize_select, width, height):
+    print('プリント')
+    print(file)
+    bfile =Image.open(file[0])
+    img=np.asarray(np.array(bfile),  dtype=np.uint8)
+    print('プリント')
+    print(img)
+    #img_array = np.asarray(bytearray(dfile.read()), dtype=np.uint8)
+    img_resize = cv2.resize(img, width, height)
+    print(img_resize)
+    print('プリント')
+    if resize_select == 0:
+        img_resize = cv2.resize(img, (width, height), interpolation = cv2.INTER_AREA)
+    else:
+        img_resize = cv2.resize(img, (width, height), interpolation = cv2.INTER_AREA)
+
+    response = HttpResponse(mimetype="image/png")
+    img_resize.save(response, "PNG")
+    return response

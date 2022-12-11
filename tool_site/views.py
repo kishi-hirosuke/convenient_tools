@@ -10,9 +10,10 @@ from django.http import HttpResponse
 from django.views.generic import TemplateView, View
 from django.shortcuts import render
 from django import forms
-from tool_site.forms import InquiryForm, CSVExtract, CSVSplit, CSVRemove, ExcelTable, ExcelExtract, ExcelSplit, ExcelRemove
+from tool_site.forms import InquiryForm, CSVExtract, CSVSplit, CSVRemove, ExcelTable, ExcelExtract, ExcelSplit, ExcelRemove, ImageResize
 from tool_site.functions import  CSV_extract_flow_one, CSV_extract_flow, CSV_split_flow, CSV_to_zip, CSV_remove_flow_one, CSV_remove_flow
 from tool_site.functions import Excel_to_table_flow, Excel_extract_flow_one, Excel_extract_flow, Excel_split_flow, Excel_to_zip, Excel_remove_flow_one, Excel_remove_flow
+from tool_site.functions import Image_resize_flow_one
 from django.core.mail import BadHeaderError, send_mail
 from django.conf import settings
 import csv, io
@@ -48,6 +49,13 @@ def inquiryView(request):
         inquiry = InquiryForm()
         return render(request, "inquiry.html", {'form':inquiry})
 
+def Tool_CSV_categoryView(request):
+    return render(request, "Category/CSV_category.html")
+def Tool_Excel_categoryView(request):
+    return render(request, "Category/Excel_category.html")
+def Tool_Image_categoryView(request):
+    return render(request, "Category/Image_category.html")
+
 #csv行抽出
 def Tool_CSV_extractView(request):
     if request.method == 'POST':
@@ -58,38 +66,38 @@ def Tool_CSV_extractView(request):
             form_data = upload.cleaned_data
             file, code, columuns = request.FILES.getlist('file'), form_data["code"], form_data["columuns"]
 
-            #try:
+            try:
                 #ファイル数判定
-            if len(file) == 1:
-                response = CSV_extract_flow_one(file, code, columuns)
-            else:
-                data = []
-                for i in file:
-                    file_data = CSV_extract_flow(i, code, columuns)
-                    data.append(file_data[0])
-                response = CSV_to_zip(data,file_data[1],True)
-            return response
-            # except KeyError:
-            #     context = {
-            #         'error_message':'存在しない列名が入力されています。',
-            #         'form':upload,
-            #         'limit_size':LIMIT_SIZE,
-            #     }
-            #     return render(request, "tool_CSV_extract.html", context)
-            # except:
-            #     context = {
-            #         'error_message':'無効なデータです。',
-            #         'form':upload,
-            #         'limit_size':LIMIT_SIZE,
-            #     }
-            #     return render(request, "tool_CSV_extract.html", context)
+                if len(file) == 1:
+                    response = CSV_extract_flow_one(file, code, columuns)
+                else:
+                    data = []
+                    for i in file:
+                        file_data = CSV_extract_flow(i, code, columuns)
+                        data.append(file_data[0])
+                    response = CSV_to_zip(data,file_data[1],True)
+                return response
+            except KeyError:
+                context = {
+                    'error_message':'存在しない列名が入力されています。',
+                    'form':upload,
+                    'limit_size':LIMIT_SIZE,
+                }
+                return render(request, "CSV_flow/tool_CSV_extract.html", context)
+            except:
+                context = {
+                    'error_message':'無効なデータです。',
+                    'form':upload,
+                    'limit_size':LIMIT_SIZE,
+                }
+                return render(request, "CSV_flow/tool_CSV_extract.html", context)
 
         else:
-            return render(request, "tool_CSV_extract.html", {'form':upload,'limit_size':LIMIT_SIZE})
+            return render(request, "CSV_flow/tool_CSV_extract.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
     else:
         upload = CSVExtract()
-        return render(request, "tool_CSV_extract.html", {'form':upload,'limit_size':LIMIT_SIZE})
+        return render(request, "CSV_flow/tool_CSV_extract.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
 #csv分割
 def Tool_CSV_splitView(request):
@@ -116,14 +124,14 @@ def Tool_CSV_splitView(request):
                     'form':upload,
                     'limit_size':LIMIT_SIZE,
                 }
-                return render(request, "tool_CSV_split.html", context)
+                return render(request, "CSV_flow/tool_CSV_split.html", context)
 
         else:
-            return render(request, "tool_CSV_split.html", {'form':upload,'limit_size':LIMIT_SIZE})
+            return render(request, "CSV_flow/tool_CSV_split.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
     else:
         upload = CSVSplit()
-        return render(request, "tool_CSV_split.html", {'form':upload,'limit_size':LIMIT_SIZE})
+        return render(request, "CSV_flow/tool_CSV_split.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
 #csv行削除
 def Tool_CSV_removeView(request):
@@ -152,21 +160,21 @@ def Tool_CSV_removeView(request):
                     'form':upload,
                     'limit_size':LIMIT_SIZE,
                 }
-                return render(request, "tool_CSV_remove.html", context)
+                return render(request, "CSV_flow/tool_CSV_remove.html", context)
             except:
                 context = {
                     'error_message':'無効なデータです。',
                     'form':upload,
                     'limit_size':LIMIT_SIZE,
                 }
-                return render(request, "tool_CSV_remove.html", context)
+                return render(request, "CSV_flow/tool_CSV_remove.html", context)
 
         else:
-            return render(request, "tool_CSV_remove.html", {'form':upload,'limit_size':LIMIT_SIZE})
+            return render(request, "CSV_flow/tool_CSV_remove.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
     else:
         upload = CSVRemove()
-        return render(request, "tool_CSV_remove.html", {'form':upload,'limit_size':LIMIT_SIZE})
+        return render(request, "CSV_flow/tool_CSV_remove.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
 #html_table変換
 def Tool_Excel_tableView(request):
@@ -316,7 +324,21 @@ def Tool_Excel_removeView(request):
         upload = ExcelRemove()
         return render(request, "Excel_flow/tool_Excel_remove.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
-
-
-
+# imageリサイズ
+def Tool_Image_resizeView(request):
+    if request.method == 'POST':
+        upload = ImageResize(request.POST, request.FILES)
+        if upload.is_valid():
+            form_data = upload.cleaned_data
+            file, resize_select, width, height = request.FILES.getlist('file'), form_data["resize_select"], form_data["width"], form_data["height"]
+            print(file)
+            #try:
+            if len(file) == 1:
+                response = Image_resize_flow_one(file, resize_select, width, height)
+                return response
+            else:
+                return render(request, "Image_flow/tool_image_resize.html")
+    else:
+        upload = ImageResize()
+        return render(request, "Image_flow/tool_image_resize.html", {'form':upload,'limit_size':LIMIT_SIZE})
 

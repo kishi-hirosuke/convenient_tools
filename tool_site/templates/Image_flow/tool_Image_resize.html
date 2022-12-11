@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 
 {% block title %}
-    <title>Remove of EXCEL｜excelから特定の行を削除｜Innovation-Tools</title>
+    <title>Split of CSV｜csvファイルの分割｜Innovation-Tools</title>
 {% endblock %}
 
 {% block main %}
 
 <div class="box">
     <div class="box_title">
-        <h3>Remove EXCEL rows</h3>
-        <p>アップロードしたexcelファイルから特定の行のみを削除します。</p>
+        <h3>Resize Images</h3>
+        <p>アップロードした画像ファイルを任意のサイズにリサイズします。</p>
     </div>
     <div class="sub_box">
         <table class="explanation">
@@ -17,17 +17,17 @@
                 <td width="50%">
                     <p class="explanation_title">このツールでできること</p>
                     <p class="explanation_text">
-                    アップロードしたexcelファイルから、基準となる列に「指定したキーワード」を含む行のみを削除したexcelファイルを出力します。（部分一致）<br>
-                    複数キーワードに対応。<br>
-                    複数ファイルは未対応。<br>
+                        アップロードした画像ファイルを任意のサイズにリサイズします。<br>
+                        拡大、縮小の補正可能。<br>
                     </p>
                 </td>
                 <td width="50%">
                     <p class="explanation_title">使い方</p>
                     <ol class="explanation_text">
                         <li>処理するファイルを選択</li>
-                        <li>基準とする列名を入力</li>
-                        <li>削除するキーワードを入力（半角パイプ「|」区切りで複数指定可）</li>
+                        <li>拡大、縮小を選択</li>
+                        <li>リサイズ後の幅を入力</li>
+                        <li>リサイズ後の高さを入力</li>
                         <li>実行ボタンをクリック</li>
                     </ol>
                 </td>
@@ -58,13 +58,16 @@
                 {% csrf_token %}
                 <div class="file-upload-wrapper">
                     <p>ファイルを選択<br>
-                        <input type="file" multiple name="file" required>
+                        {{ form.file }}
                     </p>
-                    <p>基準とする列名を入力<br>
-                        {{ form.columuns }}
+                    <p><br>
+                        {{ form.resize_select }}
                     </p>
-                    <p>キーワードを入力（半角パイプ「|」区切りで複数指定可能）<br>
-                        {{ form.code }}
+                    <p>リサイズ後の幅を入力<br>
+                        {{ form.width }}
+                    </p>
+                    <p>リサイズ後の高さを入力<br>
+                        {{ form.height }}
                     </p>
                 </div>
                 <p>ファイルをアップロードし、処理したファイルをダウンロードする</p>
@@ -72,15 +75,12 @@
             </form>
         </div>
         <div class="notice">
-            <p class="explanation_title">excel行削除について</p>
+            <p class="explanation_title">csvファイルの分割について</p>
             <ul class="explanation_text">
-                <li>キーワードは部分一致で、半角パイプ「|」区切りで複数キーワード指定可能です。</li><br>
-                <li>アップするexcelファイルの1行目がヘッダーとして読み込まれます。<br>つまり、基準とする列名が1行目にある必要があります。</li><br>
-                <li>基準とする列に空白が含まれているexcelファイルには対応していません。<br>また、基準列以外は空白がある際でも処理は可能ですが、ヘッダーの空白が「Unnamed:」に置き換わります。</li><br>
-                <!-- <li>複数ファイルをアップロードする際、zipファイル形式で出力され、中のファイルは全て「utf-8」でエンコードされます。</li><br> -->
-                <li>書式、セル結合は無視して出力されます。</li><br>
-                <li>複数シートを含むexcelファイルの場合は、初めのシートのみ読み込まれます。</li><br>
-                <li>アップするexcelファイルによっては文字化けを起こしたり、データ型が変更されて出力される恐れがあります。処理が正常に終了したとしても、ダウンロードデータのご確認をお願いいたします。</li><br>
+                <li>「ヘッダーあり」を選択した際は、全データにヘッダーが出力されます。<br>「ヘッダーなし」を選択した際は、1つ目のデータにはヘッダーを含んで出力されます。</li><br>
+                <li>ヘッダーが空白の際でも処理は可能ですが、空白が「Unnamed:」に置き換わります。</li><br>
+                <li>zipファイル形式で出力され、中のファイルは全て「utf-8」でエンコードされます。</li><br>
+                <li>アップするcsvファイルによっては文字化けを起こしたり、データ型が変更されて出力される恐れがあります。処理が正常に終了したとしても、ダウンロードデータのご確認をお願いいたします。</li><br>
                 <li>こちらのツールを使用したことによる不具合は一切の責任を追えませんのでご理解の上ご利用ください。</li><br>
                 <li>現在、最大容量は{{ limit_size }}です。<br>今後、上限解放するかもしれませんのでお楽しみに。</li><br>
                 <li>ご不明な点やご要望がございましたら、こちらの<a href="/inquiry">お問い合わせフォーム</a>までご連絡ください。</li>

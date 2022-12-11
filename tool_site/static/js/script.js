@@ -41,14 +41,4 @@ $(function() {
         tools_pulldown.slideUp(200);
         clearTimeout(set_tools_hover);
     });
-    //contact_hover
-    contact_area.hover(function(){
-        set_contact_hover = setTimeout(function(){
-            contact_pulldown.slideDown(200);
-        },250);
-    },
-    function(){
-        contact_pulldown.slideUp(200);
-        clearTimeout(set_contact_hover);
-    });
 });

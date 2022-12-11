@@ -35,21 +35,14 @@
             <div class="header_right_content_1" id="tools_area">
                 <h2 class="header_right_tools">Tools</h2>
                 <ul class="header_right_tools_pulldown" id="tools_pulldown">
-                    <li><a href="/" class="header_right_tools_link">処理1</a></li>
-                    <li><a href="/" class="header_right_tools_link">処理2</a></li>
-                    <li><a href="/" class="header_right_tools_link">処理3</a></li>
-                    <li><a href="/" class="header_right_tools_link">処理4</a></li>
+                    <li><a href={% url 'csv_category' %} class="header_right_tools_link">CSV処理</a></li>
+                    <li><a href={% url 'excel_category' %} class="header_right_tools_link">Excel処理</a></li>
+                    <!-- <li><a href={% url 'image_category' %} class="header_right_tools_link">画像処理</a></li> -->
                 </ul>
             </div>
-            <div class="header_right_content_2" id="contact_area">
+            <a href={% url 'inquiry' %} class="header_right_content_2" id="contact_area">
                 <h2 class="header_right_contact">Contact</h2>
-                <ul class="header_right_contact_pulldown" id="contact_pulldown">
-                    <li><a href="/inquiry" class="header_right_contact_link">お問い合わせ</a></li>
-                    <li><a href="/" class="header_right_contact_link">改善のご依頼</a></li>
-                    <li><a href="/" class="header_right_contact_link">自動化ご依頼</a></li>
-                    <li><a href="/" class="header_right_contact_link">その他ご依頼</a></li>
-                </ul>
-            </div>
+            </a>
         </div>
     </header>
 

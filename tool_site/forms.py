@@ -147,3 +147,21 @@ class ExcelRemove(forms.Form):
             ])
     columuns = forms.CharField(max_length=255)
     code = forms.CharField(max_length=2000)
+
+#image
+class ImageResize(forms.Form):
+    file = forms.FileField(
+        validators=[
+            FileExtensionValidator(['jpg','jpeg','png'])
+        ]
+    )
+    resize_select = forms.ChoiceField(
+    label='拡大・縮小',
+    required=True,
+    disabled=False,
+    choices=[
+        ('0','縮小'),
+        ('1','拡大')],
+    widget=forms.RadioSelect,)
+    width = forms.CharField(max_length=10)
+    height = forms.CharField(max_length=10)

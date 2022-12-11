@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+<div class="box">
+    <div class="box_title">
+        <h3>CSV Tools</h3>
+    </div>
+
+    <table class="tools_table">
+        <tr>
+            <td class="tool">
+                <a href={% url 'csv_extract' %} class="tool_items">
+                    <p class="tool_item_title">csv行抽出</p>
+                    <div class="tool_item_sentence">
+                        <p>csvファイルから特定の行の抽出ができます。<br>複数キーワード抽出や部分一致での一括抽出などの応用も可能です。</p>
+                    </div>
+                </a>
+            </td>
+            <td class="tool">
+                <a href={% url 'csv_remove' %} class="tool_items">
+                        <p class="tool_item_title">csv行削除</p>
+                    <div class="tool_item_sentence">
+                        <p>アップロードしたcsvファイルから特定の行のみを削除します。<br>複数キーワード削除や部分一致での一括削除などの応用も可能です。</p>
+                    </div>
+                </a>
+            </td>
+            <td class="tool">
+                <a href={% url 'csv_split' %} class="tool_items">
+                    <p class="tool_item_title">csv分割</p>
+                    <div class="tool_item_sentence">
+                        <p>アップロードしたcsvファイルを任意の件数（行数）で分割します。<br>ヘッダー有無の指定も可能。<br></p>
+                    </div>
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+{% endblock %}

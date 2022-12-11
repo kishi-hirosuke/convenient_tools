@@ -13,9 +13,9 @@
 
 // 共通
 $title: 35px;
-$subtitle: 30px;
-$text_title: 25px;
-$text: 17px;
+$subtitle: 25px;
+$text_title: 23px;
+$text: 15px;
 $text_color: rgb(40, 40, 40);
 $border_color: rgba(80, 80, 80, 0.8);
 $hover_color: rgb(100, 0, 0);
@@ -92,7 +92,7 @@ header {
             text-align: center;
             color: $text_color;
             .header_right_tools {
-                padding-top: 10px;
+                padding-top: 18px;
                 font-size: $subtitle;
                 font-family: $ja;
             }
@@ -112,26 +112,26 @@ header {
         .header_right_content_2 {
             position: relative;
             display: flex;
+            text-decoration: none;
             flex-direction: column;
             width: 195px;
             text-align: center;
             color: $text_color;
             .header_right_contact {
-                padding-top: 10px;
+                padding-top: 18px;
                 font-size: $subtitle;
                 font-family: $ja;
             }
-            .header_right_contact_pulldown {
-                position: absolute;
-                display: none;
-                flex-direction: column;
-                list-style: none;
-                top: 100%;
-                width: 100%;
-                padding: 10px 0 10px 0;
-                .header_right_contact_link {
-                    @include link($text,$text_color,$ja);
-                }
+        }
+    }
+    @media screen and (max-width:1400px) {
+        .header_right_contents {
+            width: 300px;
+            .header_right_content_1 {
+                width: 145px;
+            }
+            .header_right_content_2 {
+                width: 145px;
             }
         }
     }
@@ -139,6 +139,7 @@ header {
 
 .box {
     width: 100%;
+    min-height: 90vh;
     padding: 0 0 100px 0;
     margin: 0;
     .box_title {
@@ -158,9 +159,7 @@ header {
         }
     }
     .tools_table {
-        width: 85%;
-        min-width: 1000px;
-        max-width: 1500px;
+        width: 1290px;
         margin-left: 50%;
         transform: translateX(-50%);
         tr {
@@ -168,7 +167,7 @@ header {
             display: flex;
             flex-wrap: wrap;
             justify-content: flex-start;
-            gap: 20px;
+            gap: 30px;
             .tool {
                 width: 300px;
                 height: 240px;
@@ -176,33 +175,26 @@ header {
                     position: relative;
                     width: 100%;
                     height: 200px;
-                    padding: 10px 10px 0 10px;
+                    padding: 10px 0 0 0;
                     display: block;
                     text-decoration: none;
                     font-family: $ja;
                     border: 1px solid $border_color;
                     border-radius: 10px;
-                    &:hover .tool_item_title::after{
-                        right: 10px;
-                        transition: 1s;
-                        opacity: 1;
-                    }
-                    &:hover {
-                        transition: 1s;
-                        background-color: rgb(230, 230, 230);
-                    }
+                    background-color: rgb(129, 129, 129);
                     .tool_item_title {
-                        padding-left: 10px;
+                        padding: 0 0 0 10px;
                         color: $text_color;
                         font-size: $text;
                         font-weight: bold;
+                        background-color: rgb(129, 129, 129);
                         &::after {
                             position: absolute;
                             content: "";
                             display: inline-block;
                             width: 10px;
                             height: 10px;
-                            top: 20px;
+                            top: 17px;
                             right: 50px;
                             border-top: 1.5px solid $text_color;
                             border-right: 1.5px solid $text_color;
@@ -211,11 +203,38 @@ header {
                         }
                     }
                     .tool_item_sentence {
+                        padding: 0;
+                        width: 100%;
+                        height: 149px;
+                        border-bottom-left-radius: 10px;
+                        border-bottom-right-radius: 10px;
                         @include except_font_size(15px);
                         color: $text_color;
+                        background-color: rgb(255, 255, 255);
+                        p {
+                            padding: 7px 5px;
+                        }
+                    }
+                    &:hover {
+                        transition: 1s;
+                        background-color: rgb(255, 255, 255);
+                    }
+                    &:hover .tool_item_title {
+                        transition: 1s;
+                        background-color: rgb(255, 255, 255);
+                    }
+                    &:hover .tool_item_title::after{
+                        right: 20px;
+                        transition: 1s;
+                        opacity: 1;
                     }
                 }
             }
+        }
+    }
+    @media screen and (max-width:1400px) {
+        .tools_table {
+            width: 960px;
         }
     }
     .sub_box {
