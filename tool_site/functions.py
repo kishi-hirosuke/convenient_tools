@@ -11,7 +11,6 @@ from charset_normalizer import detect
 import time
 from PIL import Image
 import cv2
-import matplotlib.pyplot as plt
 
 
 #文字コード識別
