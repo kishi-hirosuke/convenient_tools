@@ -3,10 +3,18 @@ from tool_site import views
 
 
 urlpatterns = [
-    # 概要・お問い合わせ
-    path('', views.IndexView.as_view(), name='top'),
+    # トップページ
+    path('top/', views.TopView.as_view(), name='top'),
     path('about/', views.AboutView.as_view(), name='about'),
-    path('inquiry/', views.inquiryView, name='inquiry' ),
+    # サインアップ
+    path('signup/', views.SignupView, name='signup'),
+    #path('success/', views.SuccessView, name='success'),URLパターン
+    # ログイン
+    path('login/', views.LoginView, name='login'),
+    # ログアウト
+    path('logout/', views.LogoutView, name='logout'),
+    # お問い合わせ
+    path('inquiry/', views.InquiryView, name='inquiry' ),
     # カテゴリ
     path('CSV_category/', views.Tool_CSV_categoryView, name='csv_category'),
     path('Excel_category/', views.Tool_Excel_categoryView, name='excel_category'),

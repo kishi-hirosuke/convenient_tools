@@ -28,8 +28,6 @@ $(function() {
 
     const tools_area = $('.header_right_content_1');
     const tools_pulldown = $('.header_right_tools_pulldown');
-    const contact_area = $('.header_right_content_2');
-    const contact_pulldown = $('.header_right_contact_pulldown');
 
     //tools_hover
     tools_area.hover(function(){

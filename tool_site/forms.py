@@ -6,6 +6,62 @@ from django.core.exceptions import ValidationError
 import re
 from django.conf import settings
 
+####################################################
+# ユーザー操作側
+####################################################
+
+# サインアップフォーム
+class SignupForm(forms.Form):
+    name = forms.CharField(
+        label='ユーザーネーム',
+        required=True,
+        max_length=50,
+    )
+    email = forms.EmailField(
+        label='メールアドレス',
+        required=True,
+        max_length=100,
+        widget=forms.TextInput(attrs={
+        'placeholder':'sample@example.com',
+        'pattern':'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'})
+    )
+    password1 = forms.CharField(
+        label='パスワード',
+        required=True,
+        max_length=40,
+        widget=forms.PasswordInput()
+    )
+    password2 = forms.CharField(
+        label='再確認',
+        required=True,
+        max_length=40,
+        widget=forms.PasswordInput()
+    )
+
+# 二段階認証
+class AuthForm(forms.Form):
+    token = forms.CharField(
+        label='5桁の番号',
+        required=True,
+        max_length=6,
+    )
+
+# ログインフォーム
+class LoginForm(forms.Form):
+    email = forms.EmailField(
+        label='メールアドレス',
+        required=True,
+        max_length=100,
+        widget=forms.TextInput(attrs={
+        'placeholder':'sample@example.com',
+        'pattern':'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'})
+    )
+    password = forms.CharField(
+        label='パスワード',
+        required=True,
+        max_length=40,
+        widget=forms.PasswordInput()
+    )
 
 #お問い合わせ
 class InquiryForm(forms.Form):
@@ -28,7 +84,7 @@ class InquiryForm(forms.Form):
         widget=forms.TextInput(attrs={
         # 'placeholder':'半角数字入力',
         'pattern':'^[0-9]+$'}))
-    mail = forms.EmailField(
+    email = forms.EmailField(
         label='メールアドレス',
         required=True,
         max_length=50,
@@ -51,6 +107,10 @@ class InquiryForm(forms.Form):
         required=False,
         max_length=255,
         widget=forms.Textarea,)
+
+####################################################
+# ここから処理側
+####################################################
 
 #最大容量
 def file_size(value):
