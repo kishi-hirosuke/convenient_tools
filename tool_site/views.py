@@ -248,13 +248,13 @@ def Tool_CSV_extractView(request):
                     'limit_size':LIMIT_SIZE,
                 }
                 return render(request, "CSV_flow/tool_CSV_extract.html", context)
-            except:
-                context = {
-                    'error_message':'無効なデータです。',
-                    'form':upload,
-                    'limit_size':LIMIT_SIZE,
-                }
-                return render(request, "CSV_flow/tool_CSV_extract.html", context)
+            # except:
+            #     context = {
+            #         'error_message':'無効なデータです。',
+            #         'form':upload,
+            #         'limit_size':LIMIT_SIZE,
+            #     }
+            #     return render(request, "CSV_flow/tool_CSV_extract.html", context)
 
         else:
             return render(request, "CSV_flow/tool_CSV_extract.html", {'form':upload,'limit_size':LIMIT_SIZE})
