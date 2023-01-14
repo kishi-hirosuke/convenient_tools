@@ -50,7 +50,6 @@ class AutoBizAccount(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
-    # is_superuser = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
     EMAIL_FIELD = "email"
@@ -78,10 +77,6 @@ class AutoBizAccount(AbstractBaseUser, PermissionsMixin):
     @property
     def admin(self):
         return self.is_admin
-
-    # @property
-    # def is_superuser(self):
-    #     return self.is_superuser
 
     class Meta:
         db_table = 'auto_biz_account'

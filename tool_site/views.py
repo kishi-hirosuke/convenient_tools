@@ -6,7 +6,7 @@ from dataclasses import dataclass, replace
 from distutils.log import error
 from tabnanny import check
 from urllib import response
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import TemplateView, View
 from django.shortcuts import render, redirect
 from django import forms
@@ -23,7 +23,7 @@ import pandas as pd
 from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 import random
 import datetime
 from django.urls import reverse
@@ -33,7 +33,7 @@ LIMIT_SIZE = getattr(settings, 'LIMIT_SIZE', None)/300/1000
 LIMIT_SIZE = f'{LIMIT_SIZE}MB'
 
 #topページ
-class TopView(TemplateView, LoginRequiredMixin):
+class TopView(TemplateView):
     template_name = "index.html"
 
 #aboutページ
@@ -49,41 +49,41 @@ def SignupView(request):
     if request.method == 'POST':
         time_user = SignupForm(request.POST)
         auth = AuthForm(request.POST)
+
         if time_user.is_valid():
             form_data = time_user.cleaned_data
-            print(form_data)
-            name, email = form_data['name'], form_data['email']
-            email_list = []  # メール送信時リスト化
+            name, email = form_data['name'], form_data['email']  # name,email定義
+            email_list = []  # メール送信時のemailリスト化
             email_list.append(email)
-            if form_data['password1'] == form_data['password2']:
-                password = form_data['password1']
-            else:
-                context = {
-                    'error_message':'パスワードが一致しません。',
-                    'form1':time_user,
-                    'form2':auth
-                }
-                return render(request, 'User/signup.html', context)
-            token = random.randint(100000,999999)
-            print(name,email,password,token)
-            account = authenticate(email = email, password = password)  # 既存のuser確認
-            if account is not None:
-                print('a')
-                return HttpResponse('既に登録されています。')
 
-            else:
-                print('d')
+            if form_data['password1'] == form_data['password2']:  # password認証
+                password = form_data['password1']  # password定義
+            else:  # password不一致
+                messages.info(request, f'パスワードが違います。')
+                return redirect('signup')
+            token = random.randint(100000,999999)  # token定義
+            account_count = AutoBizAccount.objects.filter(email = email).count()  # 既存のuser確認
+
+            if account_count >= 1:  # user件数が1件以上
+                print('a')
+                messages.info(request, f'既に登録されています。')
+                return redirect('signup')
+
+            else:  # user件数が0件
                 subject = 'AutoBiz 二段階認証パスワード'
                 body = f'氏名：{name}様\n\nこの度はAutoBizにご登録誠にありがとうございます。\n\n\n\n6桁の番号\n\n\n\n{token}\n\n\n\nこのE-mailは、発信者が意図した受信者による閲覧・利用を目的としたものです。万一、貴殿が意図された受信者でない場合には、直ちに送信者に連絡のうえ、このE-mailを破棄願います。'
                 recipients = settings.EMAIL_HOST_USER
+
                 try:  # メール送信処理
                     send_mail(subject, body, recipients, email_list)
-                except BadHeaderError:
-                    return HttpResponse('無効なヘッダーが見つかりました。')
+                except BadHeaderError:  # ヘッダーエラー
+                    messages.info(request, f'無効なヘッダーが見つかりました。')
+                    return redirect('signup')
                 except:  # メール送信時エラー
-                    return HttpResponse('メール処理の最中にエラーが発見されました。時間をおいて、再度試してください。')
-                # time_user登録
-                TimeUser.objects.update_or_create(
+                    messages.info(request, f'メール処理の最中にエラーが発見されました。時間をおいて、再度試してください。')
+                    return redirect('signup')
+
+                TimeUser.objects.update_or_create(  # time_user登録or書き換え
                     email = email,
                     defaults={
                         'name':name,
@@ -93,19 +93,17 @@ def SignupView(request):
                     }
                 )
                 context = {
-                    'success_message':'ご登録のメールアドレス宛に6桁の番号を送信しました。フォームに入力してください。送信されていない場合は再度お試しください。',
+                    'message':'ご登録のメールアドレス宛に6桁の番号を送信しました。フォームに入力してください。送信されていない場合は再度お試しください。',
                     'form1':time_user,
                     'form2':auth
                 }
                 return render(request, "User/signup.html", context)
 
         elif auth.is_valid():
-            print('e')
             form_data = auth.cleaned_data
-            print(form_data)
             token = form_data['token']
             auth_user_count = TimeUser.objects.filter(token = token).count()  # tokenの一致件数確認
-            print(auth_user_count)
+
             if auth_user_count == 1:  # tokenの一致が1件の場合
                 auth_user = TimeUser.objects.get(token = token)  # time_userのデータ取得
                 user = AutoBizAccount.objects.create_user(  # AutoBizAccount登録
@@ -116,27 +114,25 @@ def SignupView(request):
                     updated_at = datetime.datetime.now()
                     )
                 context = {
-                    'success_message':f'{user.name}様のユーザー登録が完了しました。'
+                    'message':f'{user.name}様のユーザー登録が完了しました。'
                 }
                 return render(request, 'User/success.html', context)
-
-            elif auth_user_count == 0:
+            elif auth_user_count == 0:  # tokenの一致が無し
                 context = {
-                    'error_message':'番号が違います。',
+                    'message':'番号が違います。',
                     'form1':time_user,
                     'form2':auth
                 }
                 return render(request, 'User/signup.html', context)
             else:  # tokenの一致が2件以上
                 context = {
-                    'error_message':'メールアドレスが重複しているユーザーがいます。直ちに管理者にお問い合わせください。',
+                    'message':'メールアドレスが重複しているユーザーがいます。直ちに管理者にお問い合わせください。',
                     'form1':time_user,
                     'form2':auth
                 }
                 return render(request, 'User/signup.html', context)
 
         else:  # formバリデーション不足
-            print('f')
             context = {
                 'form1':time_user,
                 'form2':auth
@@ -152,26 +148,25 @@ def SignupView(request):
         }
         return render(request, "User/signup.html", context)
 
+
 # ログイン
 def LoginView(request):
+
     if request.method == 'POST':
         user = LoginForm(request.POST)
+
         if user.is_valid():
             form_data = user.cleaned_data
             email = form_data['email']
             password = form_data['password']
-            try:
-                account = authenticate(username = email, password = password)
-                print(account)
-                if account is not None:
-                    print('f')
-                    login(request, account)
+            account = authenticate(username = email, password = password)  # アカウント認証
 
-                else:
-                    print('a')
-                    return HttpResponse('パスワードが違います。')
-            except AutoBizAccount.DoesNotExist:
-                return HttpResponse('アカウントが登録されていません。')
+            if account is not None:  # accountありの場合
+                login(request, account)
+                return HttpResponseRedirect(reverse('top'))
+            else:  # accountなしの場合
+                messages.info(request, f'メールアドレス、またはパスワードが違います。')
+                return redirect('signup')
 
     else:
         user = LoginForm()
@@ -180,10 +175,13 @@ def LoginView(request):
         }
         return render(request, 'User/login.html', context)
 
+
 # ログアウト
 @login_required
 def LogoutView(request):
     logout(request)
+    return redirect('login')
+
 
 # お問い合わせ
 @login_required
@@ -221,7 +219,9 @@ def Tool_Excel_categoryView(request):
 def Tool_Image_categoryView(request):
     return render(request, "Category/Image_category.html")
 
+
 #csv行抽出
+@login_required
 def Tool_CSV_extractView(request):
     if request.method == 'POST':
 
@@ -263,6 +263,7 @@ def Tool_CSV_extractView(request):
         upload = CSVExtract()
         return render(request, "CSV_flow/tool_CSV_extract.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
+
 #csv分割
 @login_required
 def Tool_CSV_splitView(request):
@@ -290,6 +291,7 @@ def Tool_CSV_splitView(request):
     else:
         upload = CSVSplit()
         return render(request, "CSV_flow/tool_CSV_split.html", {'form':upload,'limit_size':LIMIT_SIZE})
+
 
 #csv行削除
 @login_required
@@ -327,6 +329,7 @@ def Tool_CSV_removeView(request):
         upload = CSVRemove()
         return render(request, "CSV_flow/tool_CSV_remove.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
+
 #html_table変換
 @login_required
 def Tool_Excel_tableView(request):
@@ -355,6 +358,7 @@ def Tool_Excel_tableView(request):
     else:
         upload = ExcelTable()
         return render(request, "Excel_flow/tool_Excel_table.html", {'form':upload,'limit_size':LIMIT_SIZE})
+
 
 #excel行抽出
 @login_required
@@ -400,6 +404,7 @@ def Tool_Excel_extractView(request):
         upload = ExcelExtract()
         return render(request, "Excel_flow/tool_Excel_extract.html", {'form':upload,'limit_size':LIMIT_SIZE})
 
+
 #excel分割
 @login_required
 def Tool_Excel_splitView(request):
@@ -434,6 +439,7 @@ def Tool_Excel_splitView(request):
     else:
         upload = ExcelSplit()
         return render(request, "Excel_flow/tool_Excel_split.html", {'form':upload,'limit_size':LIMIT_SIZE})
+
 
 #excel行削除
 @login_required
@@ -478,6 +484,7 @@ def Tool_Excel_removeView(request):
     else:
         upload = ExcelRemove()
         return render(request, "Excel_flow/tool_Excel_remove.html", {'form':upload,'limit_size':LIMIT_SIZE})
+
 
 # imageリサイズ
 @login_required

@@ -1,14 +1,13 @@
 from django.urls import path
 from tool_site import views
-
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     # トップページ
-    path('top/', views.TopView.as_view(), name='top'),
-    path('about/', views.AboutView.as_view(), name='about'),
+    path('top/', login_required(views.TopView.as_view()), name='top'),
+    path('about/', login_required(views.AboutView.as_view()), name='about'),
     # サインアップ
     path('signup/', views.SignupView, name='signup'),
-    #path('success/', views.SuccessView, name='success'),URLパターン
     # ログイン
     path('login/', views.LoginView, name='login'),
     # ログアウト

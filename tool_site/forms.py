@@ -28,12 +28,14 @@ class SignupForm(forms.Form):
     password1 = forms.CharField(
         label='パスワード',
         required=True,
+        min_length=7,
         max_length=40,
         widget=forms.PasswordInput()
     )
     password2 = forms.CharField(
         label='再確認',
         required=True,
+        min_length=7,
         max_length=40,
         widget=forms.PasswordInput()
     )

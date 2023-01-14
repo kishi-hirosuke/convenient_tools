@@ -125,8 +125,8 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-LOGIN_URL = 'tool_site:login'
-LOGIN_REDIRECT_URL = 'tool_site:top'
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/top/'
 LOGOUT_REDIRECT_URL = LOGIN_URL
 
 # Internationalization

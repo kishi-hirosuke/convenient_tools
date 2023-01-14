@@ -8,10 +8,11 @@
     <div class="sub_box">
         <div class="form-group">
             <!-- フォームエラー処理 -->
-            {% if success_message %}
-                {{ success_message }}
-            {% elif error_message %}
-                {{ error_message }}
+            {% if messages or message %}
+            <p>{{ message }}</p>
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
             {% elif form.errors %}
                 {% for error in form.errors %}
                     <p>{{ error }}</p>
