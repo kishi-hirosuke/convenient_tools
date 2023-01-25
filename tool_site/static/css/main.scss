@@ -1,6 +1,13 @@
 @charset "utf-8";
 
 // 関数
+@mixin img($width, $height, $opacity) {
+    position: absolute;
+    object-fit: cover;
+    width: $width;
+    height: $height;
+    opacity: $opacity;
+}
 @mixin link($font_size,$font_color,$font_family) {
     text-decoration: none;
     font-size: $font_size;
@@ -38,7 +45,7 @@ body {
 
 // ヘッダー周り
 header {
-    position: static;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -48,13 +55,15 @@ header {
     border-bottom: 2px solid $border_color;
     z-index: 5;
     .header_about_link {
-        display: flex;
-        align-items: center;
-        @include link($title,$text_color,$ja);
+        position: relative;
+        @include link(none,none,none);
         width: 180px;
+        height: 100%;
         margin-left: 30px;
-        white-space: nowrap;
-        font-weight: bold;
+        .title_img {
+            @include img(100%,100%,1);
+            z-index: 100;
+        }
         &::after {
             content: "";
             display: inline-block;
@@ -81,17 +90,17 @@ header {
     .header_right_contents {
         display: flex;
         gap: 10px;
-        width: 400px;
+        width: 350px;
         height: 100%;
-        margin-right: 60px;
-        .header_right_content_1 {
+        margin-right: 100px;
+        .header_right_slide {
             position: relative;
             display: flex;
             flex-direction: column;
-            width: 195px;
+            width: 145px;
             text-align: center;
             color: $text_color;
-            .header_right_tools {
+            .header_right_slide_tools {
                 padding-top: 18px;
                 font-size: $subtitle;
                 font-family: $ja;
@@ -109,15 +118,14 @@ header {
                 }
             }
         }
-        .header_right_content_2 {
+        .header_right_content_link {
             position: relative;
             display: flex;
             text-decoration: none;
-            flex-direction: column;
-            width: 195px;
+            width: 145px;
             text-align: center;
             color: $text_color;
-            .header_right_contact {
+            .header_right_link {
                 padding-top: 18px;
                 font-size: $subtitle;
                 font-family: $ja;
@@ -135,6 +143,43 @@ header {
             }
         }
     }
+    .header_right_account {
+        position: absolute;
+        right: 50px;
+        width: 30px;
+        height: 30px;
+        .account_icon {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .header_account_contents {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        top: 65px;
+        right: -130px;
+        width: 130px;
+        height: 400px;
+        text-align: center;
+        z-index: 100;
+        background-color: #faf5e4;
+        .header_account_edit_link {
+            display: block;
+            margin-top: 20px;
+            padding: 5px 0;
+            @include link($text,$text_color,$ja);
+        }
+        .header_account_logout_link {
+            display: block;
+            @include link($text,$text_color,$en);
+        }
+    }
+    #header_account_slide .active {
+        right: 100px;
+        transition: .5s;
+    }
 }
 
 .box {
@@ -142,6 +187,7 @@ header {
     min-height: 90vh;
     padding: 0 0 100px 0;
     margin: 0;
+    background-color: #faf5e4;
     .box_title {
         width: 100%;
         padding: 60px 0 50px 0;

@@ -14,7 +14,7 @@ body {
 }
 
 header {
-  position: static;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -25,16 +25,23 @@ header {
   z-index: 5;
 }
 header .header_about_link {
-  display: flex;
-  align-items: center;
+  position: relative;
   text-decoration: none;
-  font-size: 35px;
-  color: rgb(40, 40, 40);
-  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+  font-size: none;
+  color: none;
+  font-family: none;
   width: 180px;
+  height: 100%;
   margin-left: 30px;
-  white-space: nowrap;
-  font-weight: bold;
+}
+header .header_about_link .title_img {
+  position: absolute;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  z-index: 100;
 }
 header .header_about_link::after {
   content: "";
@@ -61,24 +68,24 @@ header .header_about_link:hover::after {
 header .header_right_contents {
   display: flex;
   gap: 10px;
-  width: 400px;
+  width: 350px;
   height: 100%;
-  margin-right: 60px;
+  margin-right: 100px;
 }
-header .header_right_contents .header_right_content_1 {
+header .header_right_contents .header_right_slide {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 195px;
+  width: 145px;
   text-align: center;
   color: rgb(40, 40, 40);
 }
-header .header_right_contents .header_right_content_1 .header_right_tools {
+header .header_right_contents .header_right_slide .header_right_slide_tools {
   padding-top: 18px;
   font-size: 25px;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
-header .header_right_contents .header_right_content_1 .header_right_tools_pulldown {
+header .header_right_contents .header_right_slide .header_right_tools_pulldown {
   position: absolute;
   display: none;
   flex-direction: column;
@@ -87,22 +94,21 @@ header .header_right_contents .header_right_content_1 .header_right_tools_pulldo
   width: 100%;
   padding: 10px 0 10px 0;
 }
-header .header_right_contents .header_right_content_1 .header_right_tools_pulldown .header_right_tools_link {
+header .header_right_contents .header_right_slide .header_right_tools_pulldown .header_right_tools_link {
   text-decoration: none;
   font-size: 15px;
   color: rgb(40, 40, 40);
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
-header .header_right_contents .header_right_content_2 {
+header .header_right_contents .header_right_content_link {
   position: relative;
   display: flex;
   text-decoration: none;
-  flex-direction: column;
-  width: 195px;
+  width: 145px;
   text-align: center;
   color: rgb(40, 40, 40);
 }
-header .header_right_contents .header_right_content_2 .header_right_contact {
+header .header_right_contents .header_right_content_link .header_right_link {
   padding-top: 18px;
   font-size: 25px;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
@@ -118,12 +124,56 @@ header .header_right_contents .header_right_content_2 .header_right_contact {
     width: 145px;
   }
 }
+header .header_right_account {
+  position: absolute;
+  right: 50px;
+  width: 30px;
+  height: 30px;
+}
+header .header_right_account .account_icon {
+  width: 100%;
+  height: 100%;
+}
+header .header_account_contents {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  top: 65px;
+  right: -130px;
+  width: 130px;
+  height: 400px;
+  text-align: center;
+  z-index: 100;
+  background-color: #faf5e4;
+}
+header .header_account_contents .header_account_edit_link {
+  display: block;
+  margin-top: 20px;
+  padding: 5px 0;
+  text-decoration: none;
+  font-size: 15px;
+  color: rgb(40, 40, 40);
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+}
+header .header_account_contents .header_account_logout_link {
+  display: block;
+  text-decoration: none;
+  font-size: 15px;
+  color: rgb(40, 40, 40);
+  font-family: "Lora", serif;
+}
+header #header_account_slide .active {
+  right: 100px;
+  transition: 0.5s;
+}
 
 .box {
   width: 100%;
   min-height: 90vh;
   padding: 0 0 100px 0;
   margin: 0;
+  background-color: #faf5e4;
 }
 .box .box_title {
   width: 100%;

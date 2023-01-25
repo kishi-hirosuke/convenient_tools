@@ -68,7 +68,6 @@ def SignupView(request):
                 print('a')
                 messages.info(request, f'既に登録されています。')
                 return redirect('signup')
-
             else:  # user件数が0件
                 subject = 'AutoBiz 二段階認証パスワード'
                 body = f'氏名：{name}様\n\nこの度はAutoBizにご登録誠にありがとうございます。\n\n\n\n6桁の番号\n\n\n\n{token}\n\n\n\nこのE-mailは、発信者が意図した受信者による閲覧・利用を目的としたものです。万一、貴殿が意図された受信者でない場合には、直ちに送信者に連絡のうえ、このE-mailを破棄願います。'
@@ -110,8 +109,6 @@ def SignupView(request):
                     name = auth_user.name,
                     password = auth_user.password,
                     email = auth_user.email,
-                    created_at = datetime.datetime.now(),
-                    updated_at = datetime.datetime.now()
                     )
                 context = {
                     'message':f'{user.name}様のユーザー登録が完了しました。'
@@ -182,6 +179,14 @@ def LogoutView(request):
     logout(request)
     return redirect('login')
 
+@login_required
+def Lost_PasswordView(request):
+    return render('base.html')
+
+@login_required
+def Edit_AccountView(request):
+    return render('base.html')
+
 
 # お問い合わせ
 @login_required
@@ -209,15 +214,14 @@ def InquiryView(request):
 ############################################################
 # ここから処理
 ############################################################
-@login_required
-def Tool_CSV_categoryView(request):
-    return render(request, "Category/CSV_category.html")
-@login_required
-def Tool_Excel_categoryView(request):
-    return render(request, "Category/Excel_category.html")
-@login_required
-def Tool_Image_categoryView(request):
-    return render(request, "Category/Image_category.html")
+
+# カテゴリ
+class Tool_CSV_categoryView(TemplateView):
+    template_name = "Category/CSV_category.html"
+class Tool_Excel_categoryView(TemplateView):
+    template_name = "Category/Excel_category.html"
+class Tool_Image_categoryView(TemplateView):
+    template_name = "Category/Image_category.html"
 
 
 #csv行抽出
@@ -248,13 +252,13 @@ def Tool_CSV_extractView(request):
                     'limit_size':LIMIT_SIZE,
                 }
                 return render(request, "CSV_flow/tool_CSV_extract.html", context)
-            # except:
-            #     context = {
-            #         'error_message':'無効なデータです。',
-            #         'form':upload,
-            #         'limit_size':LIMIT_SIZE,
-            #     }
-            #     return render(request, "CSV_flow/tool_CSV_extract.html", context)
+            except:
+                context = {
+                    'error_message':'無効なデータです。',
+                    'form':upload,
+                    'limit_size':LIMIT_SIZE,
+                }
+                return render(request, "CSV_flow/tool_CSV_extract.html", context)
 
         else:
             return render(request, "CSV_flow/tool_CSV_extract.html", {'form':upload,'limit_size':LIMIT_SIZE})

@@ -4,15 +4,15 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, Permis
 import datetime
 
 class UserManager(BaseUserManager):
-    def create_user(self, name, email, password=None, created_at=None, updated_at=None):
+    def create_user(self, name, email, password=None):
         if not email:
             raise ValueError('Users must have an email address')
 
         user = self.model(
             name = name,
             email=self.normalize_email(email),
-            created_at = created_at,
-            updated_at = updated_at,
+            created_at = datetime.datetime.now(),
+            updated_at = datetime.datetime.now(),
         )
 
         user.set_password(password)
@@ -28,8 +28,9 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, password):
+    def create_superuser(self, name, email, password):
         user = self.create_user(
+            name,
             email,
             password=password,
         )
@@ -53,7 +54,7 @@ class AutoBizAccount(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
     EMAIL_FIELD = "email"
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['name']
 
     objects = UserManager()
 

@@ -26,7 +26,8 @@
 //header_pulldown
 $(function() {
 
-    const tools_area = $('.header_right_content_1');
+    //header
+    const tools_area = $('.header_right_content_slide');
     const tools_pulldown = $('.header_right_tools_pulldown');
 
     //tools_hover
@@ -39,4 +40,18 @@ $(function() {
         tools_pulldown.slideUp(200);
         clearTimeout(set_tools_hover);
     });
+
+    const account_area = $('#header_right_area');
+    const account_slide = $('#header_account_slide');
+
+    account_area.on('click',function(){
+        if(click) {
+            click = false;
+            setTimeout(function() {
+                click = true;
+            }, 500);
+            account_slide.toggleClass('active');
+        };
+    });
+
 });
