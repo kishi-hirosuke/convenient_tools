@@ -1,30 +1,36 @@
 {% extends "base.html" %}
+{% load widget_tweaks %}
 
 {% block main %}
-<div class="box">
-    <div class="box_title">
-        <h3>Login</h3>
-    </div>
-    <div class="sub_box">
-        <div class="form-group">
+<div class="form_wrapper">
+    <form method="POST" class="login_form form-group">
+        <h2 class="form_title">Login</h2>
+        <div class="form_area">
             <!-- フォームエラー処理 -->
-            {% if error_message %}
-                {{ error_message }}
+            {% csrf_token %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="message">{{ message }}</p>
+                {% endfor %}
             {% elif form.errors %}
                 {% for error in form.errors %}
-                    <p>{{ error }}</p>
+                    <p class="message">{{ error }}</p>
                 {% endfor %}
             {% endif %}
-            <form method="POST" class="form">
-                {% csrf_token %}
-                <!-- ログインフォーム -->
-                <label>{{ form.email.label_tag }}</label>
-                <p>{{ form.email }}</p>
-                <label>{{ form.password.label_tag }}</label>
-                <p>{{ form.password }}</p>
-                <button type="submit" class="save btn btn-outline-primary" id="btn">実行</button>
-            </form>
+            <!-- ログインフォーム -->
+            <div class="form_content">
+                <label class="form_label">{{ form.email.label }}</label>
+                {{ form.email | add_class:"form-control form_input" }}
+            </div>
+            <div class="form_content">
+                <label class="form_label">{{ form.password.label }}</label>
+                {{ form.password | add_class:"form-control form_input" }}
+            </div>
+            <button type="submit" class="btn" id="btn">Login</button>
         </div>
-    </div>
+        <div class="link_area">
+            <a href={% url 'lost_password' %} class="form_link">パスワードをお忘れの方</a>
+        </div>
+    </form>
 </div>
 {% endblock %}

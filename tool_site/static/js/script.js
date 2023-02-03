@@ -27,7 +27,7 @@
 $(function() {
 
     //header
-    const tools_area = $('.header_right_content_slide');
+    const tools_area = $('.header_right_slide');
     const tools_pulldown = $('.header_right_tools_pulldown');
 
     //tools_hover
@@ -41,17 +41,30 @@ $(function() {
         clearTimeout(set_tools_hover);
     });
 
-    const account_area = $('#header_right_area');
-    const account_slide = $('#header_account_slide');
+    const account_area = $('.account_icon');
+    const account_slide = $('.header_account_contents');
+    const cc = $('.container');
 
-    account_area.on('click',function(){
+    var click = true
+    account_area.on('click', function(){
         if(click) {
             click = false;
             setTimeout(function() {
                 click = true;
-            }, 500);
+            }, 300);
             account_slide.toggleClass('active');
+            // account_slide.slideToggle(500);
         };
+        if(account_slide.hasClass('active')) {
+            cc.on('click', function() {
+                account_slide.toggleClass('active');
+            });
+        }
     });
+    // body.on('click', function() {
+    //     if(account_slide.hasClass('active')) {
+    //         account_slide.removeClass('active');
+    //     }
+    // });
 
 });

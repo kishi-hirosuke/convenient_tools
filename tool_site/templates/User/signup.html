@@ -1,47 +1,55 @@
 {% extends "base.html" %}
+{% load widget_tweaks %}
 
 {% block main %}
-<div class="box">
-    <div class="box_title">
-        <h3>Signup</h3>
-    </div>
-    <div class="sub_box">
-        <div class="form-group">
+<div class="form_wrapper">
+    <form method="POST" class="signup_form form-group">
+        {% if request.method == "GET" %}
+            <h2 class="form_title">Signup</h2>
+        {% else %}
+            <h2 class="form_title">Authentication</h2>
+        {% endif %}
+        <div class="form_area">
             <!-- フォームエラー処理 -->
-            {% if messages or message %}
-            <p>{{ message }}</p>
+            {% csrf_token %}
+            {% if messages %}
                 {% for message in messages %}
-                    <p>{{ message }}</p>
+                    <p class="message">{{ message }}</p>
                 {% endfor %}
             {% elif form.errors %}
                 {% for error in form.errors %}
-                    <p>{{ error }}</p>
+                    <p class="message">{{ error }}</p>
                 {% endfor %}
             {% endif %}
-            <form method="POST" class="form">
-                {% csrf_token %}
-                {% if request.method == "POST" %}
-                <!-- 二段階認証フォーム -->
-                    <label>{{ form2.token.label }}</label>
-                    <p>{{ form2.token }}</p>
-                    <button type="submit" class="save btn btn-outline-primary" id="btn">送信</button>
-                {% else %}
-                <!-- ユーザー登録フォーム -->
-                    <label>{{ form1.name.label_tag }}</label>
-                    <p>{{ form1.name }}</p>
-                    <label>{{ form1.email.label_tag }}</label>
-                    <!-- <input type="email" name="email"> -->
-                    <p>{{ form1.email }}</p>
-                    <label>{{ form1.password1.label_tag }}</label>
-                    <!-- <input type="password" name="password"> -->
-                    <p>{{ form1.password1 }}</p>
-                    <label>{{ form1.password2.label_tag }}</label>
-                    <!-- <input type="password" name="password"> -->
-                    <p>{{ form1.password2 }}</p>
-                    <button type="submit" class="save btn btn-outline-primary" id="btn">サインアップ</button>
-                {% endif %}
-            </form>
+            <!-- <p class="message">ご登録のメールアドレス宛に6桁の番号を送信しました。フォームに入力してください。送信されていない場合は再度お試しください。</p> -->
+            <!-- ログインフォーム -->
+            {% if request.method == "GET" %}
+                <div class="form_content">
+                    <label class="form_label">{{ form1.name.label }}</label>
+                    {{ form1.name | add_class:"form-control form_input" }}
+                </div>
+                <div class="form_content">
+                    <label class="form_label">{{ form1.email.label }}</label>
+                    {{ form1.email | add_class:"form-control form_input" }}
+                </div>
+                <div class="form_content">
+                    <label class="form_label">{{ form1.password1.label }}</label>
+                    {{ form1.password1 | add_class:"form-control form_input" }}
+                </div>
+                <div class="form_content">
+                    <label class="form_label">{{ form1.password2.label }}</label>
+                    {{ form1.password2 | add_class:"form-control form_input" }}
+                </div>
+                <button type="submit" class="btn" id="btn">Signup</button>
+            {% else %}
+                <div class="form_content">
+                    <label class="auth_form_label">{{ form2.token.label }}</label>
+                    {{ form2.token | add_class:"form-control auth_form_input" }}
+                </div>
+                <button type="submit" class="btn auth_btn" id="btn">Send</button>
+            {% endif %}
         </div>
-    </div>
+    </form>
 </div>
+
 {% endblock %}

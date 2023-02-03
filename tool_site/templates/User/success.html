@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 
 {% block main %}
-<div class="box">
-    <div class="box_title">
-        <h3>Signup</h3>
-    </div>
-    <div class="sub_box">
-        {% if message %}
-            <h1>{{ message }}</h1>
-        {% endif %}
-        <h1>Success</h1>
+
+<div class="success_wrapper">
+    <h1 class="success_title">Success<span class="bi bi-check2-circle success_icon"></span></h1>
+    <div class="success_area">
+        <h2 class="success_text">yuta様のユーザー登録が完了しました。</h2>
+        <div class="link_area">
+            <a href={% url 'login' %} class="success_link">Loginページに移動</a>
+        </div>
     </div>
 </div>
+
 {% endblock %}

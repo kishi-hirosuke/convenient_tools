@@ -40,6 +40,9 @@ class TopView(TemplateView):
 class AboutView(TemplateView):
     template_name = "about.html"
 
+class HelpView(TemplateView):
+    template_name = "help.html"
+
 ############################################################
 # ユーザー操作
 ############################################################
@@ -78,9 +81,9 @@ def SignupView(request):
                 except BadHeaderError:  # ヘッダーエラー
                     messages.info(request, f'無効なヘッダーが見つかりました。')
                     return redirect('signup')
-                except:  # メール送信時エラー
-                    messages.info(request, f'メール処理の最中にエラーが発見されました。時間をおいて、再度試してください。')
-                    return redirect('signup')
+                # except:  # メール送信時エラー
+                #     messages.info(request, f'メール処理の最中にエラーが発見されました。時間をおいて、再度試してください。')
+                #     return redirect('signup')
 
                 TimeUser.objects.update_or_create(  # time_user登録or書き換え
                     email = email,
@@ -138,7 +141,7 @@ def SignupView(request):
 
     else:
         time_user = SignupForm()
-        auth = AuthForm
+        auth = AuthForm()
         context = {
             'form1':time_user,
             'form2':auth
@@ -162,8 +165,8 @@ def LoginView(request):
                 login(request, account)
                 return HttpResponseRedirect(reverse('top'))
             else:  # accountなしの場合
-                messages.info(request, f'メールアドレス、またはパスワードが違います。')
-                return redirect('signup')
+                messages.info(request, '*メールアドレス、またはパスワードが違います。')
+                return redirect('login')
 
     else:
         user = LoginForm()
@@ -171,6 +174,16 @@ def LoginView(request):
             'form':user
         }
         return render(request, 'User/login.html', context)
+
+
+# パスワード忘却処置
+def Lost_PasswordView(request):
+
+    if request.method == 'POST':
+        return render(request, 'User/lost_password.html')
+
+    else:
+        return render(request, 'User/lost_password.html')
 
 
 # ログアウト

@@ -51,7 +51,7 @@ class AuthForm(forms.Form):
 # ログインフォーム
 class LoginForm(forms.Form):
     email = forms.EmailField(
-        label='メールアドレス',
+        label='email',
         required=True,
         max_length=100,
         widget=forms.TextInput(attrs={
@@ -59,7 +59,7 @@ class LoginForm(forms.Form):
         'pattern':'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'})
     )
     password = forms.CharField(
-        label='パスワード',
+        label='password',
         required=True,
         max_length=40,
         widget=forms.PasswordInput()

@@ -19,13 +19,13 @@
 }
 
 // 共通
-$title: 35px;
-$subtitle: 25px;
+$title: 25px;
+$subtitle: 22px;
 $text_title: 23px;
 $text: 15px;
 $text_color: rgb(40, 40, 40);
 $border_color: rgba(80, 80, 80, 0.8);
-$hover_color: rgb(100, 0, 0);
+$hover_color: rgba(255, 255, 255, 0.8);
 $en: 'Lora', serif;
 $ja: "游ゴシック","ヒラギノ角ゴ ProN","sans-serif";
 
@@ -51,7 +51,6 @@ header {
     justify-content: space-between;
     width: 100%;
     height:65px;
-    margin-top: 15px;
     border-bottom: 2px solid $border_color;
     z-index: 5;
     .header_about_link {
@@ -62,7 +61,6 @@ header {
         margin-left: 30px;
         .title_img {
             @include img(100%,100%,1);
-            z-index: 100;
         }
         &::after {
             content: "";
@@ -87,23 +85,23 @@ header {
             transition: .8s;
         }
     }
-    .header_right_contents {
+    .header_right_contents_auth {
         display: flex;
-        gap: 10px;
-        width: 350px;
+        align-items: center;
+        gap: 20px;
+        width: 430px;
         height: 100%;
-        margin-right: 100px;
         .header_right_slide {
             position: relative;
             display: flex;
             flex-direction: column;
-            width: 145px;
+            width: 130px;
             text-align: center;
             color: $text_color;
-            .header_right_slide_tools {
+            .header_right_tools {
                 padding-top: 18px;
                 font-size: $subtitle;
-                font-family: $ja;
+                font-family: $en;
             }
             .header_right_tools_pulldown {
                 position: absolute;
@@ -118,39 +116,59 @@ header {
                 }
             }
         }
-        .header_right_content_link {
+        .header_right_link {
             position: relative;
-            display: flex;
+            display: block;
             text-decoration: none;
-            width: 145px;
+            width: 130px;
             text-align: center;
             color: $text_color;
-            .header_right_link {
+            h2 {
                 padding-top: 18px;
                 font-size: $subtitle;
-                font-family: $ja;
+                font-family: $en;
+            }
+        }
+        .header_right_account {
+            width: 130px;
+            margin-top: 8px;
+            text-align: center;
+            .account_icon {
+                @include except_font_size(30px);
             }
         }
     }
-    @media screen and (max-width:1400px) {
-        .header_right_contents {
-            width: 300px;
-            .header_right_content_1 {
-                width: 145px;
-            }
-            .header_right_content_2 {
-                width: 145px;
+    .header_right_contents {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        width: 400px;
+        height: 100%;
+        margin-right: 20px;
+        .header_right_link {
+            position: relative;
+            display: block;
+            text-decoration: none;
+            width: 130px;
+            text-align: center;
+            color: $text_color;
+            h2 {
+                padding-top: 18px;
+                font-size: $subtitle;
+                font-family: $en;
             }
         }
-    }
-    .header_right_account {
-        position: absolute;
-        right: 50px;
-        width: 30px;
-        height: 30px;
-        .account_icon {
-            width: 100%;
-            height: 100%;
+        .header_right_help {
+            position: relative;
+            text-decoration: none;
+            width: 100px;
+            text-align: center;
+            color: $text_color;
+            h3 {
+                padding-top: 20px;
+                font-size: 18px;
+                font-family: $en;
+            }
         }
     }
     .header_account_contents {
@@ -165,6 +183,7 @@ header {
         text-align: center;
         z-index: 100;
         background-color: #faf5e4;
+        transition: .2s;
         .header_account_edit_link {
             display: block;
             margin-top: 20px;
@@ -175,168 +194,478 @@ header {
             display: block;
             @include link($text,$text_color,$en);
         }
-    }
-    #header_account_slide .active {
-        right: 100px;
-        transition: .5s;
+        &.active {
+            right: 0 !important;
+            transition: .2s;
+        }
     }
 }
 
-.box {
+.form_wrapper {
     width: 100%;
-    min-height: 90vh;
-    padding: 0 0 100px 0;
+    min-height: 900px;
+    padding: 200px 0 250px 0;
     margin: 0;
-    background-color: #faf5e4;
-    .box_title {
-        width: 100%;
-        padding: 60px 0 50px 0;
-        text-align: center;
-        h3 {
-            font-size: $text_title;
-            font-family: $ja;
-            font-weight: bold;
-            color: $text_color;
+    background-color: rgb(110, 110, 110);
+    // login_page
+    .login_form {
+        width: 350px;
+        min-height: 380px;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        background-color: #fff;
+        .form_title {
+            margin: 0;
+            padding: 10px 0;
+            font-size: $title;
+            font-family: $en;
+            text-align: center;
+            letter-spacing: 3px;
+            color: $hover_color;
+            background-color: black;
         }
-        p {
-            font-size: $text;
-            font-family: $ja;
-            color: $text_color;
+        .form_area {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            width: 300px;
+            margin: 60px 0 0 25px;
+            padding-bottom: 30px;
+            .message {
+                margin: 0;
+                padding: 0;
+                @include except_font_size(12px);
+                color: rgb(110,0,0);
+            }
+            .form_content {
+                position: relative;
+                width: 100%;
+                .form_label {
+                    position: absolute;
+                    top: -12px;
+                    left: 10px;
+                    @include except_font_size(13px);
+                    font-family: $en;
+                    color: $text_color;
+                    opacity: .8;
+                    background-color: #fff;
+                }
+                .form_input {
+                    width: 100%;
+                    font-size: $text;
+                    font-family: $en;
+                    &:focus {
+                        border: 1px solid $border_color;
+                        outline: 1px $text_color;
+                        box-shadow: 3px 3px 3px $text_color;
+                    }
+                }
+            }
+            .btn {
+                width: 80px;
+                margin-left: 220px;
+                @include except_font_size(13px);
+                font-family: $en;
+                color: $text_color;
+                border: 1px solid $border_color;
+                &:hover {
+                    transition: 1s;
+                    background-color: rgb(150, 150, 150);
+                }
+            }
+        }
+        .link_area {
+            width: 150px;
+            margin-left: 50%;
+            padding-bottom: 30px;
+            transform: translateX(-50%);
+            .form_link {
+                position: relative;
+                display: block;
+                width: 100%;
+                text-align: left;
+                @include link(none, $text_color , $ja);
+                @include except_font_size(12px);
+                &::after {
+                    position: absolute;
+                    content: "";
+                    display: inline-block;
+                    width: 5px;
+                    height: 5px;
+                    top: 6.5px;
+                    right: 5px;
+                    border-top: 0.5px solid $text_color;
+                    border-right: 0.5px solid $text_color;
+                    transform: rotate(45deg);
+                }
+                &:hover::after {
+                    right: 0px;
+                    transition: .3s;
+                }
+            }
         }
     }
-    .tools_table {
+    // signup_page
+    .signup_form {
+        width: 350px;
+        min-height: 350px;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        background-color: #fff;
+        .form_title {
+            margin: 0;
+            padding: 10px 0;
+            font-size: $title;
+            font-family: $en;
+            text-align: center;
+            letter-spacing: 3px;
+            color: $hover_color;
+            background-color: black;
+        }
+        .form_area {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            width: 300px;
+            margin: 60px 0 0 25px;
+            padding-bottom: 30px;
+            .message {
+                margin: 0;
+                padding: 0;
+                @include except_font_size(12px);
+                color: rgb(110,0,0);
+            }
+            .form_content {
+                position: relative;
+                width: 100%;
+                .form_label {
+                    position: absolute;
+                    top: -12px;
+                    left: 10px;
+                    @include except_font_size(13px);
+                    font-family: $en;
+                    color: $text_color;
+                    opacity: .8;
+                    background-color: #fff;
+                }
+                .form_input {
+                    width: 100%;
+                    font-size: $text;
+                    font-family: $en;
+                    &:focus {
+                        border: 1px solid $border_color;
+                        outline: 1px $text_color;
+                        box-shadow: 3px 3px 3px $text_color;
+                    }
+                }
+                //auth_form
+                .auth_form_label {
+                    position: absolute;
+                    top: -12px;
+                    left: 10px;
+                    margin-top: 25px;
+                    @include except_font_size(13px);
+                    font-family: $en;
+                    color: $text_color;
+                    opacity: .8;
+                    background-color: #fff;
+                }
+                .auth_form_input {
+                    width: 100%;
+                    margin-top: 25px;
+                    font-size: $text;
+                    font-family: $en;
+                    &:focus {
+                        border: 1px solid $border_color;
+                        outline: 1px $text_color;
+                        box-shadow: 3px 3px 3px $text_color;
+                    }
+                }
+            }
+            .btn {
+                width: 80px;
+                margin-left: 220px;
+                @include except_font_size(13px);
+                font-family: $en;
+                color: $text_color;
+                border: 1px solid $border_color;
+                &:hover {
+                    transition: 1s;
+                    background-color: rgb(150, 150, 150);
+                }
+            }
+            .auth_btn {
+                width: 80px;
+                margin-top: 20px;
+                margin-left: 220px;
+                @include except_font_size(13px);
+                font-family: $en;
+                color: $text_color;
+                border: 1px solid $border_color;
+                &:hover {
+                    transition: 1s;
+                    background-color: rgb(150, 150, 150);
+                }
+            }
+        }
+    }
+}
+
+// success_page
+.success_wrapper {
+    width: 100%;
+    min-height: 900px;
+    padding: 200px 0 250px 0;
+    margin: 0;
+    background-color: rgb(110, 110, 110);
+    .success_title {
+        width: 400px;
+        margin-bottom: 50px;
+        margin-left: 50%;
+        padding-bottom: 5px;
+        transform: translateX(-50%);
+        font-size: $title;
+        font-family: $en;
+        text-align: center;
+        background-color: #fff;
+        .success_icon {
+            margin-left: 5px;
+            font-size: $subtitle;
+        }
+    }
+    .success_area {
+        width: 700px;
+        margin-left: 50%;
+        padding-top: 50px;
+        transform: translateX(-50%);
+        background-color: #fff;
+        .success_text {
+            font-size: $subtitle;
+            font-family: $ja;
+            white-space: nowrap;
+            text-align: center;
+            color: $text_color;
+        }
+        .link_area {
+            width: 145px;
+            padding: 100px 0 40px 0;
+            margin-left: 50%;
+            transform: translateX(-50%);
+            .success_link {
+                position: relative;
+                display: block;
+                width: 100%;
+                @include link($text, $text_color, $ja);
+                // border-bottom: 1px solid #000;
+                &::after {
+                    position: absolute;
+                    content: "";
+                    display: inline-block;
+                    width: 5px;
+                    height: 5px;
+                    top: 9px;
+                    right: 5px;
+                    border-top: 0.5px solid $text_color;
+                    border-right: 0.5px solid $text_color;
+                    transform: rotate(45deg);
+                }
+                &:hover::after {
+                    right: 0;
+                    transition: .3s;
+                }
+            }
+        }
+    }
+}
+
+.main_wrapper {
+    width: 100%;
+    min-height: 900px;
+    padding: 120px 0 150px 0;
+    margin: 0;
+    background-color: rgb(110, 110, 110);
+    .container {
         width: 1290px;
         margin-left: 50%;
         transform: translateX(-50%);
-        tr {
+        background-color: #fff;
+        .main_title {
             width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            gap: 30px;
-            .tool {
-                width: 300px;
-                height: 240px;
-                .tool_items {
-                    position: relative;
-                    width: 100%;
-                    height: 200px;
-                    padding: 10px 0 0 0;
-                    display: block;
-                    text-decoration: none;
-                    font-family: $ja;
-                    border: 1px solid $border_color;
-                    border-radius: 10px;
-                    background-color: rgb(129, 129, 129);
-                    .tool_item_title {
-                        padding: 0 0 0 10px;
-                        color: $text_color;
-                        font-size: $text;
-                        font-weight: bold;
-                        background-color: rgb(129, 129, 129);
-                        &::after {
-                            position: absolute;
-                            content: "";
-                            display: inline-block;
-                            width: 10px;
-                            height: 10px;
-                            top: 17px;
-                            right: 50px;
-                            border-top: 1.5px solid $text_color;
-                            border-right: 1.5px solid $text_color;
-                            transform: rotate(45deg);
-                            opacity: 0;
-                        }
-                    }
-                    .tool_item_sentence {
-                        padding: 0;
+            text-align: center;
+            h3 {
+                font-size: $subtitle;
+                font-family: $ja;
+            }
+        }
+        .tools_table {
+            width: 1290px;
+            margin-top: 50px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+            tr {
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                gap: 30px;
+                .tool {
+                    width: 300px;
+                    height: 240px;
+                    .tool_items {
+                        position: relative;
                         width: 100%;
-                        height: 149px;
-                        border-bottom-left-radius: 10px;
-                        border-bottom-right-radius: 10px;
-                        @include except_font_size(15px);
-                        color: $text_color;
-                        background-color: rgb(255, 255, 255);
-                        p {
-                            padding: 7px 5px;
+                        height: 200px;
+                        padding: 0;
+                        display: block;
+                        text-decoration: none;
+                        border: 1px solid $border_color;
+                        background-color: rgb(129, 129, 129);
+                        .tool_item_title {
+                            margin: 0 0 0 15px;
+                            padding-top: 6px;
+                            height: 35px;
+                            color: $text_color;
+                            font-size: $text;
+                            font-family: $ja;
+                            font-weight: bold;
+                            background-color: rgb(129, 129, 129);
+                            &::after {
+                                position: absolute;
+                                content: "";
+                                display: inline-block;
+                                width: 10px;
+                                height: 10px;
+                                top: 13px;
+                                right: 50px;
+                                border-top: 1.5px solid $text_color;
+                                border-right: 1.5px solid $text_color;
+                                transform: rotate(45deg);
+                                opacity: 0;
+                            }
                         }
-                    }
-                    &:hover {
-                        transition: 1s;
-                        background-color: rgb(255, 255, 255);
-                    }
-                    &:hover .tool_item_title {
-                        transition: 1s;
-                        background-color: rgb(255, 255, 255);
-                    }
-                    &:hover .tool_item_title::after{
-                        right: 20px;
-                        transition: 1s;
-                        opacity: 1;
+                        .tool_item_sentence {
+                            padding: 0;
+                            width: 100%;
+                            height: 163px;
+                            border-bottom-left-radius: 10px;
+                            border-bottom-right-radius: 10px;
+                            @include except_font_size(13px);
+                            font-family: $ja;
+                            color: $text_color;
+                            background-color: rgb(255, 255, 255);
+                            p {
+                                padding: 7px 5px;
+                            }
+                        }
+                        &:hover {
+                            transition: 1s;
+                            background-color: rgb(255, 255, 255);
+                        }
+                        &:hover .tool_item_title {
+                            transition: 1s;
+                            background-color: rgb(255, 255, 255);
+                        }
+                        &:hover .tool_item_title::after{
+                            right: 20px;
+                            transition: 1s;
+                            opacity: 1;
+                        }
                     }
                 }
             }
         }
     }
-    @media screen and (max-width:1400px) {
-        .tools_table {
-            width: 960px;
-        }
-    }
-    .sub_box {
-        width: 80%;
-        min-width: 1000px;
-        max-width: 1500px;
-        margin-left: 50%;
-        transform: translateX(-50%);
-        .explanation {
-            width: 100%;
-            border-top: 1px solid $border_color;
-            border-bottom: 1px solid $border_color;
-            .explanation_title {
-                padding-top: 15px;
-                font-size: $text;
-                font-family: $ja;
-                font-weight: bold;
-                color: $text_color;
-            }
-            .explanation_text {
-                @include except_font_size(15px);
-                font-family: $ja;
-                color: $text_color;
-            }
-        }
-        .form-group {
-            width: 600px;
-            margin: 60px 0 60px 50%;
-            padding: 30px 40px;
-            border: 1px solid $border_color;
-            border-radius: 10px;
-            transform: translateX(-50%);
-            font-size: $text;
-            font-family: $ja;
-        }
-        .notice {
-            width: 100%;
-            padding-top: 30px;
-            padding-bottom: 20px;
-            border-top: 1px solid $border_color;
-            border-bottom: 1px solid $border_color;
-            .explanation_title {
-                font-size: $text;
-                font-family: $ja;
-                font-weight: bold;
-                color: $text_color;
-            }
-            .explanation_text {
-                padding-top: 10px;
-                @include except_font_size(15px);
-                font-family: $ja;
-                color: $text_color;
-            }
-        }
+}
+
+
+@media screen and (max-width:1400px) {
+    .tools_table {
+        width: 960px;
     }
 }
+
+// .box {
+//     width: 100%;
+//     min-height: 800px;
+//     padding: 0 0 100px 0;
+//     margin: 0;
+//     background-color: #faf5e4;
+//     .box_title {
+//         width: 100%;
+//         padding: 60px 0 50px 0;
+//         text-align: center;
+//         h3 {
+//             font-size: $text_title;
+//             font-family: $ja;
+//             font-weight: bold;
+//             color: $text_color;
+//         }
+//         p {
+//             font-size: $text;
+//             font-family: $ja;
+//             color: $text_color;
+//         }
+//     }
+//     
+//     @media screen and (max-width:1400px) {
+//         .tools_table {
+//             width: 960px;
+//         }
+//     }
+//     .sub_box {
+//         width: 80%;
+//         min-width: 1000px;
+//         max-width: 1500px;
+//         margin-left: 50%;
+//         transform: translateX(-50%);
+//         .explanation {
+//             width: 100%;
+//             border-top: 1px solid $border_color;
+//             border-bottom: 1px solid $border_color;
+//             .explanation_title {
+//                 padding-top: 15px;
+//                 font-size: $text;
+//                 font-family: $ja;
+//                 font-weight: bold;
+//                 color: $text_color;
+//             }
+//             .explanation_text {
+//                 @include except_font_size(15px);
+//                 font-family: $ja;
+//                 color: $text_color;
+//             }
+//         }
+//         .form-group {
+//             width: 600px;
+//             margin: 60px 0 60px 50%;
+//             padding: 30px 40px;
+//             border: 1px solid $border_color;
+//             border-radius: 10px;
+//             transform: translateX(-50%);
+//             font-size: $text;
+//             font-family: $ja;
+//         }
+//         .notice {
+//             width: 100%;
+//             padding-top: 30px;
+//             padding-bottom: 20px;
+//             border-top: 1px solid $border_color;
+//             border-bottom: 1px solid $border_color;
+//             .explanation_title {
+//                 font-size: $text;
+//                 font-family: $ja;
+//                 font-weight: bold;
+//                 color: $text_color;
+//             }
+//             .explanation_text {
+//                 padding-top: 10px;
+//                 @include except_font_size(15px);
+//                 font-family: $ja;
+//                 color: $text_color;
+//             }
+//         }
+//     }
+// }
 
 // footer
 footer {
@@ -345,7 +674,7 @@ footer {
     border-top: 1px solid $border_color;
     p {
         padding: 13px 0 0 0;
-        @include except_font_size(15px);
-        font-family: $ja;
+        @include except_font_size(12px);
+        font-family: $en;
     }
 }

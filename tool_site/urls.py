@@ -6,6 +6,7 @@ urlpatterns = [
     # トップページ
     path('top/', login_required(views.TopView.as_view()), name='top'),
     path('about/', login_required(views.AboutView.as_view()), name='about'),
+    path('help/', views.HelpView.as_view(), name='help'),
     # サインアップ
     path('signup/', views.SignupView, name='signup'),
     # ログイン
