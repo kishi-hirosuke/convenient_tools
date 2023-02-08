@@ -4,6 +4,59 @@
 <title>お問い合わせ｜Auto-biz</title>
 {% endblock %}
 
+{% block header %}
+<header>
+    <a href="/" class="header_about_link" id="header_about_link">
+        <img src="{% static 'images/rectangle-transparent.png' %}" alt="" class="title_img">
+    </a>
+    {% if request.user.is_authenticated %}
+    <div class="header_right_contents_auth">
+        <div class="header_right_slide" id="tools_area">
+            <h2 class="header_right_tools">Tools</h2>
+            <ul class="header_right_tools_pulldown" id="tools_pulldown">
+                <li><a href={% url 'csv_category' %} class="header_right_tools_link">CSV処理</a></li>
+                <li><a href={% url 'excel_category' %} class="header_right_tools_link">Excel処理</a></li>
+                <li><a href={% url 'image_category' %} class="header_right_tools_link">画像処理</a></li>
+            </ul>
+        </div>
+        <a href={% url 'inquiry' %} class="header_right_link" id="contact_area">
+            <h2>Contact</h2>
+        </a>
+        <div class="header_right_account" id="header_account_area">
+            <span class="account_icon bi bi-person"></span>
+        </div>
+    </div>
+    {% else %}
+    <div class="header_right_contents">
+        <a href={% url 'about' %} class="header_right_link">
+            <h2>About</h2>
+        </a>
+        <a href={% url 'inquiry' %} class="header_right_link">
+            <h2>Contact</h2>
+        </a>
+        <div class="menu_area">
+            <div class="burger_btn">
+                <span class="bar bar_top"></span>
+                <span class="bar bar_mid"></span>
+                <span class="bar bar_bottom"></span>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <div class="menu_modal">
+        <a href={% url 'login' %} class="header_menu_link">Login</a>
+        <a href={% url 'signup' %} class="header_menu_link">Signup</a>
+        <a href='' class="header_menu_link_ja">プラス会員</a>
+        <a href={% url 'help' %} class="header_menu_link">Help</a>
+        <a href="" class="header_menu_link_ja">利用規約</a>
+    </div>
+    <div class="account_modal">
+        <a href={% url 'edit_account' %} class="header_account_edit_link">編集</a>
+        <a href={% url 'logout' %} class="header_account_logout_link">Logout</a>
+    </div>
+</header>
+{% endblock %}
+
 {% block main %}
 
 <div class="box">

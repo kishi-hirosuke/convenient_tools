@@ -123,12 +123,20 @@ def file_size(value):
 #csv抽出
 class CSVExtract(forms.Form):
     file = forms.FileField(
+        label='ファイルを選択',
         validators=[
             FileExtensionValidator(['csv']),
             file_size
-            ])
-    columuns = forms.CharField(max_length=255)
-    code = forms.CharField(max_length=2000)
+        ]
+    )
+    columuns = forms.CharField(
+        label='基準とする列名を入力',
+        max_length=255
+    )
+    code = forms.CharField(
+        label='キーワードを入力（半角パイプ「|」区切りで複数指定可能）',
+        max_length=2000
+    )
 
 #csv分割
 class CSVSplit(forms.Form):
@@ -144,7 +152,8 @@ class CSVSplit(forms.Form):
         validators=[
             FileExtensionValidator(['csv']),
             file_size
-            ])
+        ]
+    )
     num = forms.CharField(
         max_length=255,
         widget=forms.TextInput(attrs={
@@ -157,7 +166,8 @@ class CSVRemove(forms.Form):
         validators=[
             FileExtensionValidator(['csv']),
             file_size
-            ])
+        ]
+    )
     columuns = forms.CharField(max_length=255)
     code = forms.CharField(max_length=2000)
 
@@ -167,7 +177,8 @@ class ExcelTable(forms.Form):
         validators=[
             FileExtensionValidator(['xlsx']),
             file_size
-            ])
+        ]
+    )
 
 #excel抽出
 class ExcelExtract(forms.Form):
@@ -175,7 +186,8 @@ class ExcelExtract(forms.Form):
         validators=[
             FileExtensionValidator(['xlsx']),
             file_size
-            ])
+        ]
+    )
     columuns = forms.CharField(max_length=255)
     code = forms.CharField(max_length=2000)
 
@@ -193,7 +205,8 @@ class ExcelSplit(forms.Form):
         validators=[
             FileExtensionValidator(['xlsx']),
             file_size
-            ])
+        ]
+    )
     num = forms.CharField(
         max_length=255,
         widget=forms.TextInput(attrs={
@@ -206,7 +219,8 @@ class ExcelRemove(forms.Form):
         validators=[
             FileExtensionValidator(['xlsx']),
             file_size
-            ])
+        ]
+    )
     columuns = forms.CharField(max_length=255)
     code = forms.CharField(max_length=2000)
 

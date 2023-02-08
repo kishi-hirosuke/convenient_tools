@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load widget_tweaks %}
 
 {% block title %}
     <title>Extraction of CSV｜csvから特定の行を抽出｜Auto-biz</title>
@@ -6,34 +7,66 @@
 
 {% block main %}
 
-<div class="box">
-    <div class="box_title">
-        <h3>Extraction CSV rows</h3>
-        <p>アップロードしたCSVファイルから特定の行のみを抽出します。</p>
-    </div>
-    <div class="sub_box">
-        <table class="explanation">
-            <tr>
-                <td width="50%">
-                    <p class="explanation_title">このツールでできること</p>
-                    <p class="explanation_text">
-                    アップロードしたCSVファイルから、基準となる列に「指定したキーワード」を含む行のみを抽出したcsvファイルを出力します。（部分一致）<br>
-                    複数キーワードに対応。<br>
-                    </p>
-                </td>
-                <td width="50%">
-                    <p class="explanation_title">使い方</p>
-                    <ol class="explanation_text">
-                        <li>処理するファイルを選択</li>
-                        <li>基準とする列名を入力</li>
-                        <li>抽出するキーワードを入力（半角パイプ「|」区切りで複数指定可）</li>
-                        <li>実行ボタンをクリック</li>
-                    </ol>
-                </td>
-            </tr>
-        </table>
+<div class="main_wrapper">
+    <div class="container">
 
-        <div class="form-group">
+        <div class="main_title">
+            <h3>Extraction CSV rows</h3>
+            <p>アップロードしたCSVファイルから特定の行のみを抽出します。</p>
+        </div>
+
+        <div class="tool_explanation">
+            <div class="explanation_view">
+                <h3 class="explanation_title">このツールでできること</h3>
+                <p class="explanation_text">
+                アップロードしたCSVファイルから、基準となる列に「指定したキーワード」を含む行のみを抽出したcsvファイルを出力します。（部分一致）<br>
+                複数キーワードに対応。<br>
+                </p>
+            </div>
+            <div class="explanation_used">
+                <h3 class="explanation_title">使い方</h3>
+                <ol class="explanation_text">
+                    <li>処理するファイルを選択</li>
+                    <li>基準とする列名を入力</li>
+                    <li>抽出するキーワードを入力（半角パイプ「|」区切りで複数指定可）</li>
+                    <li>実行ボタンをクリック</li>
+                </ol>
+            </div>
+        </div>
+
+        <form method="POST" class="data_form form-group" action="" enctype="multipart/form-data">
+            <h2 class="form_title">Login</h2>
+            <div class="form_area">
+                <!-- フォームエラー処理 -->
+                {% csrf_token %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p class="message">{{ message }}</p>
+                    {% endfor %}
+                {% elif form.errors %}
+                    {% for error in form.errors %}
+                        <p class="message">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
+                <!-- ログインフォーム -->
+                <div class="form_content">
+                    <label class="form_label">{{ form.file.label }}</label>
+                    <input type="file" multiple name="file" class="form-control form_file" required>
+                </div>
+                <div class="form_content">
+                    <label class="form_label">{{ form.columuns.label }}</label>
+                    {{ form.columuns | add_class:"form-control form_input" }}
+                </div>
+                <div class="form_content">
+                    <label class="form_label">{{ form.code.label }}</label>
+                    {{ form.code | add_class:"form-control form_input" }}
+                </div>
+                <p class="submit_text">ファイルをアップロードし、処理したファイルをダウンロードする</p>
+                <button type="submit" class="btn" id="btn">Submit</button>
+            </div>
+        </form>
+
+        <!-- <div class="form-group">
             {% if form.errors %}
             <div class="alert alert-danger alert-dismissible fade show">
             {% for error in form.file.errors %}
@@ -69,7 +102,8 @@
                 <p>ファイルをアップロードし、処理したファイルをダウンロードする</p>
                 <button type="submit" class="save btn btn-outline-primary" id="btn">実行</button>
             </form>
-        </div>
+        </div> -->
+
         <div class="notice">
             <p class="explanation_title">csv行抽出について</p>
             <ul class="explanation_text">
@@ -83,7 +117,7 @@
                 <li>ご不明な点やご要望がございましたら、こちらの<a href="/inquiry">お問い合わせフォーム</a>までご連絡ください。</li>
             </ul>
         </div>
-    </div>
 
+    </div>
 </div>
 {% endblock %}

@@ -108,11 +108,18 @@ def SignupView(request):
 
             if auth_user_count == 1:  # tokenの一致が1件の場合
                 auth_user = TimeUser.objects.get(token = token)  # time_userのデータ取得
-                user = AutoBizAccount.objects.create_user(  # AutoBizAccount登録
-                    name = auth_user.name,
-                    password = auth_user.password,
-                    email = auth_user.email,
-                    )
+                try:
+                    user = AutoBizAccount.objects.create_user(  # AutoBizAccount登録
+                        name = auth_user.name,
+                        password = auth_user.password,
+                        email = auth_user.email,
+                        )
+                except:
+                    context = {
+                        'message':'ユーザー登録に失敗しました。再度時間をおいてお試しください。'
+                    }
+                    render(request, "User/signup.html", context)
+
                 context = {
                     'message':f'{user.name}様のユーザー登録が完了しました。'
                 }
@@ -131,13 +138,6 @@ def SignupView(request):
                     'form2':auth
                 }
                 return render(request, 'User/signup.html', context)
-
-        else:  # formバリデーション不足
-            context = {
-                'form1':time_user,
-                'form2':auth
-            }
-            return render(request, "User/signup.html", context)
 
     else:
         time_user = SignupForm()

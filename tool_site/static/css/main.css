@@ -22,6 +22,10 @@ header {
   height: 65px;
   border-bottom: 2px solid rgba(80, 80, 80, 0.8);
   z-index: 5;
+  background-color: #fff;
+}
+header.active {
+  position: fixed;
 }
 header .header_about_link {
   position: relative;
@@ -29,7 +33,7 @@ header .header_about_link {
   font-size: none;
   color: none;
   font-family: none;
-  width: 180px;
+  width: 185px;
   height: 100%;
   margin-left: 30px;
 }
@@ -40,28 +44,6 @@ header .header_about_link .title_img {
   width: 100%;
   height: 100%;
   opacity: 1;
-}
-header .header_about_link::after {
-  content: "";
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  border-top: 1.5px solid rgb(40, 40, 40);
-  border-right: 1.5px solid rgb(40, 40, 40);
-  transform: rotate(45deg);
-  opacity: 0;
-}
-header .header_about_link:hover {
-  width: 200px;
-  color: rgba(255, 255, 255, 0.8);
-  transition: 0.8s;
-}
-header .header_about_link:hover::after {
-  opacity: 1;
-  margin-left: 10px;
-  border-top: 1.5px solid rgba(255, 255, 255, 0.8);
-  border-right: 1.5px solid rgba(255, 255, 255, 0.8);
-  transition: 0.8s;
 }
 header .header_right_contents_auth {
   display: flex;
@@ -123,9 +105,9 @@ header .header_right_contents {
   display: flex;
   align-items: center;
   gap: 20px;
-  width: 400px;
+  width: 340px;
   height: 100%;
-  margin-right: 20px;
+  margin-right: 40px;
 }
 header .header_right_contents .header_right_link {
   position: relative;
@@ -140,19 +122,103 @@ header .header_right_contents .header_right_link h2 {
   font-size: 22px;
   font-family: "Lora", serif;
 }
-header .header_right_contents .header_right_help {
+header .header_right_contents .menu_area {
+  width: 40px;
+}
+header .header_right_contents .menu_area .burger_btn {
   position: relative;
+  width: 100%;
+  height: 40px;
+  margin-top: 5px;
+  border: none;
+  z-index: 5;
+}
+header .header_right_contents .menu_area .burger_btn .bar {
+  height: 1px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: black;
+  z-index: 5;
+}
+header .header_right_contents .menu_area .burger_btn .bar_top {
+  width: 25px;
+  top: 10px;
+  right: 50%;
+  transform: translateX(-50%) rotate(-30deg);
+  transition: 0.5s;
+}
+header .header_right_contents .menu_area .burger_btn .bar_mid {
+  width: 25px;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-30deg);
+  transition: 0.5s;
+}
+header .header_right_contents .menu_area .burger_btn .bar_bottom {
+  width: 25px;
+  right: 50%;
+  bottom: 10px;
+  transform: translateX(-50%) rotate(-30deg);
+  transition: 0.5s;
+}
+header .header_right_contents .menu_area .burger_btn.close .bar_top {
+  width: 30px;
+  transform: translate(-50%, 8.5px) rotate(35deg);
+  transition: transform 0.5s;
+}
+header .header_right_contents .menu_area .burger_btn.close .bar_mid {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+header .header_right_contents .menu_area .burger_btn.close .bar_bottom {
+  width: 30px;
+  transform: translate(-50%, -10px) rotate(-35deg);
+  transition: transform 0.5s;
+}
+header .menu_modal {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 65px;
+  right: -100vw;
+  width: 100vw;
+  height: 100vh;
+  gap: 20px;
+  z-index: 4;
+  transition: 0.3s;
+  background-color: rgb(122, 124, 196);
+}
+header .menu_modal.active {
+  position: fixed;
+  right: 0;
+  transition: 0.3s;
+}
+header .menu_modal .header_menu_link {
+  width: 500px;
+  margin-left: 50%;
+  transform: translateX(-50%);
   text-decoration: none;
-  width: 100px;
-  text-align: center;
+  font-size: 22px;
   color: rgb(40, 40, 40);
-}
-header .header_right_contents .header_right_help h3 {
-  padding-top: 20px;
-  font-size: 18px;
   font-family: "Lora", serif;
+  border-bottom: 2px solid rgba(80, 80, 80, 0.8);
+  text-align: center;
 }
-header .header_account_contents {
+header .menu_modal .header_menu_link:first-of-type {
+  margin-top: 150px;
+}
+header .menu_modal .header_menu_link_ja {
+  width: 500px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  text-decoration: none;
+  font-size: 22px;
+  color: rgb(40, 40, 40);
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+  border-bottom: 2px solid rgba(80, 80, 80, 0.8);
+  text-align: center;
+}
+header .account_modal {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -166,7 +232,7 @@ header .header_account_contents {
   background-color: #faf5e4;
   transition: 0.2s;
 }
-header .header_account_contents .header_account_edit_link {
+header .account_modal .header_account_edit_link {
   display: block;
   margin-top: 20px;
   padding: 5px 0;
@@ -175,14 +241,14 @@ header .header_account_contents .header_account_edit_link {
   color: rgb(40, 40, 40);
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
-header .header_account_contents .header_account_logout_link {
+header .account_modal .header_account_logout_link {
   display: block;
   text-decoration: none;
   font-size: 15px;
   color: rgb(40, 40, 40);
   font-family: "Lora", serif;
 }
-header .header_account_contents.active {
+header .account_modal.active {
   right: 0 !important;
   transition: 0.2s;
 }
@@ -227,7 +293,7 @@ header .header_account_contents.active {
 }
 .form_wrapper .login_form .form_area .form_content {
   position: relative;
-  width: 100%;
+  width: 300px;
 }
 .form_wrapper .login_form .form_area .form_content .form_label {
   position: absolute;
@@ -470,13 +536,11 @@ header .header_account_contents.active {
   min-height: 900px;
   padding: 120px 0 150px 0;
   margin: 0;
-  background-color: rgb(110, 110, 110);
 }
 .main_wrapper .container {
   width: 1290px;
   margin-left: 50%;
   transform: translateX(-50%);
-  background-color: #fff;
 }
 .main_wrapper .container .main_title {
   width: 100%;
@@ -485,10 +549,15 @@ header .header_account_contents.active {
 .main_wrapper .container .main_title h3 {
   font-size: 22px;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+  font-weight: bold;
+}
+.main_wrapper .container .main_title p {
+  font-size: 15px;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
 .main_wrapper .container .tools_table {
-  width: 1290px;
-  margin-top: 50px;
+  width: 1298px;
+  margin-top: 70px;
   margin-left: 50%;
   transform: translateX(-50%);
 }
@@ -500,13 +569,16 @@ header .header_account_contents.active {
   gap: 30px;
 }
 .main_wrapper .container .tools_table tr .tool {
+  box-sizing: content-box;
   width: 300px;
-  height: 240px;
+  height: 200px;
+  margin-bottom: 40px;
 }
 .main_wrapper .container .tools_table tr .tool .tool_items {
+  box-sizing: content-box;
   position: relative;
   width: 100%;
-  height: 200px;
+  height: 100%;
   padding: 0;
   display: block;
   text-decoration: none;
@@ -514,16 +586,20 @@ header .header_account_contents.active {
   background-color: rgb(129, 129, 129);
 }
 .main_wrapper .container .tools_table tr .tool .tool_items .tool_item_title {
-  margin: 0 0 0 15px;
-  padding-top: 6px;
+  margin: 0;
+  padding: 0;
   height: 35px;
-  color: rgb(40, 40, 40);
+  background-color: rgb(129, 129, 129);
+}
+.main_wrapper .container .tools_table tr .tool .tool_items .tool_item_title h3 {
+  margin: 0;
+  padding: 7px 0 0 20px;
   font-size: 15px;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   font-weight: bold;
-  background-color: rgb(129, 129, 129);
+  color: rgb(40, 40, 40);
 }
-.main_wrapper .container .tools_table tr .tool .tool_items .tool_item_title::after {
+.main_wrapper .container .tools_table tr .tool .tool_items .tool_item_title h3::after {
   position: absolute;
   content: "";
   display: inline-block;
@@ -537,18 +613,37 @@ header .header_account_contents.active {
   opacity: 0;
 }
 .main_wrapper .container .tools_table tr .tool .tool_items .tool_item_sentence {
+  display: flex;
+  margin: 0;
   padding: 0;
   width: 100%;
-  height: 163px;
+  height: 165px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   font-size: 13px;
-  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
-  color: rgb(40, 40, 40);
   background-color: rgb(255, 255, 255);
 }
+.main_wrapper .container .tools_table tr .tool .tool_items .tool_item_sentence .tool_icon_area {
+  position: relative;
+  width: 80px;
+  height: 100%;
+}
+.main_wrapper .container .tools_table tr .tool .tool_items .tool_item_sentence .tool_icon_area .tool_icon_img {
+  position: absolute;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 30px;
+  height: 30px;
+  opacity: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .main_wrapper .container .tools_table tr .tool .tool_items .tool_item_sentence p {
-  padding: 7px 5px;
+  width: 216px;
+  padding: 15px 5px 7px 0;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+  color: rgb(40, 40, 40);
 }
 .main_wrapper .container .tools_table tr .tool .tool_items:hover {
   transition: 1s;
@@ -558,10 +653,64 @@ header .header_account_contents.active {
   transition: 1s;
   background-color: rgb(255, 255, 255);
 }
-.main_wrapper .container .tools_table tr .tool .tool_items:hover .tool_item_title::after {
+.main_wrapper .container .tools_table tr .tool .tool_items:hover .tool_item_title p::after {
   right: 20px;
   transition: 1s;
   opacity: 1;
+}
+.main_wrapper .container .tool_explanation {
+  display: flex;
+  width: 100%;
+  margin-top: 40px;
+  border-bottom: 2px solid rgba(80, 80, 80, 0.8);
+}
+.main_wrapper .container .tool_explanation .explanation_view {
+  width: 50%;
+}
+.main_wrapper .container .tool_explanation .explanation_view .explanation_title {
+  width: 100%;
+  margin-top: 20px;
+  padding-left: 15px;
+  font-size: 15px;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+  font-weight: bold;
+}
+.main_wrapper .container .tool_explanation .explanation_view .explanation_text {
+  padding: 10px 5px 5px 35px;
+  font-size: 13px;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+}
+.main_wrapper .container .tool_explanation .explanation_used {
+  width: 50%;
+  border-left: 1px solid rgba(80, 80, 80, 0.8);
+}
+.main_wrapper .container .tool_explanation .explanation_used .explanation_title {
+  width: 100%;
+  margin-top: 20px;
+  padding-left: 15px;
+  font-size: 15px;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+  font-weight: bold;
+}
+.main_wrapper .container .tool_explanation .explanation_used .explanation_text {
+  padding: 0 5px 5px 50px;
+  font-size: 13px;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+}
+.main_wrapper .container .data_form {
+  margin-top: 50px;
+  margin-left: 50%;
+  width: 450px;
+  transform: translateX(-50%);
+  background-color: rgb(204, 204, 204);
+}
+.main_wrapper .container .data_form .form_area {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 400px;
+  margin: 60px 0 0 25px;
+  padding-bottom: 30px;
 }
 
 @media screen and (max-width: 1400px) {

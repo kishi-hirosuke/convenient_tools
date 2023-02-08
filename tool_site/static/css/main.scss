@@ -53,36 +53,18 @@ header {
     height:65px;
     border-bottom: 2px solid $border_color;
     z-index: 5;
+    background-color: #fff;
+    &.active {
+        position: fixed;
+    }
     .header_about_link {
         position: relative;
         @include link(none,none,none);
-        width: 180px;
+        width: 185px;
         height: 100%;
         margin-left: 30px;
         .title_img {
             @include img(100%,100%,1);
-        }
-        &::after {
-            content: "";
-            display: inline-block;
-            width: 15px;
-            height: 15px;
-            border-top: 1.5px solid $text_color;
-            border-right: 1.5px solid $text_color;
-            transform: rotate(45deg);
-            opacity: 0;
-        }
-        &:hover {
-            width: 200px;
-            color: $hover_color;
-            transition: .8s;
-        }
-        &:hover::after{
-            opacity: 1;
-            margin-left: 10px;
-            border-top: 1.5px solid $hover_color;
-            border-right: 1.5px solid $hover_color;
-            transition: .8s;
         }
     }
     .header_right_contents_auth {
@@ -142,9 +124,9 @@ header {
         display: flex;
         align-items: center;
         gap: 20px;
-        width: 400px;
+        width: 340px;
         height: 100%;
-        margin-right: 20px;
+        margin-right: 40px;
         .header_right_link {
             position: relative;
             display: block;
@@ -158,20 +140,98 @@ header {
                 font-family: $en;
             }
         }
-        .header_right_help {
-            position: relative;
-            text-decoration: none;
-            width: 100px;
-            text-align: center;
-            color: $text_color;
-            h3 {
-                padding-top: 20px;
-                font-size: 18px;
-                font-family: $en;
+        .menu_area {
+            width: 40px;
+            .burger_btn {
+                position: relative;
+                width: 100%;
+                height: 40px;
+                margin-top: 5px;
+                border: none;
+                z-index: 5;
+                .bar {
+                    height: 1px;
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: black;
+                    z-index: 5;
+                }
+                .bar_top {
+                    width: 25px;
+                    top: 10px;
+                    right: 50%;
+                    transform: translateX(-50%) rotate(-30deg);
+                    transition: .5s;
+                }
+                .bar_mid {
+                    width: 25px;
+                    top: 50%;
+                    transform: translate(-50%, -50%) rotate(-30deg);
+                    transition: .5s;
+                }
+                .bar_bottom {
+                    width: 25px;
+                    right: 50%;
+                    bottom: 10px;
+                    transform: translateX(-50%) rotate(-30deg);
+                    transition: .5s;
+                }
+                &.close .bar_top {
+                    width: 30px;
+                    transform: translate(-50%, 8.5px) rotate(35deg);
+                    transition: transform .5s;
+                }
+                &.close .bar_mid {
+                    opacity: 0;
+                    transition: opacity .5s;
+                }
+                &.close .bar_bottom {
+                    width: 30px;
+                    transform: translate(-50%, -10px) rotate(-35deg);
+                    transition: transform .5s;
+                }
             }
         }
     }
-    .header_account_contents {
+    .menu_modal {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        top: 65px;
+        right: -100vw;
+        width: 100vw;
+        height: 100vh;
+        gap: 20px;
+        z-index: 4;
+        transition: .3s;
+        background-color: rgb(122, 124, 196);
+        &.active {
+            position: fixed;
+            right: 0;
+            transition: .3s;
+        }
+        .header_menu_link {
+            width: 500px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+            @include link($subtitle, $text_color, $en);
+            border-bottom: 2px solid $border_color;
+            text-align: center;
+            &:first-of-type {
+                margin-top: 150px;
+            }
+        }
+        .header_menu_link_ja {
+            width: 500px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+            @include link($subtitle, $text_color, $ja);
+            border-bottom: 2px solid $border_color;
+            text-align: center;
+        }
+    }
+    .account_modal {
         position: absolute;
         display: flex;
         flex-direction: column;
@@ -239,7 +299,7 @@ header {
             }
             .form_content {
                 position: relative;
-                width: 100%;
+                width: 300px;
                 .form_label {
                     position: absolute;
                     top: -12px;
@@ -483,23 +543,26 @@ header {
     min-height: 900px;
     padding: 120px 0 150px 0;
     margin: 0;
-    background-color: rgb(110, 110, 110);
     .container {
         width: 1290px;
         margin-left: 50%;
         transform: translateX(-50%);
-        background-color: #fff;
         .main_title {
             width: 100%;
             text-align: center;
             h3 {
                 font-size: $subtitle;
                 font-family: $ja;
+                font-weight: bold;
+            }
+            p {
+                font-size: $text;
+                font-family: $ja;
             }
         }
         .tools_table {
-            width: 1290px;
-            margin-top: 50px;
+            width: 1298px;
+            margin-top: 70px;
             margin-left: 50%;
             transform: translateX(-50%);
             tr {
@@ -509,52 +572,73 @@ header {
                 justify-content: flex-start;
                 gap: 30px;
                 .tool {
+                    box-sizing: content-box;
                     width: 300px;
-                    height: 240px;
+                    height: 200px;
+                    margin-bottom: 40px;
                     .tool_items {
+                        box-sizing: content-box;
                         position: relative;
                         width: 100%;
-                        height: 200px;
+                        height: 100%;
                         padding: 0;
                         display: block;
                         text-decoration: none;
                         border: 1px solid $border_color;
                         background-color: rgb(129, 129, 129);
                         .tool_item_title {
-                            margin: 0 0 0 15px;
-                            padding-top: 6px;
+                            margin: 0;
+                            padding: 0;
                             height: 35px;
-                            color: $text_color;
-                            font-size: $text;
-                            font-family: $ja;
-                            font-weight: bold;
                             background-color: rgb(129, 129, 129);
-                            &::after {
-                                position: absolute;
-                                content: "";
-                                display: inline-block;
-                                width: 10px;
-                                height: 10px;
-                                top: 13px;
-                                right: 50px;
-                                border-top: 1.5px solid $text_color;
-                                border-right: 1.5px solid $text_color;
-                                transform: rotate(45deg);
-                                opacity: 0;
+                            h3 {
+                                margin: 0;
+                                padding: 7px 0 0 20px;
+                                font-size: $text;
+                                font-family: $ja;
+                                font-weight: bold;
+                                color: $text_color;
+                                &::after {
+                                    position: absolute;
+                                    content: "";
+                                    display: inline-block;
+                                    width: 10px;
+                                    height: 10px;
+                                    top: 13px;
+                                    right: 50px;
+                                    border-top: 1.5px solid $text_color;
+                                    border-right: 1.5px solid $text_color;
+                                    transform: rotate(45deg);
+                                    opacity: 0;
+                                }
                             }
                         }
                         .tool_item_sentence {
+                            display: flex;
+                            margin: 0;
                             padding: 0;
                             width: 100%;
-                            height: 163px;
+                            height: 165px;
                             border-bottom-left-radius: 10px;
                             border-bottom-right-radius: 10px;
                             @include except_font_size(13px);
-                            font-family: $ja;
-                            color: $text_color;
                             background-color: rgb(255, 255, 255);
+                            .tool_icon_area {
+                                position: relative;
+                                width: 80px;
+                                height: 100%;
+                                .tool_icon_img {
+                                    @include img(30px, 30px, 1);
+                                    top: 50%;
+                                    left: 50%;
+                                    transform: translate(-50%,-50%);
+                                }
+                            }
                             p {
-                                padding: 7px 5px;
+                                width: 216px;
+                                padding: 15px 5px 7px 0;
+                                font-family: $ja;
+                                color: $text_color;
                             }
                         }
                         &:hover {
@@ -565,13 +649,67 @@ header {
                             transition: 1s;
                             background-color: rgb(255, 255, 255);
                         }
-                        &:hover .tool_item_title::after{
+                        &:hover .tool_item_title p::after{
                             right: 20px;
                             transition: 1s;
                             opacity: 1;
                         }
                     }
                 }
+            }
+        }
+        .tool_explanation {
+            display: flex;
+            width: 100%;
+            margin-top: 40px;
+            border-bottom: 2px solid $border_color;
+            .explanation_view {
+                width: 50%;
+                .explanation_title {
+                    width: 100%;
+                    margin-top: 20px;
+                    padding-left: 15px;
+                    font-size: $text;
+                    font-family: $ja;
+                    font-weight: bold;
+                }
+                .explanation_text {
+                    padding: 10px 5px 5px 35px;
+                    @include except_font_size(13px);
+                    font-family: $ja;
+                }
+            }
+            .explanation_used {
+                width: 50%;
+                border-left: 1px solid $border_color;
+                .explanation_title {
+                    width: 100%;
+                    margin-top: 20px;
+                    padding-left: 15px;
+                    font-size: $text;
+                    font-family: $ja;
+                    font-weight: bold;
+                }
+                .explanation_text {
+                    padding: 0 5px 5px 50px;
+                    @include except_font_size(13px);
+                    font-family: $ja;
+                }
+            }
+        }
+        .data_form {
+            margin-top: 50px;
+            margin-left: 50%;
+            width: 450px;
+            transform: translateX(-50%);
+            background-color: rgb(204, 204, 204);
+            .form_area {
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+                width: 400px;
+                margin: 60px 0 0 25px;
+                padding-bottom: 30px;
             }
         }
     }
