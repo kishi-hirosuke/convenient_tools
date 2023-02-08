@@ -7,6 +7,11 @@ urlpatterns = [
     path('top/', login_required(views.TopView.as_view()), name='top'),
     path('about/', login_required(views.AboutView.as_view()), name='about'),
     path('help/', views.HelpView.as_view(), name='help'),
+    #stripe決済
+    path('create_checkout_session/', views.create_checkout_session, name='checkout_session'),
+    path('premium/', views.SubscriptionPremiumView.as_view(), name='premium'),
+    path('success/', views.SubscriptionSuccessView.as_view(), name='success'),
+    path('cancel/', views.SubscriptionCancelView.as_view(), name='cancel'),
     # サインアップ
     path('signup/', views.SignupView, name='signup'),
     # ログイン
