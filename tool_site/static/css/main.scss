@@ -26,6 +26,8 @@ $text: 15px;
 $text_color: rgb(40, 40, 40);
 $border_color: rgba(80, 80, 80, 0.8);
 $hover_color: rgba(255, 255, 255, 0.8);
+$back_color: #333c5e;
+$modal_color: #6C6E74;
 $en: 'Lora', serif;
 $ja: "游ゴシック","ヒラギノ角ゴ ProN","sans-serif";
 
@@ -127,6 +129,31 @@ header {
         width: 340px;
         height: 100%;
         margin-right: 40px;
+        .header_right_slide {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            width: 130px;
+            text-align: center;
+            color: $text_color;
+            .header_right_tools {
+                padding-top: 18px;
+                font-size: $subtitle;
+                font-family: $en;
+            }
+            .header_right_tools_pulldown {
+                position: absolute;
+                display: none;
+                flex-direction: column;
+                list-style: none;
+                top: 100%;
+                width: 100%;
+                padding: 10px 0 10px 0;
+                .header_right_tools_link {
+                    @include link($text,$text_color,$ja);
+                }
+            }
+        }
         .header_right_link {
             position: relative;
             display: block;
@@ -201,11 +228,10 @@ header {
         top: 65px;
         right: -100vw;
         width: 100vw;
-        height: 100vh;
         gap: 20px;
         z-index: 4;
         transition: .3s;
-        background-color: rgb(122, 124, 196);
+        background-color: $modal_color;
         &.active {
             position: fixed;
             right: 0;
@@ -219,7 +245,7 @@ header {
             border-bottom: 2px solid $border_color;
             text-align: center;
             &:first-of-type {
-                margin-top: 150px;
+                margin-top: 80px;
             }
         }
         .header_menu_link_ja {
@@ -229,6 +255,9 @@ header {
             @include link($subtitle, $text_color, $ja);
             border-bottom: 2px solid $border_color;
             text-align: center;
+            &:last-of-type {
+                margin-bottom: 80px;
+            }
         }
     }
     .account_modal {
@@ -242,7 +271,7 @@ header {
         height: 400px;
         text-align: center;
         z-index: 100;
-        background-color: #faf5e4;
+        background-color: $modal_color;
         transition: .2s;
         .header_account_edit_link {
             display: block;
@@ -266,7 +295,7 @@ header {
     min-height: 900px;
     padding: 200px 0 250px 0;
     margin: 0;
-    background-color: rgb(110, 110, 110);
+    background-color: $back_color;
     // login_page
     .login_form {
         width: 350px;
@@ -471,78 +500,12 @@ header {
     }
 }
 
-// success_page
-.success_wrapper {
-    width: 100%;
-    min-height: 900px;
-    padding: 200px 0 250px 0;
-    margin: 0;
-    background-color: rgb(110, 110, 110);
-    .success_title {
-        width: 400px;
-        margin-bottom: 50px;
-        margin-left: 50%;
-        padding-bottom: 5px;
-        transform: translateX(-50%);
-        font-size: $title;
-        font-family: $en;
-        text-align: center;
-        background-color: #fff;
-        .success_icon {
-            margin-left: 5px;
-            font-size: $subtitle;
-        }
-    }
-    .success_area {
-        width: 700px;
-        margin-left: 50%;
-        padding-top: 50px;
-        transform: translateX(-50%);
-        background-color: #fff;
-        .success_text {
-            font-size: $subtitle;
-            font-family: $ja;
-            white-space: nowrap;
-            text-align: center;
-            color: $text_color;
-        }
-        .link_area {
-            width: 145px;
-            padding: 100px 0 40px 0;
-            margin-left: 50%;
-            transform: translateX(-50%);
-            .success_link {
-                position: relative;
-                display: block;
-                width: 100%;
-                @include link($text, $text_color, $ja);
-                // border-bottom: 1px solid #000;
-                &::after {
-                    position: absolute;
-                    content: "";
-                    display: inline-block;
-                    width: 5px;
-                    height: 5px;
-                    top: 9px;
-                    right: 5px;
-                    border-top: 0.5px solid $text_color;
-                    border-right: 0.5px solid $text_color;
-                    transform: rotate(45deg);
-                }
-                &:hover::after {
-                    right: 0;
-                    transition: .3s;
-                }
-            }
-        }
-    }
-}
-
 .main_wrapper {
     width: 100%;
     min-height: 900px;
     padding: 120px 0 150px 0;
     margin: 0;
+    background-color: $back_color;
     .container {
         width: 1290px;
         margin-left: 50%;

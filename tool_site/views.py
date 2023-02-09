@@ -12,7 +12,8 @@ from django.shortcuts import render, redirect
 from django import forms
 from tool_site.models import AutoBizAccount, TimeUser
 from django.contrib.auth.models import User
-from tool_site.forms import  SignupForm, AuthForm, LoginForm, InquiryForm, CSVExtract, CSVSplit, CSVRemove, ExcelTable, ExcelExtract, ExcelSplit, ExcelRemove, ImageResize
+from tool_site.forms import  SignupForm, AuthForm, LoginForm, LostPasswordForm, InquiryForm
+from tool_site.forms import CSVExtract, CSVSplit, CSVRemove, ExcelTable, ExcelExtract, ExcelSplit, ExcelRemove, ImageResize
 from tool_site.functions import CSV_extract_flow, CSV_split_flow, CSV_remove_flow
 from tool_site.functions import Excel_to_table_flow, Excel_extract_flow_one, Excel_extract_flow, Excel_split_flow, Excel_to_zip, Excel_remove_flow_one, Excel_remove_flow
 from tool_site.functions import Image_resize_flow_one
@@ -108,6 +109,7 @@ def SignupView(request):
 
             if auth_user_count == 1:  # tokenの一致が1件の場合
                 auth_user = TimeUser.objects.get(token = token)  # time_userのデータ取得
+
                 try:
                     user = AutoBizAccount.objects.create_user(  # AutoBizAccount登録
                         name = auth_user.name,
@@ -120,10 +122,8 @@ def SignupView(request):
                     }
                     render(request, "User/signup.html", context)
 
-                context = {
-                    'message':f'{user.name}様のユーザー登録が完了しました。'
-                }
-                return render(request, 'User/success.html', context)
+                login(request, user)
+                return HttpResponseRedirect(reverse('top'))
             elif auth_user_count == 0:  # tokenの一致が無し
                 context = {
                     'message':'番号が違います。',
@@ -178,12 +178,103 @@ def LoginView(request):
 
 # パスワード忘却処置
 def Lost_PasswordView(request):
-
     if request.method == 'POST':
-        return render(request, 'User/lost_password.html')
+        lost_password = LostPasswordForm(request.POST)
+        auth = AuthForm(request.POST)
+        if lost_password.is_valid():
+            form_data = lost_password.cleaned_data
+            email = form_data['email']  # email定義
+            email_list = []  # メール送信時のemailリスト化
+            email_list.append(email)
+
+            if form_data['password1'] == form_data['password2']:  # password認証
+                password = form_data['password1']  # password定義
+            else:  # password不一致
+                messages.info(request, f'パスワードが違います。')
+                return redirect('lost_password')
+            token = random.randint(100000,999999)  # token定義
+
+            try:
+                account = AutoBizAccount.objects.get(email = email)  # 既存のuser確認
+                subject = 'AutoBiz 二段階認証パスワード'
+                body = f'氏名：{account.name}様\n\nこの度はAutoBizにご登録誠にありがとうございます。\n\n\n\n6桁の番号\n\n\n\n{token}\n\n\n\nこのE-mailは、発信者が意図した受信者による閲覧・利用を目的としたものです。万一、貴殿が意図された受信者でない場合には、直ちに送信者に連絡のうえ、このE-mailを破棄願います。'
+                recipients = settings.EMAIL_HOST_USER
+
+                try:  # メール送信処理
+                    send_mail(subject, body, recipients, email_list)
+                except BadHeaderError:  # ヘッダーエラー
+                    messages.info(request, f'無効なヘッダーが見つかりました。')
+                    return redirect('lost_password')
+                except:  # メール送信時エラー
+                    messages.info(request, f'メール処理の最中にエラーが発見されました。時間をおいて、再度試してください。')
+                    return redirect('lost_password')
+
+                try:
+                    AutoBizAccount.objects.update(
+                        email = email,
+                        defaults = {
+                            'token':token,
+                        }
+                    )
+                except:
+                    context = {
+                        'message':'再発行に失敗しました。時間をおいて再度お試しください。',
+                        'form1':lost_password,
+                        'form2':auth,
+                    }
+                    return render(request, "User/lost_password.html", context)
+
+                context = {
+                    'message':'ご登録のメールアドレス宛に6桁の番号を送信しました。フォームに入力してください。送信されていない場合は再度お試しください。',
+                    'form1':lost_password,
+                    'form2':auth,
+                }
+                return render(request, "User/lost_password.html", context)
+
+            except AutoBizAccount.DoesNotExist:
+                messages.info(request, 'アカウントが存在しません。登録してください。')
+                return redirect('lost_password')
+
+        elif auth.is_valid():
+            form_data = auth.cleaned_data
+            token = form_data['token']
+            try:
+                account = AutoBizAccount.objects.get(token = token)  # tokenの一致件数確認
+
+                try:
+                    AutoBizAccount.objects.update(
+                        token = token,
+                        defaults = {
+                            'password':account.password,
+                        }
+                    )
+                except:
+                    context = {
+                        'message':'再発行に失敗しました。時間をおいて再度お試しください。',
+                        'form1':lost_password,
+                        'form2':auth,
+                    }
+                    return render(request, "User/lost_password.html", context)
+
+                login(request, account)
+                return HttpResponseRedirect(reverse('top'))
+
+            except AutoBizAccount.DoesNotExist:
+                context = {
+                    'message':'番号が違います。',
+                    'form1':lost_password,
+                    'form2':auth,
+                }
+                return render(request, 'User/lost_password.html', context)
 
     else:
-        return render(request, 'User/lost_password.html')
+        lost_password = LostPasswordForm(request.POST)
+        auth = AuthForm(request.POST)
+        context = {
+            'form1':lost_password,
+            'form2':auth
+        }
+        return render(request, 'User/lost_password.html', context)
 
 
 # ログアウト
@@ -193,16 +284,14 @@ def LogoutView(request):
     return redirect('login')
 
 @login_required
-def Lost_PasswordView(request):
-    return render('base.html')
-
-@login_required
 def Edit_AccountView(request):
-    return render('base.html')
+    if request.method == 'POST':
+        return render('User/')
+    else:
+        return render('base.html')
 
 
 # お問い合わせ
-@login_required
 def InquiryView(request):
     if request.method == 'POST':
         inquiry = InquiryForm(request.POST)
@@ -238,7 +327,6 @@ class Tool_Image_categoryView(TemplateView):
 
 
 #csv行抽出
-@login_required
 def Tool_CSV_extractView(request):
     if request.method == 'POST':
 

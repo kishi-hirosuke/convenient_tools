@@ -109,6 +109,34 @@ header .header_right_contents {
   height: 100%;
   margin-right: 40px;
 }
+header .header_right_contents .header_right_slide {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 130px;
+  text-align: center;
+  color: rgb(40, 40, 40);
+}
+header .header_right_contents .header_right_slide .header_right_tools {
+  padding-top: 18px;
+  font-size: 22px;
+  font-family: "Lora", serif;
+}
+header .header_right_contents .header_right_slide .header_right_tools_pulldown {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  list-style: none;
+  top: 100%;
+  width: 100%;
+  padding: 10px 0 10px 0;
+}
+header .header_right_contents .header_right_slide .header_right_tools_pulldown .header_right_tools_link {
+  text-decoration: none;
+  font-size: 15px;
+  color: rgb(40, 40, 40);
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+}
 header .header_right_contents .header_right_link {
   position: relative;
   display: block;
@@ -182,11 +210,10 @@ header .menu_modal {
   top: 65px;
   right: -100vw;
   width: 100vw;
-  height: 100vh;
   gap: 20px;
   z-index: 4;
   transition: 0.3s;
-  background-color: rgb(122, 124, 196);
+  background-color: #6C6E74;
 }
 header .menu_modal.active {
   position: fixed;
@@ -205,7 +232,7 @@ header .menu_modal .header_menu_link {
   text-align: center;
 }
 header .menu_modal .header_menu_link:first-of-type {
-  margin-top: 150px;
+  margin-top: 80px;
 }
 header .menu_modal .header_menu_link_ja {
   width: 500px;
@@ -218,6 +245,9 @@ header .menu_modal .header_menu_link_ja {
   border-bottom: 2px solid rgba(80, 80, 80, 0.8);
   text-align: center;
 }
+header .menu_modal .header_menu_link_ja:last-of-type {
+  margin-bottom: 80px;
+}
 header .account_modal {
   position: absolute;
   display: flex;
@@ -229,7 +259,7 @@ header .account_modal {
   height: 400px;
   text-align: center;
   z-index: 100;
-  background-color: #faf5e4;
+  background-color: #6C6E74;
   transition: 0.2s;
 }
 header .account_modal .header_account_edit_link {
@@ -258,7 +288,7 @@ header .account_modal.active {
   min-height: 900px;
   padding: 200px 0 250px 0;
   margin: 0;
-  background-color: rgb(110, 110, 110);
+  background-color: #333c5e;
 }
 .form_wrapper .login_form {
   width: 350px;
@@ -463,79 +493,12 @@ header .account_modal.active {
   background-color: rgb(150, 150, 150);
 }
 
-.success_wrapper {
-  width: 100%;
-  min-height: 900px;
-  padding: 200px 0 250px 0;
-  margin: 0;
-  background-color: rgb(110, 110, 110);
-}
-.success_wrapper .success_title {
-  width: 400px;
-  margin-bottom: 50px;
-  margin-left: 50%;
-  padding-bottom: 5px;
-  transform: translateX(-50%);
-  font-size: 25px;
-  font-family: "Lora", serif;
-  text-align: center;
-  background-color: #fff;
-}
-.success_wrapper .success_title .success_icon {
-  margin-left: 5px;
-  font-size: 22px;
-}
-.success_wrapper .success_area {
-  width: 700px;
-  margin-left: 50%;
-  padding-top: 50px;
-  transform: translateX(-50%);
-  background-color: #fff;
-}
-.success_wrapper .success_area .success_text {
-  font-size: 22px;
-  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
-  white-space: nowrap;
-  text-align: center;
-  color: rgb(40, 40, 40);
-}
-.success_wrapper .success_area .link_area {
-  width: 145px;
-  padding: 100px 0 40px 0;
-  margin-left: 50%;
-  transform: translateX(-50%);
-}
-.success_wrapper .success_area .link_area .success_link {
-  position: relative;
-  display: block;
-  width: 100%;
-  text-decoration: none;
-  font-size: 15px;
-  color: rgb(40, 40, 40);
-  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
-}
-.success_wrapper .success_area .link_area .success_link::after {
-  position: absolute;
-  content: "";
-  display: inline-block;
-  width: 5px;
-  height: 5px;
-  top: 9px;
-  right: 5px;
-  border-top: 0.5px solid rgb(40, 40, 40);
-  border-right: 0.5px solid rgb(40, 40, 40);
-  transform: rotate(45deg);
-}
-.success_wrapper .success_area .link_area .success_link:hover::after {
-  right: 0;
-  transition: 0.3s;
-}
-
 .main_wrapper {
   width: 100%;
   min-height: 900px;
   padding: 120px 0 150px 0;
   margin: 0;
+  background-color: #333c5e;
 }
 .main_wrapper .container {
   width: 1290px;

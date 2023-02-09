@@ -65,6 +65,29 @@ class LoginForm(forms.Form):
         widget=forms.PasswordInput()
     )
 
+# パスワード忘却フォーム
+class LostPasswordForm(forms.Form):
+    email = forms.EmailField(
+        label='email',
+        required=True,
+        max_length=100,
+        widget=forms.TextInput(attrs={
+            'placeholder':'sample@example.com',
+            'pattern':'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'})
+    )
+    password1 = forms.CharField(
+        label='再発行後のパスワード',
+        required=True,
+        max_length=40,
+        widget=forms.PasswordInput()
+    )
+    password2 = forms.CharField(
+        label='再確認',
+        required=True,
+        max_length=40,
+        widget=forms.PasswordInput()
+    )
+
 #お問い合わせ
 class InquiryForm(forms.Form):
     name = forms.CharField(
