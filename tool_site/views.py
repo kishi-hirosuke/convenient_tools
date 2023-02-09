@@ -1,6 +1,9 @@
 import code
 import email
 import time
+import stripe
+import json
+
 from ctypes import cdll
 from dataclasses import dataclass, replace
 from distutils.log import error
@@ -29,6 +32,8 @@ import random
 import datetime
 from django.urls import reverse
 from urllib.parse import urlencode
+from django.http import JsonResponse
+
 
 LIMIT_SIZE = getattr(settings, 'LIMIT_SIZE', None)/300/1000
 LIMIT_SIZE = f'{LIMIT_SIZE}MB'
@@ -43,6 +48,42 @@ class AboutView(TemplateView):
 
 class HelpView(TemplateView):
     template_name = "help.html"
+
+
+
+############################################################
+# stripe決済
+############################################################
+
+class SubscriptionPremiumView(TemplateView):
+    template_name = "subscription/premium.html"
+
+class SubscriptionSuccessView(TemplateView):
+    template_name = "subscription/success.html"
+
+class SubscriptionCancelView(TemplateView):
+    template_name = "subscription/cancel.html"
+
+def create_checkout_session(request):
+    stripe.api_key = 'sk_test_51LtDIIDaISWhK3pbzYx31E2r98Pg9uAzfvdXEIw30OcBokXPAuvXykg9xQEW7vRfUYc7yimLPxMIXkj7nnOwgGNB003Nrgdn6w'
+
+    try:
+        checkout_session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            line_items=[
+                {
+                    'price': 'price_1MXiLLDaISWhK3pbifNIrywV',
+                    'quantity': 1,
+                },
+            ],
+            mode='subscription',
+            success_url=request.build_absolute_uri(reverse('success')),
+            cancel_url=request.build_absolute_uri(reverse('cancel')),
+        )
+        return JsonResponse({'id': checkout_session.id})
+    except Exception as e:
+        return JsonResponse({'error':str(e)})
+
 
 ############################################################
 # ユーザー操作
