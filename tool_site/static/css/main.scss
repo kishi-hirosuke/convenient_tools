@@ -510,6 +510,14 @@ header {
         width: 1290px;
         margin-left: 50%;
         transform: translateX(-50%);
+        // background-color: rgba(255, 255, 255, 0.26); /* 背景色 */
+        // border: 1px solid rgba(255, 255, 255, 0.4); /* ボーダー */
+        // border-right-color: rgba(255, 255, 255, 0.2);
+        // border-bottom-color: rgba(255, 255, 255, 0.2);
+        // border-radius: 15px;
+        // -webkit-backdrop-filter: blur(20px); /* ぼかしエフェクト */
+        // backdrop-filter: blur(20px);
+        // box-shadow: 0 5px 20px rgba(255, 255, 255, 0.5);
         .main_title {
             width: 100%;
             text-align: center;
