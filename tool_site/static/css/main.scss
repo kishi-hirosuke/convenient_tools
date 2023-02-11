@@ -26,9 +26,9 @@ $text: 15px;
 $text_color: rgb(40, 40, 40);
 $border_color: rgba(80, 80, 80, 0.8);
 $hover_color: rgba(255, 255, 255, 0.8);
-$back_color: #333c5e;
+$back_color: rgba(255, 255, 255, 0.8);
 $modal_color: #6C6E74;
-$en: 'Lora', serif;
+$en: "游ゴシック","ヒラギノ角ゴ ProN","sans-serif";
 $ja: "游ゴシック","ヒラギノ角ゴ ProN","sans-serif";
 
 * {
@@ -62,11 +62,11 @@ header {
     .header_about_link {
         position: relative;
         @include link(none,none,none);
-        width: 185px;
+        width: 300px;
         height: 100%;
-        margin-left: 30px;
+        margin: 20px 15px 0 30px;
         .title_img {
-            @include img(100%,100%,1);
+            @include img(70%,70%,1);
         }
     }
     .header_right_contents_auth {
@@ -779,10 +779,11 @@ header {
 // footer
 footer {
     width: 100%;
+    height: 400px;
     text-align: center;
-    border-top: 1px solid $border_color;
+    background-color: rgb(238, 238, 234);
     p {
-        padding: 13px 0 0 0;
+        padding: 5% 0 0 0;
         @include except_font_size(12px);
         font-family: $en;
     }

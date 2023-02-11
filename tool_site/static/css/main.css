@@ -33,16 +33,16 @@ header .header_about_link {
   font-size: none;
   color: none;
   font-family: none;
-  width: 185px;
+  width: 300px;
   height: 100%;
-  margin-left: 30px;
+  margin: 20px 15px 0 30px;
 }
 header .header_about_link .title_img {
   position: absolute;
   -o-object-fit: cover;
      object-fit: cover;
-  width: 100%;
-  height: 100%;
+  width: 70%;
+  height: 70%;
   opacity: 1;
 }
 header .header_right_contents_auth {
@@ -63,7 +63,7 @@ header .header_right_contents_auth .header_right_slide {
 header .header_right_contents_auth .header_right_slide .header_right_tools {
   padding-top: 18px;
   font-size: 22px;
-  font-family: "Lora", serif;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
 header .header_right_contents_auth .header_right_slide .header_right_tools_pulldown {
   position: absolute;
@@ -91,7 +91,7 @@ header .header_right_contents_auth .header_right_link {
 header .header_right_contents_auth .header_right_link h2 {
   padding-top: 18px;
   font-size: 22px;
-  font-family: "Lora", serif;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
 header .header_right_contents_auth .header_right_account {
   width: 130px;
@@ -120,7 +120,7 @@ header .header_right_contents .header_right_slide {
 header .header_right_contents .header_right_slide .header_right_tools {
   padding-top: 18px;
   font-size: 22px;
-  font-family: "Lora", serif;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
 header .header_right_contents .header_right_slide .header_right_tools_pulldown {
   position: absolute;
@@ -148,7 +148,7 @@ header .header_right_contents .header_right_link {
 header .header_right_contents .header_right_link h2 {
   padding-top: 18px;
   font-size: 22px;
-  font-family: "Lora", serif;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
 header .header_right_contents .menu_area {
   width: 40px;
@@ -227,7 +227,7 @@ header .menu_modal .header_menu_link {
   text-decoration: none;
   font-size: 22px;
   color: rgb(40, 40, 40);
-  font-family: "Lora", serif;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   border-bottom: 2px solid rgba(80, 80, 80, 0.8);
   text-align: center;
 }
@@ -276,7 +276,7 @@ header .account_modal .header_account_logout_link {
   text-decoration: none;
   font-size: 15px;
   color: rgb(40, 40, 40);
-  font-family: "Lora", serif;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
 header .account_modal.active {
   right: 0 !important;
@@ -288,7 +288,7 @@ header .account_modal.active {
   min-height: 900px;
   padding: 200px 0 250px 0;
   margin: 0;
-  background-color: #333c5e;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 .form_wrapper .login_form {
   width: 350px;
@@ -301,7 +301,7 @@ header .account_modal.active {
   margin: 0;
   padding: 10px 0;
   font-size: 25px;
-  font-family: "Lora", serif;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   text-align: center;
   letter-spacing: 3px;
   color: rgba(255, 255, 255, 0.8);
@@ -330,7 +330,7 @@ header .account_modal.active {
   top: -12px;
   left: 10px;
   font-size: 13px;
-  font-family: "Lora", serif;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   color: rgb(40, 40, 40);
   opacity: 0.8;
   background-color: #fff;
@@ -338,7 +338,7 @@ header .account_modal.active {
 .form_wrapper .login_form .form_area .form_content .form_input {
   width: 100%;
   font-size: 15px;
-  font-family: "Lora", serif;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
 .form_wrapper .login_form .form_area .form_content .form_input:focus {
   border: 1px solid rgba(80, 80, 80, 0.8);
@@ -349,7 +349,7 @@ header .account_modal.active {
   width: 80px;
   margin-left: 220px;
   font-size: 13px;
-  font-family: "Lora", serif;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   color: rgb(40, 40, 40);
   border: 1px solid rgba(80, 80, 80, 0.8);
 }
@@ -401,7 +401,7 @@ header .account_modal.active {
   margin: 0;
   padding: 10px 0;
   font-size: 25px;
-  font-family: "Lora", serif;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   text-align: center;
   letter-spacing: 3px;
   color: rgba(255, 255, 255, 0.8);
@@ -430,7 +430,7 @@ header .account_modal.active {
   top: -12px;
   left: 10px;
   font-size: 13px;
-  font-family: "Lora", serif;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   color: rgb(40, 40, 40);
   opacity: 0.8;
   background-color: #fff;
@@ -438,7 +438,7 @@ header .account_modal.active {
 .form_wrapper .signup_form .form_area .form_content .form_input {
   width: 100%;
   font-size: 15px;
-  font-family: "Lora", serif;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
 .form_wrapper .signup_form .form_area .form_content .form_input:focus {
   border: 1px solid rgba(80, 80, 80, 0.8);
@@ -451,7 +451,7 @@ header .account_modal.active {
   left: 10px;
   margin-top: 25px;
   font-size: 13px;
-  font-family: "Lora", serif;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   color: rgb(40, 40, 40);
   opacity: 0.8;
   background-color: #fff;
@@ -460,7 +460,7 @@ header .account_modal.active {
   width: 100%;
   margin-top: 25px;
   font-size: 15px;
-  font-family: "Lora", serif;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
 .form_wrapper .signup_form .form_area .form_content .auth_form_input:focus {
   border: 1px solid rgba(80, 80, 80, 0.8);
@@ -471,7 +471,7 @@ header .account_modal.active {
   width: 80px;
   margin-left: 220px;
   font-size: 13px;
-  font-family: "Lora", serif;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   color: rgb(40, 40, 40);
   border: 1px solid rgba(80, 80, 80, 0.8);
 }
@@ -484,7 +484,7 @@ header .account_modal.active {
   margin-top: 20px;
   margin-left: 220px;
   font-size: 13px;
-  font-family: "Lora", serif;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   color: rgb(40, 40, 40);
   border: 1px solid rgba(80, 80, 80, 0.8);
 }
@@ -498,7 +498,7 @@ header .account_modal.active {
   min-height: 900px;
   padding: 120px 0 150px 0;
   margin: 0;
-  background-color: #333c5e;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 .main_wrapper .container {
   width: 1290px;
@@ -683,11 +683,12 @@ header .account_modal.active {
 }
 footer {
   width: 100%;
+  height: 400px;
   text-align: center;
-  border-top: 1px solid rgba(80, 80, 80, 0.8);
+  background-color: rgb(238, 238, 234);
 }
 footer p {
-  padding: 13px 0 0 0;
+  padding: 5% 0 0 0;
   font-size: 12px;
-  font-family: "Lora", serif;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }/*# sourceMappingURL=main.css.map */
