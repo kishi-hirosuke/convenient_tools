@@ -1,68 +1,136 @@
 {% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
 
 {% block title %}
 <title>EC運営に役立つwebツール｜Auto-biz</title>
 {% endblock %}
 
+{% block header %}
+    <div class="header_right_contents">
+        <div class="header_right_slide" id="tools_area">
+            <h2 class="header_right_tools">Tools</h2>
+            <ul class="header_right_tools_pulldown" id="tools_pulldown">
+                <li><a href={% url 'csv_category' %} class="header_right_tools_link">CSV処理</a></li>
+                <li><a href={% url 'excel_category' %} class="header_right_tools_link">Excel処理</a></li>
+                <li><a href={% url 'image_category' %} class="header_right_tools_link">画像処理</a></li>
+            </ul>
+        </div>
+        <a href={% url 'inquiry' %} class="header_right_link" id="contact_area">
+            <h2>Contact</h2>
+        </a>
+        <div class="menu_area">
+            <div class="burger_btn">
+                <span class="bar bar_top"></span>
+                <span class="bar bar_mid"></span>
+                <span class="bar bar_bottom"></span>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block header_menu %}
+    <a href={% url 'login' %} class="header_menu_link">Login</a>
+    <a href={% url 'signup' %} class="header_menu_link">Signup</a>
+    <a href={% url 'about' %} class="header_menu_link">About</a>
+    <a href='' class="header_menu_link_ja">プレミアム会員</a>
+    <a href={% url 'help' %} class="header_menu_link">Help</a>
+    <a href="" class="header_menu_link_ja">利用規約</a>
+{% endblock %}
+
 {% block main %}
-<div class="box">
-    <div class="box_title">
-        <h3>EC運営に特化した、業務効率化に役立つWebツールを無料で提供しています。</h3>
+<div class="main_wrapper">
+    <div class="container">
+
+        <div class="main_title">
+            <h3>EC運営に特化した、業務効率化に役立つWebツールを無料で提供しています。</h3>
+        </div>
+
+        <table class="tools_table">
+            <tr>
+                <td class="tool">
+                    <a href={% url 'csv_extract' %} class="tool_items">
+                        <div class="tool_item_title">
+                            <h3>csv行抽出</h3>
+                        </div>
+                        <div class="tool_item_sentence">
+                            <div class="tool_icon_area">
+                                <img src="{% static 'images/rogo.png' %}" alt="" class="tool_icon_img">
+                            </div>
+                            <p>csvファイルから特定の行の抽出ができます。<br>複数キーワード抽出や部分一致での一括抽出などの応用も可能です。</p>
+                        </div>
+                    </a>
+                </td>
+                <td class="tool">
+                    <a href={% url 'csv_remove' %} class="tool_items">
+                        <div class="tool_item_title">
+                            <h3 class="tool_item_title">csv行削除</h3>
+                        </div>
+                        <div class="tool_item_sentence">
+                            <div class="tool_icon_area">
+                                <img src="{% static 'images/rogo.png' %}" alt="" class="tool_icon_img">
+                            </div>
+                            <p>アップロードしたcsvファイルから特定の行のみを削除します。<br>複数キーワード削除や部分一致での一括削除などの応用も可能です。</p>
+                        </div>
+                    </a>
+                </td>
+                <td class="tool">
+                    <a href={% url 'csv_split' %} class="tool_items">
+                        <div class="tool_item_title">
+                            <h3 class="tool_item_title">csv分割</h3>
+                        </div>
+                        <div class="tool_item_sentence">
+                            <div class="tool_icon_area">
+                                <img src="{% static 'images/rogo.png' %}" alt="" class="tool_icon_img">
+                            </div>
+                            <p>アップロードしたcsvファイルを任意の件数（行数）で分割します。<br>ヘッダー有無の指定も可能。<br></p>
+                        </div>
+                    </a>
+                </td>
+                <td class="tool">
+                    <a href={% url 'excel_table' %} class="tool_items">
+                        <div class="tool_item_title">
+                            <h3 class="tool_item_title">Excel to Html</h3>
+                        </div>
+                        <div class="tool_item_sentence">
+                            <div class="tool_icon_area">
+                                <img src="{% static 'images/rogo.png' %}" alt="" class="tool_icon_img">
+                            </div>
+                            <p>Excelの表をHtmlのテーブルタグに変換します。<br>
+                            セル内改行、セル結合には対応していません。</p>
+                        </div>
+                    </a>
+                </td>
+                <td class="tool">
+                    <a href={% url 'excel_extract' %} class="tool_items">
+                        <div class="tool_item_title">
+                            <h3 class="tool_item_title">Excel行抽出</h3>
+                        </div>
+                        <div class="tool_item_sentence">
+                            <div class="tool_icon_area">
+                                <img src="{% static 'images/rogo.png' %}" alt="" class="tool_icon_img">
+                            </div>
+                            <p>Excelファイルから特定の行の抽出ができます。<br>複数キーワード抽出や部分一致での一括抽出などの応用も可能です。</p>
+                        </div>
+                    </a>
+                </td>
+                <td class="tool">
+                    <a href={% url 'excel_remove' %} class="tool_items">
+                        <div class="tool_item_title">
+                            <h3 class="tool_item_title">Excel行削除</h3>
+                        </div>
+                        <div class="tool_item_sentence">
+                            <div class="tool_icon_area">
+                                <img src="{% static 'images/rogo.png' %}" alt="" class="tool_icon_img">
+                            </div>
+                            <p>アップロードしたExcelファイルから特定の行のみを削除します。<br>複数キーワード削除や部分一致での一括削除などの応用も可能です。</p>
+                        </div>
+                    </a>
+                </td>
+            </tr>
+        </table>
+
     </div>
 
-    <table class="tools_table">
-        <tr>
-            <td class="tool">
-                <a href={% url 'csv_extract' %} class="tool_items">
-                    <p class="tool_item_title">csv行抽出</p>
-                    <div class="tool_item_sentence">
-                        <p>csvファイルから特定の行の抽出ができます。<br>複数キーワード抽出や部分一致での一括抽出などの応用も可能です。</p>
-                    </div>
-                </a>
-            </td>
-            <td class="tool">
-                <a href={% url 'csv_remove' %} class="tool_items">
-                        <p class="tool_item_title">csv行削除</p>
-                    <div class="tool_item_sentence">
-                        <p>アップロードしたcsvファイルから特定の行のみを削除します。<br>複数キーワード削除や部分一致での一括削除などの応用も可能です。</p>
-                    </div>
-                </a>
-            </td>
-            <td class="tool">
-                <a href={% url 'csv_split' %} class="tool_items">
-                    <p class="tool_item_title">csv分割</p>
-                    <div class="tool_item_sentence">
-                        <p>アップロードしたcsvファイルを任意の件数（行数）で分割します。<br>ヘッダー有無の指定も可能。<br></p>
-                    </div>
-                </a>
-            </td>
-            <td class="tool">
-                <a href={% url 'excel_table' %} class="tool_items">
-                    <p class="tool_item_title">Excel to Html</p>
-                    <div class="tool_item_sentence">
-                        <p>Excelの表をHtmlのテーブルタグに変換します。<br>
-                        セル内改行、セル結合には対応していません。</p>
-                    </div>
-                </a>
-            </td>
-            <td class="tool">
-                <a href={% url 'excel_extract' %} class="tool_items">
-                    <p class="tool_item_title">Excel行抽出</p>
-                    <div class="tool_item_sentence">
-                        <p>Excelファイルから特定の行の抽出ができます。<br>複数キーワード抽出や部分一致での一括抽出などの応用も可能です。</p>
-                    </div>
-                </a>
-            </td>
-            <td class="tool">
-                <a href={% url 'excel_remove' %} class="tool_items">
-                    <p class="tool_item_title">Excel行削除</p>
-                    <div class="tool_item_sentence">
-                        <p>アップロードしたExcelファイルから特定の行のみを削除します。<br>複数キーワード削除や部分一致での一括削除などの応用も可能です。</p>
-                    </div>
-                </a>
-            </td>
-        </tr>
-
-    </table>
 </div>
 {% endblock %}

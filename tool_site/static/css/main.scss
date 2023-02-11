@@ -1,6 +1,13 @@
 @charset "utf-8";
 
 // 関数
+@mixin img($width, $height, $opacity) {
+    position: absolute;
+    object-fit: cover;
+    width: $width;
+    height: $height;
+    opacity: $opacity;
+}
 @mixin link($font_size,$font_color,$font_family) {
     text-decoration: none;
     font-size: $font_size;
@@ -12,13 +19,15 @@
 }
 
 // 共通
-$title: 35px;
-$subtitle: 25px;
+$title: 25px;
+$subtitle: 22px;
 $text_title: 23px;
 $text: 15px;
 $text_color: rgb(40, 40, 40);
 $border_color: rgba(80, 80, 80, 0.8);
-$hover_color: rgb(100, 0, 0);
+$hover_color: rgba(255, 255, 255, 0.8);
+$back_color: #333c5e;
+$modal_color: #6C6E74;
 $en: 'Lora', serif;
 $ja: "游ゴシック","ヒラギノ角ゴ ProN","sans-serif";
 
@@ -38,63 +47,45 @@ body {
 
 // ヘッダー周り
 header {
-    position: static;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
     height:65px;
-    margin-top: 15px;
     border-bottom: 2px solid $border_color;
     z-index: 5;
+    background-color: #fff;
+    &.active {
+        position: fixed;
+    }
     .header_about_link {
-        display: flex;
-        align-items: center;
-        @include link($title,$text_color,$ja);
-        width: 180px;
+        position: relative;
+        @include link(none,none,none);
+        width: 185px;
+        height: 100%;
         margin-left: 30px;
-        white-space: nowrap;
-        font-weight: bold;
-        &::after {
-            content: "";
-            display: inline-block;
-            width: 15px;
-            height: 15px;
-            border-top: 1.5px solid $text_color;
-            border-right: 1.5px solid $text_color;
-            transform: rotate(45deg);
-            opacity: 0;
-        }
-        &:hover {
-            width: 200px;
-            color: $hover_color;
-            transition: .8s;
-        }
-        &:hover::after{
-            opacity: 1;
-            margin-left: 10px;
-            border-top: 1.5px solid $hover_color;
-            border-right: 1.5px solid $hover_color;
-            transition: .8s;
+        .title_img {
+            @include img(100%,100%,1);
         }
     }
-    .header_right_contents {
+    .header_right_contents_auth {
         display: flex;
-        gap: 10px;
-        width: 400px;
+        align-items: center;
+        gap: 20px;
+        width: 430px;
         height: 100%;
-        margin-right: 60px;
-        .header_right_content_1 {
+        .header_right_slide {
             position: relative;
             display: flex;
             flex-direction: column;
-            width: 195px;
+            width: 130px;
             text-align: center;
             color: $text_color;
             .header_right_tools {
                 padding-top: 18px;
                 font-size: $subtitle;
-                font-family: $ja;
+                font-family: $en;
             }
             .header_right_tools_pulldown {
                 position: absolute;
@@ -109,188 +100,681 @@ header {
                 }
             }
         }
-        .header_right_content_2 {
+        .header_right_link {
             position: relative;
-            display: flex;
+            display: block;
             text-decoration: none;
-            flex-direction: column;
-            width: 195px;
+            width: 130px;
             text-align: center;
             color: $text_color;
-            .header_right_contact {
+            h2 {
                 padding-top: 18px;
                 font-size: $subtitle;
-                font-family: $ja;
+                font-family: $en;
+            }
+        }
+        .header_right_account {
+            width: 130px;
+            margin-top: 8px;
+            text-align: center;
+            .account_icon {
+                @include except_font_size(30px);
             }
         }
     }
-    @media screen and (max-width:1400px) {
-        .header_right_contents {
-            width: 300px;
-            .header_right_content_1 {
-                width: 145px;
+    .header_right_contents {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        width: 340px;
+        height: 100%;
+        margin-right: 40px;
+        .header_right_slide {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            width: 130px;
+            text-align: center;
+            color: $text_color;
+            .header_right_tools {
+                padding-top: 18px;
+                font-size: $subtitle;
+                font-family: $en;
             }
-            .header_right_content_2 {
-                width: 145px;
+            .header_right_tools_pulldown {
+                position: absolute;
+                display: none;
+                flex-direction: column;
+                list-style: none;
+                top: 100%;
+                width: 100%;
+                padding: 10px 0 10px 0;
+                .header_right_tools_link {
+                    @include link($text,$text_color,$ja);
+                }
+            }
+        }
+        .header_right_link {
+            position: relative;
+            display: block;
+            text-decoration: none;
+            width: 130px;
+            text-align: center;
+            color: $text_color;
+            h2 {
+                padding-top: 18px;
+                font-size: $subtitle;
+                font-family: $en;
+            }
+        }
+        .menu_area {
+            width: 40px;
+            .burger_btn {
+                position: relative;
+                width: 100%;
+                height: 40px;
+                margin-top: 5px;
+                border: none;
+                z-index: 5;
+                .bar {
+                    height: 1px;
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: black;
+                    z-index: 5;
+                }
+                .bar_top {
+                    width: 25px;
+                    top: 10px;
+                    right: 50%;
+                    transform: translateX(-50%) rotate(-30deg);
+                    transition: .5s;
+                }
+                .bar_mid {
+                    width: 25px;
+                    top: 50%;
+                    transform: translate(-50%, -50%) rotate(-30deg);
+                    transition: .5s;
+                }
+                .bar_bottom {
+                    width: 25px;
+                    right: 50%;
+                    bottom: 10px;
+                    transform: translateX(-50%) rotate(-30deg);
+                    transition: .5s;
+                }
+                &.close .bar_top {
+                    width: 30px;
+                    transform: translate(-50%, 8.5px) rotate(35deg);
+                    transition: transform .5s;
+                }
+                &.close .bar_mid {
+                    opacity: 0;
+                    transition: opacity .5s;
+                }
+                &.close .bar_bottom {
+                    width: 30px;
+                    transform: translate(-50%, -10px) rotate(-35deg);
+                    transition: transform .5s;
+                }
+            }
+        }
+    }
+    .menu_modal {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        top: 65px;
+        right: -100vw;
+        width: 100vw;
+        gap: 20px;
+        z-index: 4;
+        transition: .3s;
+        background-color: $modal_color;
+        &.active {
+            position: fixed;
+            right: 0;
+            transition: .3s;
+        }
+        .header_menu_link {
+            width: 500px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+            @include link($subtitle, $text_color, $en);
+            border-bottom: 2px solid $border_color;
+            text-align: center;
+            &:first-of-type {
+                margin-top: 80px;
+            }
+        }
+        .header_menu_link_ja {
+            width: 500px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+            @include link($subtitle, $text_color, $ja);
+            border-bottom: 2px solid $border_color;
+            text-align: center;
+            &:last-of-type {
+                margin-bottom: 80px;
+            }
+        }
+    }
+    .account_modal {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        top: 65px;
+        right: -130px;
+        width: 130px;
+        height: 400px;
+        text-align: center;
+        z-index: 100;
+        background-color: $modal_color;
+        transition: .2s;
+        .header_account_edit_link {
+            display: block;
+            margin-top: 20px;
+            padding: 5px 0;
+            @include link($text,$text_color,$ja);
+        }
+        .header_account_logout_link {
+            display: block;
+            @include link($text,$text_color,$en);
+        }
+        &.active {
+            right: 0 !important;
+            transition: .2s;
+        }
+    }
+}
+
+.form_wrapper {
+    width: 100%;
+    min-height: 900px;
+    padding: 200px 0 250px 0;
+    margin: 0;
+    background-color: $back_color;
+    // login_page
+    .login_form {
+        width: 350px;
+        min-height: 380px;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        background-color: #fff;
+        .form_title {
+            margin: 0;
+            padding: 10px 0;
+            font-size: $title;
+            font-family: $en;
+            text-align: center;
+            letter-spacing: 3px;
+            color: $hover_color;
+            background-color: black;
+        }
+        .form_area {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            width: 300px;
+            margin: 60px 0 0 25px;
+            padding-bottom: 30px;
+            .message {
+                margin: 0;
+                padding: 0;
+                @include except_font_size(12px);
+                color: rgb(110,0,0);
+            }
+            .form_content {
+                position: relative;
+                width: 300px;
+                .form_label {
+                    position: absolute;
+                    top: -12px;
+                    left: 10px;
+                    @include except_font_size(13px);
+                    font-family: $en;
+                    color: $text_color;
+                    opacity: .8;
+                    background-color: #fff;
+                }
+                .form_input {
+                    width: 100%;
+                    font-size: $text;
+                    font-family: $en;
+                    &:focus {
+                        border: 1px solid $border_color;
+                        outline: 1px $text_color;
+                        box-shadow: 3px 3px 3px $text_color;
+                    }
+                }
+            }
+            .btn {
+                width: 80px;
+                margin-left: 220px;
+                @include except_font_size(13px);
+                font-family: $en;
+                color: $text_color;
+                border: 1px solid $border_color;
+                &:hover {
+                    transition: 1s;
+                    background-color: rgb(150, 150, 150);
+                }
+            }
+        }
+        .link_area {
+            width: 150px;
+            margin-left: 50%;
+            padding-bottom: 30px;
+            transform: translateX(-50%);
+            .form_link {
+                position: relative;
+                display: block;
+                width: 100%;
+                text-align: left;
+                @include link(none, $text_color , $ja);
+                @include except_font_size(12px);
+                &::after {
+                    position: absolute;
+                    content: "";
+                    display: inline-block;
+                    width: 5px;
+                    height: 5px;
+                    top: 6.5px;
+                    right: 5px;
+                    border-top: 0.5px solid $text_color;
+                    border-right: 0.5px solid $text_color;
+                    transform: rotate(45deg);
+                }
+                &:hover::after {
+                    right: 0px;
+                    transition: .3s;
+                }
+            }
+        }
+    }
+    // signup_page
+    .signup_form {
+        width: 350px;
+        min-height: 350px;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        background-color: #fff;
+        .form_title {
+            margin: 0;
+            padding: 10px 0;
+            font-size: $title;
+            font-family: $en;
+            text-align: center;
+            letter-spacing: 3px;
+            color: $hover_color;
+            background-color: black;
+        }
+        .form_area {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            width: 300px;
+            margin: 60px 0 0 25px;
+            padding-bottom: 30px;
+            .message {
+                margin: 0;
+                padding: 0;
+                @include except_font_size(12px);
+                color: rgb(110,0,0);
+            }
+            .form_content {
+                position: relative;
+                width: 100%;
+                .form_label {
+                    position: absolute;
+                    top: -12px;
+                    left: 10px;
+                    @include except_font_size(13px);
+                    font-family: $en;
+                    color: $text_color;
+                    opacity: .8;
+                    background-color: #fff;
+                }
+                .form_input {
+                    width: 100%;
+                    font-size: $text;
+                    font-family: $en;
+                    &:focus {
+                        border: 1px solid $border_color;
+                        outline: 1px $text_color;
+                        box-shadow: 3px 3px 3px $text_color;
+                    }
+                }
+                //auth_form
+                .auth_form_label {
+                    position: absolute;
+                    top: -12px;
+                    left: 10px;
+                    margin-top: 25px;
+                    @include except_font_size(13px);
+                    font-family: $en;
+                    color: $text_color;
+                    opacity: .8;
+                    background-color: #fff;
+                }
+                .auth_form_input {
+                    width: 100%;
+                    margin-top: 25px;
+                    font-size: $text;
+                    font-family: $en;
+                    &:focus {
+                        border: 1px solid $border_color;
+                        outline: 1px $text_color;
+                        box-shadow: 3px 3px 3px $text_color;
+                    }
+                }
+            }
+            .btn {
+                width: 80px;
+                margin-left: 220px;
+                @include except_font_size(13px);
+                font-family: $en;
+                color: $text_color;
+                border: 1px solid $border_color;
+                &:hover {
+                    transition: 1s;
+                    background-color: rgb(150, 150, 150);
+                }
+            }
+            .auth_btn {
+                width: 80px;
+                margin-top: 20px;
+                margin-left: 220px;
+                @include except_font_size(13px);
+                font-family: $en;
+                color: $text_color;
+                border: 1px solid $border_color;
+                &:hover {
+                    transition: 1s;
+                    background-color: rgb(150, 150, 150);
+                }
             }
         }
     }
 }
 
-.box {
+.main_wrapper {
     width: 100%;
-    min-height: 90vh;
-    padding: 0 0 100px 0;
+    min-height: 900px;
+    padding: 120px 0 150px 0;
     margin: 0;
-    .box_title {
-        width: 100%;
-        padding: 60px 0 50px 0;
-        text-align: center;
-        h3 {
-            font-size: $text_title;
-            font-family: $ja;
-            font-weight: bold;
-            color: $text_color;
-        }
-        p {
-            font-size: $text;
-            font-family: $ja;
-            color: $text_color;
-        }
-    }
-    .tools_table {
+    background-color: $back_color;
+    .container {
         width: 1290px;
         margin-left: 50%;
         transform: translateX(-50%);
-        tr {
+        // background-color: rgba(255, 255, 255, 0.26); /* 背景色 */
+        // border: 1px solid rgba(255, 255, 255, 0.4); /* ボーダー */
+        // border-right-color: rgba(255, 255, 255, 0.2);
+        // border-bottom-color: rgba(255, 255, 255, 0.2);
+        // border-radius: 15px;
+        // -webkit-backdrop-filter: blur(20px); /* ぼかしエフェクト */
+        // backdrop-filter: blur(20px);
+        // box-shadow: 0 5px 20px rgba(255, 255, 255, 0.5);
+        .main_title {
             width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            gap: 30px;
-            .tool {
-                width: 300px;
-                height: 240px;
-                .tool_items {
-                    position: relative;
-                    width: 100%;
+            text-align: center;
+            h3 {
+                font-size: $subtitle;
+                font-family: $ja;
+                font-weight: bold;
+            }
+            p {
+                font-size: $text;
+                font-family: $ja;
+            }
+        }
+        .tools_table {
+            width: 1298px;
+            margin-top: 70px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+            tr {
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                gap: 30px;
+                .tool {
+                    box-sizing: content-box;
+                    width: 300px;
                     height: 200px;
-                    padding: 10px 0 0 0;
-                    display: block;
-                    text-decoration: none;
-                    font-family: $ja;
-                    border: 1px solid $border_color;
-                    border-radius: 10px;
-                    background-color: rgb(129, 129, 129);
-                    .tool_item_title {
-                        padding: 0 0 0 10px;
-                        color: $text_color;
-                        font-size: $text;
-                        font-weight: bold;
-                        background-color: rgb(129, 129, 129);
-                        &::after {
-                            position: absolute;
-                            content: "";
-                            display: inline-block;
-                            width: 10px;
-                            height: 10px;
-                            top: 17px;
-                            right: 50px;
-                            border-top: 1.5px solid $text_color;
-                            border-right: 1.5px solid $text_color;
-                            transform: rotate(45deg);
-                            opacity: 0;
-                        }
-                    }
-                    .tool_item_sentence {
-                        padding: 0;
+                    margin-bottom: 40px;
+                    .tool_items {
+                        box-sizing: content-box;
+                        position: relative;
                         width: 100%;
-                        height: 149px;
-                        border-bottom-left-radius: 10px;
-                        border-bottom-right-radius: 10px;
-                        @include except_font_size(15px);
-                        color: $text_color;
-                        background-color: rgb(255, 255, 255);
-                        p {
-                            padding: 7px 5px;
+                        height: 100%;
+                        padding: 0;
+                        display: block;
+                        text-decoration: none;
+                        border: 1px solid $border_color;
+                        background-color: rgb(129, 129, 129);
+                        .tool_item_title {
+                            margin: 0;
+                            padding: 0;
+                            height: 35px;
+                            background-color: rgb(129, 129, 129);
+                            h3 {
+                                margin: 0;
+                                padding: 7px 0 0 20px;
+                                font-size: $text;
+                                font-family: $ja;
+                                font-weight: bold;
+                                color: $text_color;
+                                &::after {
+                                    position: absolute;
+                                    content: "";
+                                    display: inline-block;
+                                    width: 10px;
+                                    height: 10px;
+                                    top: 13px;
+                                    right: 50px;
+                                    border-top: 1.5px solid $text_color;
+                                    border-right: 1.5px solid $text_color;
+                                    transform: rotate(45deg);
+                                    opacity: 0;
+                                }
+                            }
                         }
-                    }
-                    &:hover {
-                        transition: 1s;
-                        background-color: rgb(255, 255, 255);
-                    }
-                    &:hover .tool_item_title {
-                        transition: 1s;
-                        background-color: rgb(255, 255, 255);
-                    }
-                    &:hover .tool_item_title::after{
-                        right: 20px;
-                        transition: 1s;
-                        opacity: 1;
+                        .tool_item_sentence {
+                            display: flex;
+                            margin: 0;
+                            padding: 0;
+                            width: 100%;
+                            height: 165px;
+                            border-bottom-left-radius: 10px;
+                            border-bottom-right-radius: 10px;
+                            @include except_font_size(13px);
+                            background-color: rgb(255, 255, 255);
+                            .tool_icon_area {
+                                position: relative;
+                                width: 80px;
+                                height: 100%;
+                                .tool_icon_img {
+                                    @include img(30px, 30px, 1);
+                                    top: 50%;
+                                    left: 50%;
+                                    transform: translate(-50%,-50%);
+                                }
+                            }
+                            p {
+                                width: 216px;
+                                padding: 15px 5px 7px 0;
+                                font-family: $ja;
+                                color: $text_color;
+                            }
+                        }
+                        &:hover {
+                            transition: 1s;
+                            background-color: rgb(255, 255, 255);
+                        }
+                        &:hover .tool_item_title {
+                            transition: 1s;
+                            background-color: rgb(255, 255, 255);
+                        }
+                        &:hover .tool_item_title p::after{
+                            right: 20px;
+                            transition: 1s;
+                            opacity: 1;
+                        }
                     }
                 }
             }
         }
-    }
-    @media screen and (max-width:1400px) {
-        .tools_table {
-            width: 960px;
-        }
-    }
-    .sub_box {
-        width: 80%;
-        min-width: 1000px;
-        max-width: 1500px;
-        margin-left: 50%;
-        transform: translateX(-50%);
-        .explanation {
+        .tool_explanation {
+            display: flex;
             width: 100%;
-            border-top: 1px solid $border_color;
-            border-bottom: 1px solid $border_color;
-            .explanation_title {
-                padding-top: 15px;
-                font-size: $text;
-                font-family: $ja;
-                font-weight: bold;
-                color: $text_color;
+            margin-top: 40px;
+            border-bottom: 2px solid $border_color;
+            .explanation_view {
+                width: 50%;
+                .explanation_title {
+                    width: 100%;
+                    margin-top: 20px;
+                    padding-left: 15px;
+                    font-size: $text;
+                    font-family: $ja;
+                    font-weight: bold;
+                }
+                .explanation_text {
+                    padding: 10px 5px 5px 35px;
+                    @include except_font_size(13px);
+                    font-family: $ja;
+                }
             }
-            .explanation_text {
-                @include except_font_size(15px);
-                font-family: $ja;
-                color: $text_color;
+            .explanation_used {
+                width: 50%;
+                border-left: 1px solid $border_color;
+                .explanation_title {
+                    width: 100%;
+                    margin-top: 20px;
+                    padding-left: 15px;
+                    font-size: $text;
+                    font-family: $ja;
+                    font-weight: bold;
+                }
+                .explanation_text {
+                    padding: 0 5px 5px 50px;
+                    @include except_font_size(13px);
+                    font-family: $ja;
+                }
             }
         }
-        .form-group {
-            width: 600px;
-            margin: 60px 0 60px 50%;
-            padding: 30px 40px;
-            border: 1px solid $border_color;
-            border-radius: 10px;
+        .data_form {
+            margin-top: 50px;
+            margin-left: 50%;
+            width: 450px;
             transform: translateX(-50%);
-            font-size: $text;
-            font-family: $ja;
-        }
-        .notice {
-            width: 100%;
-            padding-top: 30px;
-            padding-bottom: 20px;
-            border-top: 1px solid $border_color;
-            border-bottom: 1px solid $border_color;
-            .explanation_title {
-                font-size: $text;
-                font-family: $ja;
-                font-weight: bold;
-                color: $text_color;
-            }
-            .explanation_text {
-                padding-top: 10px;
-                @include except_font_size(15px);
-                font-family: $ja;
-                color: $text_color;
+            background-color: rgb(204, 204, 204);
+            .form_area {
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+                width: 400px;
+                margin: 60px 0 0 25px;
+                padding-bottom: 30px;
             }
         }
     }
 }
+
+
+@media screen and (max-width:1400px) {
+    .tools_table {
+        width: 960px;
+    }
+}
+
+// .box {
+//     width: 100%;
+//     min-height: 800px;
+//     padding: 0 0 100px 0;
+//     margin: 0;
+//     background-color: #faf5e4;
+//     .box_title {
+//         width: 100%;
+//         padding: 60px 0 50px 0;
+//         text-align: center;
+//         h3 {
+//             font-size: $text_title;
+//             font-family: $ja;
+//             font-weight: bold;
+//             color: $text_color;
+//         }
+//         p {
+//             font-size: $text;
+//             font-family: $ja;
+//             color: $text_color;
+//         }
+//     }
+//     
+//     @media screen and (max-width:1400px) {
+//         .tools_table {
+//             width: 960px;
+//         }
+//     }
+//     .sub_box {
+//         width: 80%;
+//         min-width: 1000px;
+//         max-width: 1500px;
+//         margin-left: 50%;
+//         transform: translateX(-50%);
+//         .explanation {
+//             width: 100%;
+//             border-top: 1px solid $border_color;
+//             border-bottom: 1px solid $border_color;
+//             .explanation_title {
+//                 padding-top: 15px;
+//                 font-size: $text;
+//                 font-family: $ja;
+//                 font-weight: bold;
+//                 color: $text_color;
+//             }
+//             .explanation_text {
+//                 @include except_font_size(15px);
+//                 font-family: $ja;
+//                 color: $text_color;
+//             }
+//         }
+//         .form-group {
+//             width: 600px;
+//             margin: 60px 0 60px 50%;
+//             padding: 30px 40px;
+//             border: 1px solid $border_color;
+//             border-radius: 10px;
+//             transform: translateX(-50%);
+//             font-size: $text;
+//             font-family: $ja;
+//         }
+//         .notice {
+//             width: 100%;
+//             padding-top: 30px;
+//             padding-bottom: 20px;
+//             border-top: 1px solid $border_color;
+//             border-bottom: 1px solid $border_color;
+//             .explanation_title {
+//                 font-size: $text;
+//                 font-family: $ja;
+//                 font-weight: bold;
+//                 color: $text_color;
+//             }
+//             .explanation_text {
+//                 padding-top: 10px;
+//                 @include except_font_size(15px);
+//                 font-family: $ja;
+//                 color: $text_color;
+//             }
+//         }
+//     }
+// }
 
 // footer
 footer {
@@ -299,7 +783,7 @@ footer {
     border-top: 1px solid $border_color;
     p {
         padding: 13px 0 0 0;
-        @include except_font_size(15px);
-        font-family: $ja;
+        @include except_font_size(12px);
+        font-family: $en;
     }
 }

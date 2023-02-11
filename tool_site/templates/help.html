@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-    <title>エラーページ｜EC運営に役立つwebツール｜Auto-biz</title>
+<title>お問い合わせ｜Auto-biz</title>
 {% endblock %}
 
 {% block header %}
@@ -58,13 +58,26 @@
 {% endblock %}
 
 {% block main %}
+
 <div class="box">
+    <div class="box_title">
+        <h3>ヘルプ</h3>
+    </div>
     <div class="sub_box">
-        <h3>処理エラー</h3>
-        <p>
-            無効なデータがアップされました。<br>
-            ファイルやテキストをご確認の上、再度お試しください。<br>
-        </p>
+        <div class="form-group">
+            <form method="POST" class="form">
+                {% csrf_token %}
+                <span class="label">{{ form.name.label_tag }}</span><p>{{ form.name }}</p>
+                <span class="label">{{ form.name_detail.label_tag }}</span><p>{{ form.name_detail }}</p>
+                <span class="label">{{ form.company.label_tag }}</span><p>{{ form.company }}</p>
+                <span class="label">{{ form.tel.label_tag }}</span><p>{{ form.tel }}</p>
+                <span class="label">{{ form.mail.label_tag }}</span><p>{{ form.mail }}</p>
+                <span class="label">{{ form.kinds.label_tag }}</span><p>{{form.kinds}}</p>
+                <span class="label">{{ form.message.label_tag }}</span><p>{{ form.message }}</p>
+                <button type="submit" class="save btn btn-outline-primary" id="btn">送信</button>
+            </form>
+        </div>
     </div>
 </div>
+
 {% endblock %}

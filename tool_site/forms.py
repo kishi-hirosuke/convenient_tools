@@ -6,6 +6,87 @@ from django.core.exceptions import ValidationError
 import re
 from django.conf import settings
 
+####################################################
+# ユーザー操作側
+####################################################
+
+# サインアップフォーム
+class SignupForm(forms.Form):
+    name = forms.CharField(
+        label='ユーザーネーム',
+        required=True,
+        max_length=50,
+    )
+    email = forms.EmailField(
+        label='メールアドレス',
+        required=True,
+        max_length=100,
+        widget=forms.TextInput(attrs={
+        'placeholder':'sample@example.com',
+        'pattern':'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'})
+    )
+    password1 = forms.CharField(
+        label='パスワード',
+        required=True,
+        min_length=7,
+        max_length=40,
+        widget=forms.PasswordInput()
+    )
+    password2 = forms.CharField(
+        label='再確認',
+        required=True,
+        min_length=7,
+        max_length=40,
+        widget=forms.PasswordInput()
+    )
+
+# 二段階認証
+class AuthForm(forms.Form):
+    token = forms.CharField(
+        label='5桁の番号',
+        required=True,
+        max_length=6,
+    )
+
+# ログインフォーム
+class LoginForm(forms.Form):
+    email = forms.EmailField(
+        label='email',
+        required=True,
+        max_length=100,
+        widget=forms.TextInput(attrs={
+        'placeholder':'sample@example.com',
+        'pattern':'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'})
+    )
+    password = forms.CharField(
+        label='password',
+        required=True,
+        max_length=40,
+        widget=forms.PasswordInput()
+    )
+
+# パスワード忘却フォーム
+class LostPasswordForm(forms.Form):
+    email = forms.EmailField(
+        label='email',
+        required=True,
+        max_length=100,
+        widget=forms.TextInput(attrs={
+            'placeholder':'sample@example.com',
+            'pattern':'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'})
+    )
+    password1 = forms.CharField(
+        label='再発行後のパスワード',
+        required=True,
+        max_length=40,
+        widget=forms.PasswordInput()
+    )
+    password2 = forms.CharField(
+        label='再確認',
+        required=True,
+        max_length=40,
+        widget=forms.PasswordInput()
+    )
 
 #お問い合わせ
 class InquiryForm(forms.Form):
@@ -28,7 +109,7 @@ class InquiryForm(forms.Form):
         widget=forms.TextInput(attrs={
         # 'placeholder':'半角数字入力',
         'pattern':'^[0-9]+$'}))
-    mail = forms.EmailField(
+    email = forms.EmailField(
         label='メールアドレス',
         required=True,
         max_length=50,
@@ -52,6 +133,10 @@ class InquiryForm(forms.Form):
         max_length=255,
         widget=forms.Textarea,)
 
+####################################################
+# ここから処理側
+####################################################
+
 #最大容量
 def file_size(value):
     LIMIT_SIZE = getattr(settings, 'LIMIT_SIZE', None)
@@ -61,12 +146,20 @@ def file_size(value):
 #csv抽出
 class CSVExtract(forms.Form):
     file = forms.FileField(
+        label='ファイルを選択',
         validators=[
             FileExtensionValidator(['csv']),
             file_size
-            ])
-    columuns = forms.CharField(max_length=255)
-    code = forms.CharField(max_length=2000)
+        ]
+    )
+    columuns = forms.CharField(
+        label='基準とする列名を入力',
+        max_length=255
+    )
+    code = forms.CharField(
+        label='キーワードを入力（半角パイプ「|」区切りで複数指定可能）',
+        max_length=2000
+    )
 
 #csv分割
 class CSVSplit(forms.Form):
@@ -82,7 +175,8 @@ class CSVSplit(forms.Form):
         validators=[
             FileExtensionValidator(['csv']),
             file_size
-            ])
+        ]
+    )
     num = forms.CharField(
         max_length=255,
         widget=forms.TextInput(attrs={
@@ -95,7 +189,8 @@ class CSVRemove(forms.Form):
         validators=[
             FileExtensionValidator(['csv']),
             file_size
-            ])
+        ]
+    )
     columuns = forms.CharField(max_length=255)
     code = forms.CharField(max_length=2000)
 
@@ -105,7 +200,8 @@ class ExcelTable(forms.Form):
         validators=[
             FileExtensionValidator(['xlsx']),
             file_size
-            ])
+        ]
+    )
 
 #excel抽出
 class ExcelExtract(forms.Form):
@@ -113,7 +209,8 @@ class ExcelExtract(forms.Form):
         validators=[
             FileExtensionValidator(['xlsx']),
             file_size
-            ])
+        ]
+    )
     columuns = forms.CharField(max_length=255)
     code = forms.CharField(max_length=2000)
 
@@ -131,7 +228,8 @@ class ExcelSplit(forms.Form):
         validators=[
             FileExtensionValidator(['xlsx']),
             file_size
-            ])
+        ]
+    )
     num = forms.CharField(
         max_length=255,
         widget=forms.TextInput(attrs={
@@ -144,7 +242,8 @@ class ExcelRemove(forms.Form):
         validators=[
             FileExtensionValidator(['xlsx']),
             file_size
-            ])
+        ]
+    )
     columuns = forms.CharField(max_length=255)
     code = forms.CharField(max_length=2000)
 
