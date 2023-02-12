@@ -19,7 +19,7 @@
 }
 
 // 共通
-$title: 25px;
+$title: 50px;
 $subtitle: 22px;
 $text_title: 23px;
 $text: 15px;
@@ -306,7 +306,7 @@ header {
         .form_title {
             margin: 0;
             padding: 10px 0;
-            font-size: $title;
+            font-size: $subtitle;
             font-family: $en;
             text-align: center;
             letter-spacing: 3px;
@@ -404,7 +404,7 @@ header {
         .form_title {
             margin: 0;
             padding: 10px 0;
-            font-size: $title;
+            font-size: $subtitle;
             font-family: $en;
             text-align: center;
             letter-spacing: 3px;
@@ -500,12 +500,51 @@ header {
     }
 }
 
+
+// topページ追加
+.top_wapper{
+    margin: 0 auto;
+    // max-width: 1900px;
+    box-shadow:
+    2px 2px 2.5px rgb(0, 0, 0);
+    // background-color: #6C6E74;
+
+    .top_bg_img{
+        margin-top: 4%;
+        background: linear-gradient(to top, rgba(255, 255, 255, 0) 55%, rgb(255, 255, 255) 80%),url('/static/images/sleeping-man.jpg');
+        text-align: center;
+        width: 100%;
+        min-height: 1000px;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: top;
+    }
+
+    .top_main_title {
+        display: inline-block;
+        h3 {
+            font-size: $title;
+            font-family: $ja;
+            font-weight: bold;
+        }
+        p {
+            width: 70%;
+            font-size: $text;
+            font-family: $ja;
+            margin: auto;
+            padding-top: 10px;
+        }
+    }
+}
+
+
 .main_wrapper {
     width: 100%;
     min-height: 900px;
     padding: 120px 0 150px 0;
     margin: 0;
     background-color: $back_color;
+
     .container {
         width: 1290px;
         margin-left: 50%;
@@ -518,6 +557,7 @@ header {
         // -webkit-backdrop-filter: blur(20px); /* ぼかしエフェクト */
         // backdrop-filter: blur(20px);
         // box-shadow: 0 5px 20px rgba(255, 255, 255, 0.5);
+
         .main_title {
             width: 100%;
             text-align: center;

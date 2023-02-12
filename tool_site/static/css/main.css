@@ -300,7 +300,7 @@ header .account_modal.active {
 .form_wrapper .login_form .form_title {
   margin: 0;
   padding: 10px 0;
-  font-size: 25px;
+  font-size: 22px;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   text-align: center;
   letter-spacing: 3px;
@@ -400,7 +400,7 @@ header .account_modal.active {
 .form_wrapper .signup_form .form_title {
   margin: 0;
   padding: 10px 0;
-  font-size: 25px;
+  font-size: 22px;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   text-align: center;
   letter-spacing: 3px;
@@ -491,6 +491,36 @@ header .account_modal.active {
 .form_wrapper .signup_form .form_area .auth_btn:hover {
   transition: 1s;
   background-color: rgb(150, 150, 150);
+}
+
+.top_wapper {
+  margin: 0 auto;
+  box-shadow: 2px 2px 2.5px rgb(0, 0, 0);
+}
+.top_wapper .top_bg_img {
+  margin-top: 4%;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0) 55%, rgb(255, 255, 255) 80%), url("/static/images/sleeping-man.jpg");
+  text-align: center;
+  width: 100%;
+  min-height: 1000px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+.top_wapper .top_main_title {
+  display: inline-block;
+}
+.top_wapper .top_main_title h3 {
+  font-size: 50px;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+  font-weight: bold;
+}
+.top_wapper .top_main_title p {
+  width: 70%;
+  font-size: 15px;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+  margin: auto;
+  padding-top: 10px;
 }
 
 .main_wrapper {
