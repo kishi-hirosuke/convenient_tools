@@ -42,6 +42,10 @@ LIMIT_SIZE = f'{LIMIT_SIZE}MB'
 class TopView(TemplateView):
     template_name = "index.html"
 
+#ツール一覧ページ
+class ToolsView(TemplateView):
+    template_name = "tools.html"
+
 #aboutページ
 class AboutView(TemplateView):
     template_name = "about.html"

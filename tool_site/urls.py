@@ -3,8 +3,10 @@ from tool_site import views
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
-    # トップページ
-    path('top/', views.TopView.as_view(), name='top'),
+    #トップページ
+    path('', views.TopView.as_view(), name='top'),
+    #ツール一覧
+    path('tools/', views.ToolsView.as_view(), name='tools'),
     path('about/', views.AboutView.as_view(), name='about'),
     path('help/', views.HelpView.as_view(), name='help'),
     #stripe決済

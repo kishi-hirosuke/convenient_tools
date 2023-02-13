@@ -39,98 +39,18 @@
 {% endblock %}
 
 {% block main %}
-<div class="main_wrapper">
-    <div class="container">
 
-        <div class="main_title">
-            <h3>EC運営に特化した、業務効率化に役立つWebツールを無料で提供しています。</h3>
+<div class="top_wapper">
+    <div class="top_bg_img">
+        <div class="top_main_title">
+            <h3>面倒な作業を自動化して<br>あなたにしかできないことをしましょう。</h3>
+            <p>Auto-biz を利用することで、繰り返し作業や業務プロセスを効率化して、少ないリソースで最大の効果を発揮することができます。結果として生産性向上やコスト削減を実現できます。</p>
         </div>
-
-        <table class="tools_table">
-            <tr>
-                <td class="tool">
-                    <a href={% url 'csv_extract' %} class="tool_items">
-                        <div class="tool_item_title">
-                            <h3>csv行抽出</h3>
-                        </div>
-                        <div class="tool_item_sentence">
-                            <div class="tool_icon_area">
-                                <img src="{% static 'images/rogo.png' %}" alt="" class="tool_icon_img">
-                            </div>
-                            <p>csvファイルから特定の行の抽出ができます。<br>複数キーワード抽出や部分一致での一括抽出などの応用も可能です。</p>
-                        </div>
-                    </a>
-                </td>
-                <td class="tool">
-                    <a href={% url 'csv_remove' %} class="tool_items">
-                        <div class="tool_item_title">
-                            <h3 class="tool_item_title">csv行削除</h3>
-                        </div>
-                        <div class="tool_item_sentence">
-                            <div class="tool_icon_area">
-                                <img src="{% static 'images/rogo.png' %}" alt="" class="tool_icon_img">
-                            </div>
-                            <p>アップロードしたcsvファイルから特定の行のみを削除します。<br>複数キーワード削除や部分一致での一括削除などの応用も可能です。</p>
-                        </div>
-                    </a>
-                </td>
-                <td class="tool">
-                    <a href={% url 'csv_split' %} class="tool_items">
-                        <div class="tool_item_title">
-                            <h3 class="tool_item_title">csv分割</h3>
-                        </div>
-                        <div class="tool_item_sentence">
-                            <div class="tool_icon_area">
-                                <img src="{% static 'images/rogo.png' %}" alt="" class="tool_icon_img">
-                            </div>
-                            <p>アップロードしたcsvファイルを任意の件数（行数）で分割します。<br>ヘッダー有無の指定も可能。<br></p>
-                        </div>
-                    </a>
-                </td>
-                <td class="tool">
-                    <a href={% url 'excel_table' %} class="tool_items">
-                        <div class="tool_item_title">
-                            <h3 class="tool_item_title">Excel to Html</h3>
-                        </div>
-                        <div class="tool_item_sentence">
-                            <div class="tool_icon_area">
-                                <img src="{% static 'images/rogo.png' %}" alt="" class="tool_icon_img">
-                            </div>
-                            <p>Excelの表をHtmlのテーブルタグに変換します。<br>
-                            セル内改行、セル結合には対応していません。</p>
-                        </div>
-                    </a>
-                </td>
-                <td class="tool">
-                    <a href={% url 'excel_extract' %} class="tool_items">
-                        <div class="tool_item_title">
-                            <h3 class="tool_item_title">Excel行抽出</h3>
-                        </div>
-                        <div class="tool_item_sentence">
-                            <div class="tool_icon_area">
-                                <img src="{% static 'images/rogo.png' %}" alt="" class="tool_icon_img">
-                            </div>
-                            <p>Excelファイルから特定の行の抽出ができます。<br>複数キーワード抽出や部分一致での一括抽出などの応用も可能です。</p>
-                        </div>
-                    </a>
-                </td>
-                <td class="tool">
-                    <a href={% url 'excel_remove' %} class="tool_items">
-                        <div class="tool_item_title">
-                            <h3 class="tool_item_title">Excel行削除</h3>
-                        </div>
-                        <div class="tool_item_sentence">
-                            <div class="tool_icon_area">
-                                <img src="{% static 'images/rogo.png' %}" alt="" class="tool_icon_img">
-                            </div>
-                            <p>アップロードしたExcelファイルから特定の行のみを削除します。<br>複数キーワード削除や部分一致での一括削除などの応用も可能です。</p>
-                        </div>
-                    </a>
-                </td>
-            </tr>
-        </table>
-
     </div>
-
 </div>
+
+<!-- <div class="main_wrapper">
+    <div class="container">
+    </div>
+</div> -->
 {% endblock %}

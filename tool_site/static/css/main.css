@@ -29,16 +29,24 @@ header.active {
 }
 header .header_logo_area {
   position: relative;
+<<<<<<< HEAD
   width: 185px;
+=======
+  text-decoration: none;
+  font-size: none;
+  color: none;
+  font-family: none;
+  width: 300px;
+>>>>>>> main
   height: 100%;
-  margin-left: 30px;
+  margin: 20px 15px 0 30px;
 }
 header .header_logo_area .title_img {
   position: absolute;
   -o-object-fit: cover;
      object-fit: cover;
-  width: 100%;
-  height: 100%;
+  width: 70%;
+  height: 70%;
   opacity: 1;
 }
 header .header_right_contents_auth {
@@ -59,7 +67,11 @@ header .header_right_contents_auth .header_right_slide {
 header .header_right_contents_auth .header_right_slide .header_right_tools {
   padding-top: 18px;
   font-size: 22px;
+<<<<<<< HEAD
   font-family: "Open Sans", "sans-serif";
+=======
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+>>>>>>> main
 }
 header .header_right_contents_auth .header_right_slide .header_right_tools_pulldown {
   position: absolute;
@@ -87,7 +99,11 @@ header .header_right_contents_auth .header_right_link {
 header .header_right_contents_auth .header_right_link h2 {
   padding-top: 18px;
   font-size: 22px;
+<<<<<<< HEAD
   font-family: "Open Sans", "sans-serif";
+=======
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+>>>>>>> main
 }
 header .header_right_contents_auth .header_right_account {
   width: 130px;
@@ -114,7 +130,11 @@ header .header_right_contents .header_right_slide {
 header .header_right_contents .header_right_slide .header_right_tools {
   padding-top: 18px;
   font-size: 22px;
+<<<<<<< HEAD
   font-family: "Open Sans", "sans-serif";
+=======
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+>>>>>>> main
 }
 header .header_right_contents .header_right_slide .header_right_tools_pulldown {
   position: absolute;
@@ -139,9 +159,15 @@ header .header_right_contents .header_right_link {
   color: rgb(40, 40, 40);
 }
 header .header_right_contents .header_right_link h2 {
+<<<<<<< HEAD
   padding-top: 20px;
   font-size: 20px;
   font-family: "Open Sans", "sans-serif";
+=======
+  padding-top: 18px;
+  font-size: 22px;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+>>>>>>> main
 }
 header .header_right_contents .header_right_link h2::after {
   content: "";
@@ -164,7 +190,14 @@ header .header_right_contents .header_right_small_link_area {
 header .header_right_contents .header_right_small_link_area .header_right_small_link {
   display: block;
   text-decoration: none;
+<<<<<<< HEAD
   width: 70px;
+=======
+  font-size: 22px;
+  color: rgb(40, 40, 40);
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+  border-bottom: 2px solid rgba(80, 80, 80, 0.8);
+>>>>>>> main
   text-align: center;
   color: rgb(40, 40, 40);
 }
@@ -213,7 +246,11 @@ header .account_modal .header_account_logout_link {
   text-decoration: none;
   font-size: 15px;
   color: rgb(40, 40, 40);
+<<<<<<< HEAD
   font-family: "Open Sans", "sans-serif";
+=======
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+>>>>>>> main
 }
 header .account_modal.active {
   right: 0 !important;
@@ -225,7 +262,7 @@ header .account_modal.active {
   min-height: 900px;
   padding: 200px 0 250px 0;
   margin: 0;
-  background-color: #333c5e;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 .form_wrapper .login_form {
   width: 350px;
@@ -237,8 +274,13 @@ header .account_modal.active {
 .form_wrapper .login_form .form_title {
   margin: 0;
   padding: 10px 0;
+<<<<<<< HEAD
   font-size: 25px;
   font-family: "Open Sans", "sans-serif";
+=======
+  font-size: 22px;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+>>>>>>> main
   text-align: center;
   letter-spacing: 3px;
   color: rgba(255, 255, 255, 0.8);
@@ -267,7 +309,11 @@ header .account_modal.active {
   top: -12px;
   left: 10px;
   font-size: 13px;
+<<<<<<< HEAD
   font-family: "Open Sans", "sans-serif";
+=======
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+>>>>>>> main
   color: rgb(40, 40, 40);
   opacity: 0.8;
   background-color: #fff;
@@ -275,7 +321,11 @@ header .account_modal.active {
 .form_wrapper .login_form .form_area .form_content .form_input {
   width: 100%;
   font-size: 15px;
+<<<<<<< HEAD
   font-family: "Open Sans", "sans-serif";
+=======
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+>>>>>>> main
 }
 .form_wrapper .login_form .form_area .form_content .form_input:focus {
   border: 1px solid rgba(80, 80, 80, 0.8);
@@ -286,7 +336,11 @@ header .account_modal.active {
   width: 80px;
   margin-left: 220px;
   font-size: 13px;
+<<<<<<< HEAD
   font-family: "Open Sans", "sans-serif";
+=======
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+>>>>>>> main
   color: rgb(40, 40, 40);
   border: 1px solid rgba(80, 80, 80, 0.8);
 }
@@ -337,8 +391,13 @@ header .account_modal.active {
 .form_wrapper .signup_form .form_title {
   margin: 0;
   padding: 10px 0;
+<<<<<<< HEAD
   font-size: 25px;
   font-family: "Open Sans", "sans-serif";
+=======
+  font-size: 22px;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+>>>>>>> main
   text-align: center;
   letter-spacing: 3px;
   color: rgba(255, 255, 255, 0.8);
@@ -367,7 +426,11 @@ header .account_modal.active {
   top: -12px;
   left: 10px;
   font-size: 13px;
+<<<<<<< HEAD
   font-family: "Open Sans", "sans-serif";
+=======
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+>>>>>>> main
   color: rgb(40, 40, 40);
   opacity: 0.8;
   background-color: #fff;
@@ -375,7 +438,11 @@ header .account_modal.active {
 .form_wrapper .signup_form .form_area .form_content .form_input {
   width: 100%;
   font-size: 15px;
+<<<<<<< HEAD
   font-family: "Open Sans", "sans-serif";
+=======
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+>>>>>>> main
 }
 .form_wrapper .signup_form .form_area .form_content .form_input:focus {
   border: 1px solid rgba(80, 80, 80, 0.8);
@@ -388,7 +455,11 @@ header .account_modal.active {
   left: 10px;
   margin-top: 25px;
   font-size: 13px;
+<<<<<<< HEAD
   font-family: "Open Sans", "sans-serif";
+=======
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+>>>>>>> main
   color: rgb(40, 40, 40);
   opacity: 0.8;
   background-color: #fff;
@@ -397,7 +468,11 @@ header .account_modal.active {
   width: 100%;
   margin-top: 25px;
   font-size: 15px;
+<<<<<<< HEAD
   font-family: "Open Sans", "sans-serif";
+=======
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+>>>>>>> main
 }
 .form_wrapper .signup_form .form_area .form_content .auth_form_input:focus {
   border: 1px solid rgba(80, 80, 80, 0.8);
@@ -408,7 +483,11 @@ header .account_modal.active {
   width: 80px;
   margin-left: 220px;
   font-size: 13px;
+<<<<<<< HEAD
   font-family: "Open Sans", "sans-serif";
+=======
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+>>>>>>> main
   color: rgb(40, 40, 40);
   border: 1px solid rgba(80, 80, 80, 0.8);
 }
@@ -421,7 +500,11 @@ header .account_modal.active {
   margin-top: 20px;
   margin-left: 220px;
   font-size: 13px;
+<<<<<<< HEAD
   font-family: "Open Sans", "sans-serif";
+=======
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+>>>>>>> main
   color: rgb(40, 40, 40);
   border: 1px solid rgba(80, 80, 80, 0.8);
 }
@@ -430,12 +513,46 @@ header .account_modal.active {
   background-color: rgb(150, 150, 150);
 }
 
+.top_wapper {
+  margin: 0 auto;
+  box-shadow: 2px 2px 2.5px rgb(0, 0, 0);
+}
+.top_wapper .top_bg_img {
+  margin-top: 4%;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0) 55%, rgb(255, 255, 255) 80%), url("/static/images/sleeping-man.jpg");
+  text-align: center;
+  width: 100%;
+  min-height: 1000px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+.top_wapper .top_main_title {
+  display: inline-block;
+}
+.top_wapper .top_main_title h3 {
+  font-size: 50px;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+  font-weight: bold;
+}
+.top_wapper .top_main_title p {
+  width: 70%;
+  font-size: 15px;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+  margin: auto;
+  padding-top: 10px;
+}
+
 .main_wrapper {
   width: 100%;
   min-height: 900px;
   padding: 120px 0 150px 0;
   margin: 0;
+<<<<<<< HEAD
   background-color: #fff;
+=======
+  background-color: rgba(255, 255, 255, 0.8);
+>>>>>>> main
 }
 .main_wrapper .container {
   width: 1290px;
@@ -620,11 +737,16 @@ header .account_modal.active {
 }
 footer {
   width: 100%;
+  height: 400px;
   text-align: center;
-  border-top: 1px solid rgba(80, 80, 80, 0.8);
+  background-color: rgb(238, 238, 234);
 }
 footer p {
-  padding: 13px 0 0 0;
+  padding: 5% 0 0 0;
   font-size: 12px;
+<<<<<<< HEAD
   font-family: "Open Sans", "sans-serif";
+=======
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+>>>>>>> main
 }/*# sourceMappingURL=main.css.map */
