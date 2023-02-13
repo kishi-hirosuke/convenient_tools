@@ -27,17 +27,13 @@ header {
 header.active {
   position: fixed;
 }
-header .header_about_link {
+header .header_logo_area {
   position: relative;
-  text-decoration: none;
-  font-size: none;
-  color: none;
-  font-family: none;
   width: 185px;
   height: 100%;
   margin-left: 30px;
 }
-header .header_about_link .title_img {
+header .header_logo_area .title_img {
   position: absolute;
   -o-object-fit: cover;
      object-fit: cover;
@@ -63,7 +59,7 @@ header .header_right_contents_auth .header_right_slide {
 header .header_right_contents_auth .header_right_slide .header_right_tools {
   padding-top: 18px;
   font-size: 22px;
-  font-family: "Lora", serif;
+  font-family: "Open Sans", "sans-serif";
 }
 header .header_right_contents_auth .header_right_slide .header_right_tools_pulldown {
   position: absolute;
@@ -91,7 +87,7 @@ header .header_right_contents_auth .header_right_link {
 header .header_right_contents_auth .header_right_link h2 {
   padding-top: 18px;
   font-size: 22px;
-  font-family: "Lora", serif;
+  font-family: "Open Sans", "sans-serif";
 }
 header .header_right_contents_auth .header_right_account {
   width: 130px;
@@ -104,10 +100,8 @@ header .header_right_contents_auth .header_right_account .account_icon {
 header .header_right_contents {
   display: flex;
   align-items: center;
-  gap: 20px;
-  width: 340px;
   height: 100%;
-  margin-right: 40px;
+  margin-right: 100px;
 }
 header .header_right_contents .header_right_slide {
   position: relative;
@@ -120,7 +114,7 @@ header .header_right_contents .header_right_slide {
 header .header_right_contents .header_right_slide .header_right_tools {
   padding-top: 18px;
   font-size: 22px;
-  font-family: "Lora", serif;
+  font-family: "Open Sans", "sans-serif";
 }
 header .header_right_contents .header_right_slide .header_right_tools_pulldown {
   position: absolute;
@@ -138,115 +132,58 @@ header .header_right_contents .header_right_slide .header_right_tools_pulldown .
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
 header .header_right_contents .header_right_link {
-  position: relative;
   display: block;
   text-decoration: none;
-  width: 130px;
+  width: 110px;
   text-align: center;
   color: rgb(40, 40, 40);
 }
 header .header_right_contents .header_right_link h2 {
-  padding-top: 18px;
-  font-size: 22px;
-  font-family: "Lora", serif;
+  padding-top: 20px;
+  font-size: 20px;
+  font-family: "Open Sans", "sans-serif";
 }
-header .header_right_contents .menu_area {
-  width: 40px;
-}
-header .header_right_contents .menu_area .burger_btn {
-  position: relative;
-  width: 100%;
-  height: 40px;
+header .header_right_contents .header_right_link h2::after {
+  content: "";
+  display: block;
+  width: 0;
   margin-top: 5px;
-  border: none;
-  z-index: 5;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid rgba(80, 80, 80, 0.8);
 }
-header .header_right_contents .menu_area .burger_btn .bar {
-  height: 1px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: black;
-  z-index: 5;
+header .header_right_contents .header_right_link h2:hover::after {
+  width: 100%;
+  border-bottom: 2px solid rgba(80, 80, 80, 0.8);
 }
-header .header_right_contents .menu_area .burger_btn .bar_top {
-  width: 25px;
-  top: 10px;
-  right: 50%;
-  transform: translateX(-50%) rotate(-30deg);
-  transition: 0.5s;
-}
-header .header_right_contents .menu_area .burger_btn .bar_mid {
-  width: 25px;
-  top: 50%;
-  transform: translate(-50%, -50%) rotate(-30deg);
-  transition: 0.5s;
-}
-header .header_right_contents .menu_area .burger_btn .bar_bottom {
-  width: 25px;
-  right: 50%;
-  bottom: 10px;
-  transform: translateX(-50%) rotate(-30deg);
-  transition: 0.5s;
-}
-header .header_right_contents .menu_area .burger_btn.close .bar_top {
-  width: 30px;
-  transform: translate(-50%, 8.5px) rotate(35deg);
-  transition: transform 0.5s;
-}
-header .header_right_contents .menu_area .burger_btn.close .bar_mid {
-  opacity: 0;
-  transition: opacity 0.5s;
-}
-header .header_right_contents .menu_area .burger_btn.close .bar_bottom {
-  width: 30px;
-  transform: translate(-50%, -10px) rotate(-35deg);
-  transition: transform 0.5s;
-}
-header .menu_modal {
-  position: absolute;
+header .header_right_contents .header_right_small_link_area {
   display: flex;
-  flex-direction: column;
-  top: 65px;
-  right: -100vw;
-  width: 100vw;
-  gap: 20px;
-  z-index: 4;
-  transition: 0.3s;
-  background-color: #6C6E74;
+  align-items: center;
+  height: 100%;
+  margin-left: 30px;
 }
-header .menu_modal.active {
-  position: fixed;
-  right: 0;
-  transition: 0.3s;
-}
-header .menu_modal .header_menu_link {
-  width: 500px;
-  margin-left: 50%;
-  transform: translateX(-50%);
+header .header_right_contents .header_right_small_link_area .header_right_small_link {
+  display: block;
   text-decoration: none;
-  font-size: 22px;
-  color: rgb(40, 40, 40);
-  font-family: "Lora", serif;
-  border-bottom: 2px solid rgba(80, 80, 80, 0.8);
+  width: 70px;
   text-align: center;
-}
-header .menu_modal .header_menu_link:first-of-type {
-  margin-top: 80px;
-}
-header .menu_modal .header_menu_link_ja {
-  width: 500px;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  text-decoration: none;
-  font-size: 22px;
   color: rgb(40, 40, 40);
-  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
-  border-bottom: 2px solid rgba(80, 80, 80, 0.8);
-  text-align: center;
 }
-header .menu_modal .header_menu_link_ja:last-of-type {
-  margin-bottom: 80px;
+header .header_right_contents .header_right_small_link_area .header_right_small_link p {
+  padding-top: 35px;
+  font-size: 15px;
+  font-family: "Open Sans", "sans-serif";
+}
+header .header_right_contents .header_right_small_link_area .header_right_small_link p::after {
+  content: "";
+  display: block;
+  width: 0;
+  margin-top: 2px;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(80, 80, 80, 0.8);
+}
+header .header_right_contents .header_right_small_link_area .header_right_small_link p:hover::after {
+  width: 100%;
+  border-bottom: 1px solid rgba(80, 80, 80, 0.8);
 }
 header .account_modal {
   position: absolute;
@@ -276,7 +213,7 @@ header .account_modal .header_account_logout_link {
   text-decoration: none;
   font-size: 15px;
   color: rgb(40, 40, 40);
-  font-family: "Lora", serif;
+  font-family: "Open Sans", "sans-serif";
 }
 header .account_modal.active {
   right: 0 !important;
@@ -301,7 +238,7 @@ header .account_modal.active {
   margin: 0;
   padding: 10px 0;
   font-size: 25px;
-  font-family: "Lora", serif;
+  font-family: "Open Sans", "sans-serif";
   text-align: center;
   letter-spacing: 3px;
   color: rgba(255, 255, 255, 0.8);
@@ -330,7 +267,7 @@ header .account_modal.active {
   top: -12px;
   left: 10px;
   font-size: 13px;
-  font-family: "Lora", serif;
+  font-family: "Open Sans", "sans-serif";
   color: rgb(40, 40, 40);
   opacity: 0.8;
   background-color: #fff;
@@ -338,7 +275,7 @@ header .account_modal.active {
 .form_wrapper .login_form .form_area .form_content .form_input {
   width: 100%;
   font-size: 15px;
-  font-family: "Lora", serif;
+  font-family: "Open Sans", "sans-serif";
 }
 .form_wrapper .login_form .form_area .form_content .form_input:focus {
   border: 1px solid rgba(80, 80, 80, 0.8);
@@ -349,7 +286,7 @@ header .account_modal.active {
   width: 80px;
   margin-left: 220px;
   font-size: 13px;
-  font-family: "Lora", serif;
+  font-family: "Open Sans", "sans-serif";
   color: rgb(40, 40, 40);
   border: 1px solid rgba(80, 80, 80, 0.8);
 }
@@ -401,7 +338,7 @@ header .account_modal.active {
   margin: 0;
   padding: 10px 0;
   font-size: 25px;
-  font-family: "Lora", serif;
+  font-family: "Open Sans", "sans-serif";
   text-align: center;
   letter-spacing: 3px;
   color: rgba(255, 255, 255, 0.8);
@@ -430,7 +367,7 @@ header .account_modal.active {
   top: -12px;
   left: 10px;
   font-size: 13px;
-  font-family: "Lora", serif;
+  font-family: "Open Sans", "sans-serif";
   color: rgb(40, 40, 40);
   opacity: 0.8;
   background-color: #fff;
@@ -438,7 +375,7 @@ header .account_modal.active {
 .form_wrapper .signup_form .form_area .form_content .form_input {
   width: 100%;
   font-size: 15px;
-  font-family: "Lora", serif;
+  font-family: "Open Sans", "sans-serif";
 }
 .form_wrapper .signup_form .form_area .form_content .form_input:focus {
   border: 1px solid rgba(80, 80, 80, 0.8);
@@ -451,7 +388,7 @@ header .account_modal.active {
   left: 10px;
   margin-top: 25px;
   font-size: 13px;
-  font-family: "Lora", serif;
+  font-family: "Open Sans", "sans-serif";
   color: rgb(40, 40, 40);
   opacity: 0.8;
   background-color: #fff;
@@ -460,7 +397,7 @@ header .account_modal.active {
   width: 100%;
   margin-top: 25px;
   font-size: 15px;
-  font-family: "Lora", serif;
+  font-family: "Open Sans", "sans-serif";
 }
 .form_wrapper .signup_form .form_area .form_content .auth_form_input:focus {
   border: 1px solid rgba(80, 80, 80, 0.8);
@@ -471,7 +408,7 @@ header .account_modal.active {
   width: 80px;
   margin-left: 220px;
   font-size: 13px;
-  font-family: "Lora", serif;
+  font-family: "Open Sans", "sans-serif";
   color: rgb(40, 40, 40);
   border: 1px solid rgba(80, 80, 80, 0.8);
 }
@@ -484,7 +421,7 @@ header .account_modal.active {
   margin-top: 20px;
   margin-left: 220px;
   font-size: 13px;
-  font-family: "Lora", serif;
+  font-family: "Open Sans", "sans-serif";
   color: rgb(40, 40, 40);
   border: 1px solid rgba(80, 80, 80, 0.8);
 }
@@ -498,7 +435,7 @@ header .account_modal.active {
   min-height: 900px;
   padding: 120px 0 150px 0;
   margin: 0;
-  background-color: #333c5e;
+  background-color: #fff;
 }
 .main_wrapper .container {
   width: 1290px;
@@ -689,5 +626,5 @@ footer {
 footer p {
   padding: 13px 0 0 0;
   font-size: 12px;
-  font-family: "Lora", serif;
+  font-family: "Open Sans", "sans-serif";
 }/*# sourceMappingURL=main.css.map */
