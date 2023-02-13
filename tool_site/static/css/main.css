@@ -494,28 +494,32 @@ header .account_modal.active {
 }
 
 .top_wapper {
-  margin: 0 auto;
-  box-shadow: 2px 2px 2.5px rgb(0, 0, 0);
+  padding-top: 4%;
+  box-shadow: 0px 1.2px 3.6px rgba(0, 0, 0, 0.11), 0px 6.4px 14.4px rgba(0, 0, 0, 0.13);
 }
-.top_wapper .top_bg_img {
-  margin-top: 4%;
+.top_wapper .top_container {
+  max-width: 1900px;
+  margin: 0 auto;
+  margin-bottom: 100px;
+}
+.top_wapper .top_container .top_bg_img {
   background: linear-gradient(to top, rgba(255, 255, 255, 0) 55%, rgb(255, 255, 255) 80%), url("/static/images/sleeping-man.jpg");
   text-align: center;
   width: 100%;
-  min-height: 1000px;
+  height: 40vw;
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: top;
 }
-.top_wapper .top_main_title {
+.top_wapper .top_container .top_main_title {
   display: inline-block;
 }
-.top_wapper .top_main_title h3 {
+.top_wapper .top_container .top_main_title h3 {
   font-size: 50px;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   font-weight: bold;
 }
-.top_wapper .top_main_title p {
+.top_wapper .top_container .top_main_title p {
   width: 70%;
   font-size: 15px;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
@@ -523,6 +527,31 @@ header .account_modal.active {
   padding-top: 10px;
 }
 
+@media screen and (max-width: 1900px) {
+  .top_wapper .top_container .top_bg_img {
+    height: 50vw;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .top_wapper .top_container .top_bg_img {
+    height: 60vw;
+  }
+  .top_wapper .top_container .top_main_title h3 {
+    font-size: 45px;
+  }
+}
+@media screen and (max-width: 960px) {
+  .top_wapper {
+    padding-top: 10%;
+  }
+  .top_wapper .top_container .top_bg_img {
+    background-size: 150%;
+    height: 100vw;
+  }
+  .top_wapper .top_container .top_main_title h3 {
+    font-size: 35px;
+  }
+}
 .main_wrapper {
   width: 100%;
   min-height: 900px;
