@@ -15,7 +15,7 @@ from django.shortcuts import render, redirect
 from django import forms
 from tool_site.models import AutoBizAccount, TimeUser
 from django.contrib.auth.models import User
-from tool_site.forms import  SignupForm, AuthForm, LoginForm, LostPasswordForm, InquiryForm
+from tool_site.forms import  SignupForm, AuthForm, LoginForm, LostPasswordForm, InquiryForm, EditEmailForm, EditPasswordForm
 from tool_site.forms import CSVExtract, CSVSplit, CSVRemove, ExcelTable, ExcelExtract, ExcelSplit, ExcelRemove, ImageResize
 from tool_site.functions import CSV_extract_flow, CSV_split_flow, CSV_remove_flow
 from tool_site.functions import Excel_to_table_flow, Excel_extract_flow_one, Excel_extract_flow, Excel_split_flow, Excel_to_zip, Excel_remove_flow_one, Excel_remove_flow
@@ -93,6 +93,20 @@ def create_checkout_session(request):
 # ユーザー操作
 ############################################################
 
+# メール送信処理
+def email_send(request, subject, body, email, redirect_name):
+    print(subject, body, email, redirect_name)
+    recipients = settings.EMAIL_HOST_USER
+    email_list = [email]
+    try:  # メール送信処理
+        send_mail(subject, body, recipients, email_list)
+    except BadHeaderError:  # ヘッダーエラー
+        messages.info(request, f'無効なヘッダーが見つかりました。')
+        return redirect(redirect_name)
+    except:  # メール送信時エラー
+        messages.info(request, f'メール処理の最中にエラーが発見されました。時間をおいて、再度試してください。')
+        return redirect(redirect_name)
+
 # サインアップ
 def SignupView(request):
     if request.method == 'POST':
@@ -102,14 +116,14 @@ def SignupView(request):
         if time_user.is_valid():
             form_data = time_user.cleaned_data
             name, email = form_data['name'], form_data['email']  # name,email定義
-            email_list = []  # メール送信時のemailリスト化
-            email_list.append(email)
 
-            if form_data['password1'] == form_data['password2']:  # password認証
-                password = form_data['password1']  # password定義
+            if form_data['password_1'] == form_data['password_2']:  # password認証
+                password = form_data['password_1']  # password定義
             else:  # password不一致
                 messages.info(request, f'パスワードが違います。')
                 return redirect('signup')
+            email_list = []  # email_list定義
+            email_list.append(email)
             token = random.randint(100000,999999)  # token定義
             account_count = AutoBizAccount.objects.filter(email = email).count()  # 既存のuser確認
 
@@ -125,11 +139,14 @@ def SignupView(request):
                 try:  # メール送信処理
                     send_mail(subject, body, recipients, email_list)
                 except BadHeaderError:  # ヘッダーエラー
-                    messages.info(request, f'無効なヘッダーが見つかりました。')
+                    messages.info(request, '無効なヘッダーが見つかりました。')
                     return redirect('signup')
-                # except:  # メール送信時エラー
-                #     messages.info(request, f'メール処理の最中にエラーが発見されました。時間をおいて、再度試してください。')
-                #     return redirect('signup')
+                except:  # メール送信時エラー
+                    messages.info(request, 'メール処理の最中にエラーが発見されました。時間をおいて、再度試してください。')
+                    return redirect('signup')
+
+                # redirect_name = "signup"
+                # email_send(request, subject, body, email, redirect_name)
 
                 TimeUser.objects.update_or_create(  # time_user登録or書き換え
                     email = email,
@@ -223,24 +240,27 @@ def LoginView(request):
 
 # パスワード忘却処置
 def Lost_PasswordView(request):
+    lost_password = LostPasswordForm(request.POST)
+    auth = AuthForm(request.POST)
+
     if request.method == 'POST':
-        lost_password = LostPasswordForm(request.POST)
-        auth = AuthForm(request.POST)
         if lost_password.is_valid():
             form_data = lost_password.cleaned_data
             email = form_data['email']  # email定義
             email_list = []  # メール送信時のemailリスト化
             email_list.append(email)
-
-            if form_data['password1'] == form_data['password2']:  # password認証
-                password = form_data['password1']  # password定義
-            else:  # password不一致
-                messages.info(request, f'パスワードが違います。')
-                return redirect('lost_password')
-            token = random.randint(100000,999999)  # token定義
+            password_1, password_2 = form_data['password_1'], form_data['password_2']
 
             try:
                 account = AutoBizAccount.objects.get(email = email)  # 既存のuser確認
+
+                if password_1 == password_2:  # password認証
+                    password = password_1  # password定義
+                else:  # password不一致
+                    messages.info(request, f'再確認のパスワードが違います。')
+                    return redirect('lost_password')
+
+                token = random.randint(100000,999999)  # token定義
                 subject = 'AutoBiz 二段階認証パスワード'
                 body = f'氏名：{account.name}様\n\nこの度はAutoBizにご登録誠にありがとうございます。\n\n\n\n6桁の番号\n\n\n\n{token}\n\n\n\nこのE-mailは、発信者が意図した受信者による閲覧・利用を目的としたものです。万一、貴殿が意図された受信者でない場合には、直ちに送信者に連絡のうえ、このE-mailを破棄願います。'
                 recipients = settings.EMAIL_HOST_USER
@@ -287,12 +307,8 @@ def Lost_PasswordView(request):
                 account = AutoBizAccount.objects.get(token = token)  # tokenの一致件数確認
 
                 try:
-                    AutoBizAccount.objects.update(
-                        token = token,
-                        defaults = {
-                            'password':account.password,
-                        }
-                    )
+                    account.set_password(password)
+                    account.save()
                 except:
                     context = {
                         'message':'再発行に失敗しました。時間をおいて再度お試しください。',
@@ -301,8 +317,8 @@ def Lost_PasswordView(request):
                     }
                     return render(request, "User/lost_password.html", context)
 
-                login(request, account)
-                return HttpResponseRedirect(reverse('top'))
+                messages.info(request, f'{account.name}様のパスワードを変更しました。')
+                return redirect('lost_password')
 
             except AutoBizAccount.DoesNotExist:
                 context = {
@@ -313,8 +329,6 @@ def Lost_PasswordView(request):
                 return render(request, 'User/lost_password.html', context)
 
     else:
-        lost_password = LostPasswordForm(request.POST)
-        auth = AuthForm(request.POST)
         context = {
             'form1':lost_password,
             'form2':auth
@@ -322,18 +336,150 @@ def Lost_PasswordView(request):
         return render(request, 'User/lost_password.html', context)
 
 
+# メールアドレス変更
+def Edit_EmailView(request):
+    user_email = EditEmailForm(request.POST)
+    auth = AuthForm(request.POST)
+    user_id = request.user.id
+    accunt = AutoBizAccount.objects.get(id = user_id)
+
+    if request.method == 'POST':
+        if user_email.is_valid():
+            form_data = user_email.cleaned_data
+            email_1, email_2 = form_data['email_1'], form_data['email_2']
+            password = form_data['password']
+            return render()
+        elif auth.is_valid():
+            form_data = auth.cleaned_data
+            token = form_data['token']
+            try:
+                account = AutoBizAccount.objects.get(token = token)  # tokenの一致件数確認
+
+                try:
+                    account.set_password(password)
+                    account.save()
+                except:
+                    context = {
+                        'message':'再発行に失敗しました。時間をおいて再度お試しください。',
+                        'form1':user_email,
+                        'form2':auth,
+                    }
+                    return render(request, "User/edit_password.html", context)
+
+                messages.info(request, f'{account.name}様のパスワードを変更しました。')
+                return redirect('edit_password')
+            except AutoBizAccount.DoesNotExist:
+                context = {
+                    'message':'番号が違います。',
+                    'form1':user_email,
+                    'form2':auth,
+                }
+                return render(request, 'User/lost_password.html', context)
+
+    else:
+        context = {
+            'form1':user_email,
+            'form2':auth
+        }
+        return render(request, 'User/edit_email', context)
+
+
+# パスワード変更
+def Edit_PasswordView(request):
+    user_password = EditPasswordForm(request.POST)
+    auth = AuthForm(request.POST)
+    user_id = request.user.id
+    account = AutoBizAccount.objects.get(id = user_id)
+
+    if request.method == 'POST':
+        if user_password.is_valid():
+            form_data = user_password.cleaned_data
+            password = form_data['password']
+            password_1, password_2 = form_data['password_1'], form_data['password_2']
+            print(password)
+            check = check_password(password, account.password)
+            if check == True:
+                if password_1 == password_2:
+                    password = password_1
+                    print(password)
+                else:
+                    messages.info(request, '再確認のパスワードが違います。')
+                    return redirect('edit_password')
+
+                token = random.randint(100000,999999)  # token定義
+                email_list = []
+                email_list.append(account.email)
+                subject = 'AutoBiz 二段階認証パスワード'
+                body = f'氏名：{account.name}様\n\nこの度はAutoBizにご登録誠にありがとうございます。\n\n\n\n6桁の番号\n\n\n\n{token}\n\n\n\nこのE-mailは、発信者が意図した受信者による閲覧・利用を目的としたものです。万一、貴殿が意図された受信者でない場合には、直ちに送信者に連絡のうえ、このE-mailを破棄願います。'
+                recipients = settings.EMAIL_HOST_USER
+
+                try:  # メール送信処理
+                    send_mail(subject, body, recipients, email_list)
+                except BadHeaderError:  # ヘッダーエラー
+                    messages.info(request, f'無効なヘッダーが見つかりました。')
+                    return redirect('edit_password')
+                except:  # メール送信時エラー
+                    messages.info(request, f'メール処理の最中にエラーが発見されました。時間をおいて、再度試してください。')
+                    return redirect('edit_password')
+
+                try:
+                    AutoBizAccount.objects.update(
+                        email = email,
+                        defaults = {
+                            'token':token,
+                        }
+                    )
+                except:
+                    context = {
+                        'message':'再発行に失敗しました。時間をおいて再度お試しください。',
+                        'form1':user_password,
+                        'form2':auth,
+                    }
+                    return render(request, "User/edit_password.html", context)
+
+            else:
+                messages.info(request, 'パスワードが違います。')
+                return redirect('edit_password')
+
+        elif auth.is_valid():
+            form_data = auth.cleaned_data
+            token = form_data['token']
+            try:
+                account = AutoBizAccount.objects.get(token = token)  # tokenの一致件数確認
+
+                try:
+                    account.set_password(password)
+                    account.save()
+                except:
+                    context = {
+                        'message':'再発行に失敗しました。時間をおいて再度お試しください。',
+                        'form1':user_password,
+                        'form2':auth,
+                    }
+                    return render(request, "User/edit_password.html", context)
+
+                messages.info(request, f'{account.name}様のパスワードを変更しました。')
+                return redirect('edit_password')
+            except AutoBizAccount.DoesNotExist:
+                context = {
+                    'message':'番号が違います。',
+                    'form1':user_password,
+                    'form2':auth,
+                }
+                return render(request, 'User/lost_password.html', context)
+    else:
+        context = {
+            'form1':user_password,
+            'form2':auth,
+        }
+        return render(request, 'User/edit_password.html', context)
+
+
 # ログアウト
 @login_required
 def LogoutView(request):
     logout(request)
     return redirect('login')
-
-@login_required
-def Edit_AccountView(request):
-    if request.method == 'POST':
-        return render('User/')
-    else:
-        return render('base.html')
 
 
 # お問い合わせ

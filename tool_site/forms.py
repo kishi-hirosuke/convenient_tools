@@ -25,14 +25,14 @@ class SignupForm(forms.Form):
         'placeholder':'sample@example.com',
         'pattern':'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'})
     )
-    password1 = forms.CharField(
+    password_1 = forms.CharField(
         label='パスワード',
         required=True,
         min_length=7,
         max_length=40,
         widget=forms.PasswordInput()
     )
-    password2 = forms.CharField(
+    password_2 = forms.CharField(
         label='再確認',
         required=True,
         min_length=7,
@@ -75,15 +75,65 @@ class LostPasswordForm(forms.Form):
             'placeholder':'sample@example.com',
             'pattern':'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'})
     )
-    password1 = forms.CharField(
+    password_1 = forms.CharField(
         label='再発行後のパスワード',
         required=True,
         max_length=40,
         widget=forms.PasswordInput()
     )
-    password2 = forms.CharField(
+    password_2 = forms.CharField(
         label='再確認',
         required=True,
+        max_length=40,
+        widget=forms.PasswordInput()
+    )
+
+# メール変更フォーム
+class EditEmailForm(forms.Form):
+    email_1 = forms.EmailField(
+        label='現在のメールアドレス',
+        required=True,
+        max_length=100,
+        widget=forms.TextInput(attrs={
+            'placeholder':'sample@example.com',
+            'pattern':'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'})
+    )
+    password = forms.CharField(
+        label='現在のパスワード',
+        required=True,
+        min_length=7,
+        max_length=40,
+        widget=forms.PasswordInput()
+    )
+    email_2 = forms.EmailField(
+        label='変更後のメールアドレス',
+        required=True,
+        max_length=100,
+        widget=forms.TextInput(attrs={
+            'placeholder':'sample@example.com',
+            'pattern':'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'})
+    )
+
+# パスワード変更フォーム
+class EditPasswordForm(forms.Form):
+    password = forms.CharField(
+        label='現在のパスワード',
+        required=True,
+        min_length=7,
+        max_length=40,
+        widget=forms.PasswordInput()
+    )
+    password_1 = forms.CharField(
+        label='変更後のパスワード',
+        required=True,
+        min_length=7,
+        max_length=40,
+        widget=forms.PasswordInput()
+    )
+    password_2 = forms.CharField(
+        label='再確認',
+        required=True,
+        min_length=7,
         max_length=40,
         widget=forms.PasswordInput()
     )

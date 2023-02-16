@@ -23,7 +23,8 @@ urlpatterns = [
     # パスワード忘却処置
     path('lost_password/', views.Lost_PasswordView, name='lost_password'),
     # アカウント情報変更
-    path('edit_account', views.Edit_AccountView, name='edit_account'),
+    path('edit_email/', views.Edit_EmailView, name='edit_email'),
+    path('edit_password/', views.Edit_PasswordView, name='edit_password'),
     # お問い合わせ
     path('inquiry/', views.InquiryView, name='inquiry' ),
     # カテゴリ
