@@ -2,33 +2,40 @@
 {% load widget_tweaks %}
 
 {% block header %}
-    <div class="header_right_contents">
-        <a href={% url 'about' %} class="header_right_link">
-            <h2>About</h2>
+<div class="header_right_contents">
+    <a href={% url 'about' %} class="header_right_link">
+        <span>auto-bizとは</span>
+        <h2>About</h2>
+    </a>
+    <a href={% url 'login' %} class="header_right_link">
+        <span>プレミアム会員</span>
+        <h2>Premium</h2>
+    </a>
+    <a href={% url 'tools' %} class="header_right_link">
+        <span>機能一覧</span>
+        <h2>Tools</h2>
+    </a>
+    <a href={% url 'inquiry' %} class="header_right_link">
+        <span>お問い合わせ</span>
+        <h2>Contact</h2>
+    </a>
+    <div class="header_right_small_link_area">
+        <a href={% url 'signup' %} class="header_right_small_link">
+            <p>Signup</p>
         </a>
-        <a href={% url 'inquiry' %} class="header_right_link">
-            <h2>Contact</h2>
+        <a href="" class="header_right_small_link">
+            <p>利用規約</p>
         </a>
-        <div class="menu_area">
-            <div class="burger_btn">
-                <span class="bar bar_top"></span>
-                <span class="bar bar_mid"></span>
-                <span class="bar bar_bottom"></span>
-            </div>
-        </div>
+        <a href={% url 'help' %} class="header_right_small_link">
+            <p>Help</p>
+        </a>
     </div>
-{% endblock %}
-
-{% block header_menu %}
-    <a href={% url 'login' %} class="header_menu_link">Login</a>
-    <a href='' class="header_menu_link_ja">プレミアム会員</a>
-    <a href={% url 'help' %} class="header_menu_link">Help</a>
-    <a href="" class="header_menu_link_ja">利用規約</a>
+</div>
 {% endblock %}
 
 {% block main %}
 <div class="form_wrapper">
-    <form method="POST" class="signup_form form-group">
+    <form method="POST" class="form form-group">
         {% if request.method == "GET" %}
             <h2 class="form_title">Signup</h2>
         {% else %}
@@ -58,12 +65,12 @@
                     {{ form1.email | add_class:"form-control form_input" }}
                 </div>
                 <div class="form_content">
-                    <label class="form_label">{{ form1.password1.label }}</label>
-                    {{ form1.password1 | add_class:"form-control form_input" }}
+                    <label class="form_label">{{ form1.password_1.label }}</label>
+                    {{ form1.password_1 | add_class:"form-control form_input" }}
                 </div>
                 <div class="form_content">
-                    <label class="form_label">{{ form1.password2.label }}</label>
-                    {{ form1.password2 | add_class:"form-control form_input" }}
+                    <label class="form_label">{{ form1.password_2.label }}</label>
+                    {{ form1.password_2 | add_class:"form-control form_input" }}
                 </div>
                 <button type="submit" class="btn" id="btn">Signup</button>
             {% else %}

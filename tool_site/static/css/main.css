@@ -27,226 +27,109 @@ header {
 header.active {
   position: fixed;
 }
-header .header_about_link {
+header .header_top_link {
   position: relative;
+  width: 200px;
   text-decoration: none;
   font-size: none;
   color: none;
   font-family: none;
-  width: 300px;
-  height: 100%;
-  margin: 20px 15px 0 30px;
+  margin: 0 0 30px 30px;
 }
-header .header_about_link .title_img {
+header .header_top_link .title_img {
   position: absolute;
   -o-object-fit: cover;
      object-fit: cover;
-  width: 70%;
-  height: 70%;
-  opacity: 1;
-}
-header .header_right_contents_auth {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  width: 430px;
-  height: 100%;
-}
-header .header_right_contents_auth .header_right_slide {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 130px;
-  text-align: center;
-  color: rgb(40, 40, 40);
-}
-header .header_right_contents_auth .header_right_slide .header_right_tools {
-  padding-top: 18px;
-  font-size: 22px;
-  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
-}
-header .header_right_contents_auth .header_right_slide .header_right_tools_pulldown {
-  position: absolute;
-  display: none;
-  flex-direction: column;
-  list-style: none;
-  top: 100%;
   width: 100%;
-  padding: 10px 0 10px 0;
-}
-header .header_right_contents_auth .header_right_slide .header_right_tools_pulldown .header_right_tools_link {
-  text-decoration: none;
-  font-size: 15px;
-  color: rgb(40, 40, 40);
-  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
-}
-header .header_right_contents_auth .header_right_link {
-  position: relative;
-  display: block;
-  text-decoration: none;
-  width: 130px;
-  text-align: center;
-  color: rgb(40, 40, 40);
-}
-header .header_right_contents_auth .header_right_link h2 {
-  padding-top: 18px;
-  font-size: 22px;
-  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
-}
-header .header_right_contents_auth .header_right_account {
-  width: 130px;
-  margin-top: 8px;
-  text-align: center;
-}
-header .header_right_contents_auth .header_right_account .account_icon {
-  font-size: 30px;
+  height: none;
+  opacity: 1;
 }
 header .header_right_contents {
   display: flex;
   align-items: center;
-  gap: 20px;
-  width: 340px;
   height: 100%;
-  margin-right: 40px;
-}
-header .header_right_contents .header_right_slide {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 130px;
-  text-align: center;
-  color: rgb(40, 40, 40);
-}
-header .header_right_contents .header_right_slide .header_right_tools {
-  padding-top: 18px;
-  font-size: 22px;
-  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
-}
-header .header_right_contents .header_right_slide .header_right_tools_pulldown {
-  position: absolute;
-  display: none;
-  flex-direction: column;
-  list-style: none;
-  top: 100%;
-  width: 100%;
-  padding: 10px 0 10px 0;
-}
-header .header_right_contents .header_right_slide .header_right_tools_pulldown .header_right_tools_link {
-  text-decoration: none;
-  font-size: 15px;
-  color: rgb(40, 40, 40);
-  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+  margin-right: 80px;
 }
 header .header_right_contents .header_right_link {
-  position: relative;
-  display: block;
-  text-decoration: none;
-  width: 130px;
-  text-align: center;
-  color: rgb(40, 40, 40);
-}
-header .header_right_contents .header_right_link h2 {
-  padding-top: 18px;
-  font-size: 22px;
-  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
-}
-header .header_right_contents .menu_area {
-  width: 40px;
-}
-header .header_right_contents .menu_area .burger_btn {
-  position: relative;
-  width: 100%;
-  height: 40px;
-  margin-top: 5px;
-  border: none;
-  z-index: 5;
-}
-header .header_right_contents .menu_area .burger_btn .bar {
-  height: 1px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: black;
-  z-index: 5;
-}
-header .header_right_contents .menu_area .burger_btn .bar_top {
-  width: 25px;
-  top: 10px;
-  right: 50%;
-  transform: translateX(-50%) rotate(-30deg);
-  transition: 0.5s;
-}
-header .header_right_contents .menu_area .burger_btn .bar_mid {
-  width: 25px;
-  top: 50%;
-  transform: translate(-50%, -50%) rotate(-30deg);
-  transition: 0.5s;
-}
-header .header_right_contents .menu_area .burger_btn .bar_bottom {
-  width: 25px;
-  right: 50%;
-  bottom: 10px;
-  transform: translateX(-50%) rotate(-30deg);
-  transition: 0.5s;
-}
-header .header_right_contents .menu_area .burger_btn.close .bar_top {
-  width: 30px;
-  transform: translate(-50%, 8.5px) rotate(35deg);
-  transition: transform 0.5s;
-}
-header .header_right_contents .menu_area .burger_btn.close .bar_mid {
-  opacity: 0;
-  transition: opacity 0.5s;
-}
-header .header_right_contents .menu_area .burger_btn.close .bar_bottom {
-  width: 30px;
-  transform: translate(-50%, -10px) rotate(-35deg);
-  transition: transform 0.5s;
-}
-header .menu_modal {
-  position: absolute;
   display: flex;
   flex-direction: column;
-  top: 65px;
-  right: -100vw;
-  width: 100vw;
-  gap: 20px;
-  z-index: 4;
-  transition: 0.3s;
-  background-color: #6C6E74;
-}
-header .menu_modal.active {
-  position: fixed;
-  right: 0;
-  transition: 0.3s;
-}
-header .menu_modal .header_menu_link {
-  width: 500px;
-  margin-left: 50%;
-  transform: translateX(-50%);
   text-decoration: none;
-  font-size: 22px;
+  width: 110px;
+  text-align: center;
   color: rgb(40, 40, 40);
+}
+header .header_right_contents .header_right_link span {
+  margin: 0;
+  padding: 15px 0 0 0;
+  font-size: 9px;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+}
+header .header_right_contents .header_right_link h2 {
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
+  font-family: "Open Sans", "sans-serif";
+}
+header .header_right_contents .header_right_link h2::after {
+  box-sizing: content-box;
+  content: "";
+  display: block;
+  width: 0;
+  margin-top: 5px;
+  transition: all 0.3s ease;
   border-bottom: 2px solid rgba(80, 80, 80, 0.8);
+}
+header .header_right_contents .header_right_link h2:hover::after {
+  box-sizing: content-box;
+  width: 100%;
+  border-bottom: 2px solid rgba(80, 80, 80, 0.8);
+}
+header .header_right_contents .header_right_small_link_area {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-left: 70px;
+}
+header .header_right_contents .header_right_small_link_area .header_right_small_link {
+  display: block;
+  text-decoration: none;
+  width: 70px;
+  text-align: center;
+  color: rgb(40, 40, 40);
+}
+header .header_right_contents .header_right_small_link_area .header_right_small_link p {
+  padding-top: 45px;
+  font-size: 15px;
+  font-family: "Open Sans", "sans-serif";
+}
+header .header_right_contents .header_right_small_link_area .header_right_small_link p::after {
+  content: "";
+  display: block;
+  width: 0;
+  margin-top: 2px;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(80, 80, 80, 0.8);
+}
+header .header_right_contents .header_right_small_link_area .header_right_small_link p:hover::after {
+  width: 100%;
+  border-bottom: 1px solid rgba(80, 80, 80, 0.8);
+}
+header .header_right_contents .header_right_account_area {
+  position: relative;
+  width: 130px;
   text-align: center;
 }
-header .menu_modal .header_menu_link:first-of-type {
-  margin-top: 80px;
-}
-header .menu_modal .header_menu_link_ja {
-  width: 500px;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  text-decoration: none;
-  font-size: 22px;
+header .header_right_contents .header_right_account_area .account_icon {
+  position: absolute;
+  top: -18px;
+  right: -10px;
+  font-size: 30px;
   color: rgb(40, 40, 40);
-  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
-  border-bottom: 2px solid rgba(80, 80, 80, 0.8);
-  text-align: center;
+  transition: 0.2s;
 }
-header .menu_modal .header_menu_link_ja:last-of-type {
-  margin-bottom: 80px;
+header .header_right_contents .header_right_account_area .account_icon:hover {
+  color: gray;
+  transition: 0.2s;
 }
 header .account_modal {
   position: absolute;
@@ -254,8 +137,8 @@ header .account_modal {
   flex-direction: column;
   gap: 10px;
   top: 65px;
-  right: -130px;
-  width: 130px;
+  right: -170px;
+  width: 170px;
   height: 400px;
   text-align: center;
   z-index: 100;
@@ -276,7 +159,7 @@ header .account_modal .header_account_logout_link {
   text-decoration: none;
   font-size: 15px;
   color: rgb(40, 40, 40);
-  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+  font-family: "Open Sans", "sans-serif";
 }
 header .account_modal.active {
   right: 0 !important;
@@ -288,26 +171,27 @@ header .account_modal.active {
   min-height: 900px;
   padding: 200px 0 250px 0;
   margin: 0;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: #fff;
 }
-.form_wrapper .login_form {
+.form_wrapper .form {
   width: 350px;
-  min-height: 380px;
+  min-height: 350px;
   margin-left: 50%;
   transform: translateX(-50%);
   background-color: #fff;
+  border: 1px solid rgba(80, 80, 80, 0.8);
 }
-.form_wrapper .login_form .form_title {
+.form_wrapper .form .form_title {
   margin: 0;
   padding: 10px 0;
   font-size: 22px;
-  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+  font-family: "Open Sans", "sans-serif";
   text-align: center;
   letter-spacing: 3px;
   color: rgba(255, 255, 255, 0.8);
   background-color: black;
 }
-.form_wrapper .login_form .form_area {
+.form_wrapper .form .form_area {
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -315,55 +199,91 @@ header .account_modal.active {
   margin: 60px 0 0 25px;
   padding-bottom: 30px;
 }
-.form_wrapper .login_form .form_area .message {
+.form_wrapper .form .form_area .message {
   margin: 0;
   padding: 0;
   font-size: 12px;
   color: rgb(110, 0, 0);
 }
-.form_wrapper .login_form .form_area .form_content {
+.form_wrapper .form .form_area .form_content {
   position: relative;
-  width: 300px;
+  width: 100%;
 }
-.form_wrapper .login_form .form_area .form_content .form_label {
+.form_wrapper .form .form_area .form_content .form_label {
   position: absolute;
   top: -12px;
   left: 10px;
   font-size: 13px;
-  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+  font-family: "Open Sans", "sans-serif";
   color: rgb(40, 40, 40);
   opacity: 0.8;
   background-color: #fff;
 }
-.form_wrapper .login_form .form_area .form_content .form_input {
+.form_wrapper .form .form_area .form_content .form_input {
   width: 100%;
   font-size: 15px;
-  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+  font-family: "Open Sans", "sans-serif";
+  background-color: #fff;
 }
-.form_wrapper .login_form .form_area .form_content .form_input:focus {
+.form_wrapper .form .form_area .form_content .form_input:focus {
   border: 1px solid rgba(80, 80, 80, 0.8);
   outline: 1px rgb(40, 40, 40);
   box-shadow: 3px 3px 3px rgb(40, 40, 40);
 }
-.form_wrapper .login_form .form_area .btn {
+.form_wrapper .form .form_area .form_content .auth_form_label {
+  position: absolute;
+  top: -12px;
+  left: 10px;
+  margin-top: 25px;
+  font-size: 13px;
+  font-family: "Open Sans", "sans-serif";
+  color: rgb(40, 40, 40);
+  opacity: 0.8;
+  background-color: #fff;
+}
+.form_wrapper .form .form_area .form_content .auth_form_input {
+  width: 100%;
+  margin-top: 25px;
+  font-size: 15px;
+  font-family: "Open Sans", "sans-serif";
+}
+.form_wrapper .form .form_area .form_content .auth_form_input:focus {
+  border: 1px solid rgba(80, 80, 80, 0.8);
+  outline: 1px rgb(40, 40, 40);
+  box-shadow: 3px 3px 3px rgb(40, 40, 40);
+}
+.form_wrapper .form .form_area .btn {
   width: 80px;
   margin-left: 220px;
   font-size: 13px;
-  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+  font-family: "Open Sans", "sans-serif";
   color: rgb(40, 40, 40);
   border: 1px solid rgba(80, 80, 80, 0.8);
 }
-.form_wrapper .login_form .form_area .btn:hover {
+.form_wrapper .form .form_area .btn:hover {
   transition: 1s;
   background-color: rgb(150, 150, 150);
 }
-.form_wrapper .login_form .link_area {
+.form_wrapper .form .form_area .auth_btn {
+  width: 80px;
+  margin-top: 20px;
+  margin-left: 220px;
+  font-size: 13px;
+  font-family: "Open Sans", "sans-serif";
+  color: rgb(40, 40, 40);
+  border: 1px solid rgba(80, 80, 80, 0.8);
+}
+.form_wrapper .form .form_area .auth_btn:hover {
+  transition: 1s;
+  background-color: rgb(150, 150, 150);
+}
+.form_wrapper .form .link_area {
   width: 150px;
   margin-left: 50%;
   padding-bottom: 30px;
   transform: translateX(-50%);
 }
-.form_wrapper .login_form .link_area .form_link {
+.form_wrapper .form .link_area .form_link {
   position: relative;
   display: block;
   width: 100%;
@@ -374,7 +294,7 @@ header .account_modal.active {
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   font-size: 12px;
 }
-.form_wrapper .login_form .link_area .form_link::after {
+.form_wrapper .form .link_area .form_link::after {
   position: absolute;
   content: "";
   display: inline-block;
@@ -386,123 +306,21 @@ header .account_modal.active {
   border-right: 0.5px solid rgb(40, 40, 40);
   transform: rotate(45deg);
 }
-.form_wrapper .login_form .link_area .form_link:hover::after {
+.form_wrapper .form .link_area .form_link:hover::after {
   right: 0px;
   transition: 0.3s;
 }
-.form_wrapper .signup_form {
-  width: 350px;
-  min-height: 350px;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  background-color: #fff;
-}
-.form_wrapper .signup_form .form_title {
-  margin: 0;
-  padding: 10px 0;
-  font-size: 22px;
-  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
-  text-align: center;
-  letter-spacing: 3px;
-  color: rgba(255, 255, 255, 0.8);
-  background-color: black;
-}
-.form_wrapper .signup_form .form_area {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  width: 300px;
-  margin: 60px 0 0 25px;
-  padding-bottom: 30px;
-}
-.form_wrapper .signup_form .form_area .message {
-  margin: 0;
-  padding: 0;
-  font-size: 12px;
-  color: rgb(110, 0, 0);
-}
-.form_wrapper .signup_form .form_area .form_content {
-  position: relative;
-  width: 100%;
-}
-.form_wrapper .signup_form .form_area .form_content .form_label {
-  position: absolute;
-  top: -12px;
-  left: 10px;
-  font-size: 13px;
-  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
-  color: rgb(40, 40, 40);
-  opacity: 0.8;
-  background-color: #fff;
-}
-.form_wrapper .signup_form .form_area .form_content .form_input {
-  width: 100%;
-  font-size: 15px;
-  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
-}
-.form_wrapper .signup_form .form_area .form_content .form_input:focus {
-  border: 1px solid rgba(80, 80, 80, 0.8);
-  outline: 1px rgb(40, 40, 40);
-  box-shadow: 3px 3px 3px rgb(40, 40, 40);
-}
-.form_wrapper .signup_form .form_area .form_content .auth_form_label {
-  position: absolute;
-  top: -12px;
-  left: 10px;
-  margin-top: 25px;
-  font-size: 13px;
-  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
-  color: rgb(40, 40, 40);
-  opacity: 0.8;
-  background-color: #fff;
-}
-.form_wrapper .signup_form .form_area .form_content .auth_form_input {
-  width: 100%;
-  margin-top: 25px;
-  font-size: 15px;
-  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
-}
-.form_wrapper .signup_form .form_area .form_content .auth_form_input:focus {
-  border: 1px solid rgba(80, 80, 80, 0.8);
-  outline: 1px rgb(40, 40, 40);
-  box-shadow: 3px 3px 3px rgb(40, 40, 40);
-}
-.form_wrapper .signup_form .form_area .btn {
-  width: 80px;
-  margin-left: 220px;
-  font-size: 13px;
-  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
-  color: rgb(40, 40, 40);
-  border: 1px solid rgba(80, 80, 80, 0.8);
-}
-.form_wrapper .signup_form .form_area .btn:hover {
-  transition: 1s;
-  background-color: rgb(150, 150, 150);
-}
-.form_wrapper .signup_form .form_area .auth_btn {
-  width: 80px;
-  margin-top: 20px;
-  margin-left: 220px;
-  font-size: 13px;
-  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
-  color: rgb(40, 40, 40);
-  border: 1px solid rgba(80, 80, 80, 0.8);
-}
-.form_wrapper .signup_form .form_area .auth_btn:hover {
-  transition: 1s;
-  background-color: rgb(150, 150, 150);
-}
 
-.top_wapper {
-  padding-top: 4%;
-  box-shadow: 0px 1.2px 3.6px rgba(0, 0, 0, 0.11), 0px 6.4px 14.4px rgba(0, 0, 0, 0.13);
+.top_wrapper {
+  margin: 0;
+  box-shadow: 2px 2px 2.5px rgb(0, 0, 0);
 }
-.top_wapper .top_container {
+.top_wrapper .top_container {
   max-width: 1900px;
   margin: 0 auto;
   margin-bottom: 100px;
 }
-.top_wapper .top_container .top_bg_img {
+.top_wrapper .top_container .top_bg_img {
   background: linear-gradient(to top, rgba(255, 255, 255, 0) 55%, rgb(255, 255, 255) 80%), url("/static/images/sleeping-man.jpg");
   text-align: center;
   width: 100%;
@@ -511,15 +329,15 @@ header .account_modal.active {
   background-repeat: no-repeat;
   background-position: top;
 }
-.top_wapper .top_container .top_main_title {
+.top_wrapper .top_container .top_main_title {
   display: inline-block;
 }
-.top_wapper .top_container .top_main_title h3 {
-  font-size: 50px;
+.top_wrapper .top_container .top_main_title h3 {
+  font-size: 45px;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   font-weight: bold;
 }
-.top_wapper .top_container .top_main_title p {
+.top_wrapper .top_container .top_main_title p {
   width: 70%;
   font-size: 15px;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
@@ -557,7 +375,7 @@ header .account_modal.active {
   min-height: 900px;
   padding: 120px 0 150px 0;
   margin: 0;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: #fff;
 }
 .main_wrapper .container {
   width: 1290px;
@@ -579,7 +397,7 @@ header .account_modal.active {
 }
 .main_wrapper .container .tools_table {
   width: 1298px;
-  margin-top: 70px;
+  margin-top: 80px;
   margin-left: 50%;
   transform: translateX(-50%);
 }
@@ -593,7 +411,7 @@ header .account_modal.active {
 .main_wrapper .container .tools_table tr .tool {
   box-sizing: content-box;
   width: 300px;
-  height: 200px;
+  height: 150px;
   margin-bottom: 40px;
 }
 .main_wrapper .container .tools_table tr .tool .tool_items {
@@ -639,7 +457,7 @@ header .account_modal.active {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 165px;
+  height: 115px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   font-size: 13px;
@@ -654,8 +472,8 @@ header .account_modal.active {
   position: absolute;
   -o-object-fit: cover;
      object-fit: cover;
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   opacity: 1;
   top: 50%;
   left: 50%;
@@ -742,12 +560,12 @@ header .account_modal.active {
 }
 footer {
   width: 100%;
-  height: 400px;
+  height: 40px;
   text-align: center;
   background-color: rgb(238, 238, 234);
 }
 footer p {
-  padding: 5% 0 0 0;
+  padding-top: 10px;
   font-size: 12px;
-  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+  font-family: "Open Sans", "sans-serif";
 }/*# sourceMappingURL=main.css.map */
