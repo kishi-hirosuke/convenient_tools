@@ -80,16 +80,16 @@ WSGI_APPLICATION = 'convenient_tools.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': env('DB_ENGINE'),
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
-        'PORT': env('DB_PORT'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': env('DB_ENGINE'),
+#         'NAME': env('DB_NAME'),
+#         'USER': env('DB_USER'),
+#         'PASSWORD': env('DB_PASSWORD'),
+#         'HOST': env('DB_HOST'),
+#         'PORT': env('DB_PORT'),
+#     }
+# }
 
 SESSION_COOKIE_AGE = 60 * 30
 SESSION_SAVE_EVERY_REQUEST = True
@@ -121,15 +121,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'tool_site.AutoBizAccount'
+# AUTH_USER_MODEL = 'tool_site.AutoBizAccount'
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/top/'
-LOGOUT_REDIRECT_URL = LOGIN_URL
+# LOGIN_URL = '/login/'
+# LOGIN_REDIRECT_URL = '/top/'
+# LOGOUT_REDIRECT_URL = LOGIN_URL
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

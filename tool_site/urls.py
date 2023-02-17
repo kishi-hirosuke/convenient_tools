@@ -10,27 +10,27 @@ urlpatterns = [
     path('about/', views.AboutView.as_view(), name='about'),
     path('help/', views.HelpView.as_view(), name='help'),
     #stripe決済
-    path('create_checkout_session/', views.create_checkout_session, name='checkout_session'),
-    path('premium/', views.SubscriptionPremiumView.as_view(), name='premium'),
-    path('success/', views.SubscriptionSuccessView.as_view(), name='success'),
-    path('cancel/', views.SubscriptionCancelView.as_view(), name='cancel'),
+    # path('create_checkout_session/', views.create_checkout_session, name='checkout_session'),
+    # path('premium/', views.SubscriptionPremiumView.as_view(), name='premium'),
+    # path('success/', views.SubscriptionSuccessView.as_view(), name='success'),
+    # path('cancel/', views.SubscriptionCancelView.as_view(), name='cancel'),
     # サインアップ
-    path('signup/', views.SignupView, name='signup'),
+    # path('signup/', views.SignupView, name='signup'),
     # ログイン
-    path('login/', views.LoginView, name='login'),
+    # path('login/', views.LoginView, name='login'),
     # ログアウト
-    path('logout/', views.LogoutView, name='logout'),
+    # path('logout/', views.LogoutView, name='logout'),
     # パスワード忘却処置
-    path('lost_password/', views.Lost_PasswordView, name='lost_password'),
+    # path('lost_password/', views.Lost_PasswordView, name='lost_password'),
     # アカウント情報変更
-    path('edit_email/', views.Edit_EmailView, name='edit_email'),
-    path('edit_password/', views.Edit_PasswordView, name='edit_password'),
+    # path('edit_email/', views.Edit_EmailView, name='edit_email'),
+    # path('edit_password/', views.Edit_PasswordView, name='edit_password'),
     # お問い合わせ
     path('inquiry/', views.InquiryView, name='inquiry' ),
     # カテゴリ
-    path('CSV_category/', views.Tool_CSV_categoryView.as_view(), name='csv_category'),
-    path('Excel_category/', views.Tool_Excel_categoryView.as_view(), name='excel_category'),
-    path('Image_category/', views.Tool_Image_categoryView.as_view(), name='image_category'),
+    # path('CSV_category/', views.Tool_CSV_categoryView.as_view(), name='csv_category'),
+    # path('Excel_category/', views.Tool_Excel_categoryView.as_view(), name='excel_category'),
+    # path('Image_category/', views.Tool_Image_categoryView.as_view(), name='image_category'),
     # csv処理
     path('tool_CSV_extract/', views.Tool_CSV_extractView, name='csv_extract'),
     path('tool_CSV_split/', views.Tool_CSV_splitView, name='csv_split'),

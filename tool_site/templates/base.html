@@ -45,15 +45,10 @@
         <a href={% url 'top' %} class="header_top_link" id="header_top_link">
             <img src="{% static 'images/rectangle-transparent.png' %}" alt="" class="title_img">
         </a>
-        {% if request.user.is_authenticated %}
         <div class="header_right_contents">
             <a href={% url 'about' %} class="header_right_link">
                 <span>auto-bizとは</span>
                 <h2>About</h2>
-            </a>
-            <a href={% url 'login' %} class="header_right_link">
-                <span>プレミアム会員</span>
-                <h2>Premium</h2>
             </a>
             <a href={% url 'tools' %} class="header_right_link">
                 <span>機能一覧</span>
@@ -63,25 +58,14 @@
                 <span>お問い合わせ</span>
                 <h2>Contact</h2>
             </a>
-            <div class="header_right_account_area" id="header_account_area">
-                <span class="account_icon bi bi-person-circle"></span>
+            <div class="header_right_small_link_area">
+                <a href="" class="header_right_small_link">
+                    <p>利用規約</p>
+                </a>
+                <a href={% url 'help' %} class="header_right_small_link">
+                    <p>Help</p>
+                </a>
             </div>
-        </div>
-        {% else %}
-            {% block header %}
-            {% endblock %}
-        {% endif %}
-
-        <!-- <div class="menu_modal">
-            {% block header_menu %}
-            {% endblock %}
-        </div> -->
-
-        <div class="account_modal">
-            <a href={% url 'edit_email' %} class="header_account_edit_link">メール変更</a>
-            <a href={% url 'edit_password' %} class="header_account_edit_link">パスワード変更</a>
-            <a href={% url 'logout' %} class="header_account_logout_link">Logout</a>
-            <a href={% url 'premium' %} class="header_account_logout_link">プレミアム会員</a>
         </div>
     </header>
 

@@ -1,35 +1,6 @@
 {% extends "base.html" %}
 {% load widget_tweaks %}
 
-{% block header %}
-    <div class="header_right_contents">
-        <a href={% url 'about' %} class="header_right_link">
-            <h2>About</h2>
-        </a>
-        <a href={% url 'inquiry' %} class="header_right_link">
-            <h2>Contact</h2>
-        </a>
-        <a href={% url 'signup' %} class="header_right_link">
-            <h2>Signup</h2>
-        </a>
-        <div class="header_right_small_link_area">
-            <a href={% url 'help' %} class="header_right_small_link">
-                <p>Help</p>
-            </a>
-            <a href="" class="header_right_small_link">
-                <p>利用規約</p>
-            </a>
-        </div>
-        <!-- <div class="menu_area">
-            <div class="burger_btn">
-                <span class="bar bar_top"></span>
-                <span class="bar bar_mid"></span>
-                <span class="bar bar_bottom"></span>
-            </div>
-        </div> -->
-    </div>
-{% endblock %}
-
 {% block main %}
 <div class="form_wrapper">
     <form method="POST" class="form form-group">
