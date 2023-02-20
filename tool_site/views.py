@@ -476,7 +476,7 @@ def email_send(request, subject, body, email, redirect_name):
 
 
 # # ログアウト
-# @login_required
+# #@login_required
 # def LogoutView(request):
 #     logout(request)
 #     return redirect('login')
@@ -561,7 +561,7 @@ def Tool_CSV_extractView(request):
 
 
 #csv分割
-@login_required
+#@login_required
 def Tool_CSV_splitView(request):
     if request.method == 'POST':
 
@@ -590,7 +590,7 @@ def Tool_CSV_splitView(request):
 
 
 #csv行削除
-@login_required
+#@login_required
 def Tool_CSV_removeView(request):
     if request.method == 'POST':
 
@@ -627,7 +627,7 @@ def Tool_CSV_removeView(request):
 
 
 #html_table変換
-@login_required
+#@login_required
 def Tool_Excel_tableView(request):
     if request.method == 'POST':
 
@@ -657,7 +657,7 @@ def Tool_Excel_tableView(request):
 
 
 #excel行抽出
-@login_required
+#@login_required
 def Tool_Excel_extractView(request):
     if request.method == 'POST':
 
@@ -702,7 +702,7 @@ def Tool_Excel_extractView(request):
 
 
 #excel分割
-@login_required
+#@login_required
 def Tool_Excel_splitView(request):
     if request.method == 'POST':
 
@@ -738,7 +738,7 @@ def Tool_Excel_splitView(request):
 
 
 #excel行削除
-@login_required
+#@login_required
 def Tool_Excel_removeView(request):
     if request.method == 'POST':
 
@@ -783,7 +783,7 @@ def Tool_Excel_removeView(request):
 
 
 # imageリサイズ
-@login_required
+#@login_required
 def Tool_Image_resizeView(request):
     if request.method == 'POST':
         upload = ImageResize(request.POST, request.FILES)

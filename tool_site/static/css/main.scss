@@ -22,7 +22,7 @@
 $title: 45px;
 $header_title: 20px;
 $subtitle: 22px;
-$text: 15px;
+$text: 16px;
 $text_color: rgb(40, 40, 40);
 $border_color: rgba(80, 80, 80, 0.8);
 $hover_color: rgba(255, 255, 255, 0.8);
@@ -496,7 +496,7 @@ header {
 
 // topページ追加
 .top_wrapper{
-    padding-top: 4%;
+    padding-top: 8%;
     box-shadow: 0px 1.2px 3.6px rgb(0 0 0 / 11%), 0px 6.4px 14.4px rgb(0 0 0 / 13%);
 
     .top_container{
@@ -527,12 +527,15 @@ header {
                 margin: auto;
                 padding-top: 10px;
             }
+            a{
+                margin-top: 30px;
+            }
         }
     }
 }
 
 @media screen and (max-width:1900px) {
-    .top_wapper{
+    .top_wrapper{
         .top_container{
             .top_bg_img{
                 height: 50vw;
@@ -542,7 +545,7 @@ header {
 }
 
 @media screen and (max-width:1300px) {
-    .top_wapper{
+    .top_wrapper{
         .top_container{
             .top_bg_img{
                 height: 60vw;
@@ -557,7 +560,7 @@ header {
 }
 
 @media screen and (max-width:960px) {
-    .top_wapper{
+    .top_wrapper{
         padding-top: 10%;
         .top_container{
             .top_bg_img{

@@ -99,7 +99,7 @@ header .header_right_contents .header_right_small_link_area .header_right_small_
 }
 header .header_right_contents .header_right_small_link_area .header_right_small_link p {
   padding-top: 45px;
-  font-size: 15px;
+  font-size: 16px;
   font-family: "Open Sans", "sans-serif";
 }
 header .header_right_contents .header_right_small_link_area .header_right_small_link p::after {
@@ -150,14 +150,14 @@ header .account_modal .header_account_edit_link {
   margin-top: 20px;
   padding: 5px 0;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 16px;
   color: rgb(40, 40, 40);
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
 header .account_modal .header_account_logout_link {
   display: block;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 16px;
   color: rgb(40, 40, 40);
   font-family: "Open Sans", "sans-serif";
 }
@@ -221,7 +221,7 @@ header .account_modal.active {
 }
 .form_wrapper .form .form_area .form_content .form_input {
   width: 100%;
-  font-size: 15px;
+  font-size: 16px;
   font-family: "Open Sans", "sans-serif";
   background-color: #fff;
 }
@@ -244,7 +244,7 @@ header .account_modal.active {
 .form_wrapper .form .form_area .form_content .auth_form_input {
   width: 100%;
   margin-top: 25px;
-  font-size: 15px;
+  font-size: 16px;
   font-family: "Open Sans", "sans-serif";
 }
 .form_wrapper .form .form_area .form_content .auth_form_input:focus {
@@ -312,7 +312,7 @@ header .account_modal.active {
 }
 
 .top_wrapper {
-  padding-top: 4%;
+  padding-top: 8%;
   box-shadow: 0px 1.2px 3.6px rgba(0, 0, 0, 0.11), 0px 6.4px 14.4px rgba(0, 0, 0, 0.13);
 }
 .top_wrapper .top_container {
@@ -339,34 +339,37 @@ header .account_modal.active {
 }
 .top_wrapper .top_container .top_main_title p {
   width: 70%;
-  font-size: 15px;
+  font-size: 16px;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   margin: auto;
   padding-top: 10px;
 }
+.top_wrapper .top_container .top_main_title a {
+  margin-top: 30px;
+}
 
 @media screen and (max-width: 1900px) {
-  .top_wapper .top_container .top_bg_img {
+  .top_wrapper .top_container .top_bg_img {
     height: 50vw;
   }
 }
 @media screen and (max-width: 1300px) {
-  .top_wapper .top_container .top_bg_img {
+  .top_wrapper .top_container .top_bg_img {
     height: 60vw;
   }
-  .top_wapper .top_container .top_main_title h3 {
+  .top_wrapper .top_container .top_main_title h3 {
     font-size: 45px;
   }
 }
 @media screen and (max-width: 960px) {
-  .top_wapper {
+  .top_wrapper {
     padding-top: 10%;
   }
-  .top_wapper .top_container .top_bg_img {
+  .top_wrapper .top_container .top_bg_img {
     background-size: 150%;
     height: 100vw;
   }
-  .top_wapper .top_container .top_main_title h3 {
+  .top_wrapper .top_container .top_main_title h3 {
     font-size: 35px;
   }
 }
@@ -392,7 +395,7 @@ header .account_modal.active {
   font-weight: bold;
 }
 .main_wrapper .container .main_title p {
-  font-size: 15px;
+  font-size: 16px;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
 .main_wrapper .container .tools_table {
@@ -434,7 +437,7 @@ header .account_modal.active {
 .main_wrapper .container .tools_table tr .tool .tool_items .tool_item_title h3 {
   margin: 0;
   padding: 7px 0 0 20px;
-  font-size: 15px;
+  font-size: 16px;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   font-weight: bold;
   color: rgb(40, 40, 40);
@@ -511,7 +514,7 @@ header .account_modal.active {
   width: 100%;
   margin-top: 20px;
   padding-left: 15px;
-  font-size: 15px;
+  font-size: 16px;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   font-weight: bold;
 }
@@ -528,7 +531,7 @@ header .account_modal.active {
   width: 100%;
   margin-top: 20px;
   padding-left: 15px;
-  font-size: 15px;
+  font-size: 16px;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   font-weight: bold;
 }
