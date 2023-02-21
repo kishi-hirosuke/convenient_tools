@@ -14,7 +14,7 @@ sys.dont_write_bytecode = True
 import environ
 from pathlib import Path
 from re import T
-import psycopg2
+# import psycopg2
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
