@@ -311,16 +311,17 @@ header .account_modal.active {
   transition: 0.3s;
 }
 
-.top_wrapper {
-  padding-top: 8%;
+.hero_wrapper {
+  padding-top: 3%;
   box-shadow: 0px 1.2px 3.6px rgba(0, 0, 0, 0.11), 0px 6.4px 14.4px rgba(0, 0, 0, 0.13);
+  background-color: #fff;
 }
-.top_wrapper .top_container {
+.hero_wrapper .hero_container {
   max-width: 1900px;
   margin: 0 auto;
   margin-bottom: 100px;
 }
-.top_wrapper .top_container .top_bg_img {
+.hero_wrapper .hero_container .hero_bg_img {
   background: linear-gradient(to top, rgba(255, 255, 255, 0) 55%, rgb(255, 255, 255) 80%), url("/static/images/sleeping-man.jpg");
   text-align: center;
   width: 100%;
@@ -329,50 +330,119 @@ header .account_modal.active {
   background-repeat: no-repeat;
   background-position: top;
 }
-.top_wrapper .top_container .top_main_title {
+.hero_wrapper .hero_container .hero_main_title {
   display: inline-block;
 }
-.top_wrapper .top_container .top_main_title h3 {
+.hero_wrapper .hero_container .hero_main_title h3 {
   font-size: 45px;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   font-weight: bold;
 }
-.top_wrapper .top_container .top_main_title p {
+.hero_wrapper .hero_container .hero_main_title p {
   width: 70%;
   font-size: 16px;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   margin: auto;
   padding-top: 10px;
 }
-.top_wrapper .top_container .top_main_title a {
-  margin-top: 30px;
+.hero_wrapper .hero_container .hero_main_title a {
+  margin-top: 25px;
+  background-color: #1285ff;
+  padding: 15px 30px;
+  font-size: 20px;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+  box-shadow: 0px 1.2px 3.6px rgba(0, 0, 0, 0.11), 0px 6.4px 14.4px rgba(0, 0, 0, 0.13);
 }
 
 @media screen and (max-width: 1900px) {
-  .top_wrapper .top_container .top_bg_img {
+  .hero_wrapper .hero_container .hero_bg_img {
     height: 50vw;
   }
 }
 @media screen and (max-width: 1300px) {
-  .top_wrapper .top_container .top_bg_img {
+  .hero_wrapper .hero_container .hero_bg_img {
     height: 60vw;
   }
-  .top_wrapper .top_container .top_main_title h3 {
+  .hero_wrapper .hero_container .hero_main_title h3 {
     font-size: 45px;
   }
 }
 @media screen and (max-width: 960px) {
-  .top_wrapper {
+  .hero_wrapper {
     padding-top: 10%;
   }
-  .top_wrapper .top_container .top_bg_img {
-    background-size: 150%;
+  .hero_wrapper .hero_container .hero_bg_img {
+    background-size: 200%;
     height: 100vw;
   }
-  .top_wrapper .top_container .top_main_title h3 {
+  .hero_wrapper .hero_container .hero_main_title h3 {
     font-size: 35px;
   }
 }
+.top_wrapper {
+  width: 100%;
+  padding: 50px 0 150px 0;
+  margin: 0;
+}
+.top_wrapper .top_container .about {
+  margin: 0 25%;
+}
+.top_wrapper .top_container .about h3 {
+  font-size: 45px;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+.top_wrapper .top_container .feature {
+  margin-left: 25%;
+  padding: 100px 0;
+  background: no-repeat;
+  background-image: url("/static/images/timer.png"), url("/static/images/pc.png");
+  background-position: 65% 10%, 45% 55%;
+  background-size: 10%, 25%;
+}
+.top_wrapper .top_container .feature ul {
+  list-style: none;
+  padding: 0 0;
+}
+.top_wrapper .top_container .feature ul li {
+  width: 300px;
+  margin-bottom: 50px;
+  background: no-repeat;
+  background-size: 30px auto;
+}
+.top_wrapper .top_container .feature ul li h4 {
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+  font-weight: bold;
+  margin-left: 40px;
+}
+.top_wrapper .top_container .feature ul li:nth-child(1) {
+  background-image: url("/static/images/icon/robot.png");
+}
+.top_wrapper .top_container .feature ul li:nth-child(2) {
+  background-image: url("/static/images/icon/beginner.png");
+}
+.top_wrapper .top_container .feature ul li:nth-child(3) {
+  background-image: url("/static/images/icon/security.png");
+}
+.top_wrapper .top_container .inquiry {
+  margin: 100px 25%;
+}
+.top_wrapper .top_container .inquiry h3 {
+  font-size: 45px;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+.top_wrapper .top_container .inquiry a {
+  margin-top: 25px;
+  background-color: #1285ff;
+  padding: 15px 30px;
+  font-size: 20px;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+  box-shadow: 0px 1.2px 3.6px rgba(0, 0, 0, 0.11), 0px 6.4px 14.4px rgba(0, 0, 0, 0.13);
+}
+
 .main_wrapper {
   width: 100%;
   min-height: 900px;
