@@ -24,6 +24,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500&family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="{% static 'js/script.js' %}" defer></script>
     {% block title %}
     {% endblock %}
 </head>
@@ -46,17 +47,11 @@
             <img src="{% static 'images/rectangle-transparent.png' %}" alt="" class="title_img">
         </a>
         <div class="header_right_contents">
-            <a href={% url 'about' %} class="header_right_link">
-                <span>auto-bizとは</span>
-                <h2>About</h2>
-            </a>
             <a href={% url 'tools' %} class="header_right_link">
-                <span>機能一覧</span>
-                <h2>Tools</h2>
+                <h2>機能一覧</h2>
             </a>
             <a href={% url 'inquiry' %} class="header_right_link">
-                <span>お問い合わせ</span>
-                <h2>Contact</h2>
+                <h2>お問い合わせ</h2>
             </a>
             <div class="header_right_small_link_area">
                 <a href="" class="header_right_small_link">
@@ -78,7 +73,6 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script src="{% static 'js/script.js' %}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" defer></script>
 </body>
 </html>

@@ -2,62 +2,72 @@
 //header_pulldown
 $(function() {
 
-    //burger btn
-    const menu_burger = $('.burger_btn');
-    const menu_modal = $('.menu_modal');
-    const header = $('header');
-    var burger_click = true;
-    menu_burger.on('click',function(){
-        if(burger_click) {
-            burger_click = false;
-            setTimeout(function() {
-                burger_click = true;
-            }, 500);
-            menu_burger.toggleClass('close');
-            menu_modal.toggleClass('active');
-            header.toggleClass('active');
-        };
-    });
+    // const account_area = $('.account_icon');
+    // const account_slide = $('.account_modal');
+    // const cc = $('.container');
 
-    //header
-    const tools_area = $('.header_right_slide');
-    const tools_pulldown = $('.header_right_tools_pulldown');
-
-    //tools_hover
-    tools_area.hover(function(){
-        set_tools_hover=setTimeout(function(){
-            tools_pulldown.slideDown(200);
-        },250);
-    },
-    function(){
-        tools_pulldown.slideUp(200);
-        clearTimeout(set_tools_hover);
-    });
-
-    const account_area = $('.account_icon');
-    const account_slide = $('.account_modal');
-    const cc = $('.container');
-
-    var click = true;
-    account_area.on('click', function(){
-        if(click) {
-            click = false;
-            setTimeout(function() {
-                click = true;
-            }, 300);
-            account_slide.toggleClass('active');
-            // account_slide.slideToggle(500);
-        };
-        if(account_slide.hasClass('active')) {
-            cc.on('click', function() {
-                account_slide.toggleClass('active');
-            });
-        }
-    });
-    // body.on('click', function() {
+    // var click = true;
+    // account_area.on('click', function(){
+    //     if(click) {
+    //         click = false;
+    //         setTimeout(function() {
+    //             click = true;
+    //         }, 300);
+    //         account_slide.toggleClass('active');
+    //         // account_slide.slideToggle(500);
+    //     };
     //     if(account_slide.hasClass('active')) {
-    //         account_slide.removeClass('active');
-    //     }
+    //         cc.on('click', function() {
+    //             account_slide.toggleClass('active');
+    //         });
+    //     };
     // });
+
+    //error_message_delete
+    const close_btn = $('.close_icon');
+    const submit_btn = $('.submit_icon');
+
+    close_btn.on('click', function() {
+        $(this).parent().css('display', 'none');
+    });
+    submit_btn.on('click', function() {
+        $('.error_alert').css('display', 'none');
+    });
+
+    //sample
+    const sample_area = $('.sample_area');
+    const sample_btn = $('.sample_text');
+    const sample_close = $('.sample_close');
+
+    sample_btn.on('click', function() {
+        sample_area.css('display', 'block');
+    });
+    sample_close.on('click', function() {
+        sample_area.css('display', 'none');
+    });
+
+
+    //drag_and_drop
+    // const file = $('.file_form').val();
+    // const plus_icon = $('.plus_icon');
+    // const file_items = $('.file_label');
+
+    // function file_empty() {
+    //     if (file.length == 0) {
+    //         plus_icon.css('display', 'block');
+    //     }else {
+    //         file_items.append('<li>' + file + '<li>');
+    //         plus_icon.css('display', 'none');
+    //     };
+    // };
+
+    // file_empty();
+
+    // function file_empty() {
+    //     console.log(file.length);
+    //     console.log(file);
+    // };
+
+    // file_empty();
 
 });
