@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% load widget_tweaks %}
 
 {% block title %}
@@ -8,6 +9,12 @@
 {% block main %}
 
 <div class="main_wrapper">
+
+    <div class="sample_area">
+        <img src="{% static 'images/sample/extract-multiple-af.png' %}" alt="" class="tool_icon_img">
+        <span class="sample_close bi bi-x-lg"></span>
+    </div>
+
     <div class="container">
 
         <div class="main_title">
@@ -31,6 +38,7 @@
                     <li>抽出するキーワードを入力（半角パイプ「|」区切りで複数指定可）</li>
                     <li>実行ボタンをクリック</li>
                 </ol>
+                <p class="sample_text">sample<span class="sample_icon bi bi-box-arrow-up-right"></span></p>
             </div>
         </div>
 
@@ -86,13 +94,13 @@
         </form>
 
         <div class="notice">
-            <p class="notice_title">csv行抽出について</p>
+            <h3 class="notice_title">csv行抽出について</h3>
             <ul class="notice_text">
                 <li>キーワードは部分一致で、半角パイプ「|」区切りで複数キーワード指定可能です。</li><br>
                 <li>アップするcsvファイルの1行目がヘッダーとして読み込まれます。<br>つまり、基準とする列名が1行目にある必要があります。</li><br>
                 <li>基準とする列に空白が含まれているcsvファイルには対応していません。<br>また、基準列以外は空白がある際でも処理は可能ですが、ヘッダーの空白が「Unnamed:」に置き換わります。</li><br>
                 <li>複数ファイルをアップロードする際、zipファイル形式で出力され、中のファイルは全て「utf-8」でエンコードされます。</li><br>
-                <li>アップするcsvファイルによっては文字化けを起こしたり、データ型が変更されて出力される恐れがあります。処理が正常に終了したとしても、ダウンロードデータのご確認をお願いいたします。</li><br>
+                <li>アップするcsvファイルによっては文字化けを起こしたり、データ型が変更されて出力される恐れがあります。<br>処理が正常に終了したとしても、ダウンロードデータのご確認をお願いいたします。</li><br>
                 <li>こちらのツールを使用したことによる不具合は一切の責任を追えませんのでご理解の上ご利用ください。</li><br>
                 <li>現在、最大容量は{{ limit_size }}です。<br>今後、上限解放するかもしれませんのでお楽しみに。</li><br>
                 <li>ご不明な点やご要望がございましたら、こちらの<a href="/inquiry">お問い合わせフォーム</a>までご連絡ください。</li>

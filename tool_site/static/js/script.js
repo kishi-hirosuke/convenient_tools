@@ -34,4 +34,40 @@ $(function() {
         $('.error_alert').css('display', 'none');
     });
 
+    //sample
+    const sample_area = $('.sample_area');
+    const sample_btn = $('.sample_text');
+    const sample_close = $('.sample_close');
+
+    sample_btn.on('click', function() {
+        sample_area.css('display', 'block');
+    });
+    sample_close.on('click', function() {
+        sample_area.css('display', 'none');
+    });
+
+
+    //drag_and_drop
+    // const file = $('.file_form').val();
+    // const plus_icon = $('.plus_icon');
+    // const file_items = $('.file_label');
+
+    // function file_empty() {
+    //     if (file.length == 0) {
+    //         plus_icon.css('display', 'block');
+    //     }else {
+    //         file_items.append('<li>' + file + '<li>');
+    //         plus_icon.css('display', 'none');
+    //     };
+    // };
+
+    // file_empty();
+
+    // function file_empty() {
+    //     console.log(file.length);
+    //     console.log(file);
+    // };
+
+    // file_empty();
+
 });

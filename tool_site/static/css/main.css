@@ -63,20 +63,6 @@ header .header_right_contents .header_right_link h2 {
   font-size: 18px;
   font-family: "Open Sans", "sans-serif";
 }
-header .header_right_contents .header_right_link h2::after {
-  box-sizing: content-box;
-  content: "";
-  display: block;
-  width: 0;
-  margin-top: 5px;
-  transition: all 0.3s ease;
-  border-bottom: 2px solid rgba(80, 80, 80, 0.8);
-}
-header .header_right_contents .header_right_link h2:hover::after {
-  box-sizing: content-box;
-  width: 100%;
-  border-bottom: 2px solid rgba(80, 80, 80, 0.8);
-}
 header .header_right_contents .header_right_small_link_area {
   display: flex;
   align-items: center;
@@ -94,18 +80,6 @@ header .header_right_contents .header_right_small_link_area .header_right_small_
   padding-top: 45px;
   font-size: 15px;
   font-family: "Open Sans", "sans-serif";
-}
-header .header_right_contents .header_right_small_link_area .header_right_small_link p::after {
-  content: "";
-  display: block;
-  width: 0;
-  margin-top: 2px;
-  transition: all 0.3s ease;
-  border-bottom: 1px solid rgba(80, 80, 80, 0.8);
-}
-header .header_right_contents .header_right_small_link_area .header_right_small_link p:hover::after {
-  width: 100%;
-  border-bottom: 1px solid rgba(80, 80, 80, 0.8);
 }
 header .header_right_contents .header_right_account_area {
   position: relative;
@@ -164,7 +138,7 @@ header .account_modal.active {
   min-height: 900px;
   padding: 200px 0 250px 0;
   margin: 0;
-  background-color: #fff;
+  background-color: rgb(255, 255, 255);
 }
 .form_wrapper .form {
   width: 350px;
@@ -364,11 +338,48 @@ header .account_modal.active {
   }
 }
 .main_wrapper {
+  position: relative;
   width: 100%;
   min-height: 900px;
   padding: 120px 0 150px 0;
   margin: 0;
-  background-color: #fff;
+  background-color: rgb(255, 255, 255);
+}
+.main_wrapper .tools_main_image {
+  position: absolute;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+  top: 0;
+  left: 0;
+}
+.main_wrapper .sample_area {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(5, 5, 5, 0.856);
+  z-index: 6;
+}
+.main_wrapper .sample_area img {
+  position: absolute;
+  width: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 6;
+}
+.main_wrapper .sample_area .sample_close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  font-size: 22px;
+  color: wheat;
+  z-index: 6;
 }
 .main_wrapper .container {
   width: 1290px;
@@ -389,7 +400,7 @@ header .account_modal.active {
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
 .main_wrapper .container .tools_table {
-  width: 1298px;
+  width: 1290px;
   margin-top: 80px;
   margin-left: 50%;
   transform: translateX(-50%);
@@ -402,32 +413,36 @@ header .account_modal.active {
   gap: 30px;
 }
 .main_wrapper .container .tools_table tr .tool {
-  box-sizing: content-box;
+  position: relative;
   width: 300px;
-  height: 150px;
   margin-bottom: 40px;
+  border: 1px solid rgba(80, 80, 80, 0.8);
+  border-radius: 3px;
+  background-color: #fff;
+  transition: 0.2s;
 }
 .main_wrapper .container .tools_table tr .tool .tool_items {
-  box-sizing: content-box;
-  position: relative;
   width: 100%;
   height: 100%;
+  margin: 0;
   padding: 0;
   display: block;
   text-decoration: none;
-  border: 1px solid rgba(80, 80, 80, 0.8);
-  background-color: rgb(129, 129, 129);
+}
+.main_wrapper .container .tools_table tr .tool .tool_items .tool_icon_img {
+  width: 23px;
+  height: 23px;
+  margin-top: 10px;
+  margin-left: 10px;
 }
 .main_wrapper .container .tools_table tr .tool .tool_items .tool_item_title {
   margin: 0;
   padding: 0;
-  height: 35px;
-  background-color: rgb(129, 129, 129);
+  text-align: center;
 }
 .main_wrapper .container .tools_table tr .tool .tool_items .tool_item_title h3 {
   margin: 0;
-  padding: 7px 0 0 20px;
-  font-size: 15px;
+  font-size: 19px;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   font-weight: bold;
   color: rgb(40, 40, 40);
@@ -446,50 +461,36 @@ header .account_modal.active {
   opacity: 0;
 }
 .main_wrapper .container .tools_table tr .tool .tool_items .tool_item_sentence {
-  display: flex;
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 115px;
+  height: 100px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   font-size: 13px;
-  background-color: rgb(255, 255, 255);
-}
-.main_wrapper .container .tools_table tr .tool .tool_items .tool_item_sentence .tool_icon_area {
-  position: relative;
-  width: 80px;
-  height: 100%;
-}
-.main_wrapper .container .tools_table tr .tool .tool_items .tool_item_sentence .tool_icon_area .tool_icon_img {
-  position: absolute;
-  -o-object-fit: cover;
-     object-fit: cover;
-  width: 20px;
-  height: 20px;
-  opacity: 1;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 .main_wrapper .container .tools_table tr .tool .tool_items .tool_item_sentence p {
-  width: 216px;
-  padding: 15px 5px 7px 0;
+  width: 100%;
+  padding: 15px 10px 0;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   color: rgb(40, 40, 40);
 }
-.main_wrapper .container .tools_table tr .tool .tool_items:hover {
-  transition: 1s;
-  background-color: rgb(255, 255, 255);
+.main_wrapper .container .tools_table tr .tool .tool_items .tool_detail {
+  display: flex;
+  align-items: center;
+  margin: 0 0 0 25px;
+  padding: 10px 0 10px 0;
+  font-size: 13px;
+  font-weight: bold;
+  color: rgb(40, 40, 40);
 }
-.main_wrapper .container .tools_table tr .tool .tool_items:hover .tool_item_title {
-  transition: 1s;
-  background-color: rgb(255, 255, 255);
+.main_wrapper .container .tools_table tr .tool .tool_items .tool_detail .tool_detail_icon {
+  margin-left: 5px;
+  font-size: 12px;
 }
-.main_wrapper .container .tools_table tr .tool .tool_items:hover .tool_item_title p::after {
-  right: 20px;
-  transition: 1s;
-  opacity: 1;
+.main_wrapper .container .tools_table tr .tool:hover {
+  top: -3px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
 }
 .main_wrapper .container .tool_explanation {
   display: flex;
@@ -514,6 +515,7 @@ header .account_modal.active {
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
 .main_wrapper .container .tool_explanation .explanation_used {
+  position: relative;
   width: 50%;
   border-left: 1px solid rgba(80, 80, 80, 0.8);
 }
@@ -530,9 +532,19 @@ header .account_modal.active {
   font-size: 13px;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
+.main_wrapper .container .tool_explanation .explanation_used .sample_text {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 15px;
+}
+.main_wrapper .container .tool_explanation .explanation_used .sample_text span {
+  margin-left: 10px;
+}
 .main_wrapper .container .data_form {
   margin-top: 50px;
   margin-left: 50%;
+  margin-bottom: 50px;
   width: 450px;
   transform: translateX(-50%);
   border: 1px solid rgba(80, 80, 80, 0.8);
@@ -607,7 +619,9 @@ header .account_modal.active {
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   text-align: center;
   color: rgb(40, 40, 40);
-  background-color: rgb(52, 65, 247);
+  background-color: rgb(200, 200, 200);
+  border-right: 1px solid rgba(80, 80, 80, 0.8);
+  border-bottom: 1px solid rgba(80, 80, 80, 0.8);
 }
 .main_wrapper .container .data_form .form_area .file_content .file_label .plus_icon {
   position: absolute;
@@ -663,6 +677,33 @@ header .account_modal.active {
 .main_wrapper .container .data_form .form_area .btn:hover {
   transition: 1s;
   background-color: rgb(150, 150, 150);
+}
+.main_wrapper .container .notice {
+  position: relative;
+  padding-top: 20px;
+  padding-left: 70px;
+  border-top: 2px solid rgba(80, 80, 80, 0.8);
+}
+.main_wrapper .container .notice::after {
+  content: "";
+  position: absolute;
+  top: -40px;
+  left: 40px;
+  transform: rotate(90%);
+  width: 2px;
+  height: 115%;
+  background-color: rgba(80, 80, 80, 0.8);
+}
+.main_wrapper .container .notice .notice_title {
+  width: 100%;
+  font-size: 15px;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+  font-weight: bold;
+}
+.main_wrapper .container .notice .notice_text {
+  padding-top: 20px;
+  font-size: 13px;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
 
 @media screen and (max-width: 1400px) {
