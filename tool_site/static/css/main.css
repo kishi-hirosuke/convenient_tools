@@ -51,23 +51,16 @@ header .header_right_contents {
   margin-right: 80px;
 }
 header .header_right_contents .header_right_link {
-  display: flex;
-  flex-direction: column;
+  display: block;
   text-decoration: none;
-  width: 110px;
+  width: 130px;
   text-align: center;
   color: rgb(40, 40, 40);
 }
-header .header_right_contents .header_right_link span {
-  margin: 0;
-  padding: 15px 0 0 0;
-  font-size: 9px;
-  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
-}
 header .header_right_contents .header_right_link h2 {
-  padding: 0;
+  padding: 25px 0 0 0;
   margin: 0;
-  font-size: 20px;
+  font-size: 18px;
   font-family: "Open Sans", "sans-serif";
 }
 header .header_right_contents .header_right_link h2::after {
@@ -346,27 +339,27 @@ header .account_modal.active {
 }
 
 @media screen and (max-width: 1900px) {
-  .top_wapper .top_container .top_bg_img {
+  .top_wrapper .top_container .top_bg_img {
     height: 50vw;
   }
 }
 @media screen and (max-width: 1300px) {
-  .top_wapper .top_container .top_bg_img {
+  .top_wrapper .top_container .top_bg_img {
     height: 60vw;
   }
-  .top_wapper .top_container .top_main_title h3 {
+  .top_wrapper .top_container .top_main_title h3 {
     font-size: 45px;
   }
 }
 @media screen and (max-width: 960px) {
-  .top_wapper {
+  .top_wrapper {
     padding-top: 10%;
   }
-  .top_wapper .top_container .top_bg_img {
+  .top_wrapper .top_container .top_bg_img {
     background-size: 150%;
     height: 100vw;
   }
-  .top_wapper .top_container .top_main_title h3 {
+  .top_wrapper .top_container .top_main_title h3 {
     font-size: 35px;
   }
 }
@@ -542,15 +535,134 @@ header .account_modal.active {
   margin-left: 50%;
   width: 450px;
   transform: translateX(-50%);
-  background-color: rgb(204, 204, 204);
+  border: 1px solid rgba(80, 80, 80, 0.8);
+}
+.main_wrapper .container .data_form .form_title {
+  margin: 0;
+  padding: 10px 0;
+  font-size: 22px;
+  font-family: "Open Sans", "sans-serif";
+  text-align: center;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: black;
 }
 .main_wrapper .container .data_form .form_area {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 30px;
   width: 400px;
-  margin: 60px 0 0 25px;
+  margin: 30px 0 0 25px;
   padding-bottom: 30px;
+}
+.main_wrapper .container .data_form .form_area .message {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  color: rgb(110, 0, 0);
+}
+.main_wrapper .container .data_form .form_area .alert_area {
+  width: 100%;
+}
+.main_wrapper .container .data_form .form_area .alert_area .error_alert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 30px;
+  background-color: rgb(255, 230, 230);
+  border: 1px solid rgb(110, 0, 0);
+  border-radius: 3px;
+}
+.main_wrapper .container .data_form .form_area .alert_area .error_alert .alert_icon {
+  margin-left: 10px;
+  font-size: 15px;
+  color: rgb(110, 0, 0);
+}
+.main_wrapper .container .data_form .form_area .alert_area .error_alert p {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  color: rgb(110, 0, 0);
+}
+.main_wrapper .container .data_form .form_area .alert_area .error_alert .close_icon {
+  margin-right: 5px;
+  font-size: 22px;
+}
+.main_wrapper .container .data_form .form_area .file_content {
+  width: 100%;
+  height: 150px;
+}
+.main_wrapper .container .data_form .form_area .file_content .file_label {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(80, 80, 80, 0.8);
+}
+.main_wrapper .container .data_form .form_area .file_content .file_label p {
+  width: 110px;
+  padding: 2px;
+  font-size: 13px;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+  text-align: center;
+  color: rgb(40, 40, 40);
+  background-color: rgb(52, 65, 247);
+}
+.main_wrapper .container .data_form .form_area .file_content .file_label .plus_icon {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  font-size: 22px;
+  transform: translateX(-50%);
+  opacity: 0.7;
+}
+.main_wrapper .container .data_form .form_area .file_content input[type=file] {
+  display: none;
+}
+.main_wrapper .container .data_form .form_area .form_content {
+  position: relative;
+  width: 100%;
+}
+.main_wrapper .container .data_form .form_area .form_content .form_label {
+  position: absolute;
+  top: -12px;
+  left: 10px;
+  font-size: 13px;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+  color: rgb(40, 40, 40);
+  background-color: #fff;
+}
+.main_wrapper .container .data_form .form_area .form_content .form_input {
+  width: 100%;
+  font-size: 15px;
+  font-family: "Open Sans", "sans-serif";
+  background-color: #fff;
+}
+.main_wrapper .container .data_form .form_area .form_content .form_input:focus {
+  border: 1px solid rgba(80, 80, 80, 0.8);
+  outline: 1px rgb(40, 40, 40);
+  box-shadow: 3px 3px 3px rgb(40, 40, 40);
+}
+.main_wrapper .container .data_form .form_area .submit_text {
+  position: absolute;
+  left: 5px;
+  bottom: 38px;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+}
+.main_wrapper .container .data_form .form_area .btn {
+  width: 80px;
+  margin-left: 320px;
+  font-size: 13px;
+  font-family: "Open Sans", "sans-serif";
+  color: rgb(40, 40, 40);
+  border: 1px solid rgba(80, 80, 80, 0.8);
+}
+.main_wrapper .container .data_form .form_area .btn:hover {
+  transition: 1s;
+  background-color: rgb(150, 150, 150);
 }
 
 @media screen and (max-width: 1400px) {
