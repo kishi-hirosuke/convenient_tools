@@ -46,9 +46,9 @@ class TopView(TemplateView):
 class ToolsView(TemplateView):
     template_name = "tools.html"
 
-#aboutページ
+#privacyページ
 class AboutView(TemplateView):
-    template_name = "about.html"
+    template_name = "privacy.html"
 
 class HelpView(TemplateView):
     template_name = "help.html"
