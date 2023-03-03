@@ -47,7 +47,7 @@ body {
 
 // ヘッダー周り
 header {
-    position: relative;
+    position: fixed;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -56,9 +56,6 @@ header {
     border-bottom: 2px solid $border_color;
     z-index: 5;
     background-color: #fff;
-    &.active {
-        position: fixed;
-    }
     .header_top_link {
         position: relative;
         width: 200px;
@@ -325,7 +322,7 @@ header {
 
 // topページ追加
 .hero_wrapper{
-    padding-top: 3%;
+    padding-top: 150px;
     box-shadow: 0px 1.2px 3.6px rgb(0 0 0 / 11%), 0px 6.4px 14.4px rgb(0 0 0 / 13%);
     background-color: #fff;
 
@@ -490,7 +487,7 @@ header {
     position: relative;
     width: 100%;
     min-height: 900px;
-    padding: 120px 0 150px 0;
+    padding: 200px 0 150px 0;
     margin: 0;
     background-color: $back_color;
     .tools_main_image {
@@ -775,9 +772,6 @@ header {
                             opacity: .7;
                         }
                     }
-                    input[type="file"] {
-                        display: none;
-                    }
                     // .file_area {
                     //     position: absolute;
                     //     left: 0;
@@ -797,9 +791,9 @@ header {
                     position: relative;
                     width: 100%;
                     .form_label {
-                        position: absolute;
-                        top: -12px;
-                        left: 10px;
+                        // position: absolute;
+                        // top: -12px;
+                        // left: 10px;
                         @include except_font_size(13px);
                         font-family: $ja;
                         color: $text_color;
@@ -829,13 +823,16 @@ header {
                     width: 80px;
                     margin-left: 320px;
                     @include except_font_size(13px);
-                    font-family: $en;
-                    color: $text_color;
-                    border: 1px solid $border_color;
-                    &:hover {
-                        transition: 1s;
-                        background-color: rgb(150, 150, 150);
-                    }
+                    font-family: $ja;
+                    // font-weight: bold;
+                    // letter-spacing: 2px;
+                    // color: white;
+                    // border: 1px solid $border_color;
+                    // background-color: #1285ff;
+                    // &:hover {
+                    //     transition: 1s;
+                    //     background-color: rgb(150, 150, 150);
+                    // }
                 }
             }
         }

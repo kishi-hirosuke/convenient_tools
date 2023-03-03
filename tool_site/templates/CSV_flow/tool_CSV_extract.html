@@ -70,15 +70,17 @@
                     </div>
                 {% endif %}
                 <!-- フォーム -->
-                <div class="file_content">
-                    <label class="file_label">
+                <div class="form_content">
+                    <!-- <label class="file_label">
                         <p>{{ form.file.label }}</p>
                         <input type="file" multiple name="file" accept=".csv" class="file_form" required>
                         <span class="bi plus_icon bi-plus-circle-dotted"></span>
-                    </label>
+                    </label> -->
                     <!-- <div class="file_area">
                         <span class="bi plus_icon bi-plus-circle-dotted"></span>
                     </div> -->
+                    <label class="form_label">{{ form.file.label }}</label>
+                    <input type="file" multiple name="file" accept=".csv" class="form-control form-control-sm" required>
                 </div>
                 <div class="form_content">
                     <label class="form_label">{{ form.columuns.label }}</label>
@@ -89,7 +91,7 @@
                     {{ form.code | add_class:"form-control form_input" }}
                 </div>
                 <p class="submit_text">ファイルをアップロードし、処理したファイルをダウンロードする</p>
-                <button type="submit" class="btn submit_icon" id="submit_btn">Submit</button>
+                <button type="submit" class="btn submit_icon btn-outline-primary" id="submit_btn">実行</button>
             </div>
         </form>
 
