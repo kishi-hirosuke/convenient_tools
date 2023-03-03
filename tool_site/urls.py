@@ -7,7 +7,7 @@ urlpatterns = [
     path('', views.TopView.as_view(), name='top'),
     #ツール一覧
     path('tools/', views.ToolsView.as_view(), name='tools'),
-    path('about/', views.AboutView.as_view(), name='about'),
+    path('privacy/', views.AboutView.as_view(), name='privacy'),
     path('help/', views.HelpView.as_view(), name='help'),
     #stripe決済
     # path('create_checkout_session/', views.create_checkout_session, name='checkout_session'),
