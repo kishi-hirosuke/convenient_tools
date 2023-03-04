@@ -486,29 +486,33 @@ header .account_modal.active {
   position: relative;
   width: 300px;
   margin-bottom: 40px;
-  border: 1px solid rgba(80, 80, 80, 0.8);
-  border-radius: 3px;
   background-color: #fff;
-  transition: 0.2s;
 }
 .main_wrapper .container .tools_table tr .tool .tool_items {
-  width: 100%;
-  height: 100%;
   margin: 0;
-  padding: 0;
   display: block;
   text-decoration: none;
+  background-color: #FFF;
+  text-align: left;
+  min-height: 194px;
+  position: relative;
+  min-width: 286px;
+  box-shadow: 0 3.2px 7.2px 0 rgba(0, 0, 0, 0.13), 0 0.6px 1.8px 0 rgba(0, 0, 0, 0.11);
+  border-radius: 3px;
+  padding: 20px;
 }
 .main_wrapper .container .tools_table tr .tool .tool_items .tool_icon_img {
-  width: 23px;
+  width: 100%;
   height: 23px;
-  margin-top: 10px;
-  margin-left: 10px;
+  margin: 0 10px 20px 0;
+}
+.main_wrapper .container .tools_table tr .tool .tool_items .tool_icon_img img {
+  width: 23px;
 }
 .main_wrapper .container .tools_table tr .tool .tool_items .tool_item_title {
   margin: 0;
   padding: 0;
-  text-align: center;
+  text-align: left;
 }
 .main_wrapper .container .tools_table tr .tool .tool_items .tool_item_title h3 {
   margin: 0;
@@ -516,19 +520,6 @@ header .account_modal.active {
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   font-weight: bold;
   color: rgb(40, 40, 40);
-}
-.main_wrapper .container .tools_table tr .tool .tool_items .tool_item_title h3::after {
-  position: absolute;
-  content: "";
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  top: 13px;
-  right: 50px;
-  border-top: 1.5px solid rgb(40, 40, 40);
-  border-right: 1.5px solid rgb(40, 40, 40);
-  transform: rotate(45deg);
-  opacity: 0;
 }
 .main_wrapper .container .tools_table tr .tool .tool_items .tool_item_sentence {
   margin: 0;
@@ -540,27 +531,21 @@ header .account_modal.active {
   font-size: 13px;
 }
 .main_wrapper .container .tools_table tr .tool .tool_items .tool_item_sentence p {
-  width: 100%;
-  padding: 15px 10px 0;
+  padding: 15px 0;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   color: rgb(40, 40, 40);
 }
-.main_wrapper .container .tools_table tr .tool .tool_items .tool_detail {
-  display: flex;
-  align-items: center;
-  margin: 0 0 0 25px;
-  padding: 10px 0 10px 0;
+.main_wrapper .container .tools_table tr .tool .tool_items .tool_category p {
   font-size: 13px;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   font-weight: bold;
   color: rgb(40, 40, 40);
-}
-.main_wrapper .container .tools_table tr .tool .tool_items .tool_detail .tool_detail_icon {
-  margin-left: 5px;
-  font-size: 12px;
+  margin: 0;
+  padding: 20px 0 0 0;
 }
 .main_wrapper .container .tools_table tr .tool:hover {
-  top: -3px;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+  top: -1px;
+  box-shadow: 0 6.4px 14.4px 0 rgba(0, 0, 0, 0.13), 0 1.2px 3.6px 0 rgba(0, 0, 0, 0.11);
 }
 .main_wrapper .container .tool_explanation {
   display: flex;
