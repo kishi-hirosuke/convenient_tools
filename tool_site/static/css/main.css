@@ -485,7 +485,6 @@ header .account_modal.active {
 .main_wrapper .container .tools_table tr .tool {
   position: relative;
   width: 300px;
-  margin-bottom: 40px;
   background-color: #fff;
 }
 .main_wrapper .container .tools_table tr .tool .tool_items {
@@ -504,7 +503,7 @@ header .account_modal.active {
 .main_wrapper .container .tools_table tr .tool .tool_items .tool_icon_img {
   width: 100%;
   height: 23px;
-  margin: 0 10px 20px 0;
+  margin: 0 10px 10px 0;
 }
 .main_wrapper .container .tools_table tr .tool .tool_items .tool_icon_img img {
   width: 23px;
@@ -532,6 +531,7 @@ header .account_modal.active {
 }
 .main_wrapper .container .tools_table tr .tool .tool_items .tool_item_sentence p {
   padding: 15px 0;
+  margin: 0;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   color: rgb(40, 40, 40);
 }
