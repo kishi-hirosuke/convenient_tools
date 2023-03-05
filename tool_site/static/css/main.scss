@@ -568,21 +568,22 @@ header {
                         border-radius: 3px;
                         padding: 20px;
 
-                        .tool_icon_img {
-                            width: 100%;
-                            height: 23px;
-                            margin: 0 10px 10px 0;
-                            img{
-                                width: 23px;
-                            }
-                        }
                         .tool_item_title {
                             margin: 0;
                             padding: 0;
                             text-align: left;
+                            display: flex;
+                            .tool_icon_img {
+                                width: 45px;
+                                height: 45px;
+                                img{
+                                    width: 100%;
+                                    height: 100%;
+                                }
+                            }
                             h3 {
-                                margin: 0;
-                                @include except_font_size(19px);
+                                margin: 12px;
+                                @include except_font_size(20px);
                                 font-family: $ja;
                                 font-weight: bold;
                                 color: $text_color;
@@ -597,7 +598,7 @@ header {
                             border-bottom-right-radius: 10px;
                             @include except_font_size(13px);
                             p {
-                                padding: 15px 0;
+                                padding: 10px 0;
                                 margin: 0;
                                 font-family: $ja;
                                 color: $text_color;
@@ -868,7 +869,8 @@ footer {
     justify-content: center;
     align-items: center;
     a{
-        padding: 0 15px 0 0;
+        text-decoration: none;
+        color: $text_color;
         img{
             width: 12px;
             height: 12px;
@@ -878,6 +880,6 @@ footer {
     p {
         @include except_font_size(12px);
         font-family: $ja;
-        margin: 0;
+        margin: 0 0 0 15px;
     }
 }
