@@ -20,7 +20,7 @@
 
 // 共通
 $title: 45px;
-$header_title: 18px;
+$header_title: 20px;
 $subtitle: 22px;
 $text: 16px;
 $text_color: rgb(40, 40, 40);
@@ -77,10 +77,11 @@ header {
             text-align: center;
             color: $text_color;
             h2 {
-                padding: 25px 0 0 0;
+                padding: 25px 0;
                 margin: 0;
                 font-size: $header_title;
-                font-family: $en;
+                font-family: $ja;
+                // font-weight: bold;
                 // &::after {
                 //     box-sizing: content-box;
                 //     content: '';
