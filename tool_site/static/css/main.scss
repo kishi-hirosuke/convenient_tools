@@ -490,11 +490,6 @@ header {
     padding: 200px 0 150px 0;
     margin: 0;
     background-color: $back_color;
-    .tools_main_image {
-        @include img(100%, 100%, .8);
-        top: 0;
-        left: 0;
-    }
     .sample_area {
         display: none;
         position: fixed;
@@ -521,23 +516,38 @@ header {
             z-index: 6;
         }
     }
+    .main_title {
+        width: 100%;
+        text-align: center;
+        .title{
+            display: flex;
+            justify-content: center;
+            h1 {
+                font-size: $title;
+                font-family: $ja;
+                font-weight: bold;
+                padding-bottom: 7px;
+            }
+            img {
+                width: 43px;
+                height: 43px;
+                margin: 3px 0 0 20px;
+            }
+        }
+        h3 {
+            font-size: $subtitle;
+            font-family: $ja;
+            font-weight: bold;
+        }
+        p {
+            font-size: $text;
+            font-family: $ja;
+        }
+    }
     .container {
         width: 1290px;
         margin-left: 50%;
         transform: translateX(-50%);
-        .main_title {
-            width: 100%;
-            text-align: center;
-            h3 {
-                font-size: $subtitle;
-                font-family: $ja;
-                font-weight: bold;
-            }
-            p {
-                font-size: $text;
-                font-family: $ja;
-            }
-        }
         .tools_table {
             width: 1290px;
             margin-top: 80px;
