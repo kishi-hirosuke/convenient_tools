@@ -191,7 +191,7 @@ class InquiryForm(forms.Form):
 def file_size(value):
     LIMIT_SIZE = getattr(settings, 'LIMIT_SIZE', None)
     if value.size > LIMIT_SIZE:
-        raise ValidationError(f'ファイルサイズが大きすぎます。{LIMIT_SIZE/1000/1000}MBより小さいサイズにしてください。')
+        raise ValidationError(f'ファイルサイズが大きすぎます。{LIMIT_SIZE/1024/1024}MBより小さいサイズにしてください。')
 
 #csv抽出
 class CSVExtract(forms.Form):

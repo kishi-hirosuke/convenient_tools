@@ -24,11 +24,11 @@ $(function() {
     // });
 
     //error_message_delete
-    const close_btn = $('.close_icon');
+    const close_btn = $('.sample_area');
     const submit_btn = $('.submit_icon');
 
     close_btn.on('click', function() {
-        $(this).parent().css('display', 'none');
+        $(this).css('display', 'none');
     });
     submit_btn.on('click', function() {
         $('.error_alert').css('display', 'none');

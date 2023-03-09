@@ -345,7 +345,7 @@ header .account_modal.active {
 }
 .top_wrapper {
   width: 100%;
-  padding: 50px 0 150px 0;
+  padding: 100px 0 150px 0;
   margin: 0;
 }
 .top_wrapper .top_container .box {
@@ -557,10 +557,12 @@ header .account_modal.active {
   display: flex;
   width: 100%;
   margin-top: 40px;
-  border-bottom: 2px solid rgba(80, 80, 80, 0.8);
+  padding: 20px;
+  border-bottom: 1px solid rgba(80, 80, 80, 0.8);
 }
 .main_wrapper .container .tool_explanation .explanation_view {
   width: 50%;
+  padding-right: 15px;
 }
 .main_wrapper .container .tool_explanation .explanation_view .explanation_title {
   width: 100%;
@@ -731,17 +733,7 @@ header .account_modal.active {
   position: relative;
   padding-top: 20px;
   padding-left: 70px;
-  border-top: 2px solid rgba(80, 80, 80, 0.8);
-}
-.main_wrapper .container .notice::after {
-  content: "";
-  position: absolute;
-  top: -40px;
-  left: 40px;
-  transform: rotate(90%);
-  width: 2px;
-  height: 115%;
-  background-color: rgba(80, 80, 80, 0.8);
+  border-top: 1px solid rgba(80, 80, 80, 0.8);
 }
 .main_wrapper .container .notice .notice_title {
   width: 100%;
