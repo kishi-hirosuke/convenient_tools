@@ -554,10 +554,20 @@ header .account_modal.active {
   box-shadow: 0 6.4px 14.4px 0 rgba(0, 0, 0, 0.13), 0 1.2px 3.6px 0 rgba(0, 0, 0, 0.11);
 }
 .main_wrapper .container .tool_explanation {
+  position: relative;
   display: flex;
   width: 100%;
   margin-top: 40px;
-  border-bottom: 2px solid rgba(80, 80, 80, 0.8);
+  box-shadow: 0px 1.2px 3.6px rgba(0, 0, 0, 0.11), 0px 6.4px 14.4px rgba(0, 0, 0, 0.13);
+}
+.main_wrapper .container .tool_explanation .border {
+  position: absolute;
+  width: 1px;
+  height: 80px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(80, 80, 80, 0.8);
 }
 .main_wrapper .container .tool_explanation .explanation_view {
   width: 50%;
@@ -578,7 +588,6 @@ header .account_modal.active {
 .main_wrapper .container .tool_explanation .explanation_used {
   position: relative;
   width: 50%;
-  border-left: 1px solid rgba(80, 80, 80, 0.8);
 }
 .main_wrapper .container .tool_explanation .explanation_used .explanation_title {
   width: 100%;
@@ -728,29 +737,22 @@ header .account_modal.active {
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
 .main_wrapper .container .notice {
-  position: relative;
-  padding-top: 20px;
-  padding-left: 70px;
-  border-top: 2px solid rgba(80, 80, 80, 0.8);
-}
-.main_wrapper .container .notice::after {
-  content: "";
-  position: absolute;
-  top: -40px;
-  left: 40px;
-  transform: rotate(90%);
-  width: 2px;
-  height: 115%;
-  background-color: rgba(80, 80, 80, 0.8);
+  width: 900px;
+  margin-left: 50%;
+  padding: 40px 0;
+  transform: translateX(-50%);
+  box-shadow: 0px 1.2px 3.6px rgba(0, 0, 0, 0.11), 0px 6.4px 14.4px rgba(0, 0, 0, 0.13);
 }
 .main_wrapper .container .notice .notice_title {
   width: 100%;
+  padding-left: 30px;
   font-size: 16px;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   font-weight: bold;
 }
 .main_wrapper .container .notice .notice_text {
   padding-top: 20px;
+  padding-left: 60px;
   font-size: 13px;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }

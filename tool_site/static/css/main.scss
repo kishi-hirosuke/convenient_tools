@@ -634,10 +634,20 @@ header {
             }
         }
         .tool_explanation {
+            position: relative;
             display: flex;
             width: 100%;
             margin-top: 40px;
-            border-bottom: 2px solid $border_color;
+            box-shadow: 0px 1.2px 3.6px rgb(0 0 0 / 11%), 0px 6.4px 14.4px rgb(0 0 0 / 13%);
+            .border {
+                position: absolute;
+                width: 1px;
+                height: 80px;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: $border_color;
+            }
             .explanation_view {
                 width: 50%;
                 .explanation_title {
@@ -657,7 +667,6 @@ header {
             .explanation_used {
                 position: relative;
                 width: 50%;
-                border-left: 1px solid $border_color;
                 .explanation_title {
                     width: 100%;
                     margin-top: 20px;
@@ -834,28 +843,21 @@ header {
             }
         }
         .notice {
-            position: relative;
-            padding-top: 20px;
-            padding-left: 70px;
-            border-top: 2px solid $border_color;
-            &::after {
-                content: '';
-                position: absolute;
-                top: -40px;
-                left: 40px;
-                transform: rotate(90%);
-                width: 2px;
-                height: 115%;
-                background-color: $border_color;
-            }
+            width: 900px;
+            margin-left: 50%;
+            padding: 40px 0;
+            transform: translateX(-50%);
+            box-shadow: 0px 1.2px 3.6px rgb(0 0 0 / 11%), 0px 6.4px 14.4px rgb(0 0 0 / 13%);
             .notice_title {
                 width: 100%;
+                padding-left: 30px;
                 font-size: $text;
                 font-family: $ja;
                 font-weight: bold;
             }
             .notice_text {
                 padding-top: 20px;
+                padding-left: 60px;
                 @include except_font_size(13px);
                 font-family: $ja;
             }
