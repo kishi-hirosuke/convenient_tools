@@ -12,7 +12,7 @@
 
     <div class="sample_area">
         <img src="{% static 'images/sample/extract-multiple-af.png' %}" alt="" class="tool_icon_img">
-        <span class="sample_close bi bi-x-lg"></span>
+        <!-- <span class="sample_close bi bi-x-lg"></span> -->
     </div>
 
     <div class="container">
@@ -91,8 +91,10 @@
                     <label class="form_label">{{ form.code.label }}</label>
                     {{ form.code | add_class:"form-control form_input" }}
                 </div>
+
                 <p class="submit_text">ファイルをアップロードし、処理したファイルをダウンロードする</p>
-                <button type="submit" class="btn submit_icon  btn-outline-primary" id="submit_btn">実行</button>
+                <button type="submit" class="btn submit_icon btn-outline-primary" id="submit_btn">実行</button>
+
             </div>
         </form>
 

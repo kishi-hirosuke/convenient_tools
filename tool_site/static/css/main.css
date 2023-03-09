@@ -345,7 +345,7 @@ header .account_modal.active {
 }
 .top_wrapper {
   width: 100%;
-  padding: 50px 0 150px 0;
+  padding: 100px 0 150px 0;
   margin: 0;
 }
 .top_wrapper .top_container .box {
@@ -571,6 +571,7 @@ header .account_modal.active {
 }
 .main_wrapper .container .tool_explanation .explanation_view {
   width: 50%;
+  padding-right: 15px;
 }
 .main_wrapper .container .tool_explanation .explanation_view .explanation_title {
   width: 100%;
