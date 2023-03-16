@@ -11,7 +11,8 @@
 <div class="main_wrapper">
 
     <div class="sample_area">
-        <img src="{% static 'images/sample/extract-multiple-af.png' %}" alt="" class="tool_icon_img">
+        <img src="{% static 'images/sample/extract-multiple-bf.png' %}" alt="" class="sample_img-bf">
+        <img src="{% static 'images/sample/extract-multiple-af.png' %}" alt="" class="sample_img-af">
         <!-- <span class="sample_close bi bi-x-lg"></span> -->
     </div>
 
@@ -19,7 +20,7 @@
 
         <div class="main_title">
             <h3>Extraction CSV rows</h3>
-            <p>アップロードしたCSVファイルから特定の行のみを抽出します。</p>
+            <p>アップロードしたcsvファイルから特定の行のみを抽出します。</p>
         </div>
 
         <div class="tool_explanation">
@@ -27,7 +28,7 @@
             <div class="explanation_view">
                 <h3 class="explanation_title">このツールでできること</h3>
                 <p class="explanation_text">
-                アップロードしたCSVファイルから、基準となる列に「指定したキーワード」を含む行のみを抽出したcsvファイルを出力します。（部分一致）<br>
+                アップロードしたcsvファイルから、基準となる列に「指定したキーワード」を含む行のみを抽出したcsvファイルを出力します。（部分一致）<br>
                 複数キーワードに対応。<br>
                 </p>
             </div>
@@ -81,7 +82,7 @@
                         <span class="bi plus_icon bi-plus-circle-dotted"></span>
                     </div> -->
                     <label class="form_label">{{ form.file.label }}</label>
-                    <input type="file" multiple name="file" accept=".csv" class="form-control form-control-sm" required>
+                    <input type="file" multiple name="file" accept=".csv" class="form-control form-control-sm form_input" required>
                 </div>
                 <div class="form_content">
                     <label class="form_label">{{ form.columuns.label }}</label>
@@ -92,7 +93,6 @@
                     {{ form.code | add_class:"form-control form_input" }}
                 </div>
 
-                <p class="submit_text">ファイルをアップロードし、処理したファイルをダウンロードする</p>
                 <button type="submit" class="btn submit_icon btn-outline-primary" id="submit_btn">実行</button>
 
             </div>

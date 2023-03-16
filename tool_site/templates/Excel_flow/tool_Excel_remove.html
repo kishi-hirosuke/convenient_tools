@@ -91,13 +91,12 @@
                     <label class="form_label">{{ form.code.label }}</label>
                     {{ form.code | add_class:"form-control form_input" }}
                 </div>
-                <p class="submit_text">ファイルをアップロードし、処理したファイルをダウンロードする</p>
                 <button type="submit" class="btn submit_icon  btn-outline-primary" id="submit_btn">実行</button>
             </div>
         </form>
 
         <div class="notice">
-            <p class="notice_title">excel行削除について</p>
+            <h3 class="notice_title">excel行削除について</h3>
             <ul class="notice_text">
                 <li>キーワードは部分一致で、半角パイプ「|」区切りで複数キーワード指定可能です。</li><br>
                 <li>アップするexcelファイルの1行目がヘッダーとして読み込まれます。<br>つまり、基準とする列名が1行目にある必要があります。</li><br>

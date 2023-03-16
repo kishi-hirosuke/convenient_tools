@@ -222,12 +222,14 @@ class CSVSplit(forms.Form):
         ('1','ヘッダーなし')],
     widget=forms.RadioSelect,)
     file = forms.FileField(
+        label='ファイルを選択',
         validators=[
             FileExtensionValidator(['csv']),
             file_size
         ]
     )
     num = forms.CharField(
+        label='分割する件数（行数）を入力',
         max_length=255,
         widget=forms.TextInput(attrs={
         # 'placeholder':'半角数字入力',
@@ -236,17 +238,23 @@ class CSVSplit(forms.Form):
 #csv削除
 class CSVRemove(forms.Form):
     file = forms.FileField(
+        label='ファイルを選択',
         validators=[
             FileExtensionValidator(['csv']),
             file_size
         ]
     )
-    columuns = forms.CharField(max_length=255)
-    code = forms.CharField(max_length=2000)
+    columuns = forms.CharField(
+        label='基準とする列名を入力',
+        max_length=255)
+    code = forms.CharField(
+        label='キーワードを入力（半角パイプ「|」区切りで複数指定可能）',
+        max_length=2000)
 
 #html_table変換
 class ExcelTable(forms.Form):
     file = forms.FileField(
+        label='ファイルを選択',
         validators=[
             FileExtensionValidator(['xlsx']),
             file_size
@@ -256,13 +264,18 @@ class ExcelTable(forms.Form):
 #excel抽出
 class ExcelExtract(forms.Form):
     file = forms.FileField(
+        label='ファイルを選択',
         validators=[
             FileExtensionValidator(['xlsx']),
             file_size
         ]
     )
-    columuns = forms.CharField(max_length=255)
-    code = forms.CharField(max_length=2000)
+    columuns = forms.CharField(
+        label='基準とする列名を入力',
+        max_length=255)
+    code = forms.CharField(
+        label='キーワードを入力（半角パイプ「|」区切りで複数指定可能）',
+        max_length=2000)
 
 #excel分割
 class ExcelSplit(forms.Form):
@@ -289,13 +302,17 @@ class ExcelSplit(forms.Form):
 #excel削除
 class ExcelRemove(forms.Form):
     file = forms.FileField(
+        label='ファイルを選択',
         validators=[
             FileExtensionValidator(['xlsx']),
             file_size
         ]
     )
-    columuns = forms.CharField(max_length=255)
-    code = forms.CharField(max_length=2000)
+    columuns = forms.CharField(
+        label='基準とする列名を入力',
+        max_length=255)
+    code = forms.CharField(
+        label='キーワードを入力（半角パイプ「|」区切りで複数指定可能）',max_length=2000)
 
 #image
 class ImageResize(forms.Form):

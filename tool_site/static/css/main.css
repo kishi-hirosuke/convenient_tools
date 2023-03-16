@@ -184,6 +184,7 @@ header .account_modal.active {
   background-color: #fff;
 }
 .form_wrapper .form .form_area .form_content .form_input {
+  margin-top: 5px;
   width: 100%;
   font-size: 16px;
   font-family: "Open Sans", "sans-serif";
@@ -192,7 +193,6 @@ header .account_modal.active {
 .form_wrapper .form .form_area .form_content .form_input:focus {
   border: 1px solid rgba(80, 80, 80, 0.8);
   outline: 1px rgb(40, 40, 40);
-  box-shadow: 3px 3px 3px rgb(40, 40, 40);
 }
 .form_wrapper .form .form_area .form_content .auth_form_label {
   position: absolute;
@@ -470,7 +470,7 @@ header .account_modal.active {
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
 .main_wrapper .container {
-  width: 1290px;
+  width: 1000px;
   margin-left: 50%;
   transform: translateX(-50%);
 }
@@ -558,7 +558,6 @@ header .account_modal.active {
   display: flex;
   width: 100%;
   margin-top: 40px;
-  box-shadow: 0px 1.2px 3.6px rgba(0, 0, 0, 0.11), 0px 6.4px 14.4px rgba(0, 0, 0, 0.13);
 }
 .main_wrapper .container .tool_explanation .border {
   position: absolute;
@@ -616,9 +615,10 @@ header .account_modal.active {
   margin-top: 50px;
   margin-left: 50%;
   margin-bottom: 50px;
-  width: 450px;
+  width: 60%;
   transform: translateX(-50%);
-  border: 1px solid rgba(80, 80, 80, 0.8);
+  padding: 1px;
+  box-shadow: 0px 1.2px 3.6px rgba(0, 0, 0, 0.11), 0px 6.4px 14.4px rgba(0, 0, 0, 0.13);
 }
 .main_wrapper .container .data_form .form_title {
   margin: 0;
@@ -635,9 +635,12 @@ header .account_modal.active {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  width: 400px;
-  margin: 30px 0 0 25px;
-  padding-bottom: 30px;
+  width: 80%;
+  margin: 30px auto;
+}
+.main_wrapper .container .data_form .form_area #id_header_select {
+  padding: 0;
+  list-style: none;
 }
 .main_wrapper .container .data_form .form_area .message {
   margin: 0;
@@ -713,6 +716,7 @@ header .account_modal.active {
   background-color: #fff;
 }
 .main_wrapper .container .data_form .form_area .form_content .form_input {
+  margin-top: 5px;
   width: 100%;
   font-size: 16px;
   font-family: "Open Sans", "sans-serif";
@@ -721,7 +725,6 @@ header .account_modal.active {
 .main_wrapper .container .data_form .form_area .form_content .form_input:focus {
   border: 1px solid rgba(80, 80, 80, 0.8);
   outline: 1px rgb(40, 40, 40);
-  box-shadow: 3px 3px 3px rgb(40, 40, 40);
 }
 .main_wrapper .container .data_form .form_area .submit_text {
   position: absolute;
@@ -733,16 +736,14 @@ header .account_modal.active {
 }
 .main_wrapper .container .data_form .form_area .btn {
   width: 80px;
-  margin-left: 320px;
   font-size: 13px;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
 .main_wrapper .container .notice {
-  width: 900px;
+  width: 100%;
   margin-left: 50%;
   padding: 40px 0;
   transform: translateX(-50%);
-  box-shadow: 0px 1.2px 3.6px rgba(0, 0, 0, 0.11), 0px 6.4px 14.4px rgba(0, 0, 0, 0.13);
 }
 .main_wrapper .container .notice .notice_title {
   width: 100%;
