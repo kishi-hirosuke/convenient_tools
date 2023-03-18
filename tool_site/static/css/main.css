@@ -468,7 +468,6 @@ header .account_modal.active {
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
 .main_wrapper .container {
-  width: 1000px;
   margin-left: 50%;
   transform: translateX(-50%);
 }

@@ -77,6 +77,9 @@
   .top_wrapper .top_container .feature ul li {
     width: 250px;
   }
+  .main_wrapper .container .data_form {
+    width: 80%;
+  }
 }
 @media screen and (max-width: 700px) {
   header {
@@ -129,6 +132,7 @@
   .top_wrapper .top_container .feature ul li {
     width: 250px;
   }
+<<<<<<< HEAD
 }
 @media screen and (max-width: 400px) {
   header {
@@ -202,5 +206,8 @@
   }
   .top_wrapper .top_container .feature ul li p {
     font-size: 11px;
+  }
+  .main_wrapper .container .data_form {
+    width: 90%;
   }
 }/*# sourceMappingURL=responsive.css.map */
