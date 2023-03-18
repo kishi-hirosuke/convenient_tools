@@ -850,23 +850,41 @@ header {
 footer {
     width: 100%;
     height: 100px;
-    text-align: center;
     background-color: rgb(238, 238, 234);
     display: flex;
-    justify-content: center;
     align-items: center;
-    a{
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    .footer_box {
+        display: flex;
+        align-items: center;
         text-decoration: none;
         color: $text_color;
-        img{
-            width: 12px;
-            height: 12px;
-            margin-bottom: 6px;
+        .footer_privacy {
+            display: block;
+            img {
+                width: 12px;
+                height: 12px;
+                margin-bottom: 6px;
+            }
+        }
+        .write_text {
+            margin: 0;
+            padding: 0 0 0 10px;
+            @include except_font_size(12px);
+            font-family: $ja;
         }
     }
-    p {
+    .footer_text {
+        display: flex;
         @include except_font_size(12px);
         font-family: $ja;
         margin: 0 0 0 15px;
+        a {
+            display: block;
+            text-decoration: none;
+            color: $text_color;
+        }
     }
 }

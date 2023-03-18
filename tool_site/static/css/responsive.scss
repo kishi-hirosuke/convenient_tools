@@ -237,6 +237,23 @@ $phone_text: 16px;
         }
     }
 
+    footer {
+        height: 70px;
+        .footer_box {
+            display: flex;
+            .footer_privacy {
+                display: block;
+            }
+            .write_text {
+                padding: 0 0 0 10px;
+                margin: 0;
+            }
+        }
+        .footer_text {
+            display: flex;
+        }
+    }
+
 }
 
 @media screen and (max-width:400px) {

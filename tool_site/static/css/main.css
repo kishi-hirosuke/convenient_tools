@@ -758,23 +758,41 @@ header .account_modal.active {
 footer {
   width: 100%;
   height: 100px;
-  text-align: center;
   background-color: rgb(238, 238, 234);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
 }
-footer a {
+footer .footer_box {
+  display: flex;
+  align-items: center;
   text-decoration: none;
   color: rgb(40, 40, 40);
 }
-footer a img {
+footer .footer_box .footer_privacy {
+  display: block;
+}
+footer .footer_box .footer_privacy img {
   width: 12px;
   height: 12px;
   margin-bottom: 6px;
 }
-footer p {
+footer .footer_box .write_text {
+  margin: 0;
+  padding: 0 0 0 10px;
+  font-size: 12px;
+  font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
+}
+footer .footer_text {
+  display: flex;
   font-size: 12px;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
   margin: 0 0 0 15px;
+}
+footer .footer_text a {
+  display: block;
+  text-decoration: none;
+  color: rgb(40, 40, 40);
 }/*# sourceMappingURL=main.css.map */

@@ -158,11 +158,24 @@
   .main_wrapper .container .data_form {
     width: 90%;
   }
-  .main_wrapper .container .data_form {
-    width: 90%;
-  }
   .main_wrapper .container .notice .notice_text {
     padding-left: 30px;
+  }
+  footer {
+    height: 70px;
+  }
+  footer .footer_box {
+    display: flex;
+  }
+  footer .footer_box .footer_privacy {
+    display: block;
+  }
+  footer .footer_box .write_text {
+    padding: 0 0 0 10px;
+    margin: 0;
+  }
+  footer .footer_text {
+    display: flex;
   }
 }
 @media screen and (max-width: 400px) {
