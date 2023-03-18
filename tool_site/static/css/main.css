@@ -318,31 +318,6 @@ header .account_modal.active {
   box-shadow: 0px 1.2px 3.6px rgba(0, 0, 0, 0.11), 0px 6.4px 14.4px rgba(0, 0, 0, 0.13);
 }
 
-@media screen and (max-width: 1900px) {
-  .hero_wrapper .hero_container .hero_bg_img {
-    height: 50vw;
-  }
-}
-@media screen and (max-width: 1300px) {
-  .hero_wrapper .hero_container .hero_bg_img {
-    height: 60vw;
-  }
-  .hero_wrapper .hero_container .hero_main_title h3 {
-    font-size: 45px;
-  }
-}
-@media screen and (max-width: 960px) {
-  .hero_wrapper {
-    padding-top: 10%;
-  }
-  .hero_wrapper .hero_container .hero_bg_img {
-    background-size: 200%;
-    height: 100vw;
-  }
-  .hero_wrapper .hero_container .hero_main_title h3 {
-    font-size: 35px;
-  }
-}
 .top_wrapper {
   width: 100%;
   padding: 100px 0 150px 0;
@@ -379,7 +354,7 @@ header .account_modal.active {
   padding: 100px 0;
   background: no-repeat;
   background-image: url("/static/images/timer.png"), url("/static/images/pc.png");
-  background-position: 65% 10%, 45% 55%;
+  background-position: 65% 10%, 70% 55%;
   background-size: 10%, 25%;
 }
 .top_wrapper .top_container .feature ul {
@@ -784,11 +759,6 @@ header .account_modal.active {
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
 
-@media screen and (max-width: 1400px) {
-  .tools_table {
-    width: 960px;
-  }
-}
 footer {
   width: 100%;
   height: 100px;
