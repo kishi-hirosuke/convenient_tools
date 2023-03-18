@@ -55,8 +55,7 @@ header .header_right_contents .header_right_link {
   color: rgb(40, 40, 40);
 }
 header .header_right_contents .header_right_link h2 {
-  padding: 25px 0;
-  margin: 0;
+  margin: 11px 0 0 0;
   font-size: 20px;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
