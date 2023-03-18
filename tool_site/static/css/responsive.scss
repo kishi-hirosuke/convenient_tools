@@ -115,6 +115,13 @@ $phone_sub_title: 12px;
             }
         }
     }
+    .main_wrapper{
+        .container{
+            .data_form{
+                width: 80%;
+            }
+        }
+    }
 }
 
 @media screen and (max-width:700px) {
@@ -173,6 +180,13 @@ $phone_sub_title: 12px;
                         width: 250px;
                     }
                 }
+            }
+        }
+    }
+    .main_wrapper{
+        .container{
+            .data_form{
+                width: 90%;
             }
         }
     }
