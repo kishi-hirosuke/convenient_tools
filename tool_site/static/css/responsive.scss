@@ -64,8 +64,12 @@ $phone_text: 16px;
             }
         }
     }
-    .tools_table {
-        width: 960px;
+    .main_wrapper {
+        .container {
+            .tools_table {
+                width: 960px;
+            }
+        }
     }
 }
 
@@ -129,6 +133,9 @@ $phone_text: 16px;
     }
     .main_wrapper{
         .container{
+            .tools_table {
+                width: 630px;
+            }
             .data_form{
                 width: 80%;
             }
@@ -199,7 +206,21 @@ $phone_text: 16px;
         }
     }
     .main_wrapper{
+        padding: 150px 0 130px 0;
+        .main_title {
+            .title {
+                h1 {
+                    font-size: $small_title;
+                }
+            }
+            h3 {
+                font-size: $small_sub_title;
+            }
+        }
         .container{
+            .tools_table {
+                width: 300px;
+            }
             .data_form{
                 width: 90%;
             }
