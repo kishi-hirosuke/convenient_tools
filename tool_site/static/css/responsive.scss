@@ -190,8 +190,19 @@ $phone_sub_title: 12px;
             }
         }
     }
+
+    .main_wrapper {
+        .container {
+            .notice {
+                .notice_text {
+                    padding-left: 30px;
+                }
+            }
+        }
+    }
+
 }
 
 @media screen and (max-width:400px) {
-    
+
 }
