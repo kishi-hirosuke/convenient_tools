@@ -167,7 +167,7 @@ class InquiryForm(forms.Form):
         # 'placeholder':'sample@example.com',
         'pattern':'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'}))
     kinds = forms.ChoiceField(
-        label='お問い合わせ内容',
+        label='お問い合わせ種別',
         required=True,
         disabled=False,
         choices=[
@@ -178,7 +178,7 @@ class InquiryForm(forms.Form):
             ('その他のお問い合わせ','その他のお問い合わせ')],
         widget=forms.Select,)
     message = forms.CharField(
-        label='内容',
+        label='お問い合わせ内容',
         required=False,
         max_length=255,
         widget=forms.Textarea,)
