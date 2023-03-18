@@ -212,6 +212,17 @@ $phone_text: 11px;
             }
         }
     }
+
+    .main_wrapper {
+        .container {
+            .notice {
+                .notice_text {
+                    padding-left: 30px;
+                }
+            }
+        }
+    }
+
 }
 
 @media screen and (max-width:400px) {

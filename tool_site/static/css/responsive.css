@@ -150,6 +150,12 @@
   .main_wrapper .container .data_form {
     width: 90%;
   }
+  .main_wrapper .container .data_form {
+    width: 90%;
+  }
+  .main_wrapper .container .notice .notice_text {
+    padding-left: 30px;
+  }
 }
 @media screen and (max-width: 400px) {
   header {
