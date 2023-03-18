@@ -10,9 +10,13 @@
 
 <div class="main_wrapper">
 
-    <div class="sample_area">
-        <img src="{% static 'images/sample/extract-multiple-af.png' %}" alt="" class="tool_icon_img">
-        <span class="sample_close bi bi-x-lg"></span>
+    <div class="sample_box">
+        <div class="sample_area">
+            <img src="{% static 'images/sample/extract-multiple-bf.png' %}" alt="" class="sample_img_bf">
+            <img src="{% static 'images/sample/extract-multiple-af.png' %}" alt="" class="sample_img_af">
+            <span class="bi bi-arrow-right"></span>
+            <p class="sample_text">基準列に「商品番号」とキーワードに「fruit-01|fruit-05|fruit-07」を指定すると以下のようになります。</p>
+        </div>
     </div>
 
     <div class="container">
@@ -40,7 +44,7 @@
                     <li>抽出するキーワードを入力（半角パイプ「|」区切りで複数指定可）</li>
                     <li>実行ボタンをクリック</li>
                 </ol>
-                <p class="sample_text">sample<span class="sample_icon bi bi-box-arrow-up-right"></span></p>
+                <p class="sample_btn">sample<span class="sample_icon bi bi-box-arrow-up-right"></span></p>
             </div>
         </div>
 
@@ -82,7 +86,7 @@
                         <span class="bi plus_icon bi-plus-circle-dotted"></span>
                     </div> -->
                     <label class="form_label">{{ form.file.label }}</label>
-                    <input type="file" multiple name="file" accept=".csv" class="form-control form-control-sm" required>
+                    <input type="file" multiple name="file" accept=".csv" class="form-control form-control-sm form_input" required>
                 </div>
                 <div class="form_content">
                     <label class="form_label">{{ form.columuns.label }}</label>
@@ -97,7 +101,7 @@
         </form>
 
         <div class="notice">
-            <p class="notice_title">excel行抽出について</p>
+            <h3 class="notice_title">excel行抽出について</h3>
             <ul class="notice_text">
                 <li>キーワードは部分一致で、半角パイプ「|」区切りで複数キーワード指定可能です。</li><br>
                 <li>アップするexcelファイルの1行目がヘッダーとして読み込まれます。<br>つまり、基準とする列名が1行目にある必要があります。</li><br>

@@ -10,9 +10,13 @@
 
 <div class="main_wrapper">
 
-    <div class="sample_area">
-        <img src="{% static 'images/sample/extract-multiple-af.png' %}" alt="" class="tool_icon_img">
-        <span class="sample_close bi bi-x-lg"></span>
+    <div class="sample_box">
+        <div class="sample_area">
+            <img src="{% static 'images/sample/remove-multiple-bf.png' %}" alt="" class="sample_img_bf">
+            <img src="{% static 'images/sample/remove-multiple-af.png' %}" alt="" class="sample_img_af">
+            <span class="bi bi-arrow-right"></span>
+            <p class="sample_text">基準列に「商品番号」とキーワードに「fruit-01|fruit-05|fruit-07」を指定すると以下のようになります。</p>
+        </div>
     </div>
 
     <div class="container">
@@ -30,7 +34,7 @@
                 複数キーワードに対応。<br>
                 </p>
             </div>
-            <div class="explanation_used">/files.qzin.jp/img/works/20/bimg/big_file_1670467284.jpg
+            <div class="explanation_used">
                 <h3 class="explanation_title">使い方</h3>
                 <ol class="explanation_text">
                     <li>処理するファイルを選択</li>
@@ -38,7 +42,7 @@
                     <li>削除するキーワードを入力（半角パイプ「|」区切りで複数指定可）</li>
                     <li>実行ボタンをクリック</li>
                 </ol>
-                <p class="sample_text">sample<span class="sample_icon bi bi-box-arrow-up-right"></span></p>
+                <p class="sample_btn">sample<span class="sample_icon bi bi-box-arrow-up-right"></span></p>
             </div>
         </div>
 
@@ -80,7 +84,7 @@
                         <span class="bi plus_icon bi-plus-circle-dotted"></span>
                     </div> -->
                     <label class="form_label">{{ form.file.label }}</label>
-                    <input type="file" multiple name="file" accept=".csv" class="form-control form-control-sm" required>
+                    <input type="file" multiple name="file" accept=".csv" class="form-control form-control-sm form_input" required>
                 </div>
                 <div class="form_content">
                     <label class="form_label">{{ form.columuns.label }}</label>

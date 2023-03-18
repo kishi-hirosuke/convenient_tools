@@ -34,7 +34,7 @@ $(function() {
         $('.error_alert').css('display', 'none');
     });
 
-    //sample
+    // //sample
     const sample_box = $('.sample_box');
     const sample_erea = $('.sample_erea');
     const sample_btn = $('.sample_btn');
@@ -43,9 +43,6 @@ $(function() {
     sample_btn.on('click', function() {
         sample_box.css('display', 'block');
         sample_erea.css('display', 'block');
-    });
-    sample_close.on('click', function() {
-        sample_box.css('display', 'none');
     });
 
 

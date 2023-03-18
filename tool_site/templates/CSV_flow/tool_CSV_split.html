@@ -10,9 +10,13 @@
 
 <div class="main_wrapper">
 
-    <div class="sample_area">
-        <img src="{% static 'images/sample/extract-multiple-af.png' %}" alt="" class="tool_icon_img">
-        <span class="sample_close bi bi-x-lg"></span>
+    <div class="sample_box">
+        <div class="sample_area">
+            <img src="{% static 'images/sample/split-bf.png' %}" alt="" class="sample_img_bf">
+            <img src="{% static 'images/sample/split-af-no-header.png' %}" alt="" class="sample_img_af">
+            <span class="bi bi-arrow-right"></span>
+            <p class="sample_text">ヘッダーなしを選択し分割件数「5」を指定すると以下のようになります。</p>
+        </div>
     </div>
 
     <div class="container">
@@ -38,7 +42,7 @@
                     <li>ヘッダーの指定方法選択</li>
                     <li>実行ボタンをクリック</li>
                 </ol>
-                <p class="sample_text">sample<span class="sample_icon bi bi-box-arrow-up-right"></span></p>
+                <p class="sample_btn">sample<span class="sample_icon bi bi-box-arrow-up-right"></span></p>
             </div>
         </div>
 
@@ -81,7 +85,7 @@
                         <span class="bi plus_icon bi-plus-circle-dotted"></span>
                     </div> -->
                     <label class="form_label">{{ form.file.label }}</label>
-                    <input type="file" multiple name="file" accept=".csv" class="form-control form-control-sm" required>
+                    <input type="file" multiple name="file" accept=".csv" class="form-control form-control-sm form_input" required>
                 </div>
                 <div class="form_content">
                     <label class="form_label">{{ form.num.label }}</label>
@@ -92,7 +96,7 @@
         </form>
 
         <div class="notice">
-            <p class="notice_title">csvファイルの分割について</p>
+            <h3 class="notice_title">csvファイルの分割について</h3>
             <ul class="notice_text">
                 <li>「ヘッダーあり」を選択した際は、全データにヘッダーが出力されます。<br>「ヘッダーなし」を選択した際は、1つ目のデータにはヘッダーを含んで出力されます。</li><br>
                 <li>ヘッダーが空白の際でも処理は可能ですが、空白が「Unnamed:」に置き換わります。</li><br>
