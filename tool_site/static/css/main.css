@@ -282,7 +282,6 @@ header .account_modal.active {
 .hero_wrapper .hero_container {
   max-width: 1900px;
   margin: 0 auto;
-  margin-bottom: 100px;
 }
 .hero_wrapper .hero_container .hero_bg_img {
   background: linear-gradient(to top, rgba(255, 255, 255, 0) 55%, rgb(255, 255, 255) 80%), url("/static/images/sleeping-man.jpg");
@@ -319,7 +318,7 @@ header .account_modal.active {
 
 .top_wrapper {
   width: 100%;
-  padding: 100px 0 150px 0;
+  padding: 200px 0 150px 0;
   margin: 0;
 }
 .top_wrapper .top_container .box {
