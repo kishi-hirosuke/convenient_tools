@@ -93,7 +93,7 @@
     width: 80px;
   }
   header .header_right_contents .header_right_link h2 {
-    font-size: 12px;
+    font-size: 11px;
   }
   .hero_wrapper {
     padding-top: 120px;
@@ -103,11 +103,11 @@
     height: 100vw;
   }
   .hero_wrapper .hero_container .hero_main_title h3 {
-    font-size: 20px;
+    font-size: 18px;
   }
   .hero_wrapper .hero_container .hero_main_title a {
     padding: 7px 10px;
-    font-size: 12px;
+    font-size: 11px;
   }
   .top_wrapper {
     padding: 50px 0 80px 0;
@@ -116,11 +116,11 @@
     margin: 0 10%;
   }
   .top_wrapper .top_container .box h3 {
-    font-size: 18px;
+    font-size: 15px;
   }
   .top_wrapper .top_container .box a {
     padding: 7px 10px;
-    font-size: 12px;
+    font-size: 11px;
   }
   .top_wrapper .top_container .feature {
     margin-left: 10%;
@@ -128,5 +128,79 @@
   }
   .top_wrapper .top_container .feature ul li {
     width: 250px;
+  }
+}
+@media screen and (max-width: 400px) {
+  header {
+    height: 35px;
+  }
+  header .header_top_link {
+    width: 100px;
+    margin: 0 0 20px 10px;
+  }
+  header .header_right_contents {
+    margin-right: 10px;
+    gap: 2px;
+  }
+  header .header_right_contents .header_right_link {
+    width: 70px;
+  }
+  header .header_right_contents .header_right_link h2 {
+    font-size: 11px;
+  }
+  .hero_wrapper {
+    padding-top: 100px;
+  }
+  .hero_wrapper .hero_container .hero_bg_img {
+    background-size: 200%;
+    height: 100vw;
+  }
+  .hero_wrapper .hero_container .hero_main_title h3 {
+    font-size: 18px;
+  }
+  .hero_wrapper .hero_container .hero_main_title p {
+    width: 90%;
+    font-size: 11px;
+  }
+  .hero_wrapper .hero_container .hero_main_title a {
+    margin-top: 20px;
+    padding: 4px 6px;
+    font-size: 11px;
+  }
+  .top_wrapper {
+    padding: 0;
+  }
+  .top_wrapper .top_container .box {
+    margin: 0 10% 60px 10%;
+  }
+  .top_wrapper .top_container .box h3 {
+    padding-bottom: 10px;
+    font-size: 15px;
+  }
+  .top_wrapper .top_container .box p {
+    padding: 0;
+    margin: 0;
+    font-size: 11px;
+  }
+  .top_wrapper .top_container .box a {
+    margin-top: 20px;
+    padding: 4px 6px;
+    font-size: 11px;
+  }
+  .top_wrapper .top_container .feature {
+    margin-left: 5%;
+    padding: 0 0 20px 0;
+    background-position: 85% 15%, 85% 55%;
+  }
+  .top_wrapper .top_container .feature ul li {
+    margin-bottom: 30px;
+    width: 200px;
+    background-size: 20px auto;
+  }
+  .top_wrapper .top_container .feature ul li h4 {
+    font-size: 15px;
+  }
+  .top_wrapper .top_container .feature ul li p {
+    font-size: 11px;
   }
 }/*# sourceMappingURL=responsive.css.map */

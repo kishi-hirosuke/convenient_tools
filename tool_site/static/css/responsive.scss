@@ -3,9 +3,10 @@ $tab_title_text: 38px;
 $small_title: 33px;
 $small_title_text: 30px;
 $small_sub_title: 16px;
-$phone_title: 20px;
-$phone_title_text: 18px;
-$phone_sub_title: 12px;
+$phone_title: 18px;
+$phone_title_text: 15px;
+$phone_sub_title: 11px;
+$phone_text: 11px;
 @media screen and (max-width:1900px) {
     .hero_wrapper{
         .hero_container{
@@ -179,5 +180,84 @@ $phone_sub_title: 12px;
 }
 
 @media screen and (max-width:400px) {
-    
+    header {
+        height: 35px;
+        .header_top_link {
+            width: 100px;
+            margin: 0 0 20px 10px;
+        }
+        .header_right_contents {
+            margin-right: 10px;
+            gap: 2px;
+            .header_right_link {
+                width: 70px;
+                h2 {
+                    font-size: $phone_sub_title;
+                }
+            }
+        }
+    }
+    .hero_wrapper{
+        padding-top: 100px;
+        .hero_container{
+            .hero_bg_img{
+                background-size: 200%;
+                height: 100vw;
+            }
+            .hero_main_title {
+                h3 {
+                    font-size: $phone_title;
+                }
+                p {
+                    width: 90%;
+                    font-size: $phone_text;
+                }
+                a {
+                    margin-top: 20px;
+                    padding: 4px 6px;
+                    font-size: $phone_sub_title;
+                }
+            }
+        }
+    }
+    .top_wrapper {
+        padding: 0;
+        .top_container {
+            .box {
+                margin: 0 10% 60px 10%;
+                h3 {
+                    padding-bottom: 10px;
+                    font-size: $phone_title_text;
+                }
+                p {
+                    padding: 0;
+                    margin: 0;
+                    font-size: $phone_text;
+                }
+                a {
+                    margin-top: 20px;
+                    padding: 4px 6px;
+                    font-size: $phone_sub_title;
+                }
+            }
+            .feature {
+                margin-left: 5%;
+                padding: 0 0 20px 0;
+                background-position: 85% 15%, 85% 55%;
+                ul {
+                    li {
+                        margin-bottom: 30px;
+                        width: 200px;
+                        background-size: 20px auto;
+                        h4 {
+                            font-size: $phone_title_text;
+                        }
+                        p {
+                            font-size: $phone_text;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
