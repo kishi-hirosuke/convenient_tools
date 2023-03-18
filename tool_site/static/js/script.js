@@ -24,7 +24,7 @@ $(function() {
     // });
 
     //error_message_delete
-    const close_btn = $('.sample_area');
+    const close_btn = $('.sample_box');
     const submit_btn = $('.submit_icon');
 
     close_btn.on('click', function() {
@@ -35,15 +35,17 @@ $(function() {
     });
 
     //sample
-    const sample_area = $('.sample_area');
-    const sample_btn = $('.sample_text');
+    const sample_box = $('.sample_box');
+    const sample_erea = $('.sample_erea');
+    const sample_btn = $('.sample_btn');
     const sample_close = $('.sample_close');
 
     sample_btn.on('click', function() {
-        sample_area.css('display', 'block');
+        sample_box.css('display', 'block');
+        sample_erea.css('display', 'block');
     });
     sample_close.on('click', function() {
-        sample_area.css('display', 'none');
+        sample_box.css('display', 'none');
     });
 
 

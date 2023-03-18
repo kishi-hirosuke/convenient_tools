@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% load widget_tweaks %}
+{% load widget_tweaks %}tool_CSV_remove
 
 {% block title %}
     <title>Extraction of CSV｜csvから特定の行を抽出｜Auto-biz</title>
@@ -10,10 +10,13 @@
 
 <div class="main_wrapper">
 
-    <div class="sample_area">
-        <img src="{% static 'images/sample/extract-multiple-bf.png' %}" alt="" class="sample_img-bf">
-        <img src="{% static 'images/sample/extract-multiple-af.png' %}" alt="" class="sample_img-af">
-        <!-- <span class="sample_close bi bi-x-lg"></span> -->
+    <div class="sample_box">
+        <div class="sample_area">
+            <img src="{% static 'images/sample/extract-multiple-bf.png' %}" alt="" class="sample_img_bf">
+            <img src="{% static 'images/sample/extract-multiple-af.png' %}" alt="" class="sample_img_af">
+            <span class="bi bi-arrow-right"></span>
+            <span class="sample_text">商品番号ここから</span>
+        </div>
     </div>
 
     <div class="container">
@@ -40,7 +43,7 @@
                     <li>抽出するキーワードを入力（半角パイプ「|」区切りで複数指定可）</li>
                     <li>実行ボタンをクリック</li>
                 </ol>
-                <p class="sample_text">sample<span class="sample_icon bi bi-box-arrow-up-right"></span></p>
+                <p class="sample_btn">sample<span class="sample_icon bi bi-box-arrow-up-right"></span></p>
             </div>
         </div>
 

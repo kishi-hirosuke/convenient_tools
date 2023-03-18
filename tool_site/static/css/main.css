@@ -415,7 +415,7 @@ header .account_modal.active {
   margin: 0;
   background-color: rgb(255, 255, 255);
 }
-.main_wrapper .sample_area {
+.main_wrapper .sample_box {
   display: none;
   position: fixed;
   top: 0;
@@ -424,22 +424,47 @@ header .account_modal.active {
   height: 100vh;
   background-color: rgba(5, 5, 5, 0.856);
   z-index: 6;
-}
-.main_wrapper .sample_area img {
   position: absolute;
-  width: 600px;
+}
+.main_wrapper .sample_box .sample_area {
+  position: absolute;
+  width: 80%;
+  height: 75%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  background-color: #fff;
   z-index: 6;
 }
-.main_wrapper .sample_area .sample_close {
+.main_wrapper .sample_box img {
   position: absolute;
-  top: 30px;
-  right: 40px;
-  font-size: 22px;
-  color: wheat;
+  max-height: 70%;
+  max-width: 35%;
   z-index: 6;
+  transform: translate(-50%, -50%);
+  top: 60%;
+}
+.main_wrapper .sample_box .sample_img_bf {
+  left: 30%;
+}
+.main_wrapper .sample_box .sample_img_af {
+  left: 70%;
+}
+.main_wrapper .sample_box .sample_text　 {
+  font-size: 20px;
+  position: absolute;
+  z-index: 6;
+  transform: translate(-50%, -50%);
+  top: 60%;
+  left: 50%;
+}
+.main_wrapper .sample_box .bi-arrow-right {
+  font-size: 20px;
+  position: absolute;
+  z-index: 6;
+  transform: translate(-50%, -50%);
+  top: 60%;
+  left: 50%;
 }
 .main_wrapper .main_title {
   width: 100%;
@@ -602,13 +627,13 @@ header .account_modal.active {
   font-size: 13px;
   font-family: "游ゴシック", "ヒラギノ角ゴ ProN", "sans-serif";
 }
-.main_wrapper .container .tool_explanation .explanation_used .sample_text {
+.main_wrapper .container .tool_explanation .explanation_used .sample_btn {
   position: absolute;
   top: 20px;
   right: 20px;
   font-size: 16px;
 }
-.main_wrapper .container .tool_explanation .explanation_used .sample_text span {
+.main_wrapper .container .tool_explanation .explanation_used .sample_btn span {
   margin-left: 10px;
 }
 .main_wrapper .container .data_form {
