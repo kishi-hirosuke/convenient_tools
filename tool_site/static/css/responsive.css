@@ -2,6 +2,10 @@
   .hero_wrapper .hero_container .hero_bg_img {
     height: 50vw;
   }
+  .top_wrapper .top_container .box .feature {
+    background-position: 100% 10%, 80% 55%;
+    background-size: 20%, 45%;
+  }
 }
 @media screen and (max-width: 1400px) {
   .hero_wrapper .hero_container .hero_bg_img {
@@ -19,7 +23,11 @@
   .top_wrapper .top_container .box a {
     padding: 10px 20px;
   }
-  .top_wrapper .top_container .feature ul li {
+  .top_wrapper .top_container .box .feature {
+    background-position: 100% 25%, 90% 55%;
+    background-size: 20%, 45%;
+  }
+  .top_wrapper .top_container .box .feature ul li {
     width: 250px;
   }
   .tools_table {
@@ -47,8 +55,8 @@
     padding-top: 120px;
   }
   .hero_wrapper .hero_container .hero_bg_img {
-    background-size: 200%;
-    height: 100vw;
+    background-size: 140%;
+    height: 70vw;
   }
   .hero_wrapper .hero_container .hero_main_title h3 {
     font-size: 33px;
@@ -70,11 +78,10 @@
     padding: 7px 10px;
     font-size: 16px;
   }
-  .top_wrapper .top_container .feature {
-    margin-left: 10%;
-    padding: 70px 0;
+  .top_wrapper .top_container .box .feature {
+    background-position: 100% 25%, 80% 55%;
   }
-  .top_wrapper .top_container .feature ul li {
+  .top_wrapper .top_container .box .feature ul li {
     width: 250px;
   }
   .main_wrapper .container .data_form {
@@ -82,9 +89,6 @@
   }
 }
 @media screen and (max-width: 700px) {
-  header {
-    height: 35px;
-  }
   header .header_top_link {
     width: 120px;
     margin: 0 0 20px 10px;
@@ -93,24 +97,23 @@
     margin-right: 10px;
   }
   header .header_right_contents .header_right_link {
-    width: 80px;
-  }
-  header .header_right_contents .header_right_link h2 {
-    font-size: 11px;
+    width: 100px;
   }
   .hero_wrapper {
     padding-top: 120px;
   }
   .hero_wrapper .hero_container .hero_bg_img {
-    background-size: 200%;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0) 65%, rgb(255, 255, 255) 95%), url("/static/images/sleeping-man.jpg");
     height: 100vw;
+    background-size: 200%;
+    background-position: top;
   }
   .hero_wrapper .hero_container .hero_main_title h3 {
-    font-size: 18px;
+    font-size: 25px;
   }
   .hero_wrapper .hero_container .hero_main_title a {
     padding: 7px 10px;
-    font-size: 11px;
+    font-size: 13px;
   }
   .top_wrapper {
     padding: 50px 0 80px 0;
@@ -119,18 +122,23 @@
     margin: 0 10%;
   }
   .top_wrapper .top_container .box h3 {
-    font-size: 15px;
+    font-size: 25px;
   }
   .top_wrapper .top_container .box a {
     padding: 7px 10px;
-    font-size: 11px;
+    font-size: 13px;
   }
-  .top_wrapper .top_container .feature {
-    margin-left: 10%;
-    padding: 70px 0;
+  .top_wrapper .top_container .box .feature {
+    background-image: none;
   }
-  .top_wrapper .top_container .feature ul li {
-    width: 250px;
+  .top_wrapper .top_container .box .feature ul li {
+    width: 100%;
+  }
+  .top_wrapper .top_container .box .feature ul li h4 {
+    font-size: 18px;
+  }
+  .top_wrapper .top_container .box .feature ul li p {
+    font-size: 16px;
   }
   .main_wrapper .container .data_form {
     width: 90%;
@@ -140,41 +148,34 @@
   }
 }
 @media screen and (max-width: 400px) {
-  header {
-    height: 35px;
-  }
-  header .header_top_link {
-    width: 100px;
-    margin: 0 0 20px 10px;
-  }
   header .header_right_contents {
     margin-right: 10px;
     gap: 2px;
   }
   header .header_right_contents .header_right_link {
-    width: 70px;
+    width: 80px;
   }
   header .header_right_contents .header_right_link h2 {
-    font-size: 11px;
+    font-size: 13px;
   }
   .hero_wrapper {
     padding-top: 100px;
   }
   .hero_wrapper .hero_container .hero_bg_img {
     background-size: 200%;
-    height: 100vw;
+    height: 130vw;
   }
   .hero_wrapper .hero_container .hero_main_title h3 {
-    font-size: 18px;
+    font-size: 25px;
   }
   .hero_wrapper .hero_container .hero_main_title p {
     width: 90%;
-    font-size: 11px;
+    font-size: 16px;
   }
   .hero_wrapper .hero_container .hero_main_title a {
     margin-top: 20px;
     padding: 4px 6px;
-    font-size: 11px;
+    font-size: 13px;
   }
   .top_wrapper {
     padding: 0;
@@ -184,32 +185,26 @@
   }
   .top_wrapper .top_container .box h3 {
     padding-bottom: 10px;
-    font-size: 15px;
+    font-size: 25px;
   }
   .top_wrapper .top_container .box p {
     padding: 0;
     margin: 0;
-    font-size: 11px;
+    font-size: 16px;
   }
   .top_wrapper .top_container .box a {
     margin-top: 20px;
     padding: 4px 6px;
-    font-size: 11px;
+    font-size: 13px;
   }
-  .top_wrapper .top_container .feature {
-    margin-left: 5%;
-    padding: 0 0 20px 0;
-    background-position: 85% 15%, 85% 55%;
+  .top_wrapper .top_container .box .feature {
+    padding: 30px 0 50px 0;
   }
-  .top_wrapper .top_container .feature ul li {
+  .top_wrapper .top_container .box .feature ul li {
     margin-bottom: 30px;
-    width: 200px;
-    background-size: 20px auto;
+    background-size: 25px;
   }
-  .top_wrapper .top_container .feature ul li h4 {
-    font-size: 15px;
-  }
-  .top_wrapper .top_container .feature ul li p {
-    font-size: 11px;
+  .top_wrapper .top_container .box .feature ul li h4 {
+    margin-left: 35px;
   }
 }/*# sourceMappingURL=responsive.css.map */

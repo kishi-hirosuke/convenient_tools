@@ -3,15 +3,25 @@ $tab_title_text: 38px;
 $small_title: 33px;
 $small_title_text: 30px;
 $small_sub_title: 16px;
-$phone_title: 18px;
-$phone_title_text: 15px;
-$phone_sub_title: 11px;
-$phone_text: 11px;
+$phone_title: 25px;
+$phone_title_text: 18px;
+$phone_sub_title: 13px;
+$phone_text: 16px;
 @media screen and (max-width:1900px) {
     .hero_wrapper{
         .hero_container{
             .hero_bg_img{
                 height: 50vw;
+            }
+        }
+    }
+    .top_wrapper {
+        .top_container {
+            .box{
+                .feature {
+                    background-position: 100% 10%, 80% 55%;
+                    background-size: 20%, 45%;
+                }
             }
         }
     }
@@ -42,11 +52,13 @@ $phone_text: 11px;
                 a {
                     padding: 10px 20px;
                 }
-            }
-            .feature {
-                ul {
-                    li {
-                        width: 250px;
+                .feature {
+                    background-position: 100% 25%, 90% 55%;
+                    background-size: 20%, 45%;
+                    ul {
+                        li {
+                            width: 250px;
+                        }
                     }
                 }
             }
@@ -78,8 +90,8 @@ $phone_text: 11px;
         padding-top: 120px;
         .hero_container{
             .hero_bg_img{
-                background-size: 200%;
-                height: 100vw;
+                background-size: 140%;
+                height: 70vw;
             }
             .hero_main_title {
                 h3 {
@@ -104,13 +116,12 @@ $phone_text: 11px;
                     padding: 7px 10px;
                     font-size: $small_sub_title;
                 }
-            }
-            .feature {
-                margin-left: 10%;
-                padding: 70px 0;
-                ul {
-                    li {
-                        width: 250px;
+                .feature {
+                    background-position: 100% 25%, 80% 55%;
+                    ul {
+                        li {
+                            width: 250px;
+                        }
                     }
                 }
             }
@@ -127,7 +138,6 @@ $phone_text: 11px;
 
 @media screen and (max-width:700px) {
     header {
-        height: 35px;
         .header_top_link {
             width: 120px;
             margin: 0 0 20px 10px;
@@ -135,10 +145,7 @@ $phone_text: 11px;
         .header_right_contents {
             margin-right: 10px;
             .header_right_link {
-                width: 80px;
-                h2 {
-                    font-size: $phone_sub_title;
-                }
+                width: 100px;
             }
         }
     }
@@ -146,8 +153,10 @@ $phone_text: 11px;
         padding-top: 120px;
         .hero_container{
             .hero_bg_img{
-                background-size: 200%;
+                background: linear-gradient(to top, rgba(255, 255, 255, 0) 65%, rgb(255, 255, 255) 95%),url('/static/images/sleeping-man.jpg');
                 height: 100vw;
+                background-size: 200%;
+                background-position: top;
             }
             .hero_main_title {
                 h3 {
@@ -166,19 +175,24 @@ $phone_text: 11px;
             .box {
                 margin: 0 10%;
                 h3 {
-                    font-size: $phone_title_text;
+                    font-size: $phone_title;
                 }
                 a {
                     padding: 7px 10px;
                     font-size: $phone_sub_title;
                 }
-            }
-            .feature {
-                margin-left: 10%;
-                padding: 70px 0;
-                ul {
-                    li {
-                        width: 250px;
+                .feature {
+                    background-image: none;
+                    ul {
+                        li {
+                            width: 100%;
+                            h4 {
+                                font-size: $phone_title_text;
+                            }
+                            p {
+                                font-size: $phone_text;
+                            }
+                        }
                     }
                 }
             }
@@ -206,16 +220,11 @@ $phone_text: 11px;
 
 @media screen and (max-width:400px) {
     header {
-        height: 35px;
-        .header_top_link {
-            width: 100px;
-            margin: 0 0 20px 10px;
-        }
         .header_right_contents {
             margin-right: 10px;
             gap: 2px;
             .header_right_link {
-                width: 70px;
+                width: 80px;
                 h2 {
                     font-size: $phone_sub_title;
                 }
@@ -227,7 +236,7 @@ $phone_text: 11px;
         .hero_container{
             .hero_bg_img{
                 background-size: 200%;
-                height: 100vw;
+                height: 130vw;
             }
             .hero_main_title {
                 h3 {
@@ -252,7 +261,7 @@ $phone_text: 11px;
                 margin: 0 10% 60px 10%;
                 h3 {
                     padding-bottom: 10px;
-                    font-size: $phone_title_text;
+                    font-size: $phone_title;
                 }
                 p {
                     padding: 0;
@@ -264,21 +273,15 @@ $phone_text: 11px;
                     padding: 4px 6px;
                     font-size: $phone_sub_title;
                 }
-            }
-            .feature {
-                margin-left: 5%;
-                padding: 0 0 20px 0;
-                background-position: 85% 15%, 85% 55%;
-                ul {
-                    li {
-                        margin-bottom: 30px;
-                        width: 200px;
-                        background-size: 20px auto;
-                        h4 {
-                            font-size: $phone_title_text;
-                        }
-                        p {
-                            font-size: $phone_text;
+                .feature {
+                    padding: 30px 0 50px 0;
+                    ul {
+                        li {
+                            h4{
+                                margin-left: 35px;
+                            }
+                            margin-bottom: 30px;
+                            background-size: 25px;
                         }
                     }
                 }
