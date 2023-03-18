@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% load widget_tweaks %}tool_CSV_remove
+{% load widget_tweaks %}
 
 {% block title %}
     <title>Extraction of CSV｜csvから特定の行を抽出｜Auto-biz</title>
@@ -15,12 +15,11 @@
             <img src="{% static 'images/sample/extract-multiple-bf.png' %}" alt="" class="sample_img_bf">
             <img src="{% static 'images/sample/extract-multiple-af.png' %}" alt="" class="sample_img_af">
             <span class="bi bi-arrow-right"></span>
-            <span class="sample_text">商品番号ここから</span>
+            <p class="sample_text">基準列に「商品番号」とキーワードに「fruit-01|fruit-05|fruit-07」を指定すると以下のようになります。</p>
         </div>
     </div>
 
     <div class="container">
-
         <div class="main_title">
             <h3>Extraction CSV rows</h3>
             <p>アップロードしたcsvファイルから特定の行のみを抽出します。</p>

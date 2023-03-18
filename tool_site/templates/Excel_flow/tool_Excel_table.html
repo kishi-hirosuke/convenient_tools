@@ -10,9 +10,13 @@
 
 <div class="main_wrapper">
 
-    <div class="sample_area">
-        <img src="{% static 'images/sample/extract-multiple-af.png' %}" alt="" class="tool_icon_img">
-        <span class="sample_close bi bi-x-lg"></span>
+    <div class="sample_box">
+        <div class="sample_area">
+            <img src="{% static 'images/sample/html-table-bf.png' %}" alt="" class="sample_img_bf">
+            <img src="{% static 'images/sample/html-table-af-code.png' %}" alt="" class="sample_img_af">
+            <span class="bi bi-arrow-right"></span>
+            <p class="sample_text">ファイルを変換すると以下のようになります。</p>
+        </div>
     </div>
 
     <div class="container">
@@ -38,7 +42,7 @@
                     <!-- <li>罫線の有無を選択</li> -->
                     <li>実行ボタンをクリック</li>
                 </ol>
-                <p class="sample_text">sample<span class="sample_icon bi bi-box-arrow-up-right"></span></p>
+                <p class="sample_btn">sample<span class="sample_icon bi bi-box-arrow-up-right"></span></p>
             </div>
         </div>
 
@@ -80,14 +84,14 @@
                         <span class="bi plus_icon bi-plus-circle-dotted"></span>
                     </div> -->
                     <label class="form_label">{{ form.file.label }}</label>
-                    <input type="file" multiple name="file" accept=".csv" class="form-control form-control-sm" required>
+                    <input type="file" multiple name="file" accept=".csv" class="form-control form-control-sm form_input" required>
                 </div>
                 <button type="submit" class="btn submit_icon  btn-outline-primary" id="submit_btn">実行</button>
             </div>
         </form>
 
         <div class="notice">
-            <p class="notice_title">Excel to Htmlについて</p>
+            <h3 class="notice_title">Excel to Htmlについて</h3>
             <ul class="notice_text">
                 <li>セル内改行、セル結合には対応していません。</li><br>
                 <li>※&、<、> 記号は、&amp;amp;、&amp;lt;、&amp;gt; に変換されます（テスト必要）</li><br>

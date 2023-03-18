@@ -424,7 +424,6 @@ header .account_modal.active {
   height: 100vh;
   background-color: rgba(5, 5, 5, 0.856);
   z-index: 6;
-  position: absolute;
 }
 .main_wrapper .sample_box .sample_area {
   position: absolute;
@@ -434,36 +433,35 @@ header .account_modal.active {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #fff;
-  z-index: 6;
+  z-index: 100;
 }
-.main_wrapper .sample_box img {
+.main_wrapper .sample_box .sample_area img {
   position: absolute;
   max-height: 70%;
   max-width: 35%;
-  z-index: 6;
   transform: translate(-50%, -50%);
-  top: 60%;
+  top: 55%;
 }
-.main_wrapper .sample_box .sample_img_bf {
+.main_wrapper .sample_box .sample_area .sample_img_bf {
   left: 30%;
 }
-.main_wrapper .sample_box .sample_img_af {
+.main_wrapper .sample_box .sample_area .sample_img_af {
   left: 70%;
 }
-.main_wrapper .sample_box .sample_text　 {
-  font-size: 20px;
+.main_wrapper .sample_box .sample_area .sample_text {
+  text-align: center;
+  width: 90%;
+  font-size: 16px;
   position: absolute;
-  z-index: 6;
   transform: translate(-50%, -50%);
-  top: 60%;
+  top: 13%;
   left: 50%;
 }
-.main_wrapper .sample_box .bi-arrow-right {
+.main_wrapper .sample_box .sample_area .bi-arrow-right {
   font-size: 20px;
   position: absolute;
-  z-index: 6;
   transform: translate(-50%, -50%);
-  top: 60%;
+  top: 55%;
   left: 50%;
 }
 .main_wrapper .main_title {
@@ -666,6 +664,7 @@ header .account_modal.active {
 .main_wrapper .container .data_form .form_area #id_header_select {
   padding: 0;
   list-style: none;
+  margin: 0;
 }
 .main_wrapper .container .data_form .form_area .message {
   margin: 0;
