@@ -93,19 +93,19 @@ class HelpView(TemplateView):
 # ユーザー操作
 ############################################################
 
-# メール送信処理
-def email_send(request, subject, body, email, redirect_name):
-    print(subject, body, email, redirect_name)
-    recipients = settings.EMAIL_HOST_USER
-    email_list = [email]
-    try:  # メール送信処理
-        send_mail(subject, body, recipients, email_list)
-    except BadHeaderError:  # ヘッダーエラー
-        messages.info(request, f'無効なヘッダーが見つかりました。')
-        return redirect(redirect_name)
-    except:  # メール送信時エラー
-        messages.info(request, f'メール処理の最中にエラーが発見されました。時間をおいて、再度試してください。')
-        return redirect(redirect_name)
+# # メール送信処理
+# def email_send(request, subject, body, email, redirect_name):
+#     print(subject, body, email, redirect_name)
+#     recipients = settings.EMAIL_HOST_USER
+#     email_list = [email]
+#     try:  # メール送信処理
+#         send_mail(subject, body, recipients, email_list)
+#     except BadHeaderError:  # ヘッダーエラー
+#         messages.info(request, f'無効なヘッダーが見つかりました。')
+#         return redirect(redirect_name)
+#     except:  # メール送信時エラー
+#         messages.info(request, f'メール処理の最中にエラーが発見されました。時間をおいて、再度試してください。')
+#         return redirect(redirect_name)
 
 # サインアップ
 # def SignupView(request):
@@ -489,14 +489,15 @@ def InquiryView(request):
         if inquiry.is_valid():
             form_data = inquiry.cleaned_data
 
-            name, name_detail, company ,tel , email, kinds,  message = form_data['name'], form_data['name_detail'], form_data['company'], form_data['tel'], form_data['email'], form_data['kinds'], form_data['message']
-            body = f'氏名：{name}\n\nふりがな：{name_detail}\n\n会社名：{company}\n\n電話番号：{tel}\n\n本文\n{message}'
+            name, email, kinds, message = form_data['name'], form_data['email'], form_data['kinds'], form_data['message']
+            kinds = f'Auto-biz：{kinds}'
+            body = f'メアド：{email}\n\n氏名：{name}\n\n本文\n{message}'
             recipients = [settings.EMAIL_HOST_USER]
             try:
-                send_mail(kinds, body, email, recipients)
+                send_mail(kinds, body, email, recipients, fail_silently=False)
             except BadHeaderError:
                 return HttpResponse('無効なヘッダーが見つかりました。')
-            return render(request, "inquiry.html", {'form':inquiry})
+            return render(request, "inquiry_thanks.html")
         else:
             return render(request, "inquiry.html", {'form':inquiry})
     else:

@@ -144,21 +144,21 @@ class InquiryForm(forms.Form):
         label='氏名',
         max_length=20,
     )
-    name_detail = forms.CharField(
-        label='ふりがな',
-        max_length=40,
-    )
-    company = forms.CharField(
-        label='会社名',
-        max_length=40,
-    )
-    tel = forms. CharField(
-        label='電話番号(数字のみ)',
-        min_length=9,
-        max_length=15,
-        widget=forms.TextInput(attrs={
-        # 'placeholder':'半角数字入力',
-        'pattern':'^[0-9]+$'}))
+    # name_detail = forms.CharField(
+    #     label='ふりがな',
+    #     max_length=40,
+    # )
+    # company = forms.CharField(
+    #     label='会社名',
+    #     max_length=40,
+    # )
+    # tel = forms. CharField(
+    #     label='電話番号(数字のみ)',
+    #     min_length=9,
+    #     max_length=15,
+    #     widget=forms.TextInput(attrs={
+    #     # 'placeholder':'半角数字入力',
+    #     'pattern':'^[0-9]+$'}))
     email = forms.EmailField(
         label='メールアドレス',
         required=True,

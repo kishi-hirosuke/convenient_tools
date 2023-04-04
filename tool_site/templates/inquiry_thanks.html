@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+<title>お問い合わせフォーム送信完了｜Auto-biz</title>
+{% endblock %}
+
+{% block main %}
+
+<div class="main_wrapper">
+
+    <div class="container">
+
+        <div class="main_title">
+            <h3>お問い合わせフォームの送信を完了致しました。</h3><br><br>
+            <p>お問い合わせありがとうございました。</p>
+            <p>担当者からの返信までしばらくお待ちください。</p><br>
+            <a href={% url 'top' %} class="btn btn-primary btn-lg">トップページへ戻る</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
