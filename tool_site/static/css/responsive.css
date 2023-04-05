@@ -104,7 +104,7 @@
     padding-top: 120px;
   }
   .hero_wrapper .hero_container .hero_bg_img {
-    background: linear-gradient(to top, rgba(255, 255, 255, 0) 75%, rgb(255, 255, 255) 100%), url("/static/images/sleeping-man.jpg");
+    background: linear-gradient(to top, rgba(255, 255, 255, 0) 80%, rgb(255, 255, 255) 100%), url("/static/images/sleeping-man.jpg");
     height: 100vw;
     background-size: 200%;
     background-position: top;
