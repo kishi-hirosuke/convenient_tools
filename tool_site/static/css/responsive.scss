@@ -144,7 +144,8 @@ $phone_text: 16px;
 @media screen and (max-width:700px) {
     header {
         .header_top_link {
-            margin: 0 0 30px 10px;
+            width: 140px;
+            margin: 0 0 22px 10px;
         }
         .header_right_contents {
             margin-right: 10px;
@@ -167,7 +168,7 @@ $phone_text: 16px;
                     font-size: $phone_title;
                 }
                 a {
-                    padding: 9px 12px;
+                    padding: 13px 13px;
                     font-size: $phone_text;
                 }
             }
@@ -182,7 +183,7 @@ $phone_text: 16px;
                     font-size: $phone_title;
                 }
                 a {
-                    padding: 9px 12px;
+                    padding: 12px 12px;
                     font-size: $phone_text;
                 }
                 .feature {
@@ -282,7 +283,7 @@ $phone_text: 16px;
                     font-size: $phone_text;
                 }
                 a {
-                    margin-top: 20px;
+                    margin-top: 70px;
                     font-size: $phone_text;
                 }
             }

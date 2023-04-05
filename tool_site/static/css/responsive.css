@@ -91,7 +91,8 @@
 }
 @media screen and (max-width: 700px) {
   header .header_top_link {
-    margin: 0 0 30px 10px;
+    width: 140px;
+    margin: 0 0 22px 10px;
   }
   header .header_right_contents {
     margin-right: 10px;
@@ -112,7 +113,7 @@
     font-size: 25px;
   }
   .hero_wrapper .hero_container .hero_main_title a {
-    padding: 9px 12px;
+    padding: 13px 13px;
     font-size: 16px;
   }
   .top_wrapper {
@@ -125,7 +126,7 @@
     font-size: 25px;
   }
   .top_wrapper .top_container .box a {
-    padding: 9px 12px;
+    padding: 12px 12px;
     font-size: 16px;
   }
   .top_wrapper .top_container .box .feature {
@@ -201,7 +202,7 @@
     font-size: 16px;
   }
   .hero_wrapper .hero_container .hero_main_title a {
-    margin-top: 20px;
+    margin-top: 70px;
     font-size: 16px;
   }
   .main_wrapper {
