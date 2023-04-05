@@ -289,6 +289,41 @@ $phone_text: 16px;
             }
         }
     }
+    .main_wrapper {
+        padding: 110px 0 130px 0;
+        .sample_box{
+            .sample_area{
+                .sample_img_bf{
+                    left: 25%;
+                }
+                .sample_img_af{
+                    left: 75%;
+                }
+            }
+        }
+        .main_title{
+            h3{
+                font-size: $phone_title;
+            }
+        }
+        .container {
+            .tool_explanation{
+                .border{
+                    height: 150px;
+                }
+                .explanation_view{
+                    .explanation_text{
+                        padding: 0 5px 5px 18px;
+                    }
+                }
+                .explanation_used{
+                    .explanation_text{
+                        padding: 0 5px 5px 30px;
+                    }
+                }
+            }
+        }
+    }
     .top_wrapper {
         padding: 150px 0 0 0;
         .top_container {
