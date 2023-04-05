@@ -4,7 +4,7 @@ $small_title: 33px;
 $small_title_text: 30px;
 $small_sub_title: 16px;
 $phone_title: 25px;
-$phone_title_text: 18px;
+$phone_title_text: 20px;
 $phone_sub_title: 13px;
 $phone_text: 16px;
 @media screen and (max-width:1900px) {
@@ -303,7 +303,7 @@ $phone_text: 16px;
         }
         .main_title{
             h3{
-                font-size: $phone_title;
+                font-size: $phone_title_text;
             }
         }
         .container {
