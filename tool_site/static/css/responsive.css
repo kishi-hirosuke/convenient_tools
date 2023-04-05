@@ -62,7 +62,6 @@
     font-size: 33px;
   }
   .hero_wrapper .hero_container .hero_main_title a {
-    padding: 7px 10px;
     font-size: 16px;
   }
   .top_wrapper {
@@ -75,7 +74,6 @@
     font-size: 30px;
   }
   .top_wrapper .top_container .box a {
-    padding: 7px 10px;
     font-size: 16px;
   }
   .top_wrapper .top_container .box .feature {
@@ -106,7 +104,7 @@
     padding-top: 120px;
   }
   .hero_wrapper .hero_container .hero_bg_img {
-    background: linear-gradient(to top, rgba(255, 255, 255, 0) 73%, rgb(255, 255, 255) 97%), url("/static/images/sleeping-man.jpg");
+    background: linear-gradient(to top, rgba(255, 255, 255, 0) 79%, rgb(255, 255, 255) 100%), url("/static/images/sleeping-man.jpg");
     height: 100vw;
     background-size: 200%;
     background-position: top;
@@ -115,7 +113,7 @@
     font-size: 25px;
   }
   .hero_wrapper .hero_container .hero_main_title a {
-    padding: 7px 10px;
+    padding: 9px 12px;
     font-size: 13px;
   }
   .top_wrapper {
@@ -128,7 +126,7 @@
     font-size: 25px;
   }
   .top_wrapper .top_container .box a {
-    padding: 7px 10px;
+    padding: 9px 12px;
     font-size: 13px;
   }
   .top_wrapper .top_container .box .feature {
@@ -205,7 +203,6 @@
   }
   .hero_wrapper .hero_container .hero_main_title a {
     margin-top: 20px;
-    padding: 4px 6px;
     font-size: 13px;
   }
   .top_wrapper {
@@ -225,7 +222,6 @@
   }
   .top_wrapper .top_container .box a {
     margin-top: 20px;
-    padding: 4px 6px;
     font-size: 13px;
   }
   .top_wrapper .top_container .box .feature {
